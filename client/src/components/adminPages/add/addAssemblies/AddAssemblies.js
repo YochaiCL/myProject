@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Layout from '../../layout/Layout';
 import Header from '../../../pageSettings/header/Header';
 import Button from '../../../pageSettings/button/Button';
+
 import style from './addAssemblies.module.css';
 
 export default class AddAssemblies extends Component {
