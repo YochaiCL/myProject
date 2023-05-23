@@ -18,6 +18,7 @@ export default class AddAssemblies extends Component {
     modelSSD: '',
   };
 
+  
   async handleSubmit(e) {
     e.preventDefault();
     //  const { model, cpu_socket_support, chipset, form_factor } = this.state;
