@@ -1,0 +1,16 @@
+/* Authors: Yohai Hen Levi and David Jedwabsky */
+.article {
+  display: flex;
+  gap: 2rem;
+}
+
+.section {
+  margin-bottom: 2rem;
+  gap: 2rem;
+}
+
+@media (max-width: 700px) {
+  .article {
+    flex-direction: column;
+  }
+}

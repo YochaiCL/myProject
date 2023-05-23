@@ -1,0 +1,14 @@
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #2e2d2d;
+  align-items: center;
+}
+
+.nav > :nth-child(3) {
+  margin-right: auto;
+}
+
+.nav .img {
+  margin-right: 1rem;
+}

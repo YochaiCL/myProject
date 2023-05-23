@@ -1,0 +1,14 @@
+
+.link {
+  color: white;
+  padding: 1.5rem;
+  text-decoration: none;
+}
+
+.link:hover,
+.link:focus {
+  color: gray;
+}
+
+
+

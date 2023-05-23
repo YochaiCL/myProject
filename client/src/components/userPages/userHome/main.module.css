@@ -1,0 +1,27 @@
+.section {
+  padding: 2rem;
+  min-height: 100vh;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 5rem;
+}
+
+div .link {
+  margin-top: 3rem;
+  text-decoration: none;
+  padding: 1rem;
+  max-width: 30%;
+  color: black;
+
+  border-radius: 10px;
+}
+
+div .link:hover {
+  color: #57565a;
+}

@@ -1,0 +1,56 @@
+/**************************************
+ * typography
+ **************************************/
+
+/**************************************
+ * img typography
+ **************************************/
+.img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.figure {
+  padding: 2rem;
+  display: flex;
+  justify-content: space-evenly;
+  gap: 20px;
+}
+
+/**************************************
+ * position hover typography
+ **************************************/
+
+.text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  opacity: 0;
+  color: black;
+  background-color: white;
+  transition: 0.4s;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  font-size: 3rem;
+}
+
+.box:hover .text {
+  opacity: 0.8;
+  color: black;
+}
+
+.box {
+  position: relative;
+  cursor: pointer;
+}
+
+.link {
+  text-decoration: none;
+  color: black;
+}

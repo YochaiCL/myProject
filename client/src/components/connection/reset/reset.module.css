@@ -1,0 +1,26 @@
+.form {
+  margin-top: 10rem;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.submit {
+  background-color: #2e2d2d;
+  border: none;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+
+  display: inline-block;
+  font-size: 2rem;
+  border-radius: 10px;
+  margin-top: 1rem;
+}
+.submit:hover {
+  background-color: gray;
+}
+
+.div {
+  text-align: center;
+}

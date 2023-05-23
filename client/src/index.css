@@ -1,0 +1,105 @@
+/*/* #region general */
+/**************************************
+ * general
+ **************************************/
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 2.5rem;
+  line-height: 1.5;
+  font-weight: 400;
+  /* border: solid 5px blue; */
+}
+
+div {
+  display: flex;
+  flex-direction: column;
+  /* border: solid 5px green; */
+  /* min-height: 100vh; */
+}
+
+/**************************************
+ * header && footer typography
+ **************************************/
+footer {
+  background-color: #2e2d2d;
+  color: white;
+}
+
+footer {
+  margin-top: auto;
+  text-align: center;
+  /* border: solid 1px #2e2d2d; */
+}
+
+/**************************************
+ * img typography
+ **************************************/
+
+.body {
+  background-image: url('./images/cover/cover.jpg');
+  background-repeat: no-repeat;
+}
+body {
+  padding: 3rem;
+  font-weight: bold;
+  background-size: cover;
+}
+
+/**************************************
+ * links typography
+ **************************************/
+
+/* #endregion general */
+
+/**************************************
+ * main, header,footer placement
+ **************************************/
+
+body {
+  /* border: solid 5px purple; */
+
+  /*width 97% from body for small screens*/
+  width: 97%;
+
+  /*max width for big screens*/
+  /* max-width: 1000px; */
+
+  /*margin it's distance from frame of the page*/
+  margin-left: auto;
+  margin-right: auto;
+  /*padding it's distance from others elements*/
+  padding: 0.1rem 4rem;
+}
+article {
+  background-color: white;
+  padding: 3rem;
+  opacity: 0.7;
+  border-radius: 10px;
+}
+
+
+
+/**************************************
+ * placement for other devices 
+ **************************************/
+
+/**************************************
+ * general
+ **************************************/
+
+@media (max-width: 600px) {
+  nav {
+    font-size: 1.9rem;
+  }
+}
+/* #endregion layout */
