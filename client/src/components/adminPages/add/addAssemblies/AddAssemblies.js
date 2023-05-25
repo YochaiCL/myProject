@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Layout from '../../layout/Layout';
+import Layout from '../../layout/pageLayout/PageLayout';
 import Header from '../../../pageSettings/header/Header';
 import Button from '../../../pageSettings/button/Button';
 
@@ -18,7 +18,6 @@ export default class AddAssemblies extends Component {
     modelSSD: '',
   };
 
-  
   async handleSubmit(e) {
     e.preventDefault();
     //  const { model, cpu_socket_support, chipset, form_factor } = this.state;

@@ -12,7 +12,7 @@
   font-size: 5rem;
 }
 
-div .link {
+.div .link {
   margin-top: 3rem;
   text-decoration: none;
   padding: 1rem;
@@ -22,6 +22,6 @@ div .link {
   border-radius: 10px;
 }
 
-div .link:hover {
+.div .link:hover {
   color: #57565a;
 }

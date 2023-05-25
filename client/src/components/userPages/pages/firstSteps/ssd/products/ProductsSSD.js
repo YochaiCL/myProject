@@ -1,5 +1,5 @@
 import React from 'react';
-import Layout from '../../../../../adminPages/layout/Layout';
+import Layout from '../../../../layouts/learnLayout/LearnLayout';
 import Header from '../../../../../pageSettings/header/Header';
 import style from '../../ssd/products/productsSSD.module.css';
 import LinkLayout from '../../../../../pageSettings/linkLayout/LinkLayout';

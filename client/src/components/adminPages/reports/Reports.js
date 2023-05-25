@@ -1,5 +1,5 @@
 import React from 'react';
-import Layout from '../layout/Layout';
+import Layout from '../layout/pageLayout/PageLayout';
 import Header from '../../pageSettings/header/Header';
 import LinkLayout from '../../pageSettings/linkLayout/LinkLayout';
 import style from './report.module.css';

@@ -3,3 +3,9 @@
   padding: 2rem;
   min-height: 100vh;
 }
+
+.section{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}

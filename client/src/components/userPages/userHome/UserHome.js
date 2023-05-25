@@ -8,7 +8,7 @@ import Footer from '../../pageSettings/footer/Footer';
 export default class UserHome extends Component {
   render() {
     return (
-      <div>
+      <div className={style.div}>
         <Navbar />
         <Header h1Heading='PC BUILDER' />
         <section className={style.section}>

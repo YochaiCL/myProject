@@ -1,4 +1,4 @@
-import Layout from '../layout/Layout';
+import Layout from '../layout/pageLayout/PageLayout';
 import Header from '../../pageSettings/header/Header';
 import UserData from '../../pageSettings/userData/UserData';
 import React from 'react';

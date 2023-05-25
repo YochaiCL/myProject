@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Button from '../../../../pageSettings/button/Button';
-import Layout from '../../../layout/Layout';
+import Layout from '../../../layout/pageLayout/PageLayout';
 import Header from '../../../../pageSettings/header/Header';
 import style from '../addMotherboard/addMotherboard.module.css';
 /////
@@ -26,10 +26,7 @@ export default class AddCase extends Component {
       },
       body: JSON.stringify(this.state),
     };
-    const response = await fetch(
-      'http://localhost:5000/insert/case',
-      options
-    );
+    const response = await fetch('http://localhost:5000/insert/case', options);
     const result = await response.json();
     console.log(result);
     if (result.status === 'ok') {

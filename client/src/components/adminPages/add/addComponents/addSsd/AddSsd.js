@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Layout from '../../../layout/Layout';
+import Layout from '../../../layout/pageLayout/PageLayout';
 import Header from '../../../../pageSettings/header/Header';
 import style from './addSsd.module.css';
 import LinkLayout from '../../../../pageSettings/linkLayout/LinkLayout';
