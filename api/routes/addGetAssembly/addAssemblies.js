@@ -18,10 +18,16 @@ require('../Scehmas/addAssemblies/addAssembliesScehmas');
 
 router.post('/', async (req, res) => {
   try {
-    // Create a new 'Motherboard' document in the MongoDB collection using the data sent in the request body
-    await Assemblies.create(req.body);
-    // Send a response with a 'status' property set to 'ok' indicating successful creation
-    res.send({ status: 'ok' });
+    let array = await Assemblies.find({ assemblyName: req.body.assemblyName });
+    if (array.length > 0) {
+      res.send({ status: 'Assembly already exist' });
+      return;
+    } else {
+      // Create a new 'Motherboard' document in the MongoDB collection using the data sent in the request body
+      await Assemblies.create(req.body);
+      // Send a response with a 'status' property set to 'ok' indicating successful creation
+      res.send({ status: 'ok' });
+    }
   } catch (error) {
     // Send a response with a 'status' property set to 'error' indicating an error occurred
     res.send({ status: 'error' });

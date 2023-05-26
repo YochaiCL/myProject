@@ -28,14 +28,14 @@ router.get('/modals', async (req, res) => {
     }
 
     // Find all 'Cpu' documents in the MongoDB collection
-    let getCpu = await CpuCoolerFan.find({});
+    let getCpu = await Cpu.find({});
     let sendCpu = [];
     for (let model of getCpu) {
       sendCpu.push(model.model);
     }
 
     // Find all 'Cpu Cooler Fan' documents in the MongoDB collection
-    let getCpuCoolerFan = await Cpu.find({});
+    let getCpuCoolerFan = await CpuCoolerFan.find({});
     let sendCpuCoolerFan = [];
     for (let model of getCpuCoolerFan) {
       sendCpuCoolerFan.push(model.model);

@@ -6,6 +6,7 @@ import style from './adminHome.module.css';
 import MainPageLayout from '../layout/mainPageLayout/MainPageLayout';
 
 export default class AdminHome extends Component {
+  // Initializing state variables for component properties
   state = {
     amountOfUsers: 0,
     amountOfOpenQuestions: 0,

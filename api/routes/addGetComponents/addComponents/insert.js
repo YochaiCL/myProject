@@ -20,10 +20,16 @@ require('../../Scehmas/addComponents/motherboard/motherboard');
 
 router.post('/motherboard', async (req, res) => {
   try {
-    // Create a new 'Motherboard' document in the MongoDB collection using the data sent in the request body
-    await Motherboard.create(req.body);
-    // Send a response with a 'status' property set to 'ok' indicating successful creation
-    res.send({ status: 'ok' });
+    let array = await Motherboard.find({ model: req.body.model });
+    if (array.length > 0) {
+      res.send({ status: 'Model already exist' });
+      return;
+    } else {
+      // Create a new 'Motherboard' document in the MongoDB collection using the data sent in the request body
+      await Motherboard.create(req.body);
+      // Send a response with a 'status' property set to 'ok' indicating successful creation
+      res.send({ status: 'ok' });
+    }
   } catch (error) {
     // Send a response with a 'status' property set to 'error' indicating an error occurred
     res.send({ status: 'error' });
@@ -39,10 +45,10 @@ require('../../Scehmas/addComponents/cpu/cpu');
 
 router.post('/cpu', async (req, res) => {
   try {
-    let array = await Cpu.find({model : req.body.model})
-    if(array.length > 0){
-      res.send({status : "Model already exist"});
-      return
+    let array = await Cpu.find({ model: req.body.model });
+    if (array.length > 0) {
+      res.send({ status: 'Model already exist' });
+      return;
     } else {
       await Cpu.create(req.body);
       res.send({ status: 'ok' });
@@ -61,8 +67,14 @@ require('../../Scehmas/addComponents/case/case');
 
 router.post('/case', async (req, res) => {
   try {
-    await Case.create(req.body);
-    res.send({ status: 'ok' });
+    let array = await Case.find({ model: req.body.model });
+    if (array.length > 0) {
+      res.send({ status: 'Model already exist' });
+      return;
+    } else {
+      await Case.create(req.body);
+      res.send({ status: 'ok' });
+    }
   } catch (error) {
     res.send({ status: 'error' });
   }
@@ -77,8 +89,14 @@ require('../../Scehmas/addComponents/gpu/gpu');
 
 router.post('/gpu', async (req, res) => {
   try {
-    await Gpu.create(req.body);
-    res.send({ status: 'ok' });
+    let array = await Gpu.find({ model: req.body.model });
+    if (array.length > 0) {
+      res.send({ status: 'Model already exist' });
+      return;
+    } else {
+      await Gpu.create(req.body);
+      res.send({ status: 'ok' });
+    }
   } catch (error) {
     res.send({ status: 'error' });
   }
@@ -93,8 +111,14 @@ require('../../Scehmas/addComponents/cpuCooler/cpuCoolerFan/cpuCoolerFan');
 
 router.post('/cpuCooleFan', async (req, res) => {
   try {
-    await CpuCoolerFan.create(req.body);
-    res.send({ status: 'ok' });
+    let array = await CpuCoolerFan.find({ model: req.body.model });
+    if (array.length > 0) {
+      res.send({ status: 'Model already exist' });
+      return;
+    } else {
+      await CpuCoolerFan.create(req.body);
+      res.send({ status: 'ok' });
+    }
   } catch (error) {
     res.send({ status: 'error' });
   }
@@ -109,8 +133,14 @@ require('../../Scehmas/addComponents/cpuCooler/cpuCoolerLiquid/cpuCoolerLiquid')
 
 router.post('/cpuCoolerLiquid', async (req, res) => {
   try {
-    await CpuCoolerLiquid.create(req.body);
-    res.send({ status: 'ok' });
+    let array = await CpuCoolerLiquid.find({ model: req.body.model });
+    if (array.length > 0) {
+      res.send({ status: 'Model already exist' });
+      return;
+    } else {
+      await CpuCoolerLiquid.create(req.body);
+      res.send({ status: 'ok' });
+    }
   } catch (error) {
     res.send({ status: 'error' });
   }
@@ -125,8 +155,14 @@ require('../../Scehmas/addComponents/fans/fans');
 
 router.post('/fans', async (req, res) => {
   try {
-    await Fans.create(req.body);
-    res.send({ status: 'ok' });
+    let array = await Fans.find({ model: req.body.model });
+    if (array.length > 0) {
+      res.send({ status: 'Model already exist' });
+      return;
+    } else {
+      await Fans.create(req.body);
+      res.send({ status: 'ok' });
+    }
   } catch (error) {
     res.send({ status: 'error' });
   }
@@ -141,8 +177,14 @@ require('../../Scehmas/addComponents/psu/psu');
 
 router.post('/psu', async (req, res) => {
   try {
-    await Psu.create(req.body);
-    res.send({ status: 'ok' });
+    let array = await Psu.find({ model: req.body.model });
+    if (array.length > 0) {
+      res.send({ status: 'Model already exist' });
+      return;
+    } else {
+      await Psu.create(req.body);
+      res.send({ status: 'ok' });
+    }
   } catch (error) {
     res.send({ status: 'error' });
   }
@@ -157,8 +199,14 @@ require('../../Scehmas/addComponents/ram/ram');
 
 router.post('/ram', async (req, res) => {
   try {
-    await Ram.create(req.body);
-    res.send({ status: 'ok' });
+    let array = await Ram.find({ model: req.body.model });
+    if (array.length > 0) {
+      res.send({ status: 'Model already exist' });
+      return;
+    } else {
+      await Ram.create(req.body);
+      res.send({ status: 'ok' });
+    }
   } catch (error) {
     res.send({ status: 'error' });
   }
@@ -173,8 +221,14 @@ require('../../Scehmas/addComponents/ssd/ssdM2/ssdM2');
 
 router.post('/ssdM2', async (req, res) => {
   try {
-    await SsdM2.create(req.body);
-    res.send({ status: 'ok' });
+    let array = await SsdM2.find({ model: req.body.model });
+    if (array.length > 0) {
+      res.send({ status: 'Model already exist' });
+      return;
+    } else {
+      await SsdM2.create(req.body);
+      res.send({ status: 'ok' });
+    }
   } catch (error) {
     res.send({ status: 'error' });
   }
@@ -189,8 +243,14 @@ require('../../Scehmas/addComponents/ssd/ssdSata/ssdSata');
 
 router.post('/ssdSata', async (req, res) => {
   try {
-    await SsdSata.create(req.body);
-    res.send({ status: 'ok' });
+    let array = await SsdSata.find({ model: req.body.model });
+    if (array.length > 0) {
+      res.send({ status: 'Model already exist' });
+      return;
+    } else {
+      await SsdSata.create(req.body);
+      res.send({ status: 'ok' });
+    }
   } catch (error) {
     res.send({ status: 'error' });
   }

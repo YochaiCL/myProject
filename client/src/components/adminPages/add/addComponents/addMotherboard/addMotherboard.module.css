@@ -5,6 +5,11 @@
   gap: 2rem;
   margin-left: auto;
   margin-right: auto;
+  background-color: white;
+  padding: 3rem;
+  opacity: 0.7;
+  border-radius: 10px;
+  margin-bottom: 2rem;
 }
 
 input {
@@ -23,5 +28,5 @@ input {
   left: 0;
   bottom: 0;
   right: 0;
-  margin: auto;
+  margin-bottom: -4rem;
 }

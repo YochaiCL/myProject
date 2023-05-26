@@ -5,19 +5,23 @@ import Header from '../../../../pageSettings/header/Header';
 import style from '../addMotherboard/addMotherboard.module.css';
 
 export default class AddRam extends Component {
+  // Initializing state variables for component properties
   state = {
     model: '',
     memory_series: '',
     memory_size: '',
     latency: '',
     speed: '',
+    showResult: '',
   };
 
+  // Asynchronous function to handle form submission
   async handleSubmit(e) {
+    // Preventing the default form submission behavior
     e.preventDefault();
-    //  const { model, cpu_socket_support, chipset, form_factor } = this.state;
-    console.log(this.state);
+
     const options = {
+      // Setting headers for the HTTP request
       method: 'POST',
       crossDomain: true,
       headers: {
@@ -25,16 +29,22 @@ export default class AddRam extends Component {
         Accept: 'application/json',
         'Accept-Control-Allow-Origin': '*',
       },
+      // Converting the state object to JSON and setting it as the request body
       body: JSON.stringify(this.state),
     };
-    const response = await fetch(
-      'http://localhost:5000/insert/ram',
-      options
-    );
+    // Sending the POST request with options
+    const response = await fetch('http://localhost:5000/insert/ram', options);
+    // Parsing the response as JSON
     const result = await response.json();
-    console.log(result);
+    // Checking the status of the response
+
+    // Updating the state to display a success message
     if (result.status === 'ok') {
-      alert('Component have added');
+      this.setState({ showResult: 'Component have added' });
+    } // Handling different response statuses
+    else if (result.status === 'Model already exist') {
+      this.setState({ showResult: 'Component already exist' });
+    } else if (result.status === 'Error !! check your details') {
     }
   }
   render() {
@@ -80,6 +90,7 @@ export default class AddRam extends Component {
             />
 
             <Button type='submit' text='submit' />
+            <p>{this.state.showResult}</p>
           </form>
         </section>
       </Layout>

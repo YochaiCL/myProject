@@ -27,6 +27,7 @@ export default class AddAssemblies extends Component {
     ramArray: [], // Array to store RAM models
     ssdM2Array: [], // Array to store SSD M2 models
     ssdSataArray: [], // Array to store SSD SATA models
+    showResult: '',
   };
 
   // Asynchronous function to fetch component models
@@ -82,7 +83,13 @@ export default class AddAssemblies extends Component {
     console.log(result);
     // Checking if the request was successful
     if (result.status === 'ok') {
-      alert('Assembly have added');
+      this.setState({
+        showResult: 'The Assembly has been added',
+      });
+    } else if (result.status === 'Assembly already exist') {
+      this.setState({
+        showResult: 'This assembly already  exist',
+      });
     }
   }
 
@@ -96,158 +103,170 @@ export default class AddAssemblies extends Component {
     return (
       <Layout>
         <Header h1Heading='Add Assembly' />
+
         <section>
           <form onSubmit={this.handleSubmit.bind(this)} className={style.form}>
-            <label>
-              Enter Assembly name
-              <input
-                type='text'
-                placeholder='Enter Assembly Name:'
-                value={this.state.assemblyName}
-                required
-                onChange={e => this.setState({ assemblyName: e.target.value })}
-              />
-            </label>
-            <label>
-              Choose Motherboard
-              <select
-                value={this.state.modelMotherboard}
-                label='MOTHERBOARD'
-                onChange={e =>
-                  this.setState({ modelMotherboard: e.target.value })
-                }
-              >
-                {this.state.motherboardArray.map(itemMotherboard => {
-                  return (
-                    <option key={itemMotherboard} value={itemMotherboard}>
-                      {itemMotherboard}
-                    </option>
-                  );
-                })}
-              </select>
-            </label>
-            <label>
-              Choose CPU
-              <select
-                value={this.state.modelCPU}
-                label='CPU'
-                onChange={e => this.setState({ modelCPU: e.target.value })}
-              >
-                {this.state.cpuArray.map(itemCpu => {
-                  return (
-                    <option key={itemCpu} value={itemCpu}>
-                      {itemCpu}
-                    </option>
-                  );
-                })}
-              </select>
-            </label>
-            <label>
-              Choose CPU Cooler
-              <select
-                value={this.state.modelCPUCooler}
-                label='CPU Cooler'
-                onChange={e =>
-                  this.setState({ modelCPUCooler: e.target.value })
-                }
-              >
-                {[
-                  ...this.state.cpuCoolerFanArray,
-                  ...this.state.cpuCoolerLiquidArray,
-                ].map(itemCpuCooler => {
-                  return (
-                    <option key={itemCpuCooler} value={itemCpuCooler}>
-                      {itemCpuCooler}
-                    </option>
-                  );
-                })}
-              </select>
-            </label>
-            <label>
-              Choose GPU
-              <select
-                value={this.state.modelGPU}
-                label='GPU'
-                onChange={e => this.setState({ modelGPU: e.target.value })}
-              >
-                {this.state.gpuArray.map(itemGpu => {
-                  return (
-                    <option key={itemGpu} value={itemGpu}>
-                      {itemGpu}
-                    </option>
-                  );
-                })}
-              </select>
-            </label>
-            <label>
-              Choose PSU
-              <select
-                value={this.state.modelPSU}
-                label='PSU'
-                onChange={e => this.setState({ modelPSU: e.target.value })}
-              >
-                {this.state.psuArray.map(itemPsu => {
-                  return (
-                    <option key={itemPsu} value={itemPsu}>
-                      {itemPsu}
-                    </option>
-                  );
-                })}
-              </select>
-            </label>
-            <label>
-              Choose RAM
-              <select
-                value={this.state.modelRAM}
-                label='RAM'
-                onChange={e => this.setState({ modelRAM: e.target.value })}
-              >
-                {this.state.ramArray.map(itemRam => {
-                  return (
-                    <option key={itemRam} value={itemRam}>
-                      {itemRam}
-                    </option>
-                  );
-                })}
-              </select>
-            </label>
-            <label>
-              Choose SSD
-              <select
-                value={this.state.modelSSD}
-                label='SSD'
-                onChange={e => this.setState({ modelSSD: e.target.value })}
-              >
-                {[...this.state.ssdM2Array, ...this.state.ssdSataArray].map(
-                  itemSSD => {
-                    return (
-                      <option key={itemSSD} value={itemSSD}>
-                        {itemSSD}
-                      </option>
-                    );
-                  }
-                )}
-              </select>
-            </label>
+            <input
+              type='text'
+              placeholder='Enter Assembly Name:'
+              value={this.state.assemblyName}
+              required
+              onChange={e => this.setState({ assemblyName: e.target.value })}
+            />
 
-            <label>
-              Choose CASE
-              <select
-                value={this.state.modelCase}
-                label='CASE'
-                onChange={e => this.setState({ modelCase: e.target.value })}
-              >
-                {this.state.caseArray.map(itemCase => {
+            <select
+              value={this.state.modelMotherboard}
+              label='MOTHERBOARD'
+              onChange={e =>
+                this.setState({ modelMotherboard: e.target.value })
+              }
+              required
+            >
+              <option value='' disabled>
+                Select a Motherboard
+              </option>
+              {this.state.motherboardArray.map(itemMotherboard => {
+                return (
+                  <option key={itemMotherboard} value={itemMotherboard}>
+                    {itemMotherboard}
+                  </option>
+                );
+              })}
+            </select>
+
+            <select
+              value={this.state.modelCPU}
+              label='CPU'
+              onChange={e => this.setState({ modelCPU: e.target.value })}
+              required
+            >
+              <option value='' disabled>
+                Select a CPU
+              </option>
+              {this.state.cpuArray.map(itemCpu => {
+                return (
+                  <option key={itemCpu} value={itemCpu}>
+                    {itemCpu}
+                  </option>
+                );
+              })}
+            </select>
+
+            <select
+              value={this.state.modelCPUCooler}
+              label='CPU Cooler'
+              onChange={e => this.setState({ modelCPUCooler: e.target.value })}
+              required
+            >
+              <option value='' disabled>
+                Select a CPU Cooler
+              </option>
+              {[
+                ...this.state.cpuCoolerFanArray,
+                ...this.state.cpuCoolerLiquidArray,
+              ].map(itemCpuCooler => {
+                return (
+                  <option key={itemCpuCooler} value={itemCpuCooler}>
+                    {itemCpuCooler}
+                  </option>
+                );
+              })}
+            </select>
+
+            <select
+              value={this.state.modelGPU}
+              label='GPU'
+              onChange={e => this.setState({ modelGPU: e.target.value })}
+              required
+            >
+              <option value='' disabled>
+                Select a GPU
+              </option>
+              {this.state.gpuArray.map(itemGpu => {
+                return (
+                  <option key={itemGpu} value={itemGpu}>
+                    {itemGpu}
+                  </option>
+                );
+              })}
+            </select>
+
+            <select
+              value={this.state.modelPSU}
+              label='PSU'
+              onChange={e => this.setState({ modelPSU: e.target.value })}
+              required
+            >
+              <option value='' disabled>
+                Select a PSU
+              </option>
+              {this.state.psuArray.map(itemPsu => {
+                return (
+                  <option key={itemPsu} value={itemPsu}>
+                    {itemPsu}
+                  </option>
+                );
+              })}
+            </select>
+
+            <select
+              value={this.state.modelRAM}
+              label='RAM'
+              onChange={e => this.setState({ modelRAM: e.target.value })}
+              required
+            >
+              <option value='' disabled>
+                Select a RAM
+              </option>
+              {this.state.ramArray.map(itemRam => {
+                return (
+                  <option key={itemRam} value={itemRam}>
+                    {itemRam}
+                  </option>
+                );
+              })}
+            </select>
+
+            <select
+              value={this.state.modelSSD}
+              label='SSD'
+              onChange={e => this.setState({ modelSSD: e.target.value })}
+              required
+            >
+              <option value='' disabled>
+                Select a SSD
+              </option>
+              {[...this.state.ssdM2Array, ...this.state.ssdSataArray].map(
+                itemSSD => {
                   return (
-                    <option key={itemCase} value={itemCase}>
-                      {itemCase}
+                    <option key={itemSSD} value={itemSSD}>
+                      {itemSSD}
                     </option>
                   );
-                })}
-              </select>
-            </label>
+                }
+              )}
+            </select>
+
+            <select
+              value={this.state.modelCase}
+              label='CASE'
+              onChange={e => this.setState({ modelCase: e.target.value })}
+              required
+            >
+              <option value='' disabled>
+                Select a Case
+              </option>
+              {this.state.caseArray.map(itemCase => {
+                return (
+                  <option key={itemCase} value={itemCase}>
+                    {itemCase}
+                  </option>
+                );
+              })}
+            </select>
 
             <Button type='submit' text='submit' />
+            <p>{this.state.showResult}</p>
           </form>
         </section>
       </Layout>

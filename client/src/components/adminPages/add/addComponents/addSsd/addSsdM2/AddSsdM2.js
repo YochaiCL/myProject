@@ -5,34 +5,45 @@ import Header from '../../../../../pageSettings/header/Header';
 import style from '../../addMotherboard/addMotherboard.module.css';
 
 export default class AddSsdM2 extends Component {
+  // Initializing state variables for component properties
   state = {
     model: '',
     capacity: '',
     type: '',
+    showResult: '',
   };
 
+  // Asynchronous function to handle form submission
+
   async handleSubmit(e) {
+    // Preventing the default form submission behavior
     e.preventDefault();
-    //  const { model, cpu_socket_support, chipset, form_factor } = this.state;
-    console.log(this.state);
+
     const options = {
       method: 'POST',
       crossDomain: true,
       headers: {
+        // Setting headers for the HTTP request
         'Content-Type': 'application/json',
         Accept: 'application/json',
         'Accept-Control-Allow-Origin': '*',
       },
+      // Converting the state object to JSON and setting it as the request body
       body: JSON.stringify(this.state),
     };
-    const response = await fetch(
-      'http://localhost:5000/insert/ssdM2',
-      options
-    );
+    // Sending the POST request with options
+    const response = await fetch('http://localhost:5000/insert/ssdM2', options);
+    // Parsing the response as JSON
     const result = await response.json();
-    console.log(result);
+    // Checking the status of the response
+
+    // Updating the state to display a success message
     if (result.status === 'ok') {
-      alert('Component have added');
+      this.setState({ showResult: 'Component have added' });
+    } // Handling different response statuses
+    else if (result.status === 'Model already exist') {
+      this.setState({ showResult: 'Component already exist' });
+    } else if (result.status === 'Error !! check your details') {
     }
   }
   render() {
@@ -51,14 +62,12 @@ export default class AddSsdM2 extends Component {
               required
               onChange={e => this.setState({ model: e.target.value })}
             />
-
             <input
               type='text'
               placeholder='Enter Capacity:'
               required
               onChange={e => this.setState({ capacity: e.target.value })}
             />
-
             <input
               type='text'
               placeholder='Enter Type:'
@@ -67,6 +76,7 @@ export default class AddSsdM2 extends Component {
             />
 
             <Button type='submit' text='submit' />
+            <p>{this.state.showResult}</p>
           </form>
         </section>
       </Layout>
