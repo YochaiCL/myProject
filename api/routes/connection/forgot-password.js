@@ -57,7 +57,7 @@ router.post('/', async (req, res) => {
 
     var mailOptions = {
       from: 'youremail@gmail.com',
-      to: 'yochai.cl@gmail.com',
+      to: email,
       subject: 'Password Reset',
       text: link,
     };

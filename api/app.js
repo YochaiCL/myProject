@@ -42,6 +42,9 @@ require('./routes/Scehmas/addComponents/ssd/ssdSata/ssdSata');
 // Requiring and importing various schemas for adding assemblies.
 require('./routes/Scehmas/addAssemblies/addAssembliesScehmas');
 
+// Requiring and importing various schemas for adding questionAnswer
+require('./routes/Scehmas/questionAnswer/questionAnswer');
+
 const mongoUrl =
   'mongodb+srv://yochaicl:yochaicl@cluster0.endfyfo.mongodb.net/pcBuilder';
 
@@ -100,6 +103,12 @@ app.use('/addAssemblies', addAssemblies);
 
 // Using the '/getData' route to handle requests for retrieving components as an admin.
 app.use('/getAssemblies', getAssemblies);
+
+// Requiring and activating the routes for getting and inserting question and answer
+const questionAnswer = require('./routes/questionAnswer/questionAnswer');
+
+// Using the '/questionAnswer' route to handle requests for retrieving question and answers.
+app.use('/questionAnswer', questionAnswer);
 
 // Starting the server on port 5000 and logging a message when the server starts.
 app.listen(5000, () => {

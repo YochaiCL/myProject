@@ -13,6 +13,7 @@ export default class AddCpu extends Component {
     cache: '',
     memory_type: '',
     socket: '',
+    message : ""
   };
 
   async handleSubmit(e) {
@@ -29,14 +30,17 @@ export default class AddCpu extends Component {
       },
       body: JSON.stringify(this.state),
     };
-    const response = await fetch(
-      'http://localhost:5000/insert/cpu',
-      options
-    );
+    const response = await fetch('http://localhost:5000/insert/cpu', options);
     const result = await response.json();
     console.log(result);
+    if (result.status === 'Model already exist') {
+      this.setState({ message: 'Model already exist' });
+      // alert('Model already exist');
+      return;
+    }
     if (result.status === 'ok') {
-      alert('Component have added');
+      this.setState({ message: 'Component have added' });
+    
     }
   }
   render() {
@@ -96,6 +100,7 @@ export default class AddCpu extends Component {
             />
 
             <Button type='submit' text='submit' />
+            {this.state.message !== '' ? <h3>{this.state.message}</h3> : <></>}
           </form>
         </section>
       </Layout>
