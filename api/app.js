@@ -59,14 +59,14 @@ mongoose
   .catch(e => console.log(e));
 
 // Requiring and activating the routes related to user connection (register, login, etc.).
-const register = require('./routes/connection/register');
+const signUp = require('./routes/connection/signUp');
 const login = require('./routes/connection/login');
 const userData = require('./routes/connection/userData');
-const forgotPassword = require('./routes/connection/forgot-password');
-const resetPassword = require('./routes/connection/reset-password');
+const forgotPassword = require('./routes/connection/forgotPassword');
+const resetPassword = require('./routes/connection/resetPassword');
 
 // Using the '/register' route to handle registration requests.
-app.use('/register', register);
+app.use('/register', signUp);
 // Using the '/login-user' route to handle login requests.
 app.use('/login-user', login);
 // Using the '/userData' route to handle requests for user data.

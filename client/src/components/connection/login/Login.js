@@ -4,61 +4,118 @@ import style from './login.module.css';
 import Button from '../../pageSettings/button/Button';
 
 export default class Login extends Component {
-  /**
-   * email - User input email
-   * Password - User input password
-   */
+  // Initializing state variables for email, password, and showResult
   state = {
+    userData: '',
     email: '',
     password: '',
+    showResult: '',
   };
 
-  /**
-   * Description: This function get input from the user and by checking in data base (not) connecting to client page
-   * @param {*} e - User data
-   */
+  // Function to handle form submission
   handleSubmit(e) {
+    // Preventing the default form submission behavior
     e.preventDefault();
+    // Destructuring email and password from the state
     const { email, password } = this.state;
-    console.log(email, password);
+
+    // Sending a POST request to the login endpoint
     fetch('http://localhost:5000/login-user', {
       method: 'POST',
       crossDomain: true,
       headers: {
+        // Setting headers for the HTTP request
         'Content-Type': 'application/json',
         Accept: 'application/json',
         'Accept-Control-Allow-Origin': '*',
       },
+      // Converting email and password to JSON and setting it as the request body
       body: JSON.stringify({
         email,
         password,
       }),
     })
+      // Parsing the response as JSON
       .then(res => res.json())
+      // Handling the response data
       .then(data => {
-        console.log(data, 'userRegister');
+        // Checking the status of the response
         if (data.status === 'ok') {
-          alert('login successful');
-          // storage the token in local storage
+          this.setState({
+            // Updating the state to display a success message
+            showResult: 'Login successful, Entering...',
+          });
+
+          // Storing the token in local storage
           window.localStorage.setItem('token', data.data);
 
-          // make us still sign in when we open new tab with the project url
-          // If we are still log in the web still be connected
+          // Storing the login status in local storage
           window.localStorage.setItem('loggedIn', true);
 
-          // console.log(data.userType);
+          this.enterUserData();
+
+          // Redirecting based on the user type
           if (data.userType === 'Admin') {
-            window.location.href = '/adminHome';
+            setTimeout(() => {
+              // Redirecting to the admin home page
+              window.location.href = '/adminHome';
+            }, 2000);
           } else if (data.userType === 'Premium') {
-            window.location.href = '/premiumHome';
+            setTimeout(() => {
+              // Redirecting to the premium user home page
+              window.location.href = '/premiumHome';
+            }, 2000);
           } else if (data.userType === 'User') {
-            window.location.href = '/userHome';
+            setTimeout(() => {
+              // Redirecting to the regular user home page
+              window.location.href = '/userHome';
+            }, 2000);
           }
         } else {
-          alert('Something wrong, please check the details');
+          this.setState({
+            // Updating the state to display an error message
+            showResult: 'Something wrong, please check the details',
+          });
         }
       });
   }
+
+  enterUserData() {
+    // Sending a POST request to the userData endpoint
+    fetch('http://localhost:5000/userData', {
+      method: 'POST',
+      crossDomain: true,
+      headers: {
+        // Setting headers for the HTTP request
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        'Accept-Control-Allow-Origin': '*',
+      },
+      body: JSON.stringify({
+        // Setting the token in the request body
+        token: window.localStorage.getItem('token'),
+      }),
+    })
+      // Parsing the response as JSON
+      .then(res => res.json())
+      // Handling the response data
+      .then(data => {
+        // console.log(data, 'userData');
+
+        // Storing the user data in localStorage
+        window.localStorage.setItem('user', JSON.stringify(data.data));
+        this.setState({ userData: data.data });
+
+        // Checking if the userType is Admin
+        if (this.state.userData.userType === 'Admin') {
+          this.setState({
+            // Updating the state to show the link for admin
+            showLinkAdmin: true,
+          });
+        }
+      });
+  }
+
   render() {
     return (
       <form className={style.form} onSubmit={this.handleSubmit.bind(this)}>
@@ -91,6 +148,7 @@ export default class Login extends Component {
         <p className={style.size}>
           <Link to='/sign-up'>Sign Up</Link>
         </p>
+        <p>{this.state.showResult}</p>
       </form>
     );
   }

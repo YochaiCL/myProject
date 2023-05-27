@@ -4,6 +4,7 @@ import style from './userData.module.css';
 import { Link } from 'react-router-dom';
 
 export default class UserData extends Component {
+  // Initializing state variables for userData, showLinkAdmin, password, email, and name
   state = {
     userData: '',
     showLinkAdmin: false,
@@ -11,38 +12,47 @@ export default class UserData extends Component {
     email: '',
     name: '',
   };
+
   componentDidMount() {
+    // Sending a POST request to the userData endpoint
     fetch('http://localhost:5000/userData', {
       method: 'POST',
       crossDomain: true,
       headers: {
+        // Setting headers for the HTTP request
         'Content-Type': 'application/json',
         Accept: 'application/json',
         'Accept-Control-Allow-Origin': '*',
       },
       body: JSON.stringify({
+        // Setting the token in the request body
         token: window.localStorage.getItem('token'),
       }),
     })
+      // Parsing the response as JSON
       .then(res => res.json())
+      // Handling the response data
       .then(data => {
-        console.log(data, 'userData');
+        // console.log(data, 'userData');
+
+        // Storing the user data in localStorage
         window.localStorage.setItem('user', JSON.stringify(data.data));
         this.setState({ userData: data.data });
 
+        // Checking if the userType is Admin
         if (this.state.userData.userType === 'Admin') {
           this.setState({
+            // Updating the state to show the link for admin
             showLinkAdmin: true,
           });
         }
       });
   }
 
-  /**
-   * This a function that clean all information in the local storage
-   */
   logout = () => {
+    // Clearing localStorage
     window.localStorage.clear();
+    // Redirecting to the home page
     window.location.href = './';
   };
 
@@ -50,6 +60,7 @@ export default class UserData extends Component {
     let user = this.state.userData;
     user.password = this.state.password;
     console.log(user);
+    // Sending a POST request to the changePassword endpoint
     fetch('http://localhost:5000/userData/changePassword', {
       method: 'POST',
       crossDomain: true,
@@ -74,6 +85,7 @@ export default class UserData extends Component {
     user.fullName = this.state.name;
     this.setState({ userData: user });
     console.log(user);
+    // Sending a POST request to the changeNameOrEmail endpoint
     fetch('http://localhost:5000/userData/changeNameOrEmail', {
       method: 'POST',
       crossDomain: true,
@@ -93,6 +105,7 @@ export default class UserData extends Component {
       });
   };
 
+  // Sending a POST request to the changeNameOrEmail endpoint
   changeEmail = () => {
     let user = this.state.userData;
     user.email = this.state.email;
@@ -119,54 +132,41 @@ export default class UserData extends Component {
   render() {
     return (
       <div>
-        <section className={style.section}>
-          <p>
-            Name:{' '}
-            <span className={style.span}>{this.state.userData.fullName}</span>
-          </p>
-
-          <p>
-            Email:{' '}
-            <span className={style.span}>{this.state.userData.email}</span>
-          </p>
-        </section>
-
         <section>
+          <p>Name:{this.state.userData.fullName}</p>
+
+          <p>Email:{this.state.userData.email}</p>
           <Button text='sign out' fun={this.logout} />
         </section>
+
         {this.state.showLinkAdmin && (
           <section>
             <Link to='/adminHome'>Transfer to Admin home</Link>
           </section>
         )}
 
-        <section className={style.change}>
-          <div>
-            <label>Change UserName</label>
-            <input
-              type='text'
-              placeholder='Enter name'
-              onChange={e => this.setState({ name: e.target.value })}
-            />
-            <Button text='Change' fun={this.changeName} />
-          </div>
-          <div>
-            <label>Change Email</label>
-            <input
-              type='email'
-              placeholder='Enter email'
-              onChange={e => this.setState({ email: e.target.value })}
-            />
-            <Button text='Change' fun={this.changeEmail} />
-          </div>
-          <div>
-            <label>Change Password</label>
-            <input
-              type='password'
-              placeholder='Enter password'
-              onChange={e => this.setState({ password: e.target.value })}
-            />
-          </div>
+        <section className={style.section}>
+          <h2>Change your details</h2>
+          <input
+            type='text'
+            placeholder='Enter name'
+            onChange={e => this.setState({ name: e.target.value })}
+          />
+          <Button text='Change' fun={this.changeName} />
+
+          <input
+            type='email'
+            placeholder='Enter email'
+            onChange={e => this.setState({ email: e.target.value })}
+          />
+          <Button text='Change' fun={this.changeEmail} />
+
+          <input
+            type='password'
+            placeholder='Enter password'
+            onChange={e => this.setState({ password: e.target.value })}
+          />
+
           <Button text='Change' fun={this.changePassword} />
         </section>
       </div>

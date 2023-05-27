@@ -53,13 +53,13 @@ import Test from './components/userPages/pages/test/Test';
 // import signUp / signIn / reset
 import SignUp from './components/connection/signUp/SignUp';
 import Login from './components/connection/login/Login';
-import Reset from './components/connection/reset/Reset';
+import ForgetPassword from './components/connection/forgetPassword/ForgetPassword';
 
 // import admin pages
 import AdminHome from './components/adminPages/adminHome/AdminHome';
 import UserAdmin from './components/adminPages/userAdmin/UserAdmin';
 
-import Add from './components/adminPages/add/Add'
+import Add from './components/adminPages/add/Add';
 import AddAssemblies from './components/adminPages/add/addAssemblies/AddAssemblies';
 
 import AddCompLinks from './components/adminPages/add/addComponents/AddCompLinks';
@@ -77,7 +77,7 @@ import AddSsd from './components/adminPages/add/addComponents/addSsd/AddSsd';
 import AddSsdM2 from './components/adminPages/add/addComponents/addSsd/addSsdM2/AddSsdM2';
 import AddSsdSata from './components/adminPages/add/addComponents/addSsd/addSsdSata/AddSsdSata';
 
-import Reports from './components/adminPages/reports/Reports'
+import Reports from './components/adminPages/reports/Reports';
 import UserReports from './components/adminPages/reports/userReports/UserReports';
 import PremiumReports from './components/adminPages/reports/premiumReports/PremiumReports';
 
@@ -100,7 +100,7 @@ function App() {
             element={isLoggedIn === 'true' ? <UserHome /> : <Login />}
           />
           <Route path='/sign-up' element={<SignUp />} />
-          <Route path='/reset' element={<Reset />} />
+          <Route path='/reset' element={<ForgetPassword />} />
 
           {/* main's page */}
           <Route path='/userHome' element={<UserHome />} />

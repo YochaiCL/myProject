@@ -45,7 +45,7 @@ export default function FirstSteps() {
   },[])
   return (
     <Layout>
-        <Header h1Heading='Learn Your Hardware' />
+        <Header h1Heading='First Steps - Learn Your Hardware' />
 
         <figure className={style.figure}>
           <LearnLayout

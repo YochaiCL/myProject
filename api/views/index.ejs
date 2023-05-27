@@ -5,11 +5,48 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Restart Password</title>
+    <style>
+      /* general */
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        font-size: 62.5%;
+      }
+
+      body {
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-size: 2.5rem;
+        line-height: 1.5;
+        font-weight: 400;
+        border: solid red 5px;
+      }
+
+      /* main, header, footer placement */
+      body {
+        text-align: center;
+        width: 97%;
+        padding: 0.1rem 4rem;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 25%;
+      }
+
+      /* placement for other devices */
+      @media (max-width: 600px) {
+        nav {
+          font-size: 1.9rem;
+        }
+      }
+    </style>
     <script>
       const status = '<%- JSON.stringify(status) %>';
       // check if the user is verify
       if (JSON.parse(status) === 'verified') {
-        if (confirm('Do you want to login?')) {
+        if (confirm('Password have Change , Do you want to login?')) {
           window.location.href = 'http://localhost:3000/';
         }
       }
@@ -23,15 +60,11 @@
         type="password"
         name="password"
         id="password"
-        placeholder="password"
+        placeholder=" new password"
+        required
       />
-      <input
-        type="new password"
-        name="confirm new password"
-        id="confirm new password"
-        placeholder="confirm-password"
-      />
-      <input type="submit" value="submit" />
+
+      <input type="submit" value="Change" />
     </form>
   </body>
 </html>

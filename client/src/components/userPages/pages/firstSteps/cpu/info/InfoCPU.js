@@ -1,48 +1,62 @@
 import Layout from '../../../../layouts/mainLayout/MainLayout';
 import Header from '../../../../../pageSettings/header/Header';
-
 import { Link } from 'react-router-dom';
-
+import Button from '../../../../../pageSettings/button/Button';
 import React, { Component } from 'react';
 
 export default class InfoCPU extends Component {
+  // Initializing state variables for comment, array, and showResult
   state = {
     comment: '',
-    array : []
+    array: [],
+    showResult: '',
   };
 
-    componentDidMount() {
-      let user = JSON.parse(localStorage.getItem('user'));
-    console.log(user);
-      fetch('http://localhost:5000/comp-learned/getData', {
-        method: 'POST',
-        crossDomain: true,
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-          'Accept-Control-Allow-Origin': '*',
-        },
-        body: JSON.stringify({
-          userId: user._id,
-        }),
-      })
-        .then(res => res.json())
-        .then(data => {
-          console.log(data, 'userData');
-          this.setState({ array: data[0] });
-        });
-    }
+  componentDidMount() {
+    // Parsing the user data from localStorage
+    let user = JSON.parse(localStorage.getItem('user'));
+    // console.log(user);
+    // Sending a POST request to the getData endpoint
+    fetch('http://localhost:5000/comp-learned/getData', {
+      method: 'POST',
+      crossDomain: true,
+      headers: {
+        // Setting headers for the HTTP request
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        'Accept-Control-Allow-Origin': '*',
+      },
+      // Sending the userId in the request body
+      body: JSON.stringify({
+        userId: user._id,
+      }),
+    })
+      // Parsing the response as JSON
+      .then(res => res.json())
+      // Handling the response data
+      .then(data => {
+        console.log(data, 'userData');
+        // Updating the state with the received data
+        this.setState({ array: data[0] });
+      });
+  }
 
   updateButton() {
+    // Parsing the user data from localStorage
     let user = JSON.parse(localStorage.getItem('user'));
 
     let newObj = this.state.array;
-    console.log(newObj);
+    // console.log(newObj);
+    // Updating the comment in the newObj
     newObj.cpu.comment = this.state.comment;
-    console.log(newObj);
+    // console.log(newObj);
 
-    // this.props.changeLearn({ ...newObj });
+    this.setState({
+      // Updating the state to show the success message
+      showResult: 'Comment have added',
+    });
 
+    // Sending a POST request to the comp-learned endpoint
     fetch('http://localhost:5000/comp-learned', {
       method: 'POST',
       crossDomain: true,
@@ -56,7 +70,9 @@ export default class InfoCPU extends Component {
         userId: user._id,
       }),
     })
+      // Sending the updated newObj in the request body
       .then(res => res.json())
+      // Sending the userId in the request body
       .then(data => {
         console.log(data);
       });
@@ -168,16 +184,22 @@ export default class InfoCPU extends Component {
               </Link>
             </li>
           </ul>
+
+          <h2>Write yourself a comment about this component</h2>
+          <p>Note: This note will be displayed on the "First Steps" page </p>
           <input
             type='text'
             placeholder='please enter comment'
             value={this.state.comment}
             onChange={e => this.setState({ comment: e.target.value })}
           />
-          <p>{this.state.comment}</p>
-          <button onClick={e => this.updateButton()}>
-            click to save comment
-          </button>
+          <p>{this.state.showResult}</p>
+          <Button
+            text='save comment'
+            fun={() => {
+              this.updateButton();
+            }}
+          />
         </article>
       </Layout>
     );
