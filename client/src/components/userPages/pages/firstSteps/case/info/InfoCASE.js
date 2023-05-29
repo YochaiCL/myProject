@@ -1,10 +1,10 @@
 import React from 'react';
-import Layout from '../../../../layouts/mainLayout/MainLayout';
+import ComponentLearnLayout from '../../../../layouts/componentLearnLayout/ComponentLearnLayout';
 import Header from '../../../../../pageSettings/header/Header';
 
 function infoCASE() {
   return (
-    <Layout>
+    <ComponentLearnLayout name='case'>
       <Header h1Heading='Case Information' />
       <article>
         <p>
@@ -55,7 +55,7 @@ function infoCASE() {
           loops.
         </p>
       </article>
-    </Layout>
+    </ComponentLearnLayout>
   );
 }
 

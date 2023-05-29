@@ -1,11 +1,11 @@
 import React from 'react';
-import Layout from '../../../../layouts/mainLayout/MainLayout';
+import ComponentLearnLayout from '../../../../layouts/componentLearnLayout/ComponentLearnLayout';
 import Header from '../../../../../pageSettings/header/Header';
 import { Link } from 'react-router-dom';
 
 function infoPSU() {
   return (
-    <Layout>
+    <ComponentLearnLayout name='psu'>
       <Header h1Heading='PSU Information' />
       <article>
         <p>
@@ -26,7 +26,7 @@ function infoPSU() {
           For More Information
         </Link>
       </article>
-    </Layout>
+    </ComponentLearnLayout>
   );
 }
 

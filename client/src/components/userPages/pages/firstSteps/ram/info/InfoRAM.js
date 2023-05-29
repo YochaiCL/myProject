@@ -1,12 +1,12 @@
 import React from 'react'
-import Layout from '../../../../layouts/mainLayout/MainLayout';
+import ComponentLearnLayout from '../../../../layouts/componentLearnLayout/ComponentLearnLayout';
 import Header from '../../../../../pageSettings/header/Header';
 
 function infoRAM() {
   return (
-    <Layout>
+    <ComponentLearnLayout name='ram'>
       <Header h1Heading='RAM Information' />
-    </Layout>
+    </ComponentLearnLayout>
   );
 }
 

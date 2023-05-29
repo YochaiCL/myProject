@@ -1,11 +1,11 @@
 import React from 'react';
-import Layout from '../../../../layouts/mainLayout/MainLayout';
+import ComponentLearnLayout from '../../../../layouts/componentLearnLayout/ComponentLearnLayout';
 import Header from '../../../../../pageSettings/header/Header';
 import Style from './infoSSD.module.css';
 
 function infoSSD() {
   return (
-    <Layout>
+    <ComponentLearnLayout name='ssd'>
       <Header h1Heading='SSD Information' />
       <article className={Style.article}>
         <p>
@@ -58,7 +58,7 @@ function infoSSD() {
           and a power supply connection
         </p>
       </article>
-    </Layout>
+    </ComponentLearnLayout>
   );
 }
 

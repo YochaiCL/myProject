@@ -1,11 +1,11 @@
 import React from 'react';
-import Layout from '../../../../layouts/mainLayout/MainLayout';
+import ComponentLearnLayout from '../../../../layouts/componentLearnLayout/ComponentLearnLayout';
 import Header from '../../../../../pageSettings/header/Header';
 import { Link } from 'react-router-dom';
 
 function infoMOTHERBOARD() {
   return (
-    <Layout>
+    <ComponentLearnLayout name='motherboard'>
       <Header h1Heading='Motherboard Information' />
       <article>
         <h2>CPU Socket</h2>
@@ -71,7 +71,7 @@ function infoMOTHERBOARD() {
         <h2>Form Factor</h2>
         <Link to='/infoCASE'>Click to see</Link>
       </article>
-    </Layout>
+    </ComponentLearnLayout>
   );
 }
 

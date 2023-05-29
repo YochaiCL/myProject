@@ -1,10 +1,10 @@
 import React from 'react';
-import Layout from '../../../../layouts/mainLayout/MainLayout';
+import ComponentLearnLayout from '../../../../layouts/componentLearnLayout/ComponentLearnLayout';
 import Header from '../../../../../pageSettings/header/Header';
 
 function infoDVD() {
   return (
-    <Layout>
+    <ComponentLearnLayout name='dvd'>
       <Header h1Heading='DVD Information' />
       <article>
         <p>
@@ -20,7 +20,7 @@ function infoDVD() {
           discs
         </p>
       </article>
-    </Layout>
+    </ComponentLearnLayout>
   );
 }
 

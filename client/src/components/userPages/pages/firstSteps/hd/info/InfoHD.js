@@ -1,12 +1,12 @@
 import React from 'react'
-import Layout from '../../../../layouts/mainLayout/MainLayout';
+import ComponentLearnLayout from '../../../../layouts/componentLearnLayout/ComponentLearnLayout';
 import Header from '../../../../../pageSettings/header/Header';
 
 function infoHD() {
   return (
-    <Layout>
+    <ComponentLearnLayout name='hd'>
       <Header h1Heading='Hard Drive Information' />
-    </Layout>
+    </ComponentLearnLayout>
   );
 }
 

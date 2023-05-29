@@ -1,14 +1,14 @@
 import React from 'react';
-import Layout from '../../../../layouts/mainLayout/MainLayout';
+import ComponentLearnLayout from '../../../../layouts/componentLearnLayout/ComponentLearnLayout';
 import Header from '../../../../../pageSettings/header/Header';
 
 import { Link } from 'react-router-dom';
 
 function infoGPU() {
   return (
-    <Layout>
+    <ComponentLearnLayout name='gpu'>
       <Header h1Heading='GPU Information' />
-      <article >
+      <article>
         <p>
           A graphics processing unit or GPU is also known as a graphics card.
           It’s an electronics circuit that accelerates the processing required
@@ -76,7 +76,7 @@ function infoGPU() {
         </p>
         <p></p>
       </article>
-    </Layout>
+    </ComponentLearnLayout>
   );
 }
 
