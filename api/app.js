@@ -98,11 +98,19 @@ const addAssemblies = require('./routes/addGetAssembly/addAssemblies');
 // Requiring and activating the routes for getting assemblies.
 const getAssemblies = require('./routes/addGetAssembly/getAssemblies');
 
+// Requiring and activating the routes for show Components Data assemblies.
+const showComponentsData = require('./routes/addGetAssembly/showComponentsData');
+
 // Using the '/insert' route to handle requests for inserting components as an admin.
 app.use('/addAssemblies', addAssemblies);
 
 // Using the '/getData' route to handle requests for retrieving components as an admin.
 app.use('/getAssemblies', getAssemblies);
+
+// Using the '/getData' route to handle requests for retrieving components as an admin.
+app.use('/showComponentsData', showComponentsData);
+
+
 
 // Requiring and activating the routes for getting and inserting question and answer
 const questionAnswer = require('./routes/questionAnswer/questionAnswer');

@@ -51,7 +51,11 @@ import AssembliesVideos from './components/userPages/pages/assembly/assembliesVi
 import MountedAssemblies from './components/userPages/pages/assembly/mountedAssemblies/MountedAssemblies';
 
 // Import test + pages of test
-import Test from './components/userPages/pages/test/Test';
+import TestYourSelf from './components/userPages/pages/testYourSelf/TestYourSelf';
+import TestWithHelp from './components/userPages/pages/testYourSelf/testWithHelp/TestWithHelp';
+import TestWithoutHelp from './components/userPages/pages/testYourSelf/testWithoutHelp/TestWithoutHelp';
+import ExistsTests from './components/userPages/pages/testYourSelf/existsTests/ExistsTests';
+
 
 // import signUp / signIn / reset
 import SignUp from './components/connection/signUp/SignUp';
@@ -155,7 +159,11 @@ function App() {
           />
 
           {/* test + pages of test */}
-          <Route path='/test' element={<Test />} />
+          <Route path='/test' element={<TestYourSelf />} />
+          <Route path='/testWithHelp' element={<TestWithHelp />} />
+          <Route path='/testWithoutHelp' element={<TestWithoutHelp />} />
+          <Route path='/existsTests' element={<ExistsTests />} />
+
           {/* assembly + pages of assembly */}
           <Route path='/assembly' element={<Assembly />} />
           <Route path='/assembliesVideos' element={<AssembliesVideos />} />
