@@ -1,10 +1,10 @@
 import React from 'react';
-import Layout from '../../../../layouts/learnLayout/LearnLayout';
+import Layout from '../../../../layouts/mainLayout/MainLayout';
 import Header from '../../../../../pageSettings/header/Header';
 import style from '../../ssd/products/productsSSD.module.css';
 import LinkLayout from '../../../../../pageSettings/linkLayout/LinkLayout';
 
-function productsCPUCOOLER() {
+function ProductsCPUCOOLER() {
   return (
     <Layout>
       <Header h1Heading='SSD Products' />
@@ -22,4 +22,4 @@ function productsCPUCOOLER() {
   );
 }
 
-export default productsCPUCOOLER;
+export default ProductsCPUCOOLER;

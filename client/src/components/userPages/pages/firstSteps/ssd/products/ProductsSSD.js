@@ -1,10 +1,10 @@
 import React from 'react';
-import Layout from '../../../../layouts/learnLayout/LearnLayout';
+import Layout from '../../../../layouts/mainLayout/MainLayout';
 import Header from '../../../../../pageSettings/header/Header';
 import style from '../../ssd/products/productsSSD.module.css';
 import LinkLayout from '../../../../../pageSettings/linkLayout/LinkLayout';
 
-function productsSSD() {
+function ProductsSSD() {
   return (
     <Layout>
       <Header h1Heading='SSD Products' />
@@ -16,4 +16,4 @@ function productsSSD() {
   );
 }
 
-export default productsSSD;
+export default ProductsSSD;
