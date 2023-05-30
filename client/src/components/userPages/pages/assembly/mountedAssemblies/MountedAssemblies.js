@@ -10,9 +10,14 @@ export default class MountedAssemblies extends Component {
     selectIndex: null,
   };
 
+  
+
   async getAssembly() {
-    const response = await fetch('http://localhost:5000/getAssemblies');
+    const response = await fetch(
+      'http://localhost:5000/getAssemblies/assemblies'
+    );
     const result = await response.json();
+    console.log(result);
     this.setState({ assembly: result });
   }
 
@@ -30,7 +35,7 @@ export default class MountedAssemblies extends Component {
     return (
       <Layout>
         <Header h1Heading='Mounted Assemblies' />
-
+       
         <section className={style.external}>
           <section className={style.model}>
             <h2>List Of Assemblies</h2>
