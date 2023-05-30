@@ -5,9 +5,9 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 // Import  user main's pages
-import UserHome from './components/userPages/userHome/UserHome';
+import UserHome from './components/userPages/pages/userHome/UserHome';
 import About from './components/userPages/pages/about/About';
-import UserData from './components/userPages/userData/UserData';
+import UserData from './components/userPages/pages/userData/UserData';
 import Premium from './components/userPages/pages/premium/Premium';
 
 // Import firstSteps + pages of firstSteps
@@ -56,35 +56,35 @@ import Login from './components/connection/login/Login';
 import ForgetPassword from './components/connection/forgetPassword/ForgetPassword';
 
 // import admin pages
-import AdminHome from './components/adminPages/adminHome/AdminHome';
-import UserAdminData from './components/adminPages/userAdminData/UserAdminData';
+import AdminHome from './components/adminPages/pages/adminHome/AdminHome';
+import UserAdminData from './components/adminPages/pages/userAdminData/UserAdminData';
 
-import Add from './components/adminPages/add/Add';
-import AddAssemblies from './components/adminPages/add/addAssemblies/AddAssemblies';
+import Add from './components/adminPages/pages/add/Add';
+import AddAssemblies from './components/adminPages/pages/add/addAssemblies/AddAssemblies';
 
-import AddCompLinks from './components/adminPages/add/addComponents/AddCompLinks';
-import AddMotherboard from './components/adminPages/add/addComponents/addMotherboard/AddMotherboard';
-import AddCase from './components/adminPages/add/addComponents/addCase/AddCase';
-import AddCpu from './components/adminPages/add/addComponents/addCpu/AddCpu';
-import AddCpuCooler from './components/adminPages/add/addComponents/addCpuCooler/AddCpuCooler';
-import AddCpuCoolerFan from './components/adminPages/add/addComponents/addCpuCooler/addCpuCoolerFan/AddCpuCoolerFan';
-import AddCpuCoolerLiquid from './components/adminPages/add/addComponents/addCpuCooler/addCpuCoolerLiquid/AddCpuCoolerLiquid';
-import AddFans from './components/adminPages/add/addComponents/addFans/AddFans';
-import AddGpu from './components/adminPages/add/addComponents/addGpu/AddGpu';
-import AddPsu from './components/adminPages/add/addComponents/addPsu/AddPsu';
-import AddRam from './components/adminPages/add/addComponents/addRam/AddRam';
-import AddSsd from './components/adminPages/add/addComponents/addSsd/AddSsd';
-import AddSsdM2 from './components/adminPages/add/addComponents/addSsd/addSsdM2/AddSsdM2';
-import AddSsdSata from './components/adminPages/add/addComponents/addSsd/addSsdSata/AddSsdSata';
+import AddCompLinks from './components/adminPages/pages/add/addComponents/AddCompLinks';
+import AddMotherboard from './components/adminPages/pages/add/addComponents/addMotherboard/AddMotherboard';
+import AddCase from './components/adminPages/pages/add/addComponents/addCase/AddCase';
+import AddCpu from './components/adminPages/pages/add/addComponents/addCpu/AddCpu';
+import AddCpuCooler from './components/adminPages/pages/add/addComponents/addCpuCooler/AddCpuCooler';
+import AddCpuCoolerFan from './components/adminPages/pages/add/addComponents/addCpuCooler/addCpuCoolerFan/AddCpuCoolerFan';
+import AddCpuCoolerLiquid from './components/adminPages/pages/add/addComponents/addCpuCooler/addCpuCoolerLiquid/AddCpuCoolerLiquid';
+import AddFans from './components/adminPages/pages/add/addComponents/addFans/AddFans';
+import AddGpu from './components/adminPages/pages/add/addComponents/addGpu/AddGpu';
+import AddPsu from './components/adminPages/pages/add/addComponents/addPsu/AddPsu';
+import AddRam from './components/adminPages/pages/add/addComponents/addRam/AddRam';
+import AddSsd from './components/adminPages/pages/add/addComponents/addSsd/AddSsd';
+import AddSsdM2 from './components/adminPages/pages/add/addComponents/addSsd/addSsdM2/AddSsdM2';
+import AddSsdSata from './components/adminPages/pages/add/addComponents/addSsd/addSsdSata/AddSsdSata';
 
-import Reports from './components/adminPages/reports/Reports';
-import UserReports from './components/adminPages/reports/userReports/UserReports';
-import PremiumReports from './components/adminPages/reports/premiumReports/PremiumReports';
+import Reports from './components/adminPages/pages/reports/Reports';
+import UserReports from './components/adminPages/pages/reports/userReports/UserReports';
+import PremiumReports from './components/adminPages/pages/reports/premiumReports/PremiumReports';
 
 //import premium pages
-import PremiumHome from './components/premiumPages/premiumHome/PremiumHome';
-import UserPremiumData from './components/premiumPages/userPremiumData/UserPremiumData';
-import QuetionAnswer from './components/premiumPages/questionAnswer/QuestionAnswer';
+import PremiumHome from './components/premiumPages/pages/premiumHome/PremiumHome';
+import UserPremiumData from './components/premiumPages/pages/userPremiumData/UserPremiumData';
+import QuetionAnswer from './components/premiumPages/pages/questionAnswer/QuestionAnswer';
 
 function App() {
   // take from local storage the information if user is loggedIn or not
