@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
-import MainLayout from '../../../layouts/mainLayout/MainLayout'
+import PageLayout from '../../../layouts/pageLayout/PageLayout'
 import Header from '../../../../pageSettings/header/Header'
 
 export default class NewQuestion extends Component {
   render() {
     return (
-      <MainLayout>
+      <PageLayout>
         <Header h1Heading='New Question'/>
-      </MainLayout>
+      </PageLayout>
     )
   }
 }

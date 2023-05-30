@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import Footer from '../../../pageSettings/footer/Footer';
 import Header from '../../../pageSettings/header/Header';
-import Navbar from '../../navbar/Navbar';
 import style from './adminHome.module.css';
-import MainPageLayout from '../../layout/mainPageLayout/MainPageLayout';
+import DiagnosticInformationLayout from '../../layouts/diagnosticInformationLayout/DiagnosticInformationLayout';
+import PageLayout from '../../layouts/pageLayout/PageLayout';
 
 export default class AdminHome extends Component {
   // Initializing state variables for component properties
@@ -16,32 +15,33 @@ export default class AdminHome extends Component {
   };
   render() {
     return (
-      <div className={style.adminHome}>
-        <Navbar />
+      <PageLayout>
         <Header h1Heading='PC BUILDER ADMIN' />
-
-        <section className={style.section}>
-          <MainPageLayout
-            h2='Amount of users'
-            text={this.state.amountOfUsers}
-          />
-          <MainPageLayout
-            h2='Amount open questions'
-            text={this.state.amountOfOpenQuestions}
-          />
-          <MainPageLayout
-            h2='Amount close questions'
-            text={this.state.amountOfClosedQuestions}
-          />
-          <MainPageLayout
-            h2='Professional Data'
-            text={this.state.professionalData}
-          />
-          <MainPageLayout h2='Overall user satisfaction' text='*****' />
-        </section>
-
-        <Footer />
-      </div>
+        <div className={style.adminHome}>
+          <section className={style.section}>
+            <DiagnosticInformationLayout
+              h2='Amount of users'
+              text={this.state.amountOfUsers}
+            />
+            <DiagnosticInformationLayout
+              h2='Amount open questions'
+              text={this.state.amountOfOpenQuestions}
+            />
+            <DiagnosticInformationLayout
+              h2='Amount close questions'
+              text={this.state.amountOfClosedQuestions}
+            />
+            <DiagnosticInformationLayout
+              h2='Professional Data'
+              text={this.state.professionalData}
+            />
+            <DiagnosticInformationLayout
+              h2='Overall user satisfaction'
+              text='*****'
+            />
+          </section>
+        </div>
+      </PageLayout>
     );
   }
 }

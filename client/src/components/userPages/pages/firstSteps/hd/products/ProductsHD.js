@@ -1,12 +1,12 @@
 import React from 'react'
-import Layout from '../../../../layouts/mainLayout/MainLayout';
+import PageLayout from '../../../../layouts/pageLayout/PageLayout';
 import Header from '../../../../../pageSettings/header/Header';
 
 function productsHD() {
   return (
-    <Layout>
+    <PageLayout>
       <Header h1Heading='Hard Drive Products' />
-    </Layout>
+    </PageLayout>
   );
 }
 

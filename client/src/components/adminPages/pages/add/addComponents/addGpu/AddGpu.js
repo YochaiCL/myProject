@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Button from '../../../../../pageSettings/button/Button';
-import Layout from '../../../../layout/pageLayout/PageLayout';
+import PageLayout from '../../../../layouts/pageLayout/PageLayout';
 import Header from '../../../../../pageSettings/header/Header';
 import style from '../addMotherboard/addMotherboard.module.css';
 
@@ -51,7 +51,7 @@ export default class AddGpu extends Component {
   }
   render() {
     return (
-      <Layout>
+      <PageLayout>
         <Header h1Heading='Add GPU' />
         <section>
           <form onSubmit={this.handleSubmit.bind(this)} className={style.form}>
@@ -109,7 +109,7 @@ export default class AddGpu extends Component {
             <p>{this.state.showResult}</p>
           </form>
         </section>
-      </Layout>
+      </PageLayout>
     );
   }
 }

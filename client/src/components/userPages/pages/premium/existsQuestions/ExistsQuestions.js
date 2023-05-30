@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import MainLayout from '../../../layouts/mainLayout/MainLayout';
+import PageLayout from '../../../layouts/pageLayout/PageLayout';
 import Header from '../../../../pageSettings/header/Header';
 
 export default class ExistsQuestions extends Component {
   render() {
     return (
-      <MainLayout>
+      <PageLayout>
         <Header h1Heading='Exists Questions' />
-      </MainLayout>
+      </PageLayout>
     );
   }
 }

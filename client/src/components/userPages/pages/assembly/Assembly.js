@@ -1,5 +1,5 @@
 import React from 'react';
-import Layout from '../../layouts/mainLayout/MainLayout';
+import PageLayout from '../../layouts/pageLayout/PageLayout';
 import Header from '../../../pageSettings/header/Header';
 import imgVideo from '../../../../images/assembly/see-assembly-videos.jpg';
 import imgMounted from '../../../../images/assembly/see-mounted-assemblys.jpg';
@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import style from './assembly.module.css';
 function Assembly() {
   return (
-    <Layout>
+    <PageLayout>
       <Header h1Heading='Assembly' />
 
       <figure className={style.figure}>
@@ -42,7 +42,7 @@ function Assembly() {
           </div>
         </div>
       </figure>
-    </Layout>
+    </PageLayout>
   );
 }
 

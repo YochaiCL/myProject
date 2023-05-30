@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Layout from '../../../../layouts/mainLayout/MainLayout';
+import PageLayout from '../../../../layouts/pageLayout/PageLayout';
 import Header from '../../../../../pageSettings/header/Header';
 import style from '../../motherboard/products/productsMOTHERBOARD.module.css';
 
@@ -29,7 +29,7 @@ export default class ProductsCPU extends Component {
   };
   render() {
     return (
-      <Layout>
+      <PageLayout>
         <Header h1Heading='CPU Products' />
         <section className={style.external}>
           <section className={style.model}>
@@ -82,7 +82,7 @@ export default class ProductsCPU extends Component {
             </section>
           )}
         </section>
-      </Layout>
+      </PageLayout>
     );
   }
 }

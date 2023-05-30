@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Layout from '../../../../../layouts/mainLayout/MainLayout';
+import PageLayout from '../../../../../layouts/pageLayout/PageLayout';
 import Header from '../../../../../../pageSettings/header/Header';
 import style from '../../../motherboard/products/productsMOTHERBOARD.module.css';
 
@@ -29,7 +29,7 @@ export default class ProductsSsdM2 extends Component {
   };
   render() {
     return (
-      <Layout>
+      <PageLayout>
         <Header h1Heading='SSD M2 Products' />
         <section className={style.external}>
           <section className={style.model}>
@@ -66,7 +66,7 @@ export default class ProductsSsdM2 extends Component {
             </section>
           )}
         </section>
-      </Layout>
+      </PageLayout>
     );
   }
 }

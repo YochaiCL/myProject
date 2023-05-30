@@ -1,11 +1,11 @@
 import React from 'react';
-import Layout from '../../layouts/mainLayout/MainLayout';
+import PageLayout from '../../layouts/pageLayout/PageLayout';
 import Header from '../../../pageSettings/header/Header';
 function Test() {
   return (
-    <Layout>
+    <PageLayout>
       <Header h1Heading='Test Your Self' />
-    </Layout>
+    </PageLayout>
   );
 }
 

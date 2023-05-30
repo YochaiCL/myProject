@@ -1,12 +1,12 @@
 import React from 'react';
-import Layout from '../../../layout/pageLayout/PageLayout';
+import PageLayout from '../../../layouts/pageLayout/PageLayout';
 import Header from '../../../../pageSettings/header/Header';
 import LinkLayout from '../../../../pageSettings/linkLayout/LinkLayout';
 import style from './addCompLinks.module.css';
 
 export default function AddCompLinks() {
   return (
-    <Layout>
+    <PageLayout>
       <Header h1Heading='Choose Component Type' />
       <div className={style.all}>
         <section className={style.container}>
@@ -30,6 +30,6 @@ export default function AddCompLinks() {
           <LinkLayout nameLink='Motherboard' toLink='/addMotherboard' />
         </section>
       </div>
-    </Layout>
+    </PageLayout>
   );
 }

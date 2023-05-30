@@ -1,6 +1,6 @@
 import React, {useEffect, useState } from 'react';
 
-import Layout from '../../layouts/mainLayout/MainLayout';
+import PageLayout from '../../layouts/pageLayout/PageLayout';
 import Header from '../../../pageSettings/header/Header';
 import LearnLayout from '../../layouts/learnLayout/LearnLayout';
 
@@ -44,7 +44,7 @@ export default function FirstSteps() {
       });
   },[])
   return (
-    <Layout>
+    <PageLayout>
       <Header h1Heading='First Steps - Learn Your Hardware' />
 
       <figure className={style.figure}>
@@ -180,7 +180,7 @@ export default function FirstSteps() {
           oldState={array}
         />
       </figure>
-    </Layout>
+    </PageLayout>
   );
 }
 

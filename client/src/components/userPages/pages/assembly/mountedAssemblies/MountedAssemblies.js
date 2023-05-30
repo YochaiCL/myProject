@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Layout from '../../../layouts/mainLayout/MainLayout';
+import PageLayout from '../../../layouts/pageLayout/PageLayout';
 import Header from '../../../../pageSettings/header/Header';
 import style from './mountedAssemblies.module.css';
 
@@ -33,7 +33,7 @@ export default class MountedAssemblies extends Component {
 
   render() {
     return (
-      <Layout>
+      <PageLayout>
         <Header h1Heading='Mounted Assemblies' />
        
         <section className={style.external}>
@@ -95,7 +95,7 @@ export default class MountedAssemblies extends Component {
             </section>
           )}
         </section>
-      </Layout>
+      </PageLayout>
     );
   }
 }

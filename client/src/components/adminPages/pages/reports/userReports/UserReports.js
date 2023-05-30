@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import Layout from '../../../layout/pageLayout/PageLayout';
+import PageLayout from '../../../layouts/pageLayout/PageLayout';
 import Header from '../../../../pageSettings/header/Header';
 export default class UserReports extends Component {
   render() {
     return (
-      <Layout>
+      <PageLayout>
         <Header h1Heading='User Reports' />
-      </Layout>
+      </PageLayout>
     );
   }
 }

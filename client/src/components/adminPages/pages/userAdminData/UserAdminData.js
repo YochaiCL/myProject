@@ -1,13 +1,13 @@
-import Layout from '../../layout/pageLayout/PageLayout';
+import PageLayout from '../../layouts/pageLayout/PageLayout';
 import Header from '../../../pageSettings/header/Header';
 import UserDetails from '../../../pageSettings/userDetails/UserDetails';
 import React from 'react';
 
 export default function UserAdminData() {
   return (
-    <Layout>
+    <PageLayout>
       <Header h1Heading='User Data' />
       <UserDetails />
-    </Layout>
+    </PageLayout>
   );
 }

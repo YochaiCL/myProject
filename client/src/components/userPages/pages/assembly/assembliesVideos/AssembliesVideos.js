@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import Layout from '../../../layouts/mainLayout/MainLayout';
+import PageLayout from '../../../layouts/pageLayout/PageLayout';
 import Header from '../../../../pageSettings/header/Header';
 import Videos from './videos/Videos';
 import { videos } from './video-data/video-data';
@@ -15,10 +15,10 @@ export default class AssembliesVideos extends Component {
       </div>
     ));
     return (
-      <Layout>
+      <PageLayout>
         <Header h1Heading='Assemblies Videos' />
         <div>{displayVideos}</div>
-      </Layout>
+      </PageLayout>
     );
   }
 }
