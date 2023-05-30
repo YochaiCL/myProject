@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 // Import  user main's pages
 import UserHome from './components/userPages/userHome/UserHome';
 import About from './components/userPages/pages/about/About';
-import User from './components/userPages/user/User';
+import UserData from './components/userPages/userData/UserData';
 import Premium from './components/userPages/pages/premium/Premium';
 
 // Import firstSteps + pages of firstSteps
@@ -57,7 +57,7 @@ import ForgetPassword from './components/connection/forgetPassword/ForgetPasswor
 
 // import admin pages
 import AdminHome from './components/adminPages/adminHome/AdminHome';
-import UserAdmin from './components/adminPages/userAdmin/UserAdmin';
+import UserAdminData from './components/adminPages/userAdminData/UserAdminData';
 
 import Add from './components/adminPages/add/Add';
 import AddAssemblies from './components/adminPages/add/addAssemblies/AddAssemblies';
@@ -83,7 +83,7 @@ import PremiumReports from './components/adminPages/reports/premiumReports/Premi
 
 //import premium pages
 import PremiumHome from './components/premiumPages/premiumHome/PremiumHome';
-import UserPremium from './components/premiumPages/userPremium/UserPremium';
+import UserPremiumData from './components/premiumPages/userPremiumData/UserPremiumData';
 import QuetionAnswer from './components/premiumPages/questionAnswer/QuestionAnswer';
 
 function App() {
@@ -105,7 +105,7 @@ function App() {
           {/* main's page */}
           <Route path='/userHome' element={<UserHome />} />
           <Route path='/about' element={<About />} />
-          <Route path='/user' element={<User />} />
+          <Route path='/user' element={<UserData />} />
           <Route path='/premium' element={<Premium />} />
           {/* firstSteps + pages of firstSteps */}
           <Route path='/firstSteps' element={<FirstSteps />} />
@@ -156,7 +156,7 @@ function App() {
 
           {/* admin paged */}
           <Route path='/adminHome' element={<AdminHome />} />
-          <Route path='/userAdmin' element={<UserAdmin />} />
+          <Route path='/userAdmin' element={<UserAdminData />} />
           <Route path='/add' element={<Add />} />
           <Route path='/addAssemblies' element={<AddAssemblies />} />
 
@@ -181,7 +181,7 @@ function App() {
 
           {/* premium pages */}
           <Route path='/premiumHome' element={<PremiumHome />} />
-          <Route path='/userPremium' element={<UserPremium />} />
+          <Route path='/userPremium' element={<UserPremiumData />} />
           <Route path='/questionAnswer' element={<QuetionAnswer />} />
         </Routes>
       </div>

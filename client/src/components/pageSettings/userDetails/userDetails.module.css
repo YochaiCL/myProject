@@ -1,0 +1,14 @@
+.section {
+  font-size: 3rem;
+  padding: 2rem;
+  max-width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.change {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2rem;
+}
