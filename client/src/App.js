@@ -8,7 +8,10 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import UserHome from './components/userPages/pages/userHome/UserHome';
 import About from './components/userPages/pages/about/About';
 import UserData from './components/userPages/pages/userData/UserData';
+
 import Premium from './components/userPages/pages/premium/Premium';
+import NewQuestion from './components/userPages/pages/premium/newQuestion/NewQuestion';
+import ExistsQuestions from './components/userPages/pages/premium/existsQuestions/ExistsQuestions';
 
 // Import firstSteps + pages of firstSteps
 import FirstSteps from './components/userPages/pages/firstSteps/FirstSteps';
@@ -106,7 +109,11 @@ function App() {
           <Route path='/userHome' element={<UserHome />} />
           <Route path='/about' element={<About />} />
           <Route path='/user' element={<UserData />} />
+
           <Route path='/premium' element={<Premium />} />
+          <Route path='/newQuestion' element={<NewQuestion />} />
+          <Route path='/existsQuestions' element={<ExistsQuestions />} />
+
           {/* firstSteps + pages of firstSteps */}
           <Route path='/firstSteps' element={<FirstSteps />} />
           <Route path='/infoSSD' element={<InfoSSD />} />
