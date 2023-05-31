@@ -46,10 +46,10 @@ require('./routes/Scehmas/addAssemblies/addAssembliesScehmas');
 require('./routes/Scehmas/questionAnswer/questionAnswer');
 
 const mongoUrl =
-  'mongodb+srv://yochaicl:yochaicl@cluster0.endfyfo.mongodb.net/pcBuilder';
+  'mongodb://yochaicl:yochaicl@ac-dafclzr-shard-00-00.endfyfo.mongodb.net:27017,ac-dafclzr-shard-00-01.endfyfo.mongodb.net:27017,ac-dafclzr-shard-00-02.endfyfo.mongodb.net:27017/pcBuilder?ssl=true&replicaSet=atlas-tfq3m8-shard-0&authSource=admin&retryWrites=true&w=majority';
 
 // Connecting to the MongoDB database using the provided URL.
-mongoose
+mongodb: mongoose
   .connect(mongoUrl, {
     useNewUrlParser: true,
   })
@@ -109,8 +109,6 @@ app.use('/getAssemblies', getAssemblies);
 
 // Using the '/getData' route to handle requests for retrieving components as an admin.
 app.use('/showComponentsData', showComponentsData);
-
-
 
 // Requiring and activating the routes for getting and inserting question and answer
 const questionAnswer = require('./routes/questionAnswer/questionAnswer');

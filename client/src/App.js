@@ -1,7 +1,6 @@
 import React from 'react';
 
 //Router between the pages
-// import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 // Import  user main's pages
