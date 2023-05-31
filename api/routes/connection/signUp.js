@@ -13,6 +13,9 @@ const bcrypt = require('bcryptjs');
 const User = mongoose.model('UserInfo');
 const CompLearned = mongoose.model('CompLearned');
 
+// module makes it easy to send emails from your computer.
+const nodemailer = require('nodemailer');
+
 // Import scehma of how data is in database
 require('../Scehmas/connection/userDetails');
 
@@ -33,6 +36,32 @@ router.post('/', async (req, res) => {
       email,
       password: encryptedPassword,
       userType,
+    });
+
+    // this link will send to the user email and redirect him to reset the password
+    const text = `Thanks for joining and happy learning. For every question you can connect to the Premium Account service that allows you to get a human answer to every question`;
+    // activate send email to the user
+    var transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: 'pcbuilderweb@gmail.com',
+        pass: 'oggemnxdvgbieqcy',
+      },
+    });
+
+    var mailOptions = {
+      from: 'youremail@gmail.com',
+      to: email,
+      subject: 'PC Builder',
+      text: text,
+    };
+
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        return res.json({ status: 'Error email not send' });
+      } else {
+        return res.json({ status: 'Email send' });
+      }
     });
     // when user is sign up all the status of components are enter to the data base
     const newUser = await User.findOne({ email });
