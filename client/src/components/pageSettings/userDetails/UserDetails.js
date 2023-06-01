@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Button from '../button/Button';
 import style from './userDetails.module.css';
-import { Link } from 'react-router-dom';
+import LinkLayout from '../linkLayout/LinkLayout';
 
 export default class UserData extends Component {
   // Initializing state variables for userData, showLinkAdmin, password, email, and name
@@ -140,8 +140,8 @@ export default class UserData extends Component {
         </section>
 
         {this.state.showLinkAdmin && (
-          <section>
-            <Link to='/adminHome'>Transfer to Admin home</Link>
+          <section className={style.linkAdmin}>
+            <LinkLayout nameLink='Transfer to Admin home' toLink='/adminHome' />
           </section>
         )}
 

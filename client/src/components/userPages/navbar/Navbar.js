@@ -6,8 +6,19 @@ import LinkNavbar from '../../pageSettings/linkNavbar/LinkNavbar';
 function Navbar() {
   return (
     <nav className={style.nav}>
-      <img className={style.img} src={logo} alt='logo' width='100' lang='100' />
-      <LinkNavbar nameLink='Home' toLink='/userHome' />
+      <LinkNavbar
+        nameLink={
+          <img
+            className={style.img}
+            src={logo}
+            alt='logo'
+            width='100'
+            lang='100'
+          />
+        }
+        toLink='/userHome'
+      />
+
       <LinkNavbar nameLink='User Data' toLink='/user' />
       <LinkNavbar nameLink='First Steps' toLink='/firstSteps' />
       <LinkNavbar nameLink='Assembly' toLink='/assembly' />

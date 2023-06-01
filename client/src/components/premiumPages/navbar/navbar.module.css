@@ -5,18 +5,7 @@
   align-items: center;
 }
 
-.nav .link {
-  color: white;
-  padding: 1.5rem;
-  text-decoration: none;
-}
-
-nav .link:hover,
-.link:focus {
-  color: gray;
-}
-
-nav > .link:nth-of-type(2) {
+.nav > :nth-child(3) {
   margin-right: auto;
 }
 

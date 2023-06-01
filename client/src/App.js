@@ -55,7 +55,6 @@ import TestWithHelp from './components/userPages/pages/testYourSelf/testWithHelp
 import TestWithoutHelp from './components/userPages/pages/testYourSelf/testWithoutHelp/TestWithoutHelp';
 import ExistsTests from './components/userPages/pages/testYourSelf/existsTests/ExistsTests';
 
-
 // import signUp / signIn / reset
 import SignUp from './components/connection/signUp/SignUp';
 import Login from './components/connection/login/Login';
@@ -82,6 +81,14 @@ import AddRam from './components/adminPages/pages/add/addComponents/addRam/AddRa
 import AddSsd from './components/adminPages/pages/add/addComponents/addSsd/AddSsd';
 import AddSsdM2 from './components/adminPages/pages/add/addComponents/addSsd/addSsdM2/AddSsdM2';
 import AddSsdSata from './components/adminPages/pages/add/addComponents/addSsd/addSsdSata/AddSsdSata';
+
+import Delete from './components/adminPages/pages/delete/Delete';
+import DeleteComponents from './components/adminPages/pages/delete/deleteComponents/DeleteComponents';
+import DeleteAssemblies from './components/adminPages/pages/delete/deleteAssemblies/DeleteAssemblies';
+
+import Update from './components/adminPages/pages/update/Update';
+import UpdateComponents from './components/adminPages/pages/update/updateComponents/UpdateComponents';
+import UpdateAssemblies from './components/adminPages/pages/update/updateAssemblies/UpdateAssemblies';
 
 import Reports from './components/adminPages/pages/reports/Reports';
 import UserReports from './components/adminPages/pages/reports/userReports/UserReports';
@@ -173,6 +180,14 @@ function App() {
           <Route path='/userAdmin' element={<UserAdminData />} />
           <Route path='/add' element={<Add />} />
           <Route path='/addAssemblies' element={<AddAssemblies />} />
+
+          <Route path='/delete' element={<Delete />} />
+          <Route path='/deleteAssemblies' element={<DeleteAssemblies />} />
+          <Route path='/deleteComponents' element={<DeleteComponents />} />
+
+          <Route path='/update' element={<Update />} />
+          <Route path='/updateAssemblies' element={<UpdateAssemblies />} />
+          <Route path='/updateComponents' element={<UpdateComponents />} />
 
           <Route path='/addComponents' element={<AddCompLinks />} />
           <Route path='/addCase' element={<AddCase />} />

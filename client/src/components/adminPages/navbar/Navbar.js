@@ -6,11 +6,24 @@ import LinkNavbar from '../../pageSettings/linkNavbar/LinkNavbar';
 export default function Navbar() {
   return (
     <nav className={style.nav}>
-      <img className={style.img} src={logo} alt='logo' width='100' lang='100' />
-      <LinkNavbar nameLink='Home' toLink='/adminHome' />
+      <LinkNavbar
+        nameLink={
+          <img
+            className={style.img}
+            src={logo}
+            alt='logo'
+            width='100'
+            lang='100'
+          />
+        }
+        toLink='/adminHome'
+      />
+
       <LinkNavbar nameLink='User Data' toLink='/userAdmin' />
       <LinkNavbar nameLink='Reports' toLink='/reports' />
       <LinkNavbar nameLink='Add' toLink='/add' />
+      <LinkNavbar nameLink='Delete' toLink='/delete' />
+      <LinkNavbar nameLink='Update' toLink='/update' />
       <LinkNavbar nameLink='Front End' toLink='/userHome' />
     </nav>
   );
