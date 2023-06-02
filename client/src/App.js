@@ -87,8 +87,22 @@ import DeleteComponents from './components/adminPages/pages/delete/deleteCompone
 import DeleteAssemblies from './components/adminPages/pages/delete/deleteAssemblies/DeleteAssemblies';
 
 import Update from './components/adminPages/pages/update/Update';
-import UpdateComponents from './components/adminPages/pages/update/updateComponents/UpdateComponents';
+import UpdateCompLinks from './components/adminPages/pages/update/updateComponents/UpdateCompLinks';
 import UpdateAssemblies from './components/adminPages/pages/update/updateAssemblies/UpdateAssemblies';
+
+import UpdateCase from './components/adminPages/pages/update/updateComponents/updateCase/UpdateCase';
+import UpdateCpu from './components/adminPages/pages/update/updateComponents/updateCpu/UpdateCpu';
+import UpdateCpuCooler from './components/adminPages/pages/update/updateComponents/updateCpuCooler/UpdateCpuCooler';
+import UpdateCpuCoolerLiquid from './components/adminPages/pages/update/updateComponents/updateCpuCooler/UpdateCpuCoolerLiquid/UpdateCpuCoolerLiquid';
+import UpdateCpuCoolerFan from './components/adminPages/pages/update/updateComponents/updateCpuCooler/UpdateCpuCoolerFan/UpdateCpuCoolerFan';
+import UpdateFans from './components/adminPages/pages/update/updateComponents/updateFans/UpdateFans';
+import UpdateGpu from './components/adminPages/pages/update/updateComponents/updateGpu/UpdateGpu';
+import UpdateMotherboard from './components/adminPages/pages/update/updateComponents/updateMotherboard/UpdateMotherboard';
+import UpdatePsu from './components/adminPages/pages/update/updateComponents/updatePsu/UpdatePsu';
+import UpdateRam from './components/adminPages/pages/update/updateComponents/updateRam/UpdateRam';
+import UpdateSsd from './components/adminPages/pages/update/updateComponents/updateSsd/UpdateSsd';
+import UpdateSsdM2 from './components/adminPages/pages/update/updateComponents/updateSsd/UpdateSsdM2/AddSsdM2';
+import UpdateSsdSata from './components/adminPages/pages/update/updateComponents/updateSsd/UpdateSsdSata/AddSsdSata';
 
 import Reports from './components/adminPages/pages/reports/Reports';
 import UserReports from './components/adminPages/pages/reports/userReports/UserReports';
@@ -187,7 +201,24 @@ function App() {
 
           <Route path='/update' element={<Update />} />
           <Route path='/updateAssemblies' element={<UpdateAssemblies />} />
-          <Route path='/updateComponents' element={<UpdateComponents />} />
+          <Route path='/updateCompLinks' element={<UpdateCompLinks />} />
+
+          <Route path='/updateCase' element={<UpdateCase />} />
+          <Route path='/updateCpu' element={<UpdateCpu />} />
+          <Route path='/updateCpuCooler' element={<UpdateCpuCooler />} />
+          <Route path='/updateCpuCoolerFan' element={<UpdateCpuCoolerFan />} />
+          <Route
+            path='/updateCpuCoolerLiquid'
+            element={<UpdateCpuCoolerLiquid />}
+          />
+          <Route path='/updateFans' element={<UpdateFans />} />
+          <Route path='/updateGpu' element={<UpdateGpu />} />
+          <Route path='/updateMotherboard' element={<UpdateMotherboard />} />
+          <Route path='/updatePsu' element={<UpdatePsu />} />
+          <Route path='/updateRam' element={<UpdateRam />} />
+          <Route path='/updateSsd' element={<UpdateSsd />} />
+          <Route path='/updateSsdM2' element={<UpdateSsdM2 />} />
+          <Route path='/updateSsdSata' element={<UpdateSsdSata />} />
 
           <Route path='/addComponents' element={<AddCompLinks />} />
           <Route path='/addCase' element={<AddCase />} />

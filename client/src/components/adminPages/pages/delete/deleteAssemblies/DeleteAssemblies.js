@@ -22,6 +22,38 @@ export default class DeleteAssemblies extends Component {
   componentDidMount() {
     this.getAssembly();
   }
+   deleteAssembly(){
+    let result = this.state.assembly.filter((item)=>{
+      console.log(item, this.state.deleteAssembly);
+      return item.assemblyName !== this.state.deleteAssembly;
+    })
+    console.log(result)
+    this.setState({ assembly: result });
+    try {
+      fetch('http://localhost:5000/deleteAssemblies', {
+        // Setting headers for the HTTP request
+        method: 'POST',
+        crossDomain: true,
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          'Access-Control-Allow-Origin': '*',
+        },
+        // Converting fullName, email, password, and userType to JSON and setting it as the request body
+        body: JSON.stringify({
+          assemblyName: this.state.deleteAssembly,
+        }),
+      })
+        // Parsing the response as JSON
+        .then(res => res.json())
+        // Handling the response data
+        .then(data => {
+          console.log(data);
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   render() {
     return (
@@ -49,7 +81,7 @@ export default class DeleteAssemblies extends Component {
           ))}
         </select>
         <div className={style.btn}>
-          <Button text='Delete' />
+          <Button text='Delete' fun={()=>this.deleteAssembly()}/>
         </div>
       </PageLayout>
     );

@@ -49,7 +49,7 @@ const mongoUrl =
   'mongodb://yochaicl:yochaicl@ac-dafclzr-shard-00-00.endfyfo.mongodb.net:27017,ac-dafclzr-shard-00-01.endfyfo.mongodb.net:27017,ac-dafclzr-shard-00-02.endfyfo.mongodb.net:27017/pcBuilder?ssl=true&replicaSet=atlas-tfq3m8-shard-0&authSource=admin&retryWrites=true&w=majority';
 
 // Connecting to the MongoDB database using the provided URL.
-mongodb: mongoose
+mongoose
   .connect(mongoUrl, {
     useNewUrlParser: true,
   })
@@ -115,6 +115,18 @@ const questionAnswer = require('./routes/questionAnswer/questionAnswer');
 
 // Using the '/questionAnswer' route to handle requests for retrieving question and answers.
 app.use('/questionAnswer', questionAnswer);
+
+// Requiring and activating the routes for getting and inserting question and answer
+const deleteAssemblies = require('./routes/delete/deleteAssemblies/deleteAssemblies');
+
+// Using the '/deleteAssemblies' route to handle requests for retrieving question and answers.
+app.use('/deleteAssemblies', deleteAssemblies);
+
+// Requiring and activating the routes for getting and inserting question and answer
+const deleteComponents = require('./routes/delete/deleteComponents/deleteComponents');
+
+// Using the '/deleteComponents' route to handle requests for retrieving question and answers.
+app.use('/deleteComponents', deleteComponents);
 
 // Starting the server on port 5000 and logging a message when the server starts.
 app.listen(5000, () => {

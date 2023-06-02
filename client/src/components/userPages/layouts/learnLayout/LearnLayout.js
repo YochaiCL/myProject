@@ -3,37 +3,38 @@ import style from './LearnLayout.module.css';
 import { Link } from 'react-router-dom';
 
 export default class LearnLayout extends Component {
- 
   updateButton(e, buttonId) {
-    let user = JSON.parse(localStorage.getItem("user"))
+    let user = JSON.parse(localStorage.getItem('user'));
 
     let newObj = this.props.oldState;
     console.log(newObj);
-    newObj[buttonId].haveLearned = true;
+    if (newObj[buttonId].haveLearned === true) {
+      newObj[buttonId].haveLearned = false;
+    } else {
+      newObj[buttonId].haveLearned = true;
+    }
+
     console.log(newObj);
 
-    this.props.changeLearn({...newObj});
+    this.props.changeLearn({ ...newObj });
 
-        fetch('http://localhost:5000/comp-learned', {
-          method: 'POST',
-          crossDomain: true,
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-            'Access-Control-Allow-Origin': '*',
-          },
-          body: JSON.stringify({
-            newObj: newObj,
-            userId: user._id 
-       
-          }),
-        })
-          .then(res => res.json())
-          .then(data => {
-            console.log(data)
-            
-          });
-
+    fetch('http://localhost:5000/comp-learned', {
+      method: 'POST',
+      crossDomain: true,
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        'Access-Control-Allow-Origin': '*',
+      },
+      body: JSON.stringify({
+        newObj: newObj,
+        userId: user._id,
+      }),
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+      });
   }
 
   render() {

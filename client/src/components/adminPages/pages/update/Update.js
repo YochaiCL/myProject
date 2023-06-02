@@ -10,7 +10,7 @@ export default function Update() {
       <Header h1Heading='Update' />
       <section className={style.container}>
         <LinkLayout toLink='/updateAssemblies' nameLink='Update Assemblies' />
-        <LinkLayout toLink='/updateComponents' nameLink='Update Components' />
+        <LinkLayout toLink='/updateCompLinks' nameLink='Update Components' />
       </section>
     </PageLayout>
   );

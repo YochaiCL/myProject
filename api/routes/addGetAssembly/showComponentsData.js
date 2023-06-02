@@ -88,17 +88,17 @@ router.get('/modals', async (req, res) => {
     }
     // Send all arrays of 'Components' documents as the response
     res.send({
-      case: sendCase,
-      cpu: sendCpu,
-      cpuCoolerFan: sendCpuCoolerFan,
-      cpuCoolerLiquid: sendCpuCoolerLiquid,
-      fans: sendFans,
-      gpu: sendGpu,
-      motherboard: sendMotherboard,
-      psu: sendPsu,
-      ram: sendRam,
-      ssdM2: sendSsdM2,
-      ssdSata: sendSsdSata,
+      Case: sendCase,
+      Cpu: sendCpu,
+      CpuCoolerFan: sendCpuCoolerFan,
+      CpuCoolerLiquid: sendCpuCoolerLiquid,
+      Fans: sendFans,
+      Gpu: sendGpu,
+      Motherboard: sendMotherboard,
+      Psu: sendPsu,
+      Ram: sendRam,
+      SsdM2: sendSsdM2,
+      SsdSata: sendSsdSata,
     });
   } catch (error) {
     // Send a response with a 'status' property set to 'error' indicating an error occurred
