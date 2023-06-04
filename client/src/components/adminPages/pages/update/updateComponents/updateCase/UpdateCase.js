@@ -6,12 +6,31 @@ import style from '../updateMotherboard/updateMotherboard.module.css';
 export default class UpdateCase extends Component {
   // Initializing state variables for component properties
   state = {
+    products: [{ model: 'Loading data...' }],
+    showData: false,
+    selectIndex: null,
     model: '',
     form: '',
     radiator_compatibility: '',
     dimensions: '',
     showResult: '',
   };
+  componentDidMount() {
+    this.getProducts();
+  }
+
+  handelClick = index => {
+    this.setState({
+      showData: true,
+      selectIndex: index,
+    });
+  };
+  async getProducts() {
+    const response = await fetch('http://localhost:5000/getData/case');
+    const result = await response.json();
+    console.log(result);
+    this.setState({ products: result });
+  }
 
   // Asynchronous function to handle form submission
   async handleSubmit(e) {
@@ -50,43 +69,83 @@ export default class UpdateCase extends Component {
   render() {
     return (
       <PageLayout>
-        <Header h1Heading='Add Case' />
-        <section>
-          <form onSubmit={this.handleSubmit.bind(this)} className={style.form}>
-            <input
-              type='text'
-              placeholder='Enter Model:'
-              value={this.state.model}
-              required
-              onChange={e => this.setState({ model: e.target.value })}
-            />
+        <Header h1Heading='Update Case' />
+        <section className={style.external}>
+          <section className={style.model}>
+            <h2>List Of Products</h2>
+            {this.state.products.map((product, index) => (
+              <section key={index}>
+                <button
+                  onClick={() => {
+                    this.handelClick(index);
+                  }}
+                  className={style.productButton}
+                >
+                  {product.model}
+                </button>
+              </section>
+            ))}
+          </section>
+          {this.state.showData && this.state.selectIndex !== null && (
+            <section className={style.showAllData}>
+              <h2 className={style.h2}>Product Data</h2>
+              <div>
+                <section>
+                  <form
+                    onSubmit={this.handleSubmit.bind(this)}
+                    className={`${style.form} ${style.smallForm}`}
+                  >
+                    <input
+                      type='text'
+                      placeholder={
+                        this.state.products[this.state.selectIndex].model
+                      }
+                      value={this.state.model}
+                      required
+                      onChange={e => this.setState({ model: e.target.value })}
+                    />
 
-            <input
-              type='text'
-              placeholder='Enter Form:'
-              required
-              onChange={e => this.setState({ form: e.target.value })}
-            />
+                    <input
+                      type='text'
+                      placeholder={
+                        this.state.products[this.state.selectIndex].form
+                      }
+                      required
+                      onChange={e => this.setState({ form: e.target.value })}
+                    />
 
-            <input
-              type='text'
-              placeholder='Enter Radiator Compatibility:'
-              required
-              onChange={e =>
-                this.setState({ radiator_compatibility: e.target.value })
-              }
-            />
+                    <input
+                      type='text'
+                      placeholder={
+                        this.state.products[this.state.selectIndex]
+                          .radiator_compatibility
+                      }
+                      required
+                      onChange={e =>
+                        this.setState({
+                          radiator_compatibility: e.target.value,
+                        })
+                      }
+                    />
 
-            <input
-              type='text'
-              placeholder='Enter Dimensions:'
-              required
-              onChange={e => this.setState({ dimensions: e.target.value })}
-            />
+                    <input
+                      type='text'
+                      placeholder={
+                        this.state.products[this.state.selectIndex].dimensions
+                      }
+                      required
+                      onChange={e =>
+                        this.setState({ dimensions: e.target.value })
+                      }
+                    />
 
-            <Button type='submit' text='submit' />
-            <p>{this.state.showResult}</p>
-          </form>
+                    <Button type='submit' text='submit' />
+                    <p>{this.state.showResult}</p>
+                  </form>
+                </section>
+              </div>
+            </section>
+          )}
         </section>
       </PageLayout>
     );

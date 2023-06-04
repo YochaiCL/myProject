@@ -101,8 +101,8 @@ import UpdateMotherboard from './components/adminPages/pages/update/updateCompon
 import UpdatePsu from './components/adminPages/pages/update/updateComponents/updatePsu/UpdatePsu';
 import UpdateRam from './components/adminPages/pages/update/updateComponents/updateRam/UpdateRam';
 import UpdateSsd from './components/adminPages/pages/update/updateComponents/updateSsd/UpdateSsd';
-import UpdateSsdM2 from './components/adminPages/pages/update/updateComponents/updateSsd/UpdateSsdM2/AddSsdM2';
-import UpdateSsdSata from './components/adminPages/pages/update/updateComponents/updateSsd/UpdateSsdSata/AddSsdSata';
+import UpdateSsdM2 from './components/adminPages/pages/update/updateComponents/updateSsd/updateSsdM2/UpdateSsdM2';
+import UpdateSsdSata from './components/adminPages/pages/update/updateComponents/updateSsd/updateSsdSata/UpdateSsdSata';
 
 import Reports from './components/adminPages/pages/reports/Reports';
 import UserReports from './components/adminPages/pages/reports/userReports/UserReports';

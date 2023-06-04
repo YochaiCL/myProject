@@ -7,10 +7,30 @@ import style from '../updateMotherboard/updateMotherboard.module.css';
 export default class UpdatePsu extends Component {
   // Initializing state variables for component properties
   state = {
+    products: [{ model: 'Loading data...' }],
+    showData: false,
+    selectIndex: null,
     model: '',
     total_output: '',
     showResult: '',
   };
+
+  componentDidMount() {
+    this.getProducts();
+  }
+
+  handelClick = index => {
+    this.setState({
+      showData: true,
+      selectIndex: index,
+    });
+  };
+  async getProducts() {
+    const response = await fetch('http://localhost:5000/getData/psu');
+    const result = await response.json();
+    console.log(result);
+    this.setState({ products: result });
+  }
 
   // Asynchronous function to handle form submission
   async handleSubmit(e) {
@@ -47,30 +67,60 @@ export default class UpdatePsu extends Component {
   render() {
     return (
       <PageLayout>
-        <Header h1Heading='Add PSU' />
-        <section>
-          <form
-            onSubmit={this.handleSubmit.bind(this)}
-            className={`${style.form} ${style.smallForm}`}
-          >
-            <input
-              type='text'
-              placeholder='Enter Model:'
-              value={this.state.model}
-              required
-              onChange={e => this.setState({ model: e.target.value })}
-            />
+        <Header h1Heading='Update PSU' />
+        <section className={style.external}>
+          <section className={style.model}>
+            <h2>List Of Products</h2>
+            {this.state.products.map((product, index) => (
+              <section key={index}>
+                <button
+                  onClick={() => {
+                    this.handelClick(index);
+                  }}
+                  className={style.productButton}
+                >
+                  {product.model}
+                </button>
+              </section>
+            ))}
+          </section>
+          {this.state.showData && this.state.selectIndex !== null && (
+            <section className={style.showAllData}>
+              <h2 className={style.h2}>Product Data</h2>
+              <div>
+                <section>
+                  <form
+                    onSubmit={this.handleSubmit.bind(this)}
+                    className={`${style.form} ${style.smallForm}`}
+                  >
+                    <input
+                      type='text'
+                      placeholder={
+                        this.state.products[this.state.selectIndex].model
+                      }
+                      value={this.state.model}
+                      required
+                      onChange={e => this.setState({ model: e.target.value })}
+                    />
 
-            <input
-              type='text'
-              placeholder='Enter Total Output:'
-              required
-              onChange={e => this.setState({ total_output: e.target.value })}
-            />
+                    <input
+                      type='text'
+                      placeholder={
+                        this.state.products[this.state.selectIndex].total_output
+                      }
+                      required
+                      onChange={e =>
+                        this.setState({ total_output: e.target.value })
+                      }
+                    />
 
-            <Button type='submit' text='submit' />
-            <p>{this.state.showResult}</p>
-          </form>
+                    <Button type='submit' text='submit' />
+                    <p>{this.state.showResult}</p>
+                  </form>
+                </section>
+              </div>
+            </section>
+          )}
         </section>
       </PageLayout>
     );
