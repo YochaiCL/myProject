@@ -38,26 +38,27 @@ export default class AddAssemblies extends Component {
     );
     // Parsing the response as JSON
     const result = await response.json();
+    //console.log(result)
     // Updating the CPU array in the component state with fetched models
-    this.setState({ cpuArray: result.cpu });
+    this.setState({ cpuArray: result.Cpu });
     // Updating the GPU array in the component state with fetched models
-    this.setState({ gpuArray: result.gpu });
+    this.setState({ gpuArray: result.Gpu });
     // Updating the CASE array in the component state with fetched models
-    this.setState({ caseArray: result.case });
+    this.setState({ caseArray: result.Case });
     // Updating the CPU COOLER FAN array in the component state with fetched models
-    this.setState({ cpuCoolerFanArray: result.cpuCoolerFan });
+    this.setState({ cpuCoolerFanArray: result.CpuCoolerFan });
     // Updating the CPU COOLER LIQUID array in the component state with fetched models
-    this.setState({ cpuCoolerLiquidArray: result.cpuCoolerLiquid });
+    this.setState({ cpuCoolerLiquidArray: result.CpuCoolerLiquid });
     // Updating the MOTHERBOARD array in the component state with fetched models
-    this.setState({ motherboardArray: result.motherboard });
+    this.setState({ motherboardArray: result.Motherboard });
     // Updating the PSU array in the component state with fetched models
-    this.setState({ psuArray: result.psu });
+    this.setState({ psuArray: result.Psu });
     // Updating the RAM array in the component state with fetched models
-    this.setState({ ramArray: result.ram });
+    this.setState({ ramArray: result.Ram });
     // Updating the SSD M2 array in the component state with fetched models
-    this.setState({ ssdM2Array: result.ssdM2 });
+    this.setState({ ssdM2Array: result.SsdM2 });
     // Updating the SSD SATA array in the component state with fetched models
-    this.setState({ ssdSataArray: result.ssdSata });
+    this.setState({ ssdSataArray: result.SsdSata });
   }
 
   // Asynchronous function to handle form submission

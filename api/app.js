@@ -111,10 +111,10 @@ app.use('/getAssemblies', getAssemblies);
 app.use('/showComponentsData', showComponentsData);
 
 // Requiring and activating the routes for getting and inserting question and answer
-const questionAnswer = require('./routes/questionAnswer/questionAnswer');
+const userQuestionAnswer = require('./routes/questionAnswer/userQuestionAnswer/userQuestionAnswer');
 
 // Using the '/questionAnswer' route to handle requests for retrieving question and answers.
-app.use('/questionAnswer', questionAnswer);
+app.use('/userQuestionAnswer', userQuestionAnswer);
 
 // Requiring and activating the routes for getting and inserting question and answer
 const deleteAssemblies = require('./routes/delete/deleteAssemblies/deleteAssemblies');
