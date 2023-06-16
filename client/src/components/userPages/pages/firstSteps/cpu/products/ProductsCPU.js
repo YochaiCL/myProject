@@ -52,30 +52,37 @@ export default class ProductsCPU extends Component {
               <h2 className={style.h2}>Product Data</h2>
               <div>
                 <h3>
-                  Model: {this.state.products[this.state.selectIndex].model}
+                  <span className={style.span}> Model:</span>
+                  {this.state.products[this.state.selectIndex].model}
                 </h3>
                 <h3>
-                  Cores:
+                  <span className={style.span}>Cores:</span>
+
                   {this.state.products[this.state.selectIndex].cores}
                 </h3>
                 <h3>
-                  Threads:
+                  <span className={style.span}> Threads:</span>
+
                   {this.state.products[this.state.selectIndex].threads}
                 </h3>
                 <h3>
-                  Frequency:
+                  <span className={style.span}> Frequency:</span>
+
                   {this.state.products[this.state.selectIndex].frequency}
                 </h3>
                 <h3>
-                  Cache:
+                  <span className={style.span}> Cache:</span>
+
                   {this.state.products[this.state.selectIndex].cache}
                 </h3>
                 <h3>
-                  Memory Type:
+                  <span className={style.span}> Memory Type:</span>
+
                   {this.state.products[this.state.selectIndex].memory_type}
                 </h3>
                 <h3>
-                  Socket:
+                  <span className={style.span}> Socket:</span>
+
                   {this.state.products[this.state.selectIndex].socket}
                 </h3>
               </div>

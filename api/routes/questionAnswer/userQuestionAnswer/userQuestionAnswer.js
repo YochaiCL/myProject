@@ -15,20 +15,29 @@ require('../../Scehmas/questionAnswer/questionAnswer');
 
 router.post('/', async (req, res) => {
   try {
-    let array = await QuestionAnswer.find({
+    let existingQuestion = await QuestionAnswer.find({
       questionName: req.body.questionName,
     });
-    if (array.length > 0) {
-      res.send({ status: 'Question already exist' });
-      return;
-    } else {
-      await QuestionAnswer.create({
-        userId: req.body.userId,
-        questionName: req.body.questionName,
-        questionText: req.body.questionText,
-      });
-      res.send({ status: 'ok' });
+    if (existingQuestion != null) {
+      return res.send({ status: 'Question already exist' });
     }
+    await QuestionAnswer.create({
+      userId: req.body.userId,
+      questionName: req.body.questionName,
+      questionText: req.body.questionText,
+    });
+    res.send({ status: 'ok' });
+  } catch (error) {
+    res.send({ status: 'error' });
+  }
+});
+
+router.post('/getData', async (req, res) => {
+  try {
+    // Find all 'CompLearned' documents in the MongoDB collection with the matching 'userId'
+    let array = await QuestionAnswer.find({ userId: req.body.userId });
+    // Send the array of 'CompLearned' documents as the response
+    res.send(array);
   } catch (error) {
     res.send({ status: 'error' });
   }

@@ -52,22 +52,27 @@ export default class ProductsRAM extends Component {
               <h2 className={style.h2}>Product Data</h2>
               <div>
                 <h3>
-                  Model: {this.state.products[this.state.selectIndex].model}
+                  <span className={style.span}> Model:</span>
+                  {this.state.products[this.state.selectIndex].model}
                 </h3>
                 <h3>
-                  Memory Series:
+                  <span className={style.span}> Memory Series:</span>
+
                   {this.state.products[this.state.selectIndex].memory_series}
                 </h3>
                 <h3>
-                  Memory Size:
+                  <span className={style.span}> Memory Size:</span>
+
                   {this.state.products[this.state.selectIndex].memory_size}
                 </h3>
                 <h3>
-                  Latency:
+                  <span className={style.span}> Latency:</span>
+
                   {this.state.products[this.state.selectIndex].latency}
                 </h3>
                 <h3>
-                  Speed:
+                  <span className={style.span}>Speed:</span>
+
                   {this.state.products[this.state.selectIndex].speed}
                 </h3>
               </div>

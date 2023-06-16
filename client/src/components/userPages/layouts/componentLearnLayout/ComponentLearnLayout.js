@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Navbar from '../../navbar/Navbar';
 import Footer from '../../../pageSettings/footer/Footer';
-import style from './componentLearnLayout.modul.css';
+import style from './componentLearnLayout.module.css';
 import Button from '../../../pageSettings/button/Button';
 
 export default class ComponentLearnLayout extends Component {
@@ -41,7 +41,7 @@ export default class ComponentLearnLayout extends Component {
   }
 
   updateButton = () => {
-     const { name } = this.props;
+    const { name } = this.props;
     // Parsing the user data from localStorage
     let user = JSON.parse(localStorage.getItem('user'));
 
@@ -83,16 +83,19 @@ export default class ComponentLearnLayout extends Component {
       <div>
         <Navbar />
         <div className={style.content}>{children}</div>
-        <h2>Write yourself a comment about this component</h2>
-        <p>Note: This note will be displayed on the "First Steps" page </p>
-        <input
-          type='text'
-          placeholder='please enter comment'
-          value={this.state.comment}
-          onChange={e => this.setState({ comment: e.target.value })}
-        />
-        <p>{this.state.showResult}</p>
-        <Button text='save comment' fun={this.updateButton} />
+        <section className={style.comment}>
+          <h2 className={style.h2}>Write yourself a comment about this component</h2>
+          <input
+            type='text'
+            placeholder='please enter comment'
+            value={this.state.comment}
+            onChange={e => this.setState({ comment: e.target.value })}
+          />
+          <p>{this.state.showResult}</p>
+          <Button text='save comment' fun={this.updateButton} />
+          <p>Note: This note will be displayed on the "First Steps" page </p>
+        </section>
+
         <Footer name='Designed by Yochai Chen Levi' />
       </div>
     );

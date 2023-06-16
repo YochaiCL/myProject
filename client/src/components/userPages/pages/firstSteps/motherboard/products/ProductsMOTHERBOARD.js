@@ -53,35 +53,41 @@ export default class ProductsMOTHERBOARD extends Component {
               <h2 className={style.h2}>Product Data</h2>
               <div>
                 <h3>
-                  Model: {this.state.products[this.state.selectedIndex].model}
+                  <span className={style.span}>Model:</span>
+                  {this.state.products[this.state.selectedIndex].model}
                 </h3>
-                <h3>
-                  CPU Socket Support:{' '}
+                <h3 className={style.h3}>
+                  <span className={style.span}>CPU Socket Support:</span>
                   {
                     this.state.products[this.state.selectedIndex]
                       .cpu_socket_support
                   }
                 </h3>
-                <h3>
-                  Chipset:{' '}
+                <h3 className={style.h3}>
+                  <span className={style.span}> Chipset:</span>
+
                   {this.state.products[this.state.selectedIndex].chipset}
                 </h3>
-                <h3>
-                  Memory: {this.state.products[this.state.selectedIndex].memory}
+                <h3 className={style.h3}>
+                  <span className={style.span}> Memory:</span>
+                  {this.state.products[this.state.selectedIndex].memory}
                 </h3>
-                <h3>
-                  Form Factor:{' '}
+                <h3 className={style.h3}>
+                  <span className={style.span}> Form Factor:</span>
+
                   {this.state.products[this.state.selectedIndex].form_factor}
                 </h3>
-                <h3>
-                  Product Expansion Slots:{' '}
+                <h3 className={style.h3}>
+                  <span className={style.span}>Product Expansion Slots:</span>
+
                   {
                     this.state.products[this.state.selectedIndex]
                       .expansion_slots
                   }
                 </h3>
-                <h3>
-                  M2 Slot:{' '}
+                <h3 className={style.h3}>
+                  <span className={style.span}> M2 Slot:</span>
+
                   {this.state.products[this.state.selectedIndex].M2Slot}
                 </h3>
               </div>

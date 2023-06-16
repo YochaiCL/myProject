@@ -1,6 +1,7 @@
 import React from 'react';
 import ComponentLearnLayout from '../../../../layouts/componentLearnLayout/ComponentLearnLayout';
 import Header from '../../../../../pageSettings/header/Header';
+import style from '../../motherboard/info/infoMOTHERBOARD.module.css'
 
 function infoCASE() {
   return (
@@ -18,7 +19,7 @@ function infoCASE() {
           Dust, animals, toys, liquids, etc. can all damage the internal parts
           of a computer
         </p>
-        <h2>How to choose</h2>
+        <h2 className={style.h2}>How to choose</h2>
         <p>
           Motherboards, computer cases, and power supplies all come in different
           sizes called form factors. All three must be compatible to work
@@ -37,7 +38,7 @@ function infoCASE() {
           enough room to fit systems with a closed-loop CPU cooler, a couple of
           graphics cards, and a lot of storage.
         </p>
-        <h2>Water-cooling support</h2>
+        <h2 className={style.h2}>Water-cooling support</h2>
         <p>
           The rise of sealed all-in-one coolers have made liquid-cooling more
           popular than ever. If you plan to water-cool your PC, pay fine

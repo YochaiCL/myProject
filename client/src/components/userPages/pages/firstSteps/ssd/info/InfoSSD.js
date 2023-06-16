@@ -1,19 +1,19 @@
 import React from 'react';
 import ComponentLearnLayout from '../../../../layouts/componentLearnLayout/ComponentLearnLayout';
 import Header from '../../../../../pageSettings/header/Header';
-import Style from './infoSSD.module.css';
+import style from '../../motherboard/info/infoMOTHERBOARD.module.css';
 
 function infoSSD() {
   return (
     <ComponentLearnLayout name='ssd'>
       <Header h1Heading='SSD Information' />
-      <article className={Style.article}>
+      <article>
         <p>
           A solid-state drive (SSD) is a solid-state storage device that uses
           integrated circuit assemblies to store data persistently, typically
           using flash memory.
         </p>
-        <h2>M.2</h2>
+        <h2 className={style.h2}>M.2</h2>
         <p>
           M.2 SSDs typically come in three dimensions, which may be deduced from
           the card name —2242, 2260, and 2280 — "22" represents the width in
@@ -48,7 +48,7 @@ function infoSSD() {
           </li>
         </ul>
 
-        <h2>SATA III</h2>
+        <h2 className={style.h2}>SATA III</h2>
         <p>
           SATA (Serial Advanced Technology Attachment) is from 500 GB to 16 TB
           and available at a lower cost than M.2

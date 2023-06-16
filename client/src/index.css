@@ -82,7 +82,7 @@ body {
 }
 article {
   background-color: white;
-  padding: 3rem;
+  padding-left:4rem;
   opacity: 0.7;
   border-radius: 10px;
 }
@@ -92,9 +92,7 @@ article {
 /**************************************
  * placement for other devices 
  **************************************/
-h2{
-  margin-top: 3rem;
-}
+
 /**************************************
  * general
  **************************************/

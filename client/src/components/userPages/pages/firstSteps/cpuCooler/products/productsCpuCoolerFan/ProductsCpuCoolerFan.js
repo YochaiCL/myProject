@@ -52,15 +52,18 @@ export default class ProductsCpuCoolerFan extends Component {
               <h2 className={style.h2}>Product Data</h2>
               <div>
                 <h3>
-                  Model: {this.state.products[this.state.selectIndex].model}
+                   <span className={style.span}> Model:</span>
+                  {this.state.products[this.state.selectIndex].model}
                 </h3>
                 <h3>
-                  Socket Support:
+                   <span className={style.span}> Socket Support:</span>
+                 
                   {this.state.products[this.state.selectIndex].socket_support}
                 </h3>
 
                 <h3>
-                  Fan Diameter:
+                   <span className={style.span}>Fan Diameter:</span>
+                  
                   {this.state.products[this.state.selectIndex].fan_diameter}
                 </h3>
               </div>

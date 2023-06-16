@@ -10,8 +10,6 @@ export default class MountedAssemblies extends Component {
     selectIndex: null,
   };
 
-  
-
   async getAssembly() {
     const response = await fetch(
       'http://localhost:5000/getAssemblies/assemblies'
@@ -35,7 +33,7 @@ export default class MountedAssemblies extends Component {
     return (
       <PageLayout>
         <Header h1Heading='Mounted Assemblies' />
-       
+
         <section className={style.external}>
           <section className={style.model}>
             <h2>List Of Assemblies</h2>
@@ -57,38 +55,47 @@ export default class MountedAssemblies extends Component {
               <h2 className={style.h2}>Assembly Data</h2>
               <div>
                 <h3>
-                  Assembly Name:{' '}
+                  <span className={style.span}> Assembly Name:</span>
+
                   {this.state.assembly[this.state.selectIndex].assemblyName}
                 </h3>
                 <h3>
-                  Case: {this.state.assembly[this.state.selectIndex].modelCase}
+                  <span className={style.span}>Case:</span>
+                  {this.state.assembly[this.state.selectIndex].modelCase}
                 </h3>
                 <h3>
-                  Motherboard:{' '}
+                  <span className={style.span}>Motherboard:</span>
+
                   {this.state.assembly[this.state.selectIndex].modelMotherboard}
                 </h3>
                 <h3>
-                  CPU:
+                  <span className={style.span}> CPU:</span>
+
                   {this.state.assembly[this.state.selectIndex].modelCPU}
                 </h3>
                 <h3>
-                  CPU Cooler:
+                  <span className={style.span}> CPU Cooler:</span>
+
                   {this.state.assembly[this.state.selectIndex].modelCPUCooler}
                 </h3>
                 <h3>
-                  GPU:
+                  <span className={style.span}> GPU:</span>
+
                   {this.state.assembly[this.state.selectIndex].modelGPU}
                 </h3>
                 <h3>
-                  PSU:
+                  <span className={style.span}> PSU:</span>
+
                   {this.state.assembly[this.state.selectIndex].modelPSU}
                 </h3>
                 <h3>
-                  RAM:
+                  <span className={style.span}> RAM:</span>
+
                   {this.state.assembly[this.state.selectIndex].modelRAM}
                 </h3>
                 <h3>
-                  SSD:
+                  <span className={style.span}> SSD:</span>
+
                   {this.state.assembly[this.state.selectIndex].modelSSD}
                 </h3>
               </div>

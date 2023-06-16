@@ -2,6 +2,7 @@ import React from 'react';
 import ComponentLearnLayout from '../../../../layouts/componentLearnLayout/ComponentLearnLayout';
 import Header from '../../../../../pageSettings/header/Header';
 import { Link } from 'react-router-dom';
+import style from '../../motherboard/info/infoMOTHERBOARD.module.css';
 
 function infoPSU() {
   return (
@@ -20,6 +21,7 @@ function infoPSU() {
           upgrades.
         </p>
         <Link
+          className={style.link}
           to='https://www.intel.com/content/www/us/en/gaming/resources/power-supply.html'
           target='blank'
         >

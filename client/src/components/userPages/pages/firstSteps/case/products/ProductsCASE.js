@@ -52,20 +52,24 @@ export default class ProductsCASE extends Component {
               <h2 className={style.h2}>Product Data</h2>
               <div>
                 <h3>
-                  Model: {this.state.products[this.state.selectIndex].model}
+                  <span className={style.span}>Model:</span>
+                  {this.state.products[this.state.selectIndex].model}
                 </h3>
                 <h3>
-                  Form: {this.state.products[this.state.selectIndex].form}
+                  <span className={style.span}> Form:</span>
+                  {this.state.products[this.state.selectIndex].form}
                 </h3>
                 <h3>
-                  Radiator Compatibility:{' '}
+                  <span className={style.span}> Radiator Compatibility:</span>
+
                   {
                     this.state.products[this.state.selectIndex]
                       .radiator_compatibility
                   }
                 </h3>
                 <h3>
-                  Dimensions:{' '}
+                  <span className={style.span}> Dimensions:</span>
+
                   {this.state.products[this.state.selectIndex].dimensions}
                 </h3>
               </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import ComponentLearnLayout from '../../../../layouts/componentLearnLayout/ComponentLearnLayout';
 import Header from '../../../../../pageSettings/header/Header';
-
+import style from '../../motherboard/info/infoMOTHERBOARD.module.css';
 import { Link } from 'react-router-dom';
 
 function infoGPU() {
@@ -14,12 +14,16 @@ function infoGPU() {
           It’s an electronics circuit that accelerates the processing required
           for creating and rendering images, animations and video.
         </p>
-        <h2>Bus</h2>
-        <Link to='https://www.rambus.com/blogs/pci-express-4/' target='blank'>
+        <h2 className={style.h2}>Bus</h2>
+        <Link
+          className={style.link}
+          to='https://www.rambus.com/blogs/pci-express-4/'
+          target='blank'
+        >
           Bus Information
         </Link>
 
-        <h2>GPU memory</h2>
+        <h2 className={style.h2}>GPU memory</h2>
         <p>
           GDDR5 memory had a peak data rate of 8GB/s, GDDR5X peaked at 12GB/s,
           and GDDR6 delivers a peak of 16GB/s.
@@ -31,7 +35,7 @@ function infoGPU() {
           memory. That amount is included on most of AMD and Nvidia’s high-end
           GPUs.
         </p>
-        <h2>GPU clock speed</h2>
+        <h2 className={style.h2}>GPU clock speed</h2>
         <p>
           Also known as engine clock, GPU clock speed indicates how fast the
           cores of a graphics processing unit (GPU) are.
@@ -53,7 +57,7 @@ function infoGPU() {
           considered good, while for tasks such as video rendering and 3D
           modelling, a clock speed of 2,000-2,500 MHz may be more appropriate.
         </p>
-        <h2>CUDA Cores / Stream Processors</h2>
+        <h2 className={style.h2}>CUDA Cores / Stream Processors</h2>
         <p>
           CUDA, which stands for Compute Unified Device Architecture, Cores are
           the Nvidia GPU equivalent of CPU cores that have been designed to take
@@ -72,7 +76,7 @@ function infoGPU() {
         <p>
           both CUDA and Stream Processors achieve the same thing, and there are
           no huge benefits to either technology when it comes to performance or
-          graphics quality.{' '}
+          graphics quality.
         </p>
         <p></p>
       </article>

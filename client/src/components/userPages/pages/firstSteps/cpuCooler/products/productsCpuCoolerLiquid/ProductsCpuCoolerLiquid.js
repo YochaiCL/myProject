@@ -54,14 +54,17 @@ export default class ProductsCpuCoolerLiquid extends Component {
               <h2 className={style.h2}>Product Data</h2>
               <div>
                 <h3>
-                  Model: {this.state.products[this.state.selectIndex].model}
+                  <span className={style.span}> Model:</span>
+                  {this.state.products[this.state.selectIndex].model}
                 </h3>
                 <h3>
-                  Socket_Support:
+                  <span className={style.span}>Socket_Support:</span>
+
                   {this.state.products[this.state.selectIndex].socket_support}
                 </h3>
                 <h3>
-                  Radiator Size:
+                  <span className={style.span}>Radiator Size:</span>
+
                   {this.state.products[this.state.selectIndex].radiator_size}
                 </h3>
               </div>

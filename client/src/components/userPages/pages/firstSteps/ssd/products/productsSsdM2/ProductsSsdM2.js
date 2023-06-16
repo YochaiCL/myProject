@@ -52,14 +52,17 @@ export default class ProductsSsdM2 extends Component {
               <h2 className={style.h2}>Product Data</h2>
               <div>
                 <h3>
-                  Model: {this.state.products[this.state.selectIndex].model}
+                  <span className={style.span}> Model:</span>
+                  {this.state.products[this.state.selectIndex].model}
                 </h3>
                 <h3>
-                  Capacity:
+                  <span className={style.span}> Capacity:</span>
+
                   {this.state.products[this.state.selectIndex].capacity}
                 </h3>
                 <h3>
-                  Type:
+                  <span className={style.span}> Type:</span>
+
                   {this.state.products[this.state.selectIndex].type}
                 </h3>
               </div>
