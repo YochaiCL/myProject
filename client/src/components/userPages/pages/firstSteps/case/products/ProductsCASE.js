@@ -11,7 +11,7 @@ export default class ProductsCASE extends Component {
   };
 
   async getProducts() {
-    const response = await fetch('http://localhost:5000/getData/case');
+    const response = await fetch('http://localhost:5000/getComponent/case');
     const result = await response.json();
     console.log(result);
     this.setState({ products: result });

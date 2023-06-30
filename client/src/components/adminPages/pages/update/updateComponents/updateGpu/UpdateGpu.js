@@ -31,9 +31,7 @@ export default class UpdateGpu extends Component {
     });
   };
   async getProducts() {
-    const response = await fetch(
-      'http://localhost:5000/getData/gpu'
-    );
+    const response = await fetch('http://localhost:5000/getComponent/gpu');
     const result = await response.json();
     console.log(result);
     this.setState({ products: result });
@@ -56,7 +54,10 @@ export default class UpdateGpu extends Component {
       body: JSON.stringify(this.state),
     };
     // Sending the POST request with options
-    const response = await fetch('http://localhost:5000/insert/gpu', options);
+    const response = await fetch(
+      'http://localhost:5000/addComponent/gpu',
+      options
+    );
     // Parsing the response as JSON
     const result = await response.json();
 

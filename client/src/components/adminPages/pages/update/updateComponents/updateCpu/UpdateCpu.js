@@ -31,7 +31,7 @@ export default class UpdateCpu extends Component {
     });
   };
   async getProducts() {
-    const response = await fetch('http://localhost:5000/getData/cpu');
+    const response = await fetch('http://localhost:5000/getComponent/cpu');
     const result = await response.json();
     console.log(result);
     this.setState({ products: result });
@@ -55,7 +55,10 @@ export default class UpdateCpu extends Component {
       body: JSON.stringify(this.state),
     };
     // Sending the POST request with options
-    const response = await fetch('http://localhost:5000/insert/cpu', options);
+    const response = await fetch(
+      'http://localhost:5000/addComponent/cpu',
+      options
+    );
     // Parsing the response as JSON
     const result = await response.json();
 

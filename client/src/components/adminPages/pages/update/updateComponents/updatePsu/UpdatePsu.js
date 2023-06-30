@@ -26,7 +26,7 @@ export default class UpdatePsu extends Component {
     });
   };
   async getProducts() {
-    const response = await fetch('http://localhost:5000/getData/psu');
+    const response = await fetch('http://localhost:5000/getComponent/psu');
     const result = await response.json();
     console.log(result);
     this.setState({ products: result });
@@ -50,7 +50,10 @@ export default class UpdatePsu extends Component {
       body: JSON.stringify(this.state),
     };
     // Sending the POST request with options
-    const response = await fetch('http://localhost:5000/insert/psu', options);
+    const response = await fetch(
+      'http://localhost:5000/addComponent/psu',
+      options
+    );
     const result = await response.json();
 
     // Checking the status of the response

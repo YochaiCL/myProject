@@ -1,29 +1,19 @@
-// Import express
-const express = require('express');
-
-const router = express.Router();
-
+const { router, mongoose } = require('../commonImports/commonImports');
 // Defines a compact and self-contained way for securely transmitting information between parties
 const jsonWebToken = require('jsonwebtoken');
-
 const bcrypt = require('bcryptjs');
-
 // Hides the password from attacks
 const jsonWebTokenSecret = 'nsdjsdhngdf349587539583**-+++-*[]jkfgkj';
-
-// Import mongoose
-const mongoose = require('mongoose');
-
 // Import user data from database mongoDB
 const User = mongoose.model('UserInfo');
-
 // Import scehma of how data is in database
 require('../Scehmas/connection/userDetails');
 
-// Show user data in user page
+/**
+ * Description - This function show the user data in the client pages
+ */
 router.post('/', async (req, res) => {
   const { token } = req.body;
-
   try {
     // verifyToken=user
     const user = jsonWebToken.verify(token, jsonWebTokenSecret);
@@ -40,7 +30,9 @@ router.post('/', async (req, res) => {
   } catch (error) {}
 });
 
-// Show user data in user page
+/**
+ * Description - This function change the user password
+ */
 router.post('/changePassword', async (req, res) => {
   const { user, email } = req.body;
   const encryptedPassword = await bcrypt.hash(user.password, 10);
@@ -60,7 +52,9 @@ router.post('/changePassword', async (req, res) => {
   }
 });
 
-// Show user data in user page
+/**
+ * Description - This function change the email/user name in database
+ */
 router.post('/changeNameOrEmail', async (req, res) => {
   const { user, email } = req.body;
 

@@ -12,7 +12,7 @@ export default class ProductsCpuCoolerLiquid extends Component {
 
   async getProducts() {
     const response = await fetch(
-      'http://localhost:5000/getData/cpuCoolerLiquid'
+      'http://localhost:5000/getComponent/cpuCoolerLiquid'
     );
     const result = await response.json();
     console.log(result);

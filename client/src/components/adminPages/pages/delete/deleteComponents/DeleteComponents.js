@@ -5,8 +5,10 @@ import style from './deleteComponents.module.css';
 import Button from '../../../../pageSettings/button/Button';
 import Option from '../../../../pageSettings/option/Option';
 
+/**
+ * Description - This class delete selected component from the database 
+ */
 export default class DeleteComponents extends Component {
-  // Initializing state variables for various component models and arrays
   state = {
     assemblyName: '',
     modelCase: '',
@@ -17,61 +19,54 @@ export default class DeleteComponents extends Component {
     modelPSU: '',
     modelRAM: '',
     modelSSD: '',
-    cpuArray: [], // Array to store CPU models
-    gpuArray: [], // Array to store GPU models
-    caseArray: [], // Array to store Case models
-    cpuCoolerFanArray: [], // Array to store CPU COOLER FAN models
-    cpuCoolerLiquidArray: [], // Array to store CPU COOLER LIQUID models
-    fanArray: [], // Array to store FAN models
-    motherboardArray: [], // Array to store MOTHERBOARD models
-    psuArray: [], // Array to store PSU models
-    ramArray: [], // Array to store RAM models
-    ssdM2Array: [], // Array to store SSD M2 models
-    ssdSataArray: [], // Array to store SSD SATA models
+    cpuArray: [],
+    gpuArray: [],
+    caseArray: [],
+    cpuCoolerFanArray: [],
+    cpuCoolerLiquidArray: [],
+    fanArray: [],
+    motherboardArray: [],
+    psuArray: [],
+    ramArray: [],
+    ssdM2Array: [],
+    ssdSataArray: [],
     selectedComponent: '',
     allArrays: [],
+    showResult: '',
   };
 
-  // Asynchronous function to fetch component models
+  /**
+   * Description - This function get all components from database
+   */
   async getModels() {
-    // Fetching component models from the server
-    const response = await fetch(
-      'http://localhost:5000/showComponentsData/modals'
-    );
-    // Parsing the response as JSON
+    const response = await fetch('http://localhost:5000/getComponentsModels/');
     const result = await response.json();
     console.log(result);
+    // Updating the components array in state
     this.setState({ allArrays: result });
-    // Updating the CPU array in the component state with fetched models
     this.setState({ cpuArray: result.Cpu });
-    // Updating the GPU array in the component state with fetched models
     this.setState({ gpuArray: result.Gpu });
-    // Updating the CASE array in the component state with fetched models
     this.setState({ caseArray: result.Case });
-    // Updating the CPU COOLER FAN array in the component state with fetched models
     this.setState({ cpuCoolerFanArray: result.CpuCoolerFan });
-    // Updating the CPU COOLER LIQUID array in the component state with fetched models
     this.setState({ cpuCoolerLiquidArray: result.CpuCoolerLiquid });
-    // Updating the MOTHERBOARD array in the component state with fetched models
     this.setState({ motherboardArray: result.Motherboard });
-    // Updating the PSU array in the component state with fetched models
     this.setState({ psuArray: result.Psu });
-    // Updating the RAM array in the component state with fetched models
     this.setState({ ramArray: result.Ram });
-    // Updating the SSD M2 array in the component state with fetched models
     this.setState({ ssdM2Array: result.SsdM2 });
-    // Updating the SSD SATA array in the component state with fetched models
     this.setState({ ssdSataArray: result.SsdSata });
-    // Updating the SSD SATA array in the component state with fetched models
     this.setState({ fanArray: result.Fans });
   }
 
-  // Lifecycle method called after the component is mounted
+  /**
+   * Description - This function activate getModels function when the page in upload
+   */
   componentDidMount() {
-    // Fetching the component models when the component is mounted
     this.getModels();
   }
 
+  /**
+   * Description - This function delete the selected component from the database
+   */
   deleteComponent() {
     // console.log(this.state.selectedComponent);
     for (let key in this.state.allArrays) {
@@ -85,7 +80,6 @@ export default class DeleteComponents extends Component {
           this.setState({ key: result });
           try {
             fetch('http://localhost:5000/deleteComponents', {
-              // Setting headers for the HTTP request
               method: 'POST',
               crossDomain: true,
               headers: {
@@ -93,17 +87,16 @@ export default class DeleteComponents extends Component {
                 Accept: 'application/json',
                 'Access-Control-Allow-Origin': '*',
               },
-              // Converting fullName, email, password, and userType to JSON and setting it as the request body
               body: JSON.stringify({
                 collectionName: key,
                 model: this.state.selectedComponent,
               }),
             })
-              // Parsing the response as JSON
               .then(res => res.json())
-              // Handling the response data
               .then(data => {
-                console.log(data);
+                if (data.status === 'Component deleted') {
+                  this.setState({ showResult: 'Component have added' });
+                }
               });
           } catch (error) {
             console.log(error);
@@ -212,6 +205,7 @@ export default class DeleteComponents extends Component {
         <div className={style.btn}>
           <Button text='Delete' fun={() => this.deleteComponent()} />
         </div>
+        <p>{this.state.showResult}</p>
       </PageLayout>
     );
   }

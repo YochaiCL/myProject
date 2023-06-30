@@ -4,6 +4,10 @@ import Header from '../../../../pageSettings/header/Header';
 import LinkLayout from '../../../../pageSettings/linkLayout/LinkLayout';
 import style from './addCompLinks.module.css';
 
+/**
+ * Description - This function organize all component's links in some order
+ * @returns - components links
+ */
 export default function AddCompLinks() {
   return (
     <PageLayout>

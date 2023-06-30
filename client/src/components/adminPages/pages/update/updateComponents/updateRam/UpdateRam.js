@@ -29,7 +29,7 @@ export default class UpdateRam extends Component {
     });
   };
   async getProducts() {
-    const response = await fetch('http://localhost:5000/getData/ram');
+    const response = await fetch('http://localhost:5000/getComponent/ram');
     const result = await response.json();
     console.log(result);
     this.setState({ products: result });
@@ -53,7 +53,10 @@ export default class UpdateRam extends Component {
       body: JSON.stringify(this.state),
     };
     // Sending the POST request with options
-    const response = await fetch('http://localhost:5000/insert/ram', options);
+    const response = await fetch(
+      'http://localhost:5000/addComponent/ram',
+      options
+    );
     // Parsing the response as JSON
     const result = await response.json();
     // Checking the status of the response

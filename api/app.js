@@ -1,49 +1,10 @@
+// Yochai Chen Levi
+
 // Import express: Importing the Express framework to create a server and handle HTTP requests.
 const express = require('express');
-
-// Creating an instance of the Express application.
 const app = express();
-
 // Importing the Mongoose library to connect to and interact with MongoDB.
 const mongoose = require('mongoose');
-
-// Enabling Cross-Origin Resource Sharing (CORS) to allow sharing of resources between different servers.
-const cors = require('cors');
-app.use(cors());
-
-// When the server receives an HTTP request with a JSON body, it will automatically parse and convert the JSON data into a JavaScript object
-app.use(express.json());
-
-//html+js in node: Setting the view engine to EJS, which allows rendering HTML templates with embedded JavaScript.
-app.set('view engine', 'ejs');
-
-// Enables the server to handle requests that contain URL-encoded parameters
-app.use(express.urlencoded({ extended: false }));
-
-// Requiring and importing the connection schema for user details.
-require('./routes/Scehmas/connection/userDetails');
-
-// Requiring and importing the learned details schema.
-require('./routes/Scehmas/learnedDetails/learnedDetails');
-
-// Requiring and importing various schemas for adding components.
-require('./routes/Scehmas/addComponents/case/case');
-require('./routes/Scehmas/addComponents/cpu/cpu');
-require('./routes/Scehmas/addComponents/cpuCooler/cpuCoolerFan/cpuCoolerFan');
-require('./routes/Scehmas/addComponents/cpuCooler/cpuCoolerLiquid/cpuCoolerLiquid');
-require('./routes/Scehmas/addComponents/fans/fans');
-require('./routes/Scehmas/addComponents/gpu/gpu');
-require('./routes/Scehmas/addComponents/motherboard/motherboard');
-require('./routes/Scehmas/addComponents/psu/psu');
-require('./routes/Scehmas/addComponents/ram/ram');
-require('./routes/Scehmas/addComponents/ssd/ssdM2/ssdM2');
-require('./routes/Scehmas/addComponents/ssd/ssdSata/ssdSata');
-
-// Requiring and importing various schemas for adding assemblies.
-require('./routes/Scehmas/addAssemblies/addAssembliesScehmas');
-
-// Requiring and importing various schemas for adding questionAnswer
-require('./routes/Scehmas/questionAnswer/questionAnswer');
 
 const mongoUrl =
   'mongodb://yochaicl:yochaicl@ac-dafclzr-shard-00-00.endfyfo.mongodb.net:27017,ac-dafclzr-shard-00-01.endfyfo.mongodb.net:27017,ac-dafclzr-shard-00-02.endfyfo.mongodb.net:27017/pcBuilder?ssl=true&replicaSet=atlas-tfq3m8-shard-0&authSource=admin&retryWrites=true&w=majority';
@@ -58,77 +19,78 @@ mongoose
   })
   .catch(e => console.log(e));
 
+// Enabling Cross-Origin Resource Sharing (CORS) to allow sharing of resources between Node and React.
+const cors = require('cors');
+app.use(cors());
+
+// When the server receives an HTTP request with a JSON body, it will automatically parse and convert the JSON data into a JavaScript object
+app.use(express.json());
+
+//html+js in node: Setting the view engine to EJS, which allows rendering HTML templates with embedded JavaScript.
+app.set('view engine', 'ejs');
+
+// Enables the server to handle requests that contain URL-encoded parameters
+// false - the behavior is limited to simple key-value pairs.
+app.use(express.urlencoded({ extended: false }));
+
+// Requiring and importing the schemas:
+require('./routes/Scehmas/connection/userDetails');
+require('./routes/Scehmas/learnedDetails/learnedDetails');
+require('./routes/Scehmas/addComponents/case/case');
+require('./routes/Scehmas/addComponents/cpu/cpu');
+require('./routes/Scehmas/addComponents/cpuCooler/cpuCoolerFan/cpuCoolerFan');
+require('./routes/Scehmas/addComponents/cpuCooler/cpuCoolerLiquid/cpuCoolerLiquid');
+require('./routes/Scehmas/addComponents/fans/fans');
+require('./routes/Scehmas/addComponents/gpu/gpu');
+require('./routes/Scehmas/addComponents/motherboard/motherboard');
+require('./routes/Scehmas/addComponents/psu/psu');
+require('./routes/Scehmas/addComponents/ram/ram');
+require('./routes/Scehmas/addComponents/ssd/ssdM2/ssdM2');
+require('./routes/Scehmas/addComponents/ssd/ssdSata/ssdSata');
+require('./routes/Scehmas/addAssemblies/addAssembliesScehmas');
+require('./routes/Scehmas/questionAnswer/questionAnswer');
+
 // Requiring and activating the routes related to user connection (register, login, etc.).
 const signUp = require('./routes/connection/signUp');
 const login = require('./routes/connection/login');
 const userData = require('./routes/connection/userData');
 const forgotPassword = require('./routes/connection/forgotPassword');
 const resetPassword = require('./routes/connection/resetPassword');
-
-// Using the '/register' route to handle registration requests.
 app.use('/register', signUp);
-// Using the '/login-user' route to handle login requests.
 app.use('/login-user', login);
-// Using the '/userData' route to handle requests for user data.
 app.use('/userData', userData);
-// Using the '/forgot-password' route to handle requests for password reset.reset the password
 app.use('/forgot-password', forgotPassword);
-// Using the '/reset-password' route to handle requests for resetting the password.
 app.use('/reset-password', resetPassword);
 
-// Requiring and activating the routes for inserting components.
-const insert = require('./routes/addGetComponents/addComponents/insert');
+// Requiring and activating the routes for adding & getting component.
+const addComponent = require('./routes/addGetComponents/addComponent/addComponent');
+const getComponent = require('./routes/addGetComponents/getComponent/getComponent');
+app.use('/addComponent', addComponent);
+app.use('/getComponent', getComponent);
 
-// Requiring and activating the routes for getting components.
-const getData = require('./routes/addGetComponents/getComponents/getData');
-
-// Using the '/insert' route to handle requests for inserting components as an admin.
-app.use('/insert', insert);
-
-// Using the '/getData' route to handle requests for retrieving components as an admin.
-app.use('/getData', getData);
-
+// Requiring and activating the routes for learning the components.
 const compLearned = require('./routes/compLearned/compLearned');
-
 app.use('/comp-learned', compLearned);
 
-// Requiring and activating the routes for inserting assemblies.
-const addAssemblies = require('./routes/addGetAssembly/addAssemblies');
-
-// Requiring and activating the routes for getting assemblies.
-const getAssemblies = require('./routes/addGetAssembly/getAssemblies');
-
-// Requiring and activating the routes for show Components Data assemblies.
-const showComponentsData = require('./routes/addGetAssembly/showComponentsData');
-
-// Using the '/insert' route to handle requests for inserting components as an admin.
+// Requiring and activating the routes for assemblies data.
+const addAssemblies = require('./routes/addGetAssembly/addAssemlies/addAssemblies');
+const getAssemblies = require('./routes/addGetAssembly/getAssemblies/getAssemblies');
+const showComponentsData = require('./routes/addGetAssembly/getComponentsModels/getComponentsModels');
 app.use('/addAssemblies', addAssemblies);
-
-// Using the '/getData' route to handle requests for retrieving components as an admin.
 app.use('/getAssemblies', getAssemblies);
-
-// Using the '/getData' route to handle requests for retrieving components as an admin.
-app.use('/showComponentsData', showComponentsData);
+app.use('/getComponentsModels', showComponentsData);
 
 // Requiring and activating the routes for getting and inserting question and answer
 const userQuestionAnswer = require('./routes/questionAnswer/userQuestionAnswer/userQuestionAnswer');
-
-// Using the '/questionAnswer' route to handle requests for retrieving question and answers.
 app.use('/userQuestionAnswer', userQuestionAnswer);
 
-// Requiring and activating the routes for getting and inserting question and answer
+// Requiring and activating the routes for delete components and assemblies
 const deleteAssemblies = require('./routes/delete/deleteAssemblies/deleteAssemblies');
-
-// Using the '/deleteAssemblies' route to handle requests for retrieving question and answers.
-app.use('/deleteAssemblies', deleteAssemblies);
-
-// Requiring and activating the routes for getting and inserting question and answer
 const deleteComponents = require('./routes/delete/deleteComponents/deleteComponents');
-
-// Using the '/deleteComponents' route to handle requests for retrieving question and answers.
+app.use('/deleteAssemblies', deleteAssemblies);
 app.use('/deleteComponents', deleteComponents);
 
-// Starting the server on port 5000 and logging a message when the server starts.
+// Starting the server on port 5000.
 app.listen(5000, () => {
   console.log('server started');
 });

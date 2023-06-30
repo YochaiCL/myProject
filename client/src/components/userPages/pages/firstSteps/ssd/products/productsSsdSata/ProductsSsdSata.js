@@ -11,7 +11,7 @@ export default class ProductsSsdSata extends Component {
   };
 
   async getProducts() {
-    const response = await fetch('http://localhost:5000/getData/ssdSata');
+    const response = await fetch('http://localhost:5000/getComponent/ssdSata');
     const result = await response.json();
     console.log(result);
     this.setState({ products: result });

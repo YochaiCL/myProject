@@ -44,9 +44,7 @@ export default class UpdateAssemblies extends Component {
   // Asynchronous function to fetch component models
   async getModels() {
     // Fetching component models from the server
-    const response = await fetch(
-      'http://localhost:5000/showComponentsData/modals'
-    );
+    const response = await fetch('http://localhost:5000/getComponentsModels');
     // Parsing the response as JSON
     const result = await response.json();
     // Updating the CPU array in the component state with fetched models

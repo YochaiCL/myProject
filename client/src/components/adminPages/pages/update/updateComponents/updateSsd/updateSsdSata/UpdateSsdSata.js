@@ -26,7 +26,7 @@ export default class UpdateSsdSata extends Component {
     });
   };
   async getProducts() {
-    const response = await fetch('http://localhost:5000/getData/ssdSata');
+    const response = await fetch('http://localhost:5000/getComponent/ssdSata');
     const result = await response.json();
     console.log(result);
     this.setState({ products: result });
@@ -51,7 +51,7 @@ export default class UpdateSsdSata extends Component {
     };
     // Sending the POST request with options
     const response = await fetch(
-      'http://localhost:5000/insert/ssdSata',
+      'http://localhost:5000/addComponent/ssdSata',
       options
     );
     // Parsing the response as JSON

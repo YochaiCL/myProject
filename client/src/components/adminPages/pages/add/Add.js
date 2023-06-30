@@ -4,6 +4,10 @@ import Header from '../../../pageSettings/header/Header';
 import LinkLayout from '../../../pageSettings/linkLayout/LinkLayout';
 import style from './add.module.css';
 
+/**
+ * Description - This function organize the add links in order
+ * @returns
+ */
 export default function Add() {
   return (
     <PageLayout>

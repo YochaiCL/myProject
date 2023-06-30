@@ -11,7 +11,7 @@ export default class ProductsCPU extends Component {
   };
 
   async getProducts() {
-    const response = await fetch('http://localhost:5000/getData/cpu');
+    const response = await fetch('http://localhost:5000/getComponent/cpu');
     const result = await response.json();
     console.log(result);
     this.setState({ products: result });

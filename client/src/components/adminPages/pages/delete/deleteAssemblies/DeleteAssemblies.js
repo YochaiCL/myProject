@@ -4,12 +4,18 @@ import Header from '../../../../pageSettings/header/Header';
 import style from './delteAssemlies.module.css';
 import Button from '../../../../pageSettings/button/Button';
 
+/**
+ * Description - This class delete selected assembly from the database
+ */
 export default class DeleteAssemblies extends Component {
   state = {
     assembly: [{ assemblyName: 'Loading data...' }],
     deleteAssembly: '',
   };
 
+  /**
+   * Description - This function get all assemblies from the database
+   */
   async getAssembly() {
     const response = await fetch(
       'http://localhost:5000/getAssemblies/assemblies'
@@ -19,15 +25,22 @@ export default class DeleteAssemblies extends Component {
     this.setState({ assembly: result });
   }
 
+  /**
+   * Description - This function activate the getAssembly when the page is uploaded
+   */
   componentDidMount() {
     this.getAssembly();
   }
-   deleteAssembly(){
-    let result = this.state.assembly.filter((item)=>{
+
+  /**
+   * Description - This function delete selected assembly from the database
+   */
+  deleteAssembly() {
+    let result = this.state.assembly.filter(item => {
       console.log(item, this.state.deleteAssembly);
       return item.assemblyName !== this.state.deleteAssembly;
-    })
-    console.log(result)
+    });
+    console.log(result);
     this.setState({ assembly: result });
     try {
       fetch('http://localhost:5000/deleteAssemblies', {
@@ -81,7 +94,7 @@ export default class DeleteAssemblies extends Component {
           ))}
         </select>
         <div className={style.btn}>
-          <Button text='Delete' fun={()=>this.deleteAssembly()}/>
+          <Button text='Delete' fun={() => this.deleteAssembly()} />
         </div>
       </PageLayout>
     );

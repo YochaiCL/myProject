@@ -11,7 +11,7 @@ export default class ProductsSsdM2 extends Component {
   };
 
   async getProducts() {
-    const response = await fetch('http://localhost:5000/getData/ssdM2');
+    const response = await fetch('http://localhost:5000/getComponent/ssdM2');
     const result = await response.json();
     console.log(result);
     this.setState({ products: result });

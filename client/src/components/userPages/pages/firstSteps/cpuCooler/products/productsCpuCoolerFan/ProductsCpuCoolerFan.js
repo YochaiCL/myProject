@@ -11,7 +11,9 @@ export default class ProductsCpuCoolerFan extends Component {
   };
 
   async getProducts() {
-    const response = await fetch('http://localhost:5000/getData/cpuCoolerFan');
+    const response = await fetch(
+      'http://localhost:5000/getComponent/cpuCoolerFan'
+    );
     const result = await response.json();
     console.log(result);
     this.setState({ products: result });

@@ -27,7 +27,7 @@ export default class UpdateFans extends Component {
   };
 
   async getProducts() {
-    const response = await fetch('http://localhost:5000/getData/fans');
+    const response = await fetch('http://localhost:5000/getComponent/fans');
     const result = await response.json();
     console.log(result);
     this.setState({ products: result });
@@ -50,7 +50,10 @@ export default class UpdateFans extends Component {
       body: JSON.stringify(this.state),
     };
     // Sending the POST request with options
-    const response = await fetch('http://localhost:5000/insert/fans', options);
+    const response = await fetch(
+      'http://localhost:5000/addComponent/fans',
+      options
+    );
     // Parsing the response as JSON
     const result = await response.json();
 

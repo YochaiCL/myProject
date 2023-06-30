@@ -1,33 +1,24 @@
-// Import express
-const express = require('express');
-
-const router = express.Router();
-
-// Import mongoose
-const mongoose = require('mongoose');
+const { router, mongoose } = require('../commonImports/commonImports');
 
 // Import bcrypt -converts a plain-text password into a fixed-length string of characters called a hash
 const bcrypt = require('bcryptjs');
-
 // Import user data from database mongoDB
 const User = mongoose.model('UserInfo');
 const CompLearned = mongoose.model('CompLearned');
-
 // module makes it easy to send emails from your computer.
 const nodemailer = require('nodemailer');
-
 // Import scehma of how data is in database
 require('../Scehmas/connection/userDetails');
 
-// Register to the system
+/**
+ * Description - This function register the user in the database and save his lean data in the database
+ */
 router.post('/', async (req, res) => {
   const { fullName, email, password, userType } = req.body;
 
   const encryptedPassword = await bcrypt.hash(password, 10);
   try {
-    // save in param the email from the data base
     const oldUser = await User.findOne({ email });
-    // checking if the user exist
     if (oldUser) {
       return res.send({ status: 'User Exists' });
     }

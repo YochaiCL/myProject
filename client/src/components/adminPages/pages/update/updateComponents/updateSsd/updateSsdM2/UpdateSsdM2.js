@@ -26,7 +26,7 @@ export default class UpdateSsdM2 extends Component {
     });
   };
   async getProducts() {
-    const response = await fetch('http://localhost:5000/getData/ssdM2');
+    const response = await fetch('http://localhost:5000/getComponent/ssdM2');
     const result = await response.json();
     console.log(result);
     this.setState({ products: result });
@@ -51,7 +51,10 @@ export default class UpdateSsdM2 extends Component {
       body: JSON.stringify(this.state),
     };
     // Sending the POST request with options
-    const response = await fetch('http://localhost:5000/insert/ssdM2', options);
+    const response = await fetch(
+      'http://localhost:5000/addComponent/ssdM2',
+      options
+    );
     // Parsing the response as JSON
     const result = await response.json();
     // Checking the status of the response

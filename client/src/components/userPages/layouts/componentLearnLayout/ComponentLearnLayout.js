@@ -84,7 +84,9 @@ export default class ComponentLearnLayout extends Component {
         <Navbar />
         <div className={style.content}>{children}</div>
         <section className={style.comment}>
-          <h2 className={style.h2}>Write yourself a comment about this component</h2>
+          <h2 className={style.h2}>
+            Write yourself a comment about this component
+          </h2>
           <input
             type='text'
             placeholder='please enter comment'

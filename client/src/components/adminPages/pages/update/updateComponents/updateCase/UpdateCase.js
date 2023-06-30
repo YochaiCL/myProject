@@ -26,7 +26,7 @@ export default class UpdateCase extends Component {
     });
   };
   async getProducts() {
-    const response = await fetch('http://localhost:5000/getData/case');
+    const response = await fetch('http://localhost:5000/getComponent/case');
     const result = await response.json();
     console.log(result);
     this.setState({ products: result });
@@ -49,7 +49,10 @@ export default class UpdateCase extends Component {
       body: JSON.stringify(this.state),
     };
     // Sending the POST request with options
-    const response = await fetch('http://localhost:5000/insert/case', options);
+    const response = await fetch(
+      'http://localhost:5000/addComponent/case',
+      options
+    );
     // Parsing the response as JSON
     const result = await response.json();
 

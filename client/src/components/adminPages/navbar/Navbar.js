@@ -3,6 +3,10 @@ import style from './navbar.module.css';
 import logo from '../../../images/navbar/logo.png';
 import LinkNavbar from '../../pageSettings/linkNavbar/LinkNavbar';
 
+/**
+ * Description - This function define the NavBar page
+ * @returns - NavBar page
+ */
 export default function Navbar() {
   return (
     <nav className={style.nav}>

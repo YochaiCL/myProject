@@ -27,7 +27,9 @@ export default class UpdateCpuCoolerFan extends Component {
     });
   };
   async getProducts() {
-    const response = await fetch('http://localhost:5000/getData/cpuCoolerFan');
+    const response = await fetch(
+      'http://localhost:5000/getComponent/cpuCoolerFan'
+    );
     const result = await response.json();
     console.log(result);
     this.setState({ products: result });
@@ -52,7 +54,7 @@ export default class UpdateCpuCoolerFan extends Component {
     };
     // Sending the POST request with options
     const response = await fetch(
-      'http://localhost:5000/insert/cpuCooleFan',
+      'http://localhost:5000/addComponent/cpuCooleFan',
       options
     );
     // Parsing the response as JSON

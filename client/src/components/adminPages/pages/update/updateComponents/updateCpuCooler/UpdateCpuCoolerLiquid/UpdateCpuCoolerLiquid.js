@@ -28,7 +28,7 @@ export default class UpdateCpuCoolerLiquid extends Component {
   };
   async getProducts() {
     const response = await fetch(
-      'http://localhost:5000/getData/cpuCoolerLiquid'
+      'http://localhost:5000/getComponent/cpuCoolerLiquid'
     );
     const result = await response.json();
     console.log(result);
@@ -53,7 +53,7 @@ export default class UpdateCpuCoolerLiquid extends Component {
     };
     // Sending the POST request with options
     const response = await fetch(
-      'http://localhost:5000/insert/cpuCoolerLiquid',
+      'http://localhost:5000/addComponent/cpuCoolerLiquid',
       options
     );
     // Parsing the response as JSON

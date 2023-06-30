@@ -1,9 +1,12 @@
-import React from 'react'
+import React from 'react';
 import PageLayout from '../../layouts/pageLayout/PageLayout';
 import Header from '../../../pageSettings/header/Header';
 import LinkLayout from '../../../pageSettings/linkLayout/LinkLayout';
 import style from './delete.module.css';
 
+/**
+ * Description - This function organize the delete links in some order
+ */
 export default function Delete() {
   return (
     <PageLayout>

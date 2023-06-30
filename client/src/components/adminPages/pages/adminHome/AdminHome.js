@@ -4,8 +4,10 @@ import style from './adminHome.module.css';
 import DiagnosticInformationLayout from '../../layouts/diagnosticInformationLayout/DiagnosticInformationLayout';
 import PageLayout from '../../layouts/pageLayout/PageLayout';
 
+/**
+ * Description This class show all Admin home data
+ */
 export default class AdminHome extends Component {
-  // Initializing state variables for component properties
   state = {
     amountOfUsers: 0,
     amountOfOpenQuestions: 0,

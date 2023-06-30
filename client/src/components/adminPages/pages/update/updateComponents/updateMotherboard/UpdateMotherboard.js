@@ -31,7 +31,9 @@ export default class UpdateMotherboard extends Component {
     });
   };
   async getProducts() {
-    const response = await fetch('http://localhost:5000/getData/motherboard');
+    const response = await fetch(
+      'http://localhost:5000/getComponent/motherboard'
+    );
     const result = await response.json();
     console.log(result);
     this.setState({ products: result });
@@ -55,7 +57,7 @@ export default class UpdateMotherboard extends Component {
     };
     // Sending the POST request with options
     const response = await fetch(
-      'http://localhost:5000/insert/motherboard',
+      'http://localhost:5000/addComponent/motherboard',
       options
     );
     // Parsing the response as JSON

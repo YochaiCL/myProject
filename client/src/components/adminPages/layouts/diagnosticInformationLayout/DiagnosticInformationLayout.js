@@ -1,6 +1,7 @@
 import React from 'react';
 import style from './diagnosticInformationLayout.module.css';
 
+
 export default function DiagnosticInformationLayout(props) {
   const h2Heading = props.h2;
   const pText = props.text;
