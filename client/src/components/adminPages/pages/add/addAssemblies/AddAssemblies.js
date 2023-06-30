@@ -57,6 +57,7 @@ export default class AddAssembly extends Component {
    */
   async handleSubmit(e) {
     e.preventDefault();
+    console.log("ll")
     const options = {
       method: 'POST',
       crossDomain: true,

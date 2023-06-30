@@ -1,4 +1,6 @@
-const { router, mongoose } = require('../../commonImports/commonImports');
+const express = require('express');
+const router = express.Router();
+const mongoose = require('mongoose');
 
 /**
  * Description - This function delete the selected component from the database

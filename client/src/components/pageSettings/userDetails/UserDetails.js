@@ -7,6 +7,7 @@ export default class UserData extends Component {
   // Initializing state variables for userData, showLinkAdmin, password, email, and name
   state = {
     userData: '',
+    oldUser : "",
     showLinkAdmin: false,
     password: '',
     email: '',
@@ -33,12 +34,13 @@ export default class UserData extends Component {
       .then(res => res.json())
       // Handling the response data
       .then(data => {
-        // console.log(data, 'userData');
+        console.log(data, 'userData');
 
         // Storing the user data in localStorage
         window.localStorage.setItem('user', JSON.stringify(data.data));
         this.setState({ userData: data.data });
-
+        this.setState({ oldUser: data.data });
+        console.log(this.state.oldUser)
         // Checking if the userType is Admin
         if (this.state.userData.userType === 'Admin') {
           this.setState({
@@ -58,8 +60,6 @@ export default class UserData extends Component {
 
   changePassword = () => {
     let user = this.state.userData;
-    user.password = this.state.password;
-    console.log(user);
     // Sending a POST request to the changePassword endpoint
     fetch('http://localhost:5000/userData/changePassword', {
       method: 'POST',
@@ -70,21 +70,20 @@ export default class UserData extends Component {
         'Access-Control-Allow-Origin': '*',
       },
       body: JSON.stringify({
-        user: user,
+        user: { ...user, password: this.state.password },
         email: this.state.userData.email,
       }),
     })
       .then(res => res.json())
       .then(data => {
         console.log(data);
+         this.setState({ userData: { ...user, password: this.state.password } });
       });
   };
 
   changeName = () => {
     let user = this.state.userData;
-    user.fullName = this.state.name;
-    this.setState({ userData: user });
-    console.log(user);
+ 
     // Sending a POST request to the changeNameOrEmail endpoint
     fetch('http://localhost:5000/userData/changeNameOrEmail', {
       method: 'POST',
@@ -95,21 +94,20 @@ export default class UserData extends Component {
         'Access-Control-Allow-Origin': '*',
       },
       body: JSON.stringify({
-        user: user,
+        user: { ...user, fullName: this.state.name },
         email: this.state.userData.email,
       }),
     })
       .then(res => res.json())
       .then(data => {
         console.log(data);
+        this.setState({ userData: { ...user, fullName: this.state.name } });
       });
   };
 
   // Sending a POST request to the changeNameOrEmail endpoint
   changeEmail = () => {
     let user = this.state.userData;
-    user.email = this.state.email;
-    this.setState({ userData: user });
     fetch('http://localhost:5000/userData/changeNameOrEmail', {
       method: 'POST',
       crossDomain: true,
@@ -119,13 +117,16 @@ export default class UserData extends Component {
         'Access-Control-Allow-Origin': '*',
       },
       body: JSON.stringify({
-        user: user,
-        email: this.state.userData.email,
+        user: {...user , email : this.state.email},
+        email: this.state.oldUser.email,
       }),
     })
       .then(res => res.json())
       .then(data => {
+        localStorage.setItem("token" , data.token)
         console.log(data);
+         this.setState({ userData: { ...user, email: this.state.email } });
+         console.log(this.state.userData);
       });
   };
 

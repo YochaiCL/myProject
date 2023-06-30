@@ -1,4 +1,6 @@
-const { router, mongoose } = require('../../commonImports/commonImports');
+const express = require('express');
+const router = express.Router();
+const mongoose = require('mongoose');
 const Assemblies = mongoose.model('Assemblies');
 require('../../Scehmas/addAssemblies/addAssembliesScehmas');
 
@@ -8,6 +10,7 @@ require('../../Scehmas/addAssemblies/addAssembliesScehmas');
  * res - if the assembly name already exist the assembly will not add otherwise it will add
  */
 router.post('/', async (req, res) => {
+  console.log(req.body);
   try {
     let array = await Assemblies.find({ assemblyName: req.body.assemblyName });
     if (array.length > 0) {

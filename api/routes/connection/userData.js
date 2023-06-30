@@ -1,4 +1,6 @@
-const { router, mongoose } = require('../commonImports/commonImports');
+const express = require('express');
+const router = express.Router();
+const mongoose = require('mongoose');
 // Defines a compact and self-contained way for securely transmitting information between parties
 const jsonWebToken = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
@@ -57,6 +59,8 @@ router.post('/changePassword', async (req, res) => {
  */
 router.post('/changeNameOrEmail', async (req, res) => {
   const { user, email } = req.body;
+  console.log(user , email)
+  const token = jsonWebToken.sign({ email: user.email }, jsonWebTokenSecret);
 
   try {
     await User.updateOne(
@@ -65,7 +69,7 @@ router.post('/changeNameOrEmail', async (req, res) => {
       },
       user
     );
-    res.send({ status: 'true' });
+    res.send({ status: 'true', token });
   } catch (error) {
     console.log(error.message);
     res.send({ status: 'error' });

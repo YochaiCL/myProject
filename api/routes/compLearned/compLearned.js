@@ -1,4 +1,6 @@
-const { router, mongoose } = require('../commonImports/commonImports');
+const express = require('express');
+const router = express.Router();
+const mongoose = require('mongoose');
 
 // Import CompLearned data from database mongoDB
 const CompLearned = mongoose.model('CompLearned');

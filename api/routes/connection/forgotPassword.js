@@ -1,67 +1,80 @@
 // Import express
 const express = require('express');
+
 const router = express.Router();
+
 // Defines a compact and self-contained way for securely transmitting information between parties
 const jsonWebToken = require('jsonwebtoken');
+
+const bcrypt = require('bcryptjs');
+
 // Hides the password from attacks
 const jsonWebTokenSecret = 'nsdjsdhngdf349587539583**-+++-*[]jkfgkj';
+
 // Import mongoose
 const mongoose = require('mongoose');
-// module makes it easy to send emails from your computer.
-const nodemailer = require('nodemailer');
+
 // Import user data from database mongoDB
 const User = mongoose.model('UserInfo');
-// we use this to restart the password
-router.use(express.urlencoded({ extended: false }));
+
 // Import scehma of how data is in database
 require('../Scehmas/connection/userDetails');
 
-/**
- * Description - This function send to the user email with link to reset the password
- */
+// Show user data in user page
 router.post('/', async (req, res) => {
-  const { email } = req.body;
+  const { token } = req.body;
+
   try {
-    const oldUser = await User.findOne({ email });
-    if (!oldUser) {
-      return res.json({ status: 'User Not Exist' });
-    }
-    const secret = jsonWebTokenSecret + oldUser.password;
-    const token = jsonWebToken.sign(
-      { email: oldUser.email, id: oldUser._id },
-      secret,
+    // verifyToken=user
+    const user = jsonWebToken.verify(token, jsonWebTokenSecret);
+    console.log(user);
+    // take the user email
+    const userEmail = user.email;
+    User.findOne({ email: userEmail })
+      .then(data => {
+        res.send({ status: 'ok', data: data });
+      })
+      .catch(error => {
+        res.send({ status: 'error', data: error });
+      });
+  } catch (error) {}
+});
+
+// Show user data in user page
+router.post('/changePassword', async (req, res) => {
+  const { user, email } = req.body;
+  const encryptedPassword = await bcrypt.hash(user.password, 10);
+  let newUser = user;
+  newUser.password = encryptedPassword;
+  try {
+    await User.updateOne(
       {
-        expiresIn: '5m',
-      }
-    );
-    // this link will send to the user email and redirect him to reset the password
-    const link = `http://localhost:5000/reset-password/${oldUser._id}/${token}`;
-    // activate send email to the user
-    var transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: 'pcbuilderweb@gmail.com',
-        pass: 'oggemnxdvgbieqcy',
+        email: email,
       },
-    });
-
-    var mailOptions = {
-      from: 'youremail@gmail.com',
-      to: email,
-      subject: 'Password Reset',
-      text: link,
-    };
-
-    transporter.sendMail(mailOptions, function (error, info) {
-      if (error) {
-        return res.json({ status: 'Error email not send' });
-      } else {
-        return res.json({ status: 'Email send' });
-      }
-    });
-    // console.log(link);
+      newUser
+    );
+    res.send({ status: 'true' });
   } catch (error) {
-    return res.json({ status: 'Something wrong check your details' });
+    console.log(error.message);
+    res.send({ status: 'error' });
+  }
+});
+
+// Show user data in user page
+router.post('/changeNameOrEmail', async (req, res) => {
+  const { user, email } = req.body;
+
+  try {
+    await User.updateOne(
+      {
+        email: email,
+      },
+      user
+    );
+    res.send({ status: 'true' });
+  } catch (error) {
+    console.log(error.message);
+    res.send({ status: 'error' });
   }
 });
 

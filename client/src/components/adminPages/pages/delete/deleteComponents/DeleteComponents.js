@@ -24,7 +24,7 @@ export default class DeleteComponents extends Component {
     caseArray: [],
     cpuCoolerFanArray: [],
     cpuCoolerLiquidArray: [],
-    fanArray: [],
+    Fans: [],
     motherboardArray: [],
     psuArray: [],
     ramArray: [],
@@ -54,7 +54,7 @@ export default class DeleteComponents extends Component {
     this.setState({ ramArray: result.Ram });
     this.setState({ ssdM2Array: result.SsdM2 });
     this.setState({ ssdSataArray: result.SsdSata });
-    this.setState({ fanArray: result.Fans });
+    this.setState({ Fans: result.Fans });
   }
 
   /**
@@ -72,12 +72,14 @@ export default class DeleteComponents extends Component {
     for (let key in this.state.allArrays) {
       for (let component of this.state.allArrays[key]) {
         if (component === this.state.selectedComponent) {
-          let result = [key].filter(item => {
+          console.log(this.state.allArrays[key]);
+          let result = this.state.allArrays[key].filter(item => {
             console.log(item, this.state.selectedComponent);
-            return item.assemblyName !== this.state.selectedComponent;
+            return item !== this.state.selectedComponent;
           });
-          console.log(result);
-          this.setState({ key: result });
+          console.log(result, key, component, this.state.allArrays[key]);
+          this.setState({ [key]: result });
+          // this.setState({allArrays : [...this.state.allArrays , result] })
           try {
             fetch('http://localhost:5000/deleteComponents', {
               method: 'POST',
@@ -95,7 +97,8 @@ export default class DeleteComponents extends Component {
               .then(res => res.json())
               .then(data => {
                 if (data.status === 'Component deleted') {
-                  this.setState({ showResult: 'Component have added' });
+                  this.setState({ showResult: 'Component have deleted' });
+                   this.getModels(); 
                 }
               });
           } catch (error) {
@@ -152,7 +155,7 @@ export default class DeleteComponents extends Component {
 
           <Option optionText='Select Fan' />
 
-          {this.state.fanArray.map(itemCpuCooler => {
+          {this.state.Fans.map(itemCpuCooler => {
             return (
               <option key={itemCpuCooler} value={itemCpuCooler}>
                 {itemCpuCooler}

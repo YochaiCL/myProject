@@ -1,10 +1,16 @@
-const { router, mongoose } = require('../commonImports/commonImports');
+// Import express
+const express = require('express');
+
+const router = express.Router();
 
 // Defines a compact and self-contained way for securely transmitting information between parties
 const jsonWebToken = require('jsonwebtoken');
 
 // Hides the password from attacks
 const jsonWebTokenSecret = 'nsdjsdhngdf349587539583**-+++-*[]jkfgkj';
+
+// Import mongoose
+const mongoose = require('mongoose');
 
 // Import bcrypt
 const bcrypt = require('bcryptjs');
@@ -15,13 +21,11 @@ const User = mongoose.model('UserInfo');
 // Import scehma of how data is in database
 require('../Scehmas/connection/userDetails');
 
-
-/**
- * Description - This function check if the user exist, if true it will not enter if not it will enter to the system
- */
+// Login to the system
 router.post('/', async (req, res) => {
   // getting email and password
   const { email, password } = req.body;
+
   //userIsExist=user
   const user = await User.findOne({ email });
   // checking if the user is exist

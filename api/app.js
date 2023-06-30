@@ -90,6 +90,9 @@ const deleteComponents = require('./routes/delete/deleteComponents/deleteCompone
 app.use('/deleteAssemblies', deleteAssemblies);
 app.use('/deleteComponents', deleteComponents);
 
+const updateAssembly= require ('./routes/updateAssembly/updateAssembly')
+app.use('/updateAssembly', updateAssembly)
+
 // Starting the server on port 5000.
 app.listen(5000, () => {
   console.log('server started');

@@ -73,6 +73,9 @@ export default class UpdateAssemblies extends Component {
   async handleSubmit(e) {
     // Preventing the default form submission behavior
     e.preventDefault();
+    console.log(this.state.assembly[this.state.selectIndex].assemblyName);
+    console.log(this.state.assemblyName);
+    console.log(this.state.assembly[this.state.selectIndex]);
     const options = {
       method: 'POST',
       crossDomain: true,
@@ -83,10 +86,13 @@ export default class UpdateAssemblies extends Component {
         'Accept-Control-Allow-Origin': '*',
       },
       // Converting the state object to JSON and setting it as the request body
-      body: JSON.stringify(this.state),
+      body: JSON.stringify({
+        assemblyName: this.state.assemblyName,
+        newAssembly: this.state.assembly,
+      }),
     };
     const response = await fetch(
-      'http://localhost:5000/addAssemblies',
+      'http://localhost:5000/updateAssembly',
       options
     );
     // Parsing the response as JSON
@@ -154,19 +160,32 @@ export default class UpdateAssemblies extends Component {
                       this.state.assembly[this.state.selectIndex].assemblyName
                     }
                     value={this.state.assemblyName}
-                    required
                     onChange={e =>
                       this.setState({ assemblyName: e.target.value })
                     }
                   />
 
                   <select
-                    value={this.state.modelMotherboard}
+                    // value={this.state.modelMotherboard}
+                    value={
+                      this.state.assembly[this.state.selectIndex]
+                        .modelMotherboard
+                    }
                     label='MOTHERBOARD'
                     onChange={e =>
-                      this.setState({ modelMotherboard: e.target.value })
+                      this.setState({
+                        assembly: [
+                          ...this.state.assembly,
+                          {
+                            ...this.state.assembly[this.state.selectIndex],
+                            modelMotherboard: e.target.value,
+                          },
+                        ],
+                      })
                     }
-                    required
+                    // onChange={e =>
+                    //   this.setState({ modelMotherboard: e.target.value })
+                    // }
                   >
                     <option value='' disabled>
                       {
@@ -187,7 +206,6 @@ export default class UpdateAssemblies extends Component {
                     value={this.state.modelCPU}
                     label='CPU'
                     onChange={e => this.setState({ modelCPU: e.target.value })}
-                    required
                   >
                     <option value='' disabled>
                       {this.state.assembly[this.state.selectIndex].modelCPU}
@@ -207,7 +225,6 @@ export default class UpdateAssemblies extends Component {
                     onChange={e =>
                       this.setState({ modelCPUCooler: e.target.value })
                     }
-                    required
                   >
                     <option value='' disabled>
                       {
@@ -231,7 +248,6 @@ export default class UpdateAssemblies extends Component {
                     value={this.state.modelGPU}
                     label='GPU'
                     onChange={e => this.setState({ modelGPU: e.target.value })}
-                    required
                   >
                     <option value='' disabled>
                       {this.state.assembly[this.state.selectIndex].modelGPU}
@@ -249,7 +265,6 @@ export default class UpdateAssemblies extends Component {
                     value={this.state.modelPSU}
                     label='PSU'
                     onChange={e => this.setState({ modelPSU: e.target.value })}
-                    required
                   >
                     <option value='' disabled>
                       {this.state.assembly[this.state.selectIndex].modelPSU}
@@ -267,7 +282,6 @@ export default class UpdateAssemblies extends Component {
                     value={this.state.modelRAM}
                     label='RAM'
                     onChange={e => this.setState({ modelRAM: e.target.value })}
-                    required
                   >
                     <option value='' disabled>
                       {this.state.assembly[this.state.selectIndex].modelRAM}
@@ -285,7 +299,6 @@ export default class UpdateAssemblies extends Component {
                     value={this.state.modelSSD}
                     label='SSD'
                     onChange={e => this.setState({ modelSSD: e.target.value })}
-                    required
                   >
                     <option value='' disabled>
                       {this.state.assembly[this.state.selectIndex].modelSSD}
@@ -305,7 +318,6 @@ export default class UpdateAssemblies extends Component {
                     value={this.state.modelCase}
                     label='CASE'
                     onChange={e => this.setState({ modelCase: e.target.value })}
-                    required
                   >
                     <option value='' disabled>
                       {this.state.assembly[this.state.selectIndex].modelCase}

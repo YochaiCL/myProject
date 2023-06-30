@@ -1,4 +1,6 @@
-const { router, mongoose } = require('../commonImports/commonImports');
+const express = require('express');
+const router = express.Router();
+const mongoose = require('mongoose');
 // Defines a compact and self-contained way for securely transmitting information between parties
 const jsonWebToken = require('jsonwebtoken');
 // Hides the password from attacks
@@ -9,7 +11,6 @@ const bcrypt = require('bcryptjs');
 const User = mongoose.model('UserInfo');
 // Import scehma of how data is in database
 require('../Scehmas/connection/userDetails');
-
 
 /**
  * Description - This function verify the selected email in the database

@@ -2,11 +2,8 @@ import React, { Component } from 'react';
 import style from './signUp.module.css';
 import { Link } from 'react-router-dom';
 import Button from '../../pageSettings/button/Button';
-
-/**
- * Description - This function define the signup page
- */
 export default class SignUp extends Component {
+  // Initializing state variables for fullName, email, password, userType, showRadio, secretKey, and showResult
   state = {
     fullName: '',
     email: '',
@@ -17,25 +14,49 @@ export default class SignUp extends Component {
     showResult: '',
   };
 
+  checkPassword(password){
+    if(!(/\d/.test(password) && /[a-zA-Z]/.test(password))){
+      return false
+    }
+    if(password.length < 3 || password.length > 8){
+      return false
+    }
+    return true
+  }
+
   // Function to handle form submission
   handleSubmit(e) {
+    e.preventDefault();
+    // Destructuring fullName, email, password, and userType from the state
     const { fullName, email, password, userType } = this.state;
+    // Checking for valid Admin password
     if (this.state.userType === 'Admin' && this.state.secretKey !== 'Admin') {
-      e.preventDefault();
+      // Preventing the default form submission behavior
+
       this.setState({
+        // Updating the state to display an error message
         showResult: 'Invalid Admin Password',
       });
     } else if (
+      // Checking for valid Premium password
       this.state.userType === 'Premium' &&
       this.state.secretKey !== 'Premium'
     ) {
-      e.preventDefault();
+      // Preventing the default form submission behavior
+
       this.setState({
+        // Updating the state to display an error message
         showResult: 'Invalid Premium Password',
       });
+    } else if (!(this.checkPassword(password))) {
+      this.setState({
+        // Updating the state to display an error message
+        showResult: 'Invalid Password',
+      });
     } else {
-      e.preventDefault();
+      // Sending a POST request to the register endpoint
       fetch('http://localhost:5000/register', {
+        // Setting headers for the HTTP request
         method: 'POST',
         crossDomain: true,
         headers: {
@@ -43,6 +64,7 @@ export default class SignUp extends Component {
           Accept: 'application/json',
           'Access-Control-Allow-Origin': '*',
         },
+        // Converting fullName, email, password, and userType to JSON and setting it as the request body
         body: JSON.stringify({
           fullName,
           email,
@@ -50,8 +72,11 @@ export default class SignUp extends Component {
           userType,
         }),
       })
+        // Parsing the response as JSON
         .then(res => res.json())
+        // Handling the response data
         .then(data => {
+          // Checking the status of the response
           if (data.status === 'ok') {
             this.setState({
               showResult: 'Register successful',

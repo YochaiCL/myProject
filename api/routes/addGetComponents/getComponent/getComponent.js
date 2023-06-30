@@ -1,4 +1,6 @@
-const { router, mongoose } = require('../../commonImports/commonImports');
+const express = require('express');
+const router = express.Router();
+const mongoose = require('mongoose');
 
 // Import Motherboard  data from database mongoDB
 const Motherboard = mongoose.model('Motherboard');
