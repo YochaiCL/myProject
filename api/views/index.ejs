@@ -22,7 +22,6 @@
         font-size: 2.5rem;
         line-height: 1.5;
         font-weight: 400;
-        border: solid red 5px;
       }
 
       /* main, header, footer placement */
@@ -46,7 +45,7 @@
       const status = '<%- JSON.stringify(status) %>';
       // check if the user is verify
       if (JSON.parse(status) === 'verified') {
-        if (confirm('Password have Change , Do you want to login?')) {
+        if (confirm('Password have Change , Do you want to signIn?')) {
           window.location.href = 'http://localhost:3000/';
         }
       }
@@ -55,12 +54,13 @@
   <body>
     <!-- when the user is verify the code will transfer to this location -->
     <h1><%= email%></h1>
+    <p>Fill a new password</p>
     <form action="" method="post">
       <input
         type="password"
         name="password"
         id="password"
-        placeholder=" new password"
+        placeholder="new password"
         required
       />
 

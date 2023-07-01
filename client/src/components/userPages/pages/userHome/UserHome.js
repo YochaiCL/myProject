@@ -4,6 +4,9 @@ import style from './main.module.css';
 import Header from '../../../pageSettings/header/Header';
 import PageLayout from '../../layouts/pageLayout/PageLayout';
 
+/**
+ * Description - This class show the home page of the user
+ */
 export default class UserHome extends Component {
   render() {
     return (

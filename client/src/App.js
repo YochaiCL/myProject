@@ -57,7 +57,7 @@ import ExistsTests from './components/userPages/pages/testYourSelf/existsTests/E
 
 // import signUp / signIn / reset
 import SignUp from './components/connection/signUp/SignUp';
-import Login from './components/connection/login/Login';
+import SignIn from './components/connection/signIn/SignIn';
 import ForgetPassword from './components/connection/forgetPassword/ForgetPassword';
 
 // import admin pages
@@ -124,7 +124,7 @@ function App() {
           {/*if we already connected so enter to main page otherwise */}
           <Route
             path='/'
-            element={isLoggedIn === 'true' ? <UserHome /> : <Login />}
+            element={isLoggedIn === 'true' ? <UserHome /> : <SignIn />}
           />
           <Route path='/sign-up' element={<SignUp />} />
           <Route path='/reset' element={<ForgetPassword />} />

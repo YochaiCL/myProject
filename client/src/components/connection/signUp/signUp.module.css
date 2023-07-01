@@ -41,6 +41,24 @@
   padding: 1rem;
 }
 
-.button{
+.button {
   display: inline-block;
+}
+
+.showResult {
+  color: rgb(32, 86, 178);
+  text-align: center;
+}
+
+.section {
+  background-color: white;
+  opacity: 0.7;
+  max-width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 2rem;
+}
+.p {
+  font-size: 1.5rem;
+  color: rgb(32, 86, 178);
 }

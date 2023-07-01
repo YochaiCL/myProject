@@ -50,16 +50,16 @@ require('./routes/Scehmas/addComponents/ssd/ssdSata/ssdSata');
 require('./routes/Scehmas/addAssemblies/addAssembliesScehmas');
 require('./routes/Scehmas/questionAnswer/questionAnswer');
 
-// Requiring and activating the routes related to user connection (register, login, etc.).
-const signUp = require('./routes/connection/signUp');
-const login = require('./routes/connection/login');
-const userData = require('./routes/connection/userData');
-const forgotPassword = require('./routes/connection/forgotPassword');
-const resetPassword = require('./routes/connection/resetPassword');
-app.use('/register', signUp);
-app.use('/login-user', login);
+// Requiring and activating the routes related to user connection (signUp, login, etc.).
+const signUp = require('./routes/connection/signUp/signUp');
+const signIn = require('./routes/connection/signIn/signIn');
+const userData = require('./routes/connection/userData/userData');
+const forgotPassword = require('./routes/connection/forgetPassword/forgotPassword');
+const resetPassword = require('./routes/connection/resetPassword/resetPassword');
+app.use('/signUp', signUp);
+app.use('/signIn', signIn);
 app.use('/userData', userData);
-app.use('/forgot-password', forgotPassword);
+app.use('/forgotPassword', forgotPassword);
 app.use('/reset-password', resetPassword);
 
 // Requiring and activating the routes for adding & getting component.
@@ -90,8 +90,8 @@ const deleteComponents = require('./routes/delete/deleteComponents/deleteCompone
 app.use('/deleteAssemblies', deleteAssemblies);
 app.use('/deleteComponents', deleteComponents);
 
-const updateAssembly= require ('./routes/updateAssembly/updateAssembly')
-app.use('/updateAssembly', updateAssembly)
+const updateAssembly = require('./routes/updateAssembly/updateAssembly');
+app.use('/updateAssembly', updateAssembly);
 
 // Starting the server on port 5000.
 app.listen(5000, () => {
