@@ -2,6 +2,10 @@ import React from 'react';
 import PageLayout from '../../layouts/pageLayout/PageLayout';
 import Header from '../../../pageSettings/header/Header';
 
+/**
+ * Description - This function display the about page
+ * @returns - About page
+ */
 function About() {
   return (
     <PageLayout>

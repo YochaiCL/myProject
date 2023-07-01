@@ -3,6 +3,9 @@ import PageLayout from '../../../../layouts/pageLayout/PageLayout';
 import Header from '../../../../../pageSettings/header/Header';
 import style from './productsMOTHERBOARD.module.css';
 
+/**
+ * Description - This class display the motherboard products
+ */
 export default class ProductsMOTHERBOARD extends Component {
   state = {
     products: [{ model: 'Loading data...' }],
@@ -10,6 +13,9 @@ export default class ProductsMOTHERBOARD extends Component {
     selectedIndex: null,
   };
 
+  /**
+   * Description - This function get the motherboard products
+   */
   async getProducts() {
     const response = await fetch(
       'http://localhost:5000/getComponent/motherboard'
@@ -19,10 +25,17 @@ export default class ProductsMOTHERBOARD extends Component {
     this.setState({ products: result });
   }
 
+  /**
+   * Description - This function activate the getProducts function when the page upload
+   */
   componentDidMount() {
     this.getProducts();
   }
 
+  /**
+   * Description - This function open the details of the selected product
+   * @param {*} index - Selected product
+   */
   handleClick = index => {
     this.setState({
       showData: true,

@@ -2,6 +2,10 @@ import React from 'react';
 import ComponentLearnLayout from '../../../../layouts/componentLearnLayout/ComponentLearnLayout';
 import Header from '../../../../../pageSettings/header/Header';
 
+/**
+ * Description - This Function display the dvd information
+ * @returns - dvd information
+ */
 function infoDVD() {
   return (
     <ComponentLearnLayout name='dvd'>

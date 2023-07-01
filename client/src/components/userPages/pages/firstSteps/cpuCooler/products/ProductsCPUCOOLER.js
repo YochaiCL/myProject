@@ -4,6 +4,10 @@ import Header from '../../../../../pageSettings/header/Header';
 import style from '../../ssd/products/productsSSD.module.css';
 import LinkLayout from '../../../../../pageSettings/linkLayout/LinkLayout';
 
+/**
+ * Description - This function organize the cpu cooler button layout
+ * @returns - cpu cooler button layout
+ */
 function ProductsCPUCOOLER() {
   return (
     <PageLayout>

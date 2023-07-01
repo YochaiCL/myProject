@@ -4,6 +4,10 @@ import Header from '../../../../../pageSettings/header/Header';
 import style from '../../ssd/products/productsSSD.module.css';
 import LinkLayout from '../../../../../pageSettings/linkLayout/LinkLayout';
 
+/**
+ * Description - This function organize the ssd buttons layout
+ * @returns - The ssd buttons layout
+ */
 function ProductsSSD() {
   return (
     <PageLayout>

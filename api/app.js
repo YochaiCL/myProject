@@ -70,7 +70,7 @@ app.use('/getComponent', getComponent);
 
 // Requiring and activating the routes for learning the components.
 const compLearned = require('./routes/compLearned/compLearned');
-app.use('/comp-learned', compLearned);
+app.use('/compLearned', compLearned);
 
 // Requiring and activating the routes for assemblies data.
 const addAssemblies = require('./routes/addGetAssembly/addAssemlies/addAssemblies');

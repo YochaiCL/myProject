@@ -4,6 +4,10 @@ import { Link } from 'react-router-dom';
 import ComponentLearnLayout from '../../../../layouts/componentLearnLayout/ComponentLearnLayout';
 import style from '../../motherboard/info/infoMOTHERBOARD.module.css';
 
+/**
+ * Description - This Function display the cpu information
+ * @returns - cpu information
+ */
 export default function InfoCPU() {
   return (
     <ComponentLearnLayout name='cpu'>

@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import style from './signIn.module.css';
 import Button from '../../pageSettings/button/Button';
 
+/**
+ * Description - This class display the signIn page
+ */
 export default class SignIn extends Component {
   state = {
     userData: '',

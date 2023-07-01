@@ -3,6 +3,9 @@ import PageLayout from '../../../../layouts/pageLayout/PageLayout';
 import Header from '../../../../../pageSettings/header/Header';
 import style from '../../motherboard/products/productsMOTHERBOARD.module.css';
 
+/**
+ * Description - This class display the fans products
+ */
 export default class productsFANS extends Component {
   state = {
     products: [{ model: 'Loading data...' }],
@@ -10,6 +13,9 @@ export default class productsFANS extends Component {
     selectIndex: null,
   };
 
+  /**
+   * Description - This function get the fans products
+   */
   async getProducts() {
     const response = await fetch('http://localhost:5000/getComponent/fans');
     const result = await response.json();
@@ -17,10 +23,17 @@ export default class productsFANS extends Component {
     this.setState({ products: result });
   }
 
+  /**
+   * Description - This function activate the getProducts function when the page upload
+   */
   componentDidMount() {
     this.getProducts();
   }
 
+  /**
+   * Description - This function open the details of the selected product
+   * @param {*} index - Selected product
+   */
   handelClick = index => {
     this.setState({
       showData: true,

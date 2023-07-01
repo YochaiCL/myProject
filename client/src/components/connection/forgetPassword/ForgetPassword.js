@@ -3,7 +3,10 @@ import style from './ForgetPassword.module.css';
 import { Link } from 'react-router-dom';
 import Button from '../../pageSettings/button/Button';
 
-export default class ResetPassword extends Component {
+/**
+ * Description - This class display the forget password page
+ */
+export default class ForgetPassword extends Component {
   state = {
     email: '',
     showResult: '',

@@ -1,10 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-
 // Import CompLearned data from database mongoDB
 const CompLearned = mongoose.model('CompLearned');
-
 // Import scehma of how data is in database
 require('../Scehmas/learnedDetails/learnedDetails');
 
@@ -14,7 +12,7 @@ require('../Scehmas/learnedDetails/learnedDetails');
  * res - status of update data
  */
 router.post('/', async (req, res) => {
-  let data = req.body.newObj;
+  let data = req.body.productsArray;
   data.userId = req.body.userId;
   try {
     await CompLearned.updateOne(

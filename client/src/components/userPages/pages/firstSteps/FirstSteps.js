@@ -25,10 +25,13 @@ import style from './FirstSteps.module.css';
 export default function FirstSteps() {
   const [array, setArray] = useState([]);
 
+  /**
+   * Description - This function get the learned button data from the server
+   */
   useEffect(() => {
     let user = JSON.parse(localStorage.getItem('user'));
     console.log(user);
-    fetch('http://localhost:5000/comp-learned/getData', {
+    fetch('http://localhost:5000/compLearned/getData', {
       method: 'POST',
       crossDomain: true,
       headers: {

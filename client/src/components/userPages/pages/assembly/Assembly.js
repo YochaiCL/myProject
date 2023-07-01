@@ -5,6 +5,9 @@ import imgVideo from '../../../../images/assembly/see-assembly-videos.jpg';
 import imgMounted from '../../../../images/assembly/see-mounted-assemblys.jpg';
 import { Link } from 'react-router-dom';
 
+/**
+ * Description - This function organize the assembly button layout
+ */
 import style from './assembly.module.css';
 function Assembly() {
   return (

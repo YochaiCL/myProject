@@ -3,6 +3,9 @@ import PageLayout from '../../../../../layouts/pageLayout/PageLayout';
 import Header from '../../../../../../pageSettings/header/Header';
 import style from '../../../motherboard/products/productsMOTHERBOARD.module.css';
 
+/**
+ * Description - This class display the cpu cooler fan products
+ */
 export default class ProductsCpuCoolerFan extends Component {
   state = {
     products: [{ model: 'Loading data...' }],
@@ -10,6 +13,9 @@ export default class ProductsCpuCoolerFan extends Component {
     selectIndex: null,
   };
 
+  /**
+   * Description - This function get the cpu cooler fan products
+   */
   async getProducts() {
     const response = await fetch(
       'http://localhost:5000/getComponent/cpuCoolerFan'
@@ -19,10 +25,17 @@ export default class ProductsCpuCoolerFan extends Component {
     this.setState({ products: result });
   }
 
+  /**
+   * Description - This function activate the getProducts function when the page upload
+   */
   componentDidMount() {
     this.getProducts();
   }
 
+  /**
+   * Description - This function open the details of the selected product
+   * @param {*} index - Selected product
+   */
   handelClick = index => {
     this.setState({
       showData: true,
@@ -54,18 +67,18 @@ export default class ProductsCpuCoolerFan extends Component {
               <h2 className={style.h2}>Product Data</h2>
               <div>
                 <h3>
-                   <span className={style.span}> Model:</span>
+                  <span className={style.span}> Model:</span>
                   {this.state.products[this.state.selectIndex].model}
                 </h3>
                 <h3>
-                   <span className={style.span}> Socket Support:</span>
-                 
+                  <span className={style.span}> Socket Support:</span>
+
                   {this.state.products[this.state.selectIndex].socket_support}
                 </h3>
 
                 <h3>
-                   <span className={style.span}>Fan Diameter:</span>
-                  
+                  <span className={style.span}>Fan Diameter:</span>
+
                   {this.state.products[this.state.selectIndex].fan_diameter}
                 </h3>
               </div>

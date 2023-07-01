@@ -4,6 +4,10 @@ import Header from '../../../../../pageSettings/header/Header';
 import { Link } from 'react-router-dom';
 import style from './infoMOTHERBOARD.module.css';
 
+/**
+ * Description - This Function display the motherboard information
+ * @returns - motherboard information
+ */
 function infoMOTHERBOARD() {
   return (
     <ComponentLearnLayout name='motherboard'>

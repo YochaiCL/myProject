@@ -3,6 +3,10 @@ import ComponentLearnLayout from '../../../../layouts/componentLearnLayout/Compo
 import Header from '../../../../../pageSettings/header/Header';
 import style from '../../motherboard/info/infoMOTHERBOARD.module.css'
 
+/**
+ * Description - This Function display the case information
+ * @returns - case information
+ */
 function infoCASE() {
   return (
     <ComponentLearnLayout name='case'>

@@ -3,6 +3,9 @@ import PageLayout from '../../../layouts/pageLayout/PageLayout';
 import Header from '../../../../pageSettings/header/Header';
 import style from './mountedAssemblies.module.css';
 
+/**
+ * Description  - This class display the assembly products
+ */
 export default class MountedAssemblies extends Component {
   state = {
     assembly: [{ assemblyName: 'Loading data...' }],
@@ -10,6 +13,9 @@ export default class MountedAssemblies extends Component {
     selectIndex: null,
   };
 
+  /**
+   * Description - This function display the assembly products
+   */
   async getAssembly() {
     const response = await fetch(
       'http://localhost:5000/getAssemblies/assemblies'
@@ -19,9 +25,17 @@ export default class MountedAssemblies extends Component {
     this.setState({ assembly: result });
   }
 
+  /**
+   * Description - This function activate the getAssembly function when the page upload
+   */
   componentDidMount() {
     this.getAssembly();
   }
+
+  /**
+   * Description - This function open the assembly details when click on the selected assembly
+   * @param {*} index
+   */
   handelClick = index => {
     this.setState({
       showData: true,

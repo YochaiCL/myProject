@@ -4,6 +4,10 @@ import Header from '../../../../../pageSettings/header/Header';
 import style from '../../motherboard/info/infoMOTHERBOARD.module.css';
 import { Link } from 'react-router-dom';
 
+/**
+ * Description - This Function display the gpu information
+ * @returns - gpu information
+ */
 function infoGPU() {
   return (
     <ComponentLearnLayout name='gpu'>

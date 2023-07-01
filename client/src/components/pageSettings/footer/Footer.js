@@ -2,6 +2,9 @@ import { Component } from 'react';
 import styles from './footer.module.css';
 import { Link } from 'react-router-dom';
 
+/**
+ * Description - This function define the footer section
+ */
 export default class Footer extends Component {
   render() {
     const author = this.props.name;

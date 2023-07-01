@@ -4,6 +4,10 @@ import Header from '../../../../../pageSettings/header/Header';
 import { Link } from 'react-router-dom';
 import style from '../../motherboard/info/infoMOTHERBOARD.module.css';
 
+/**
+ * Description - This Function display the psu information
+ * @returns - psu information
+ */
 function infoPSU() {
   return (
     <ComponentLearnLayout name='psu'>

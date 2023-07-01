@@ -2,23 +2,26 @@ import React, { Component } from 'react';
 import style from './LearnLayout.module.css';
 import { Link } from 'react-router-dom';
 
+/**
+ * Description - This class organize the products links
+ */
 export default class LearnLayout extends Component {
-  updateButton(e, buttonId) {
+  /**
+   * Description - This function update the learned button
+   * @param {*} buttonId - selected product
+   */
+  updateButton(buttonId) {
     let user = JSON.parse(localStorage.getItem('user'));
-
-    let newObj = this.props.oldState;
-    console.log(newObj);
-    if (newObj[buttonId].haveLearned === true) {
-      newObj[buttonId].haveLearned = false;
+    let productsArray = this.props.oldState;
+    // console.log(productsArray);
+    if (productsArray[buttonId].haveLearned === true) {
+      productsArray[buttonId].haveLearned = false;
     } else {
-      newObj[buttonId].haveLearned = true;
+      productsArray[buttonId].haveLearned = true;
     }
-
-    console.log(newObj);
-
-    this.props.changeLearn({ ...newObj });
-
-    fetch('http://localhost:5000/comp-learned', {
+    // console.log(productsArray);
+    this.props.changeLearn({ ...productsArray });
+    fetch('http://localhost:5000/compLearned', {
       method: 'POST',
       crossDomain: true,
       headers: {
@@ -27,7 +30,7 @@ export default class LearnLayout extends Component {
         'Access-Control-Allow-Origin': '*',
       },
       body: JSON.stringify({
-        newObj: newObj,
+        productsArray: productsArray,
         userId: user._id,
       }),
     })
@@ -78,7 +81,7 @@ export default class LearnLayout extends Component {
                       ? style.green
                       : style.red
                   }`}
-                  onClick={e => this.updateButton(e, imageName)}
+                  onClick={() => this.updateButton(imageName)}
                 >
                   Learned
                 </button>
@@ -89,7 +92,7 @@ export default class LearnLayout extends Component {
                       ? style.green
                       : style.red
                   }`}
-                  onClick={e => this.updateButton(e, imageName)}
+                  onClick={() => this.updateButton(imageName)}
                 >
                   Not learned
                 </button>

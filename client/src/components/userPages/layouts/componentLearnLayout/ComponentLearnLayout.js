@@ -4,6 +4,9 @@ import Footer from '../../../pageSettings/footer/Footer';
 import style from './componentLearnLayout.module.css';
 import Button from '../../../pageSettings/button/Button';
 
+/**
+ * Description - This function organize the products information page
+ */
 export default class ComponentLearnLayout extends Component {
   state = {
     comment: '',
@@ -11,53 +14,45 @@ export default class ComponentLearnLayout extends Component {
     showResult: '',
   };
 
+  /**
+   * Description - This function get the user data when the page is upload
+   */
   componentDidMount() {
     // Parsing the user data from localStorage
     let user = JSON.parse(localStorage.getItem('user'));
     // console.log(user);
-    // Sending a POST request to the getData endpoint
-    fetch('http://localhost:5000/comp-learned/getData', {
+    fetch('http://localhost:5000/compLearned/getData', {
       method: 'POST',
       crossDomain: true,
       headers: {
-        // Setting headers for the HTTP request
         'Content-Type': 'application/json',
         Accept: 'application/json',
         'Accept-Control-Allow-Origin': '*',
       },
-      // Sending the userId in the request body
       body: JSON.stringify({
         userId: user._id,
       }),
     })
-      // Parsing the response as JSON
       .then(res => res.json())
-      // Handling the response data
       .then(data => {
-        console.log(data, 'userData');
-        // Updating the state with the received data
+        // console.log(data, 'userData');
         this.setState({ array: data[0] });
       });
   }
 
+  /**
+   * Description - This function update the comments of products to the user
+   */
   updateButton = () => {
     const { name } = this.props;
     // Parsing the user data from localStorage
     let user = JSON.parse(localStorage.getItem('user'));
-
-    let newObj = this.state.array;
-    // console.log(newObj);
-    // Updating the comment in the newObj
-    newObj[name].comment = this.state.comment;
-    // console.log(newObj);
-
+    let productsArray = this.state.array;
+    productsArray[name].comment = this.state.comment;
     this.setState({
-      // Updating the state to show the success message
       showResult: 'Comment have added',
     });
-
-    // Sending a POST request to the comp-learned endpoint
-    fetch('http://localhost:5000/comp-learned', {
+    fetch('http://localhost:5000/compLearned', {
       method: 'POST',
       crossDomain: true,
       headers: {
@@ -66,13 +61,11 @@ export default class ComponentLearnLayout extends Component {
         'Access-Control-Allow-Origin': '*',
       },
       body: JSON.stringify({
-        newObj: newObj,
+        productsArray: productsArray,
         userId: user._id,
       }),
     })
-      // Sending the updated newObj in the request body
       .then(res => res.json())
-      // Sending the userId in the request body
       .then(data => {
         console.log(data);
       });
@@ -93,7 +86,7 @@ export default class ComponentLearnLayout extends Component {
             value={this.state.comment}
             onChange={e => this.setState({ comment: e.target.value })}
           />
-          <p>{this.state.showResult}</p>
+          <p className={style.showResult}>{this.state.showResult}</p>
           <Button text='save comment' fun={this.updateButton} />
           <p>Note: This note will be displayed on the "First Steps" page </p>
         </section>

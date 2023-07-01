@@ -2,6 +2,11 @@ import Navbar from '../../navbar/Navbar';
 import Footer from '../../../pageSettings/footer/Footer';
 import style from './pageLayout.module.css';
 
+/**
+ * Description - This function organize the page layout
+ * @param {*} children - User page
+ * @returns - page layout
+ */
 function PageLayout({ children }) {
   return (
     <div>
