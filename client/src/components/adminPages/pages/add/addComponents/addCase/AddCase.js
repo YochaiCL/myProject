@@ -52,6 +52,7 @@ export default class AddCase extends Component {
         <section>
           <form onSubmit={this.handleSubmit.bind(this)} className={style.form}>
             <input
+              className={style.input}
               type='text'
               placeholder='Enter Model:'
               value={this.state.model}
@@ -60,6 +61,7 @@ export default class AddCase extends Component {
             />
 
             <input
+              className={style.input}
               type='text'
               placeholder='Enter Form:'
               required

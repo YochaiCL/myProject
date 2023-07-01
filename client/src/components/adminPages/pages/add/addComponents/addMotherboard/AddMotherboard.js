@@ -55,6 +55,7 @@ export default class AddMotherboard extends Component {
         <section>
           <form onSubmit={this.handleSubmit.bind(this)} className={style.form}>
             <input
+              className={style.input}
               type='text'
               placeholder='Enter Model:'
               value={this.state.model}
@@ -63,6 +64,7 @@ export default class AddMotherboard extends Component {
             />
 
             <input
+              className={style.input}
               type='text'
               placeholder='Enter Cpu Socket:'
               required
@@ -72,6 +74,7 @@ export default class AddMotherboard extends Component {
             />
 
             <input
+              className={style.input}
               type='text'
               placeholder='Enter Chip set:'
               required
@@ -79,6 +82,7 @@ export default class AddMotherboard extends Component {
             />
 
             <input
+              className={style.input}
               type='text'
               placeholder='Enter Memory:'
               required
@@ -86,6 +90,7 @@ export default class AddMotherboard extends Component {
             />
 
             <input
+              className={style.input}
               type='text'
               placeholder='Enter Form Factor:'
               required
@@ -93,6 +98,7 @@ export default class AddMotherboard extends Component {
             />
 
             <input
+              className={style.input}
               type='text'
               placeholder='Enter Expansion Slots:'
               required
@@ -100,6 +106,7 @@ export default class AddMotherboard extends Component {
             />
 
             <input
+              className={style.input}
               type='text'
               placeholder='Enter M.2 slot:'
               required

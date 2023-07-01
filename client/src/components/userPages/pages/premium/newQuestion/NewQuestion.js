@@ -43,6 +43,7 @@ export default class NewQuestion extends Component {
         <section>
           <form onSubmit={this.handleSubmit.bind(this)} className={style.form}>
             <input
+              className={style.input}
               type='text'
               placeholder='Enter Question Name:'
               value={this.state.questionName}

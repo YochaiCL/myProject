@@ -105,6 +105,7 @@ export default class TestWithHelp extends Component {
         <section>
           <form onSubmit={this.handleSubmit.bind(this)} className={style.form}>
             <input
+              className={style.input}
               type='text'
               placeholder='Enter Test Name:'
               value={this.state.assemblyName}
@@ -113,6 +114,7 @@ export default class TestWithHelp extends Component {
             />
 
             <select
+              className={style.select}
               value={this.state.modelMotherboard}
               label='MOTHERBOARD'
               onChange={e =>
@@ -133,6 +135,7 @@ export default class TestWithHelp extends Component {
             </select>
 
             <select
+              className={style.select}
               value={this.state.modelCPU}
               label='CPU'
               onChange={e => this.setState({ modelCPU: e.target.value })}
@@ -151,6 +154,7 @@ export default class TestWithHelp extends Component {
             </select>
 
             <select
+              className={style.select}
               value={this.state.modelCPUCooler}
               label='CPU Cooler'
               onChange={e => this.setState({ modelCPUCooler: e.target.value })}
@@ -172,6 +176,7 @@ export default class TestWithHelp extends Component {
             </select>
 
             <select
+              className={style.select}
               value={this.state.modelGPU}
               label='GPU'
               onChange={e => this.setState({ modelGPU: e.target.value })}
@@ -190,6 +195,7 @@ export default class TestWithHelp extends Component {
             </select>
 
             <select
+              className={style.select}
               value={this.state.modelPSU}
               label='PSU'
               onChange={e => this.setState({ modelPSU: e.target.value })}
@@ -208,6 +214,7 @@ export default class TestWithHelp extends Component {
             </select>
 
             <select
+              className={style.select}
               value={this.state.modelRAM}
               label='RAM'
               onChange={e => this.setState({ modelRAM: e.target.value })}
@@ -226,6 +233,7 @@ export default class TestWithHelp extends Component {
             </select>
 
             <select
+              className={style.select}
               value={this.state.modelSSD}
               label='SSD'
               onChange={e => this.setState({ modelSSD: e.target.value })}
@@ -246,6 +254,7 @@ export default class TestWithHelp extends Component {
             </select>
 
             <select
+              className={style.select}
               value={this.state.modelCase}
               label='CASE'
               onChange={e => this.setState({ modelCase: e.target.value })}

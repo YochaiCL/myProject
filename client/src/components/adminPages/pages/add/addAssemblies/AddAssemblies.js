@@ -5,7 +5,7 @@ import Button from '../../../../pageSettings/button/Button';
 import style from './addAssemblies.module.css';
 
 /**
- * Description - This function add assembly to the database 
+ * Description - This function add assembly to the database
  */
 export default class AddAssembly extends Component {
   state = {
@@ -57,7 +57,7 @@ export default class AddAssembly extends Component {
    */
   async handleSubmit(e) {
     e.preventDefault();
-    console.log("ll")
+    console.log('ll');
     const options = {
       method: 'POST',
       crossDomain: true,
@@ -99,6 +99,7 @@ export default class AddAssembly extends Component {
         <section>
           <form onSubmit={this.handleSubmit.bind(this)} className={style.form}>
             <input
+              className={style.input}
               type='text'
               placeholder='Enter Assembly Name:'
               value={this.state.assemblyName}
@@ -106,6 +107,7 @@ export default class AddAssembly extends Component {
               onChange={e => this.setState({ assemblyName: e.target.value })}
             />
             <select
+              className={style.select}
               value={this.state.modelMotherboard}
               label='MOTHERBOARD'
               onChange={e =>
@@ -125,6 +127,7 @@ export default class AddAssembly extends Component {
               })}
             </select>
             <select
+              className={style.select}
               value={this.state.modelCPU}
               label='CPU'
               onChange={e => this.setState({ modelCPU: e.target.value })}
@@ -142,6 +145,7 @@ export default class AddAssembly extends Component {
               })}
             </select>
             <select
+              className={style.select}
               value={this.state.modelCPUCooler}
               label='CPU Cooler'
               onChange={e => this.setState({ modelCPUCooler: e.target.value })}
@@ -162,6 +166,7 @@ export default class AddAssembly extends Component {
               })}
             </select>
             <select
+              className={style.select}
               value={this.state.modelGPU}
               label='GPU'
               onChange={e => this.setState({ modelGPU: e.target.value })}
@@ -179,6 +184,7 @@ export default class AddAssembly extends Component {
               })}
             </select>
             <select
+              className={style.select}
               value={this.state.modelPSU}
               label='PSU'
               onChange={e => this.setState({ modelPSU: e.target.value })}
@@ -196,6 +202,7 @@ export default class AddAssembly extends Component {
               })}
             </select>
             <select
+              className={style.select}
               value={this.state.modelRAM}
               label='RAM'
               onChange={e => this.setState({ modelRAM: e.target.value })}
@@ -213,6 +220,7 @@ export default class AddAssembly extends Component {
               })}
             </select>
             <select
+              className={style.select}
               value={this.state.modelSSD}
               label='SSD'
               onChange={e => this.setState({ modelSSD: e.target.value })}
@@ -232,6 +240,7 @@ export default class AddAssembly extends Component {
               )}
             </select>
             <select
+              className={style.select}
               value={this.state.modelCase}
               label='CASE'
               onChange={e => this.setState({ modelCase: e.target.value })}

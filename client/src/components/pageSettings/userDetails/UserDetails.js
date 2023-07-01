@@ -3,54 +3,54 @@ import Button from '../button/Button';
 import style from './userDetails.module.css';
 import LinkLayout from '../linkLayout/LinkLayout';
 
+/**
+ * Description - This class show the user data and can change the user data
+ */
 export default class UserData extends Component {
-  // Initializing state variables for userData, showLinkAdmin, password, email, and name
   state = {
     userData: '',
-    oldUser : "",
+    oldUser: '',
     showLinkAdmin: false,
     password: '',
     email: '',
     name: '',
   };
 
+  /**
+   * Description - This function get the user data from the sever
+   */
   componentDidMount() {
-    // Sending a POST request to the userData endpoint
     fetch('http://localhost:5000/userData', {
       method: 'POST',
       crossDomain: true,
       headers: {
-        // Setting headers for the HTTP request
         'Content-Type': 'application/json',
         Accept: 'application/json',
         'Accept-Control-Allow-Origin': '*',
       },
       body: JSON.stringify({
-        // Setting the token in the request body
         token: window.localStorage.getItem('token'),
       }),
     })
-      // Parsing the response as JSON
       .then(res => res.json())
-      // Handling the response data
       .then(data => {
-        console.log(data, 'userData');
-
+        // console.log(data, 'userData');
         // Storing the user data in localStorage
         window.localStorage.setItem('user', JSON.stringify(data.data));
         this.setState({ userData: data.data });
         this.setState({ oldUser: data.data });
-        console.log(this.state.oldUser)
-        // Checking if the userType is Admin
+        console.log(this.state.oldUser);
         if (this.state.userData.userType === 'Admin') {
           this.setState({
-            // Updating the state to show the link for admin
             showLinkAdmin: true,
           });
         }
       });
   }
 
+  /**
+   * Description - This function clear the local storage in the application
+   */
   logout = () => {
     // Clearing localStorage
     window.localStorage.clear();
@@ -58,9 +58,11 @@ export default class UserData extends Component {
     window.location.href = './';
   };
 
+  /**
+   * Description - This function change the password of the user
+   */
   changePassword = () => {
     let user = this.state.userData;
-    // Sending a POST request to the changePassword endpoint
     fetch('http://localhost:5000/userData/changePassword', {
       method: 'POST',
       crossDomain: true,
@@ -77,14 +79,15 @@ export default class UserData extends Component {
       .then(res => res.json())
       .then(data => {
         console.log(data);
-         this.setState({ userData: { ...user, password: this.state.password } });
+        this.setState({ userData: { ...user, password: this.state.password } });
       });
   };
 
+  /**
+   * Description - This function change the name of the user
+   */
   changeName = () => {
     let user = this.state.userData;
- 
-    // Sending a POST request to the changeNameOrEmail endpoint
     fetch('http://localhost:5000/userData/changeNameOrEmail', {
       method: 'POST',
       crossDomain: true,
@@ -105,7 +108,9 @@ export default class UserData extends Component {
       });
   };
 
-  // Sending a POST request to the changeNameOrEmail endpoint
+  /**
+   * Description - This function change the email of the user
+   */
   changeEmail = () => {
     let user = this.state.userData;
     fetch('http://localhost:5000/userData/changeNameOrEmail', {
@@ -117,16 +122,16 @@ export default class UserData extends Component {
         'Access-Control-Allow-Origin': '*',
       },
       body: JSON.stringify({
-        user: {...user , email : this.state.email},
+        user: { ...user, email: this.state.email },
         email: this.state.oldUser.email,
       }),
     })
       .then(res => res.json())
       .then(data => {
-        localStorage.setItem("token" , data.token)
+        localStorage.setItem('token', data.token);
         console.log(data);
-         this.setState({ userData: { ...user, email: this.state.email } });
-         console.log(this.state.userData);
+        this.setState({ userData: { ...user, email: this.state.email } });
+        console.log(this.state.userData);
       });
   };
 
@@ -134,10 +139,19 @@ export default class UserData extends Component {
     return (
       <div>
         <section>
-          <p>Name:{this.state.userData.fullName}</p>
+          <p>
+            <span className={style.span}>Name:</span>
+            {this.state.userData.fullName}
+          </p>
 
-          <p>Email:{this.state.userData.email}</p>
-          <Button text='sign out' fun={this.logout} />
+          <p>
+            <span className={style.span}>Email:</span>
+            {this.state.userData.email}
+          </p>
+          <div className={style.div}>
+            {' '}
+            <Button text='sign out' fun={this.logout} />
+          </div>
         </section>
 
         {this.state.showLinkAdmin && (
@@ -148,27 +162,38 @@ export default class UserData extends Component {
 
         <section className={style.section}>
           <h2>Change your details</h2>
-          <input
-            type='text'
-            placeholder='Enter name'
-            onChange={e => this.setState({ name: e.target.value })}
-          />
-          <Button text='Change' fun={this.changeName} />
+          <section className={style.sectionInput}>
+            <section>
+              <input
+                className={style.input}
+                type='text'
+                placeholder='Enter name'
+                onChange={e => this.setState({ name: e.target.value })}
+              />
+              <Button text='Change' fun={this.changeName} />
+            </section>
 
-          <input
-            type='email'
-            placeholder='Enter email'
-            onChange={e => this.setState({ email: e.target.value })}
-          />
-          <Button text='Change' fun={this.changeEmail} />
+            <section>
+              <input
+                className={style.input}
+                type='email'
+                placeholder='Enter email'
+                onChange={e => this.setState({ email: e.target.value })}
+              />
+              <Button text='Change' fun={this.changeEmail} />
+            </section>
 
-          <input
-            type='password'
-            placeholder='Enter password'
-            onChange={e => this.setState({ password: e.target.value })}
-          />
+            <section>
+              <input
+                className={style.input}
+                type='password'
+                placeholder='Enter password'
+                onChange={e => this.setState({ password: e.target.value })}
+              />
 
-          <Button text='Change' fun={this.changePassword} />
+              <Button text='Change' fun={this.changePassword} />
+            </section>
+          </section>{' '}
         </section>
       </div>
     );

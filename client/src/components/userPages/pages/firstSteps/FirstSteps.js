@@ -18,6 +18,10 @@ import psu from '../../../../images/Learn-Your-Hardware/psu.PNG';
 import ram from '../../../../images/Learn-Your-Hardware/ram.PNG';
 import style from './FirstSteps.module.css';
 
+/**
+ * Description - This function show all the components
+ * @returns - All components
+ */
 export default function FirstSteps() {
   const [array, setArray] = useState([]);
 

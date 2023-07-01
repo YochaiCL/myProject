@@ -53,6 +53,7 @@ export default class AddCpuCoolerFan extends Component {
             className={`${style.form} ${style.smallForm}`}
           >
             <input
+              className={style.input}
               type='text'
               placeholder='Enter Model:'
               value={this.state.model}
@@ -61,6 +62,7 @@ export default class AddCpuCoolerFan extends Component {
             />
 
             <input
+              className={style.input}
               type='text'
               placeholder='Enter Socket Support:'
               required
@@ -68,6 +70,7 @@ export default class AddCpuCoolerFan extends Component {
             />
 
             <input
+              className={style.input}
               type='text'
               placeholder='Enter Fan Diameter:'
               required

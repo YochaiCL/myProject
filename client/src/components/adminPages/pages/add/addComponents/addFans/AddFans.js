@@ -52,6 +52,7 @@ export default class AddFans extends Component {
             className={`${style.form} ${style.smallForm}`}
           >
             <input
+              className={style.input}
               type='text'
               placeholder='Enter Model:'
               value={this.state.model}
@@ -60,6 +61,7 @@ export default class AddFans extends Component {
             />
 
             <input
+              className={style.input}
               type='text'
               placeholder='Enter Fan Size:'
               required

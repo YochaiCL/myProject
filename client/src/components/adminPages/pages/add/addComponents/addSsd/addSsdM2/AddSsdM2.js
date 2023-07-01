@@ -53,6 +53,7 @@ export default class AddSsdM2 extends Component {
             className={`${style.form} ${style.smallForm}`}
           >
             <input
+              className={style.input}
               type='text'
               placeholder='Enter Model:'
               value={this.state.model}
@@ -60,12 +61,14 @@ export default class AddSsdM2 extends Component {
               onChange={e => this.setState({ model: e.target.value })}
             />
             <input
+              className={style.input}
               type='text'
               placeholder='Enter Capacity:'
               required
               onChange={e => this.setState({ capacity: e.target.value })}
             />
             <input
+              className={style.input}
               type='text'
               placeholder='Enter Type:'
               required

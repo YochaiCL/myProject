@@ -55,7 +55,7 @@ router.post('/', async (req, res) => {
     });
     // when user is sign up all the status of components are enter to the data base
     const newUser = await User.findOne({ email });
-    console.log(newUser);
+    // console.log(newUser);
     await CompLearned.create({
       userId: newUser._id,
       cables: {

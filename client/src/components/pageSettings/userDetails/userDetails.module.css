@@ -1,9 +1,9 @@
 .section {
   font-size: 3rem;
   padding: 2rem;
-  max-width: 50%;
-  margin-left: auto;
-  margin-right: auto;
+  max-width: 80%;
+  background-color: white;
+  opacity: 0.7;
 }
 
 .change {
@@ -13,6 +13,27 @@
   margin-bottom: 2rem;
 }
 
-.linkAdmin{
+.linkAdmin {
   margin-top: 5rem;
 }
+
+.span {
+  margin-right: 2rem;
+}
+.div {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 20%;
+}
+
+
+.input {
+  margin-right: 2rem;
+}
+
+.sectionInput{
+  display: flex;
+  flex-direction: column;
+}
+
+

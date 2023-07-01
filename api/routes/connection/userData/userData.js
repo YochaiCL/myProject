@@ -19,7 +19,7 @@ router.post('/', async (req, res) => {
   try {
     // verifyToken=user
     const user = jsonWebToken.verify(token, jsonWebTokenSecret);
-    console.log(user);
+    // console.log(user);
     // take the user email
     const userEmail = user.email;
     User.findOne({ email: userEmail })
