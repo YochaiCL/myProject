@@ -29,7 +29,7 @@ router.post('/', async (req, res) => {
       userType,
     });
     // this link will send to the user email and redirect him to reset the password
-    const text = `Thanks for joining and happy learning. For any question, you can contact a question and answer service that allows you to get a human answer to any question`;
+    const text = `Thanks for joining and happy learning.\nFor any question, you can contact with our question/answer service which provide you a human answer.\nThank you,\nPc Builder`;
     // activate send email to the user
     var transporter = nodemailer.createTransport({
       service: 'gmail',
