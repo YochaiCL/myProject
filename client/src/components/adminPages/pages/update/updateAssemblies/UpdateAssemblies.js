@@ -33,9 +33,7 @@ export default class UpdateAssemblies extends Component {
   };
 
   async getAssembly() {
-    const response = await fetch(
-      'http://localhost:5000/getAssemblies/assemblies'
-    );
+    const response = await fetch('http://localhost:5000/getAssembly');
     const result = await response.json();
     console.log(result);
     this.setState({ assembly: result });
@@ -74,8 +72,18 @@ export default class UpdateAssemblies extends Component {
     // Preventing the default form submission behavior
     e.preventDefault();
     console.log(this.state.assembly[this.state.selectIndex].assemblyName);
-    console.log(this.state.assemblyName);
     console.log(this.state.assembly[this.state.selectIndex]);
+    let newAssembly = {
+      modelMotherboard: this.state.modelMotherboard,
+      modelCPU: this.state.modelCPU,
+      modelCPUCooler: this.state.modelCPUCooler,
+      modelGPU: this.state.modelGPU,
+      modelPSU: this.state.modelPSU,
+      modelRAM: this.state.modelRAM,
+      modelSSD: this.state.modelSSD,
+      modelCase: this.state.modelCase,
+    };
+    console.log(newAssembly);
     const options = {
       method: 'POST',
       crossDomain: true,
@@ -87,8 +95,8 @@ export default class UpdateAssemblies extends Component {
       },
       // Converting the state object to JSON and setting it as the request body
       body: JSON.stringify({
-        assemblyName: this.state.assemblyName,
-        newAssembly: this.state.assembly,
+        assemblyName: this.state.assembly[this.state.selectIndex].assemblyName,
+        newAssembly,
       }),
     };
     const response = await fetch(
@@ -121,6 +129,18 @@ export default class UpdateAssemblies extends Component {
       showData: true,
       selectIndex: index,
     });
+    this.setState({ modelCase: this.state.assembly[index].modelCase });
+    this.setState({
+      modelMotherboard: this.state.assembly[index].modelMotherboard,
+    });
+    this.setState({ modelCPU: this.state.assembly[index].modelCPU });
+    this.setState({ modelSSD: this.state.assembly[index].modelSSD });
+    this.setState({ modelPSU: this.state.assembly[index].modelPSU });
+    this.setState({
+      modelCPUCooler: this.state.assembly[index].modelCPUCooler,
+    });
+    this.setState({ modelRAM: this.state.assembly[index].modelRAM });
+    this.setState({ modelGPU: this.state.assembly[index].modelGPU });
   };
   render() {
     return (
@@ -160,27 +180,15 @@ export default class UpdateAssemblies extends Component {
                       this.state.assembly[this.state.selectIndex].assemblyName
                     }
                     value={this.state.assemblyName}
-                    onChange={e =>
-                      this.setState({ assemblyName: e.target.value })
-                    }
+                    readOnly
                   />
 
                   <select
-                    // value={this.state.modelMotherboard}
-                    value={
-                      this.state.assembly[this.state.selectIndex]
-                        .modelMotherboard
-                    }
+                    value={this.state.modelMotherboard}
                     label='MOTHERBOARD'
                     onChange={e =>
                       this.setState({
-                        assembly: [
-                          ...this.state.assembly,
-                          {
-                            ...this.state.assembly[this.state.selectIndex],
-                            modelMotherboard: e.target.value,
-                          },
-                        ],
+                        modelMotherboard: e.target.value,
                       })
                     }
                     // onChange={e =>

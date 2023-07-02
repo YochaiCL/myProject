@@ -75,6 +75,19 @@ export default class AddAssembly extends Component {
       this.setState({
         showResult: 'The Assembly has been added',
       });
+      setTimeout(() => {
+        this.setState({
+          showResult: '',
+          modelCase: '',
+          modelMotherboard: '',
+          modelCPU: '',
+          modelCPUCooler: '',
+          modelGPU: '',
+          modelPSU: '',
+          modelRAM: '',
+          modelSSD: '',
+        });
+      }, 1000);
     } else if (result.status === 'Assembly already exist') {
       this.setState({
         showResult: 'This assembly already  exist',

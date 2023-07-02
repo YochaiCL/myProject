@@ -25,12 +25,13 @@ router.post('/', async (req, res) => {
     if (!oldUser) {
       return res.json({ status: 'User Not Exist' });
     }
+   
     const secret = jsonWebTokenSecret + oldUser.password;
     const token = jsonWebToken.sign(
       { email: oldUser.email, id: oldUser._id },
       secret,
       {
-        expiresIn: '5m',
+        expiresIn: '15m',
       }
     );
     const link = `http://localhost:5000/reset-password/${oldUser._id}/${token}`;

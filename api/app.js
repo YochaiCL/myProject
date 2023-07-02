@@ -93,8 +93,8 @@ app.use('/deleteComponents', deleteComponents);
 // Requiring and activating the routes for update components and assemblies
 const updateAssembly = require('./routes/update/updateAssembly/updateAssembly');
 app.use('/updateAssembly', updateAssembly);
-// const updateComponent = require('./routes/update/updateComponent/updateComponent');
-// app.use('/updateComponent', updateComponent);
+const updateComponent = require('./routes/update/updateComponent/updateComponent');
+app.use('/updateComponent', updateComponent);
 
 // Starting the server on port 5000.
 app.listen(5000, () => {

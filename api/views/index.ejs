@@ -41,9 +41,13 @@
         }
       }
     </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-      const status = '<%- JSON.stringify(status) %>';
+      status = '<%- JSON.stringify(status) %>';
       // check if the user is verify
+      if (JSON.parse(status) === 'not good password') {
+        alert('not good');
+      }
       if (JSON.parse(status) === 'verified') {
         if (confirm('Password have Change , Do you want to signIn?')) {
           window.location.href = 'http://localhost:3000/';
@@ -55,7 +59,7 @@
     <!-- when the user is verify the code will transfer to this location -->
     <h1><%= email%></h1>
     <p>Fill a new password</p>
-    <form action="" method="post">
+    <form id="myForm" action="" method="post">
       <input
         type="password"
         name="password"
