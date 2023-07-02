@@ -114,6 +114,7 @@ export default class DeleteComponents extends Component {
       <PageLayout>
         <Header h1Heading='Delete Components' />
         <select
+        className={style.select}
           value={this.state.selectedComponent}
           label='CPU Cooler'
           onChange={e => this.setState({ selectedComponent: e.target.value })}
@@ -208,7 +209,7 @@ export default class DeleteComponents extends Component {
         <div className={style.btn}>
           <Button text='Delete' fun={() => this.deleteComponent()} />
         </div>
-        <p>{this.state.showResult}</p>
+        <p className={style.showResult}>{this.state.showResult}</p>
       </PageLayout>
     );
   }

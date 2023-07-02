@@ -73,11 +73,11 @@ const compLearned = require('./routes/compLearned/compLearned');
 app.use('/compLearned', compLearned);
 
 // Requiring and activating the routes for assemblies data.
-const addAssemblies = require('./routes/addGetAssembly/addAssemlies/addAssemblies');
-const getAssemblies = require('./routes/addGetAssembly/getAssemblies/getAssemblies');
+const addAssemblies = require('./routes/addGetAssembly/addAssembly/addAssembly');
+const getAssemblies = require('./routes/addGetAssembly/getAssembly/getAssembly');
 const showComponentsData = require('./routes/addGetAssembly/getComponentsModels/getComponentsModels');
-app.use('/addAssemblies', addAssemblies);
-app.use('/getAssemblies', getAssemblies);
+app.use('/addAssembly', addAssemblies);
+app.use('/getAssembly', getAssemblies);
 app.use('/getComponentsModels', showComponentsData);
 
 // Requiring and activating the routes for getting and inserting question and answer
@@ -90,8 +90,11 @@ const deleteComponents = require('./routes/delete/deleteComponents/deleteCompone
 app.use('/deleteAssemblies', deleteAssemblies);
 app.use('/deleteComponents', deleteComponents);
 
-const updateAssembly = require('./routes/updateAssembly/updateAssembly');
+// Requiring and activating the routes for update components and assemblies
+const updateAssembly = require('./routes/update/updateAssembly/updateAssembly');
 app.use('/updateAssembly', updateAssembly);
+// const updateComponent = require('./routes/update/updateComponent/updateComponent');
+// app.use('/updateComponent', updateComponent);
 
 // Starting the server on port 5000.
 app.listen(5000, () => {

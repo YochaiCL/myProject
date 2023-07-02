@@ -39,3 +39,8 @@ input {
   right: 0;
   margin: auto;
 }
+
+.showResult {
+  text-align: center;
+  color: rgb(32, 86, 178);
+}

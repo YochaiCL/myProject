@@ -1,7 +1,6 @@
-// Import mongo
 const mongoose = require('mongoose');
 
-// define user type data
+// define question answer data
 const questionAnswerScehma = new mongoose.Schema(
   {
     userId: String,

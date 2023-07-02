@@ -114,7 +114,7 @@ export default class AddMotherboard extends Component {
             />
 
             <Button type='submit' text='submit' />
-            <p>{this.state.showResult}</p>
+            <p className={style.showResult}>{this.state.showResult}</p>
           </form>
         </section>
       </PageLayout>

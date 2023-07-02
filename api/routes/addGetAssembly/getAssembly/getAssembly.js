@@ -8,7 +8,7 @@ const Assemblies = mongoose.model('Assemblies');
  * Description - This function send all data in the server to the client
  * res - Send array of all data in the server
  */
-router.get('/assemblies', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     let array = await Assemblies.find({});
     res.send(array);

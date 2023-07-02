@@ -1,7 +1,7 @@
 // Import mongo
 const mongoose = require('mongoose');
 
-// define case type data
+// define test type data
 const testYourSelfScehma = new mongoose.Schema(
   {
     testName: String,

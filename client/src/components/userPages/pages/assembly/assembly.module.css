@@ -9,6 +9,7 @@
   display: block;
   max-width: 100%;
   height: auto;
+  border-radius: 50px;
 }
 
 .figure {
@@ -16,6 +17,9 @@
   display: flex;
   justify-content: space-evenly;
   gap: 20px;
+  max-width: 70%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /**************************************
@@ -43,6 +47,7 @@
 .box:hover .text {
   opacity: 0.8;
   color: black;
+    border-radius: 50px;
 }
 
 .box {

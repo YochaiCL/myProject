@@ -26,7 +26,7 @@ function Navbar() {
       <LinkNavbar nameLink='First Steps' toLink='/firstSteps' />
       <LinkNavbar nameLink='Assembly' toLink='/assembly' />
       <LinkNavbar nameLink='Test Your Self' toLink='/test' />
-      <LinkNavbar nameLink='Premium' toLink='/premium' />
+      <LinkNavbar nameLink='Question/Answer' toLink='/premium' />
     </nav>
   );
 }

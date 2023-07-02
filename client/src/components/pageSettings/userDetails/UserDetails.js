@@ -156,7 +156,7 @@ export default class UserData extends Component {
 
         {this.state.showLinkAdmin && (
           <section className={style.linkAdmin}>
-            <LinkLayout nameLink='Transfer to Admin home' toLink='/adminHome' />
+            <LinkLayout nameLink='Transfer to Admin home Page' toLink='/adminHome' />
           </section>
         )}
 

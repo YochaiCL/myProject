@@ -65,7 +65,7 @@ import AdminHome from './components/adminPages/pages/adminHome/AdminHome';
 import UserAdminData from './components/adminPages/pages/userAdminData/UserAdminData';
 
 import Add from './components/adminPages/pages/add/Add';
-import AddAssemblies from './components/adminPages/pages/add/addAssemblies/AddAssemblies';
+import AddAssembly from './components/adminPages/pages/add/addAssembly/AddAssembly';
 
 import AddCompLinks from './components/adminPages/pages/add/addComponents/AddCompLinks';
 import AddMotherboard from './components/adminPages/pages/add/addComponents/addMotherboard/AddMotherboard';
@@ -193,7 +193,7 @@ function App() {
           <Route path='/adminHome' element={<AdminHome />} />
           <Route path='/userAdmin' element={<UserAdminData />} />
           <Route path='/add' element={<Add />} />
-          <Route path='/addAssemblies' element={<AddAssemblies />} />
+          <Route path='/addAssemblies' element={<AddAssembly />} />
 
           <Route path='/delete' element={<Delete />} />
           <Route path='/deleteAssemblies' element={<DeleteAssemblies />} />

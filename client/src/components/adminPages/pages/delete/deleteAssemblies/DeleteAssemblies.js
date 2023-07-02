@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PageLayout from '../../../layouts/pageLayout/PageLayout';
 import Header from '../../../../pageSettings/header/Header';
-import style from './delteAssemlies.module.css';
+import style from './deleteAssemblies.module.css';
 import Button from '../../../../pageSettings/button/Button';
 
 /**
@@ -11,15 +11,14 @@ export default class DeleteAssemblies extends Component {
   state = {
     assembly: [{ assemblyName: 'Loading data...' }],
     deleteAssembly: '',
+    showResult: '',
   };
 
   /**
    * Description - This function get all assemblies from the database
    */
   async getAssembly() {
-    const response = await fetch(
-      'http://localhost:5000/getAssemblies/assemblies'
-    );
+    const response = await fetch('http://localhost:5000/getAssembly');
     const result = await response.json();
     console.log(result);
     this.setState({ assembly: result });
@@ -61,7 +60,9 @@ export default class DeleteAssemblies extends Component {
         .then(res => res.json())
         // Handling the response data
         .then(data => {
-          console.log(data);
+          if (data.status === 'Assembly deleted') {
+            this.setState({ showResult: 'Assembly have deleted' });
+          }
         });
     } catch (error) {
       console.log(error);
@@ -96,6 +97,7 @@ export default class DeleteAssemblies extends Component {
         <div className={style.btn}>
           <Button text='Delete' fun={() => this.deleteAssembly()} />
         </div>
+        <p className={style.showResult}>{this.state.showResult}</p>
       </PageLayout>
     );
   }

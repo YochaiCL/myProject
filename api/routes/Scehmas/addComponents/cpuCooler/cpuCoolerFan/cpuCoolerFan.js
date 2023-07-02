@@ -1,4 +1,3 @@
-// Import mongo
 const mongoose = require('mongoose');
 
 // define cpu Cooler Fan type data

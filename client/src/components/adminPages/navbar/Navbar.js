@@ -23,12 +23,12 @@ export default function Navbar() {
         toLink='/adminHome'
       />
 
-      <LinkNavbar nameLink='User Data' toLink='/userAdmin' />
+      <LinkNavbar nameLink='Admin Data' toLink='/userAdmin' />
       <LinkNavbar nameLink='Reports' toLink='/reports' />
       <LinkNavbar nameLink='Add' toLink='/add' />
       <LinkNavbar nameLink='Delete' toLink='/delete' />
       <LinkNavbar nameLink='Update' toLink='/update' />
-      <LinkNavbar nameLink='Front End' toLink='/userHome' />
+      <LinkNavbar nameLink='Client View' toLink='/userHome' />
     </nav>
   );
 }

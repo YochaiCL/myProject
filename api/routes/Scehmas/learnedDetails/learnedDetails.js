@@ -1,7 +1,6 @@
-// Import mongo
 const mongoose = require('mongoose');
 
-// define user type data
+// define learned data
 const compLearnedScehma = new mongoose.Schema(
   {
     userId: String,

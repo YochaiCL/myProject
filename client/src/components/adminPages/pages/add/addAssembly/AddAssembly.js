@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PageLayout from '../../../layouts/pageLayout/PageLayout';
 import Header from '../../../../pageSettings/header/Header';
 import Button from '../../../../pageSettings/button/Button';
-import style from './addAssemblies.module.css';
+import style from './addAssembly.module.css';
 
 /**
  * Description - This function add assembly to the database
@@ -68,10 +68,7 @@ export default class AddAssembly extends Component {
       },
       body: JSON.stringify(this.state),
     };
-    const response = await fetch(
-      'http://localhost:5000/addAssemblies',
-      options
-    );
+    const response = await fetch('http://localhost:5000/addAssembly', options);
     const result = await response.json();
     console.log(result);
     if (result.status === 'ok') {
@@ -258,7 +255,7 @@ export default class AddAssembly extends Component {
               })}
             </select>
             <Button type='submit' text='submit' />
-            <p>{this.state.showResult}</p>
+            <p className={style.showResult}>{this.state.showResult}</p>
           </form>
         </section>
       </PageLayout>

@@ -18,7 +18,7 @@ export default class MountedAssemblies extends Component {
    */
   async getAssembly() {
     const response = await fetch(
-      'http://localhost:5000/getAssemblies/assemblies'
+      'http://localhost:5000/getAssembly'
     );
     const result = await response.json();
     console.log(result);

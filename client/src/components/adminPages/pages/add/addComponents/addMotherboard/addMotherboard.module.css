@@ -30,3 +30,8 @@
   right: 0;
   margin-bottom: -4rem;
 }
+
+.showResult {
+  text-align: center;
+  color: rgb(32, 86, 178);
+}

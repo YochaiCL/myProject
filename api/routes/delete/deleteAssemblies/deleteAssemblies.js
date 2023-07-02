@@ -10,7 +10,7 @@ const Assemblies = mongoose.model('Assemblies');
 router.post('/', async (req, res) => {
   try {
     await Assemblies.findOneAndDelete({ assemblyName: req.body.assemblyName });
-    res.send({ status: 'Assembly deleted ' });
+    res.send({ status: 'Assembly deleted' });
   } catch (error) {
     res.send({ status: 'error' });
   }

@@ -1,7 +1,6 @@
-// Import mongo
 const mongoose = require('mongoose');
 
-// define case type data
+// define Assembly type data
 const assembliesScehma = new mongoose.Schema(
   {
     assemblyName: String,
