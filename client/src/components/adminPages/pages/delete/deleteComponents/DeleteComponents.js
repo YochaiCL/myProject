@@ -6,7 +6,7 @@ import Button from '../../../../pageSettings/button/Button';
 import Option from '../../../../pageSettings/option/Option';
 
 /**
- * Description - This class delete selected component from the database 
+ * Description - This class delete selected component from the database
  */
 export default class DeleteComponents extends Component {
   state = {
@@ -36,25 +36,25 @@ export default class DeleteComponents extends Component {
   };
 
   /**
-   * Description - This function get all components from database
+   * Description - This function get all components from database and sorted them
    */
   async getModels() {
     const response = await fetch('http://localhost:5000/getComponentsModels/');
     const result = await response.json();
-    console.log(result);
+    // console.log(result);
     // Updating the components array in state
     this.setState({ allArrays: result });
-    this.setState({ cpuArray: result.Cpu });
-    this.setState({ gpuArray: result.Gpu });
-    this.setState({ caseArray: result.Case });
-    this.setState({ cpuCoolerFanArray: result.CpuCoolerFan });
-    this.setState({ cpuCoolerLiquidArray: result.CpuCoolerLiquid });
+    this.setState({ cpuArray: result.Cpu.sort() });
+    this.setState({ gpuArray: result.Gpu.sort() });
+    this.setState({ caseArray: result.Case.sort() });
+    this.setState({ cpuCoolerFanArray: result.CpuCoolerFan.sort() });
+    this.setState({ cpuCoolerLiquidArray: result.CpuCoolerLiquid.sort() });
     this.setState({ motherboardArray: result.Motherboard });
-    this.setState({ psuArray: result.Psu });
-    this.setState({ ramArray: result.Ram });
-    this.setState({ ssdM2Array: result.SsdM2 });
-    this.setState({ ssdSataArray: result.SsdSata });
-    this.setState({ Fans: result.Fans });
+    this.setState({ psuArray: result.Psu.sort() });
+    this.setState({ ramArray: result.Ram.sort() });
+    this.setState({ ssdM2Array: result.SsdM2.sort() });
+    this.setState({ ssdSataArray: result.SsdSata.sort() });
+    this.setState({ Fans: result.Fans.sort() });
   }
 
   /**
@@ -97,8 +97,13 @@ export default class DeleteComponents extends Component {
               .then(res => res.json())
               .then(data => {
                 if (data.status === 'Component deleted') {
-                  this.setState({ showResult: 'Component have deleted' });
-                   this.getModels(); 
+                  this.setState({ showResult: 'Component have been deleted' });
+                  this.getModels();
+                  setTimeout(() => {
+                    this.setState({
+                      showResult: '',
+                    });
+                  }, 1000);
                 }
               });
           } catch (error) {
@@ -114,7 +119,7 @@ export default class DeleteComponents extends Component {
       <PageLayout>
         <Header h1Heading='Delete Components' />
         <select
-        className={style.select}
+          className={style.select}
           value={this.state.selectedComponent}
           label='CPU Cooler'
           onChange={e => this.setState({ selectedComponent: e.target.value })}
@@ -123,85 +128,88 @@ export default class DeleteComponents extends Component {
           <option value='' disabled>
             Select Component To Delete
           </option>
-          <Option optionText='Select CPU Cooler' />
-          {[
-            ...this.state.cpuCoolerFanArray,
-            ...this.state.cpuCoolerLiquidArray,
-          ].map(itemCpuCooler => {
-            return (
-              <option key={itemCpuCooler} value={itemCpuCooler}>
-                {itemCpuCooler}
-              </option>
-            );
-          })}
+          <Option optionText='Select Motherboard' />
 
-          <Option optionText='Select Case' />
-
-          {this.state.caseArray.map(itemCpuCooler => {
+          {this.state.motherboardArray.map(item => {
             return (
-              <option key={itemCpuCooler} value={itemCpuCooler}>
-                {itemCpuCooler}
+              <option key={item} value={item}>
+                {item}
               </option>
             );
           })}
           <Option optionText='Select CPU' />
 
-          {this.state.cpuArray.map(itemCpuCooler => {
+          {this.state.cpuArray.map(item => {
             return (
-              <option key={itemCpuCooler} value={itemCpuCooler}>
-                {itemCpuCooler}
+              <option key={item} value={item}>
+                {item}
               </option>
             );
           })}
-
-          <Option optionText='Select Fan' />
-
-          {this.state.Fans.map(itemCpuCooler => {
+          <Option optionText='Select CPU Cooler' />
+          {[
+            ...this.state.cpuCoolerFanArray,
+            ...this.state.cpuCoolerLiquidArray,
+          ].map(item => {
             return (
-              <option key={itemCpuCooler} value={itemCpuCooler}>
-                {itemCpuCooler}
+              <option key={item} value={item}>
+                {item}
               </option>
             );
           })}
-
           <Option optionText='Select GPU' />
 
-          {this.state.gpuArray.map(itemCpuCooler => {
+          {this.state.gpuArray.map(item => {
             return (
-              <option key={itemCpuCooler} value={itemCpuCooler}>
-                {itemCpuCooler}
+              <option key={item} value={item}>
+                {item}
               </option>
             );
           })}
+          <Option optionText='Select PSU' />
 
-          <Option optionText='Select Motherboard' />
-
-          {this.state.motherboardArray.map(itemCpuCooler => {
+          {this.state.psuArray.map(item => {
             return (
-              <option key={itemCpuCooler} value={itemCpuCooler}>
-                {itemCpuCooler}
+              <option key={item} value={item}>
+                {item}
               </option>
             );
           })}
 
           <Option optionText='Select SSD Sata' />
 
-          {[...this.state.ssdSataArray, ...this.state.ssdM2Array].map(
-            itemCpuCooler => {
-              return (
-                <option key={itemCpuCooler} value={itemCpuCooler}>
-                  {itemCpuCooler}
-                </option>
-              );
-            }
-          )}
-
-          <Option optionText='Select PSU' />
-
-          {this.state.psuArray.map(itemCpuCooler => {
+          {[...this.state.ssdSataArray, ...this.state.ssdM2Array].map(item => {
             return (
-              <option key={itemCpuCooler} value={itemCpuCooler}>
-                {itemCpuCooler}
+              <option key={item} value={item}>
+                {item}
+              </option>
+            );
+          })}
+
+          <Option optionText='Select RAM' />
+
+          {this.state.ramArray.map(item => {
+            return (
+              <option key={item} value={item}>
+                {item}
+              </option>
+            );
+          })}
+          <Option optionText='Select Fan' />
+
+          {this.state.Fans.map(item => {
+            return (
+              <option key={item} value={item}>
+                {item}
+              </option>
+            );
+          })}
+          <Option optionText='Select Case' />
+
+          {this.state.caseArray.map(item => {
+            return (
+              <option key={item} value={item}>
+                {item}
               </option>
             );
           })}

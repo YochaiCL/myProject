@@ -81,6 +81,7 @@ export default class ComponentLearnLayout extends Component {
             Write yourself a comment about this component
           </h2>
           <input
+          className={style.input}
             type='text'
             placeholder='please enter comment'
             value={this.state.comment}

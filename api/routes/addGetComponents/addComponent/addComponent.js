@@ -39,7 +39,7 @@ require('../../Scehmas/addComponents/cpu/cpu');
  */
 router.post('/cpu', async (req, res) => {
   try {
-    let array = await Cpu({ model: req.body.model });
+    let array = await Cpu.find({ model: req.body.model });
     if (array.length > 0) {
       res.send({ status: 'Model already exist' });
       return;

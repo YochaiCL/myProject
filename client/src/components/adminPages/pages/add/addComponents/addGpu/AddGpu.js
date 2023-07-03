@@ -42,9 +42,25 @@ export default class AddGpu extends Component {
     const result = await response.json();
     if (result.status === 'ok') {
       this.setState({ showResult: 'Component have added' });
+      setTimeout(() => {
+        this.setState({
+          showResult: '',
+          model: '',
+          bus: '',
+          memory: '',
+          engine_clock: '',
+          cuda_core: '',
+          maximum_display: '',
+          psu: '',
+        });
+      }, 1000);
     } else if (result.status === 'Model already exist') {
       this.setState({ showResult: 'Component already exist' });
-    } else if (result.status === 'Error !! check your details') {
+      setTimeout(() => {
+        this.setState({
+          showResult: '',
+        });
+      }, 1000);
     }
   }
   render() {
@@ -67,6 +83,7 @@ export default class AddGpu extends Component {
               type='text'
               placeholder='Enter Bus:'
               required
+              value={this.state.bus}
               onChange={e => this.setState({ bus: e.target.value })}
             />
 
@@ -75,6 +92,7 @@ export default class AddGpu extends Component {
               type='text'
               placeholder='Enter Memory:'
               required
+              value={this.state.memory}
               onChange={e => this.setState({ memory: e.target.value })}
             />
 
@@ -83,6 +101,7 @@ export default class AddGpu extends Component {
               type='text'
               placeholder='Enter Engine Clock:'
               required
+              value={this.state.engine_clock}
               onChange={e => this.setState({ engine_clock: e.target.value })}
             />
 
@@ -91,6 +110,7 @@ export default class AddGpu extends Component {
               type='text'
               placeholder='Enter Cuda Core:'
               required
+              value={this.state.cuda_core}
               onChange={e => this.setState({ cuda_core: e.target.value })}
             />
 
@@ -99,6 +119,7 @@ export default class AddGpu extends Component {
               type='text'
               placeholder='Enter Maximum Displays:'
               required
+              value={this.state.maximum_display}
               onChange={e => this.setState({ maximum_display: e.target.value })}
             />
 
@@ -107,6 +128,7 @@ export default class AddGpu extends Component {
               type='text'
               placeholder='Enter PSU:'
               required
+              value={this.state.psu}
               onChange={e => this.setState({ psu: e.target.value })}
             />
 

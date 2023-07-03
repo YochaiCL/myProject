@@ -38,9 +38,21 @@ export default class AddCpuCoolerFan extends Component {
     const result = await response.json();
     if (result.status === 'ok') {
       this.setState({ showResult: 'Component have added' });
+      setTimeout(() => {
+        this.setState({
+          showResult: '',
+          model: '',
+          socket_support: '',
+          fan_diameter: '',
+        });
+      }, 1000);
     } else if (result.status === 'Model already exist') {
       this.setState({ showResult: 'Component already exist' });
-    } else if (result.status === 'Error !! check your details') {
+      setTimeout(() => {
+        this.setState({
+          showResult: '',
+        });
+      }, 1000);
     }
   }
   render() {
@@ -66,6 +78,7 @@ export default class AddCpuCoolerFan extends Component {
               type='text'
               placeholder='Enter Socket Support:'
               required
+              value={this.state.socket_support}
               onChange={e => this.setState({ socket_support: e.target.value })}
             />
 
@@ -74,6 +87,7 @@ export default class AddCpuCoolerFan extends Component {
               type='text'
               placeholder='Enter Fan Diameter:'
               required
+              value={this.state.fan_diameter}
               onChange={e => this.setState({ fan_diameter: e.target.value })}
             />
 

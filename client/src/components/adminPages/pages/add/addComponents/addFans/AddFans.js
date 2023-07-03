@@ -37,9 +37,20 @@ export default class AddFans extends Component {
     const result = await response.json();
     if (result.status === 'ok') {
       this.setState({ showResult: 'Component have added' });
+      setTimeout(() => {
+        this.setState({
+          showResult: '',
+          model: '',
+          fan_size: '',
+        });
+      }, 1000);
     } else if (result.status === 'Model already exist') {
       this.setState({ showResult: 'Component already exist' });
-    } else if (result.status === 'Error !! check your details') {
+      setTimeout(() => {
+        this.setState({
+          showResult: '',
+        });
+      }, 1000);
     }
   }
   render() {
@@ -65,6 +76,7 @@ export default class AddFans extends Component {
               type='text'
               placeholder='Enter Fan Size:'
               required
+              value={this.state.fan_size}
               onChange={e => this.setState({ fan_size: e.target.value })}
             />
 

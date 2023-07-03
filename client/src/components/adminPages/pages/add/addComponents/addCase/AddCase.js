@@ -39,9 +39,22 @@ export default class AddCase extends Component {
     const result = await response.json();
     if (result.status === 'ok') {
       this.setState({ showResult: 'Component have added' });
+      setTimeout(() => {
+        this.setState({
+          showResult: '',
+          model: '',
+          form: '',
+          radiator_compatibility: '',
+          dimensions: '',
+        });
+      }, 1000);
     } else if (result.status === 'Model already exist') {
       this.setState({ showResult: 'Component already exist' });
-    } else if (result.status === 'Error !! check your details') {
+      setTimeout(() => {
+        this.setState({
+          showResult: '',
+        });
+      }, 1000);
     }
   }
 
@@ -66,12 +79,14 @@ export default class AddCase extends Component {
               placeholder='Enter Form:'
               required
               onChange={e => this.setState({ form: e.target.value })}
+              value={this.state.form}
             />
 
             <input
               type='text'
               placeholder='Enter Radiator Compatibility:'
               required
+              value={this.state.radiator_compatibility}
               onChange={e =>
                 this.setState({ radiator_compatibility: e.target.value })
               }
@@ -81,6 +96,7 @@ export default class AddCase extends Component {
               type='text'
               placeholder='Enter Dimensions:'
               required
+              value={this.state.dimensions}
               onChange={e => this.setState({ dimensions: e.target.value })}
             />
 

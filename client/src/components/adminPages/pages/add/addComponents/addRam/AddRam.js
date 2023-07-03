@@ -40,9 +40,23 @@ export default class AddRam extends Component {
     const result = await response.json();
     if (result.status === 'ok') {
       this.setState({ showResult: 'Component have added' });
+      setTimeout(() => {
+        this.setState({
+          showResult: '',
+          model: '',
+          memory_series: '',
+          memory_size: '',
+          latency: '',
+          speed: '',
+        });
+      }, 1000);
     } else if (result.status === 'Model already exist') {
       this.setState({ showResult: 'Component already exist' });
-    } else if (result.status === 'Error !! check your details') {
+      setTimeout(() => {
+        this.setState({
+          showResult: '',
+        });
+      }, 1000);
     }
   }
   render() {
@@ -64,6 +78,7 @@ export default class AddRam extends Component {
               className={style.input}
               type='text'
               placeholder='Enter Memory Series:'
+              value={this.state.memory_series}
               required
               onChange={e => this.setState({ memory_series: e.target.value })}
             />
@@ -72,6 +87,7 @@ export default class AddRam extends Component {
               className={style.input}
               type='text'
               placeholder='Enter Memory size:'
+              value={this.state.memory_size}
               required
               onChange={e => this.setState({ memory_size: e.target.value })}
             />
@@ -80,6 +96,7 @@ export default class AddRam extends Component {
               className={style.input}
               type='text'
               placeholder='Enter Latency:'
+              value={this.state.latency}
               required
               onChange={e => this.setState({ latency: e.target.value })}
             />
@@ -88,6 +105,7 @@ export default class AddRam extends Component {
               className={style.input}
               type='text'
               placeholder='Enter Speed:'
+              value={this.state.speed}
               required
               onChange={e => this.setState({ speed: e.target.value })}
             />

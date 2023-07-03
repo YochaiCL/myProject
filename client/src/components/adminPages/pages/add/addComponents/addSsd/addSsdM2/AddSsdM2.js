@@ -38,9 +38,21 @@ export default class AddSsdM2 extends Component {
     const result = await response.json();
     if (result.status === 'ok') {
       this.setState({ showResult: 'Component have added' });
+      setTimeout(() => {
+        this.setState({
+          showResult: '',
+          model: '',
+          capacity: '',
+          type: '',
+        });
+      }, 1000);
     } else if (result.status === 'Model already exist') {
       this.setState({ showResult: 'Component already exist' });
-    } else if (result.status === 'Error !! check your details') {
+      setTimeout(() => {
+        this.setState({
+          showResult: '',
+        });
+      }, 1000);
     }
   }
   render() {
@@ -65,6 +77,7 @@ export default class AddSsdM2 extends Component {
               type='text'
               placeholder='Enter Capacity:'
               required
+              value={this.state.capacity}
               onChange={e => this.setState({ capacity: e.target.value })}
             />
             <input
@@ -72,6 +85,7 @@ export default class AddSsdM2 extends Component {
               type='text'
               placeholder='Enter Type:'
               required
+              value={this.state.type}
               onChange={e => this.setState({ type: e.target.value })}
             />
 

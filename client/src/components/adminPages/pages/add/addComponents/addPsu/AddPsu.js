@@ -37,10 +37,21 @@ export default class AddPsu extends Component {
     const result = await response.json();
     if (result.status === 'ok') {
       this.setState({ showResult: 'Component have added' });
+       setTimeout(() => {
+         this.setState({
+           showResult: '',
+           model: '',
+           total_output: '',
+         });
+       }, 1000);
     } else if (result.status === 'Model already exist') {
       this.setState({ showResult: 'Component already exist' });
-    } else if (result.status === 'Error !! check your details') {
-    }
+       setTimeout(() => {
+         this.setState({
+           showResult: '',
+         });
+       }, 1000);
+    } 
   }
   render() {
     return (
@@ -65,6 +76,7 @@ export default class AddPsu extends Component {
               type='text'
               placeholder='Enter Total Output:'
               required
+              value={this.state.total_output}
               onChange={e => this.setState({ total_output: e.target.value })}
             />
 

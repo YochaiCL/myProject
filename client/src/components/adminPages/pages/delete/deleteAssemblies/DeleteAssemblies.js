@@ -15,12 +15,13 @@ export default class DeleteAssemblies extends Component {
   };
 
   /**
-   * Description - This function get all assemblies from the database
+   * Description - This function get all assemblies from the database and sort the array
    */
   async getAssembly() {
     const response = await fetch('http://localhost:5000/getAssembly');
     const result = await response.json();
-    console.log(result);
+    // console.log(result);
+    result.sort((a, b) => a.assemblyName.localeCompare(b.assemblyName));
     this.setState({ assembly: result });
   }
 
@@ -39,7 +40,7 @@ export default class DeleteAssemblies extends Component {
       console.log(item, this.state.deleteAssembly);
       return item.assemblyName !== this.state.deleteAssembly;
     });
-    console.log(result);
+    // console.log(result);
     this.setState({ assembly: result });
     try {
       fetch('http://localhost:5000/deleteAssemblies', {
@@ -61,7 +62,12 @@ export default class DeleteAssemblies extends Component {
         // Handling the response data
         .then(data => {
           if (data.status === 'Assembly deleted') {
-            this.setState({ showResult: 'Assembly have deleted' });
+            this.setState({ showResult: 'Assembly have been deleted' });
+            setTimeout(() => {
+              this.setState({
+                showResult: '',
+              });
+            }, 1000);
           }
         });
     } catch (error) {
@@ -89,6 +95,7 @@ export default class DeleteAssemblies extends Component {
               // By combining the assemblyName and index in the key, you create a unique identifier for each option in the select element.
               key={`${itemAssembly.assemblyName}-${index}`}
               value={itemAssembly.assemblyName}
+              className={style.text}
             >
               {itemAssembly.assemblyName}
             </option>

@@ -4,6 +4,9 @@ import Header from '../../../../pageSettings/header/Header';
 import style from './updateAssemblies.module.css';
 import Button from '../../../../pageSettings/button/Button';
 
+/**
+ * Description - This class update the assembly data and save it in database
+ */
 export default class UpdateAssemblies extends Component {
   state = {
     assembly: [{ assemblyName: 'Loading data...' }],
@@ -32,47 +35,44 @@ export default class UpdateAssemblies extends Component {
     showResult: '',
   };
 
+  /**
+   * Description - This function get the data of all assemblies in database and sorted the array
+   */
   async getAssembly() {
     const response = await fetch('http://localhost:5000/getAssembly');
     const result = await response.json();
-    console.log(result);
+    // console.log(result);
+    result.sort((a, b) => a.assemblyName.localeCompare(b.assemblyName));
     this.setState({ assembly: result });
   }
 
-  // Asynchronous function to fetch component models
+  /**
+   * Description - This function get the model components of the selected assembly
+   */
   async getModels() {
-    // Fetching component models from the server
     const response = await fetch('http://localhost:5000/getComponentsModels');
-    // Parsing the response as JSON
     const result = await response.json();
-    // Updating the CPU array in the component state with fetched models
+    // Updating the components array in the component state
     this.setState({ cpuArray: result.Cpu });
-    // Updating the GPU array in the component state with fetched models
     this.setState({ gpuArray: result.Gpu });
-    // Updating the CASE array in the component state with fetched models
     this.setState({ caseArray: result.Case });
-    // Updating the CPU COOLER FAN array in the component state with fetched models
     this.setState({ cpuCoolerFanArray: result.CpuCoolerFan });
-    // Updating the CPU COOLER LIQUID array in the component state with fetched models
     this.setState({ cpuCoolerLiquidArray: result.CpuCoolerLiquid });
-    // Updating the MOTHERBOARD array in the component state with fetched models
     this.setState({ motherboardArray: result.Motherboard });
-    // Updating the PSU array in the component state with fetched models
     this.setState({ psuArray: result.Psu });
-    // Updating the RAM array in the component state with fetched models
     this.setState({ ramArray: result.Ram });
-    // Updating the SSD M2 array in the component state with fetched models
     this.setState({ ssdM2Array: result.SsdM2 });
-    // Updating the SSD SATA array in the component state with fetched models
     this.setState({ ssdSataArray: result.SsdSata });
   }
 
-  // Asynchronous function to handle form submission
+  /**
+   * Description - This function update the selected assembly by the entered data
+   * @param {*} e - Data entered by the Admin
+   */
   async handleSubmit(e) {
-    // Preventing the default form submission behavior
     e.preventDefault();
-    console.log(this.state.assembly[this.state.selectIndex].assemblyName);
-    console.log(this.state.assembly[this.state.selectIndex]);
+    // console.log(this.state.assembly[this.state.selectIndex].assemblyName);
+    // console.log(this.state.assembly[this.state.selectIndex]);
     let newAssembly = {
       modelMotherboard: this.state.modelMotherboard,
       modelCPU: this.state.modelCPU,
@@ -83,17 +83,15 @@ export default class UpdateAssemblies extends Component {
       modelSSD: this.state.modelSSD,
       modelCase: this.state.modelCase,
     };
-    console.log(newAssembly);
+    // console.log(newAssembly);
     const options = {
       method: 'POST',
       crossDomain: true,
-      // Setting headers for the HTTP request
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
         'Accept-Control-Allow-Origin': '*',
       },
-      // Converting the state object to JSON and setting it as the request body
       body: JSON.stringify({
         assemblyName: this.state.assembly[this.state.selectIndex].assemblyName,
         newAssembly,
@@ -103,17 +101,11 @@ export default class UpdateAssemblies extends Component {
       'http://localhost:5000/updateAssembly',
       options
     );
-    // Parsing the response as JSON
     const result = await response.json();
     console.log(result);
-    // Checking if the request was successful
-    if (result.status === 'ok') {
+    if (result.status === 'true') {
       this.setState({
-        showResult: 'The Assembly has been added',
-      });
-    } else if (result.status === 'Assembly already exist') {
-      this.setState({
-        showResult: 'This assembly already  exist',
+        showResult: 'The Assembly has updated',
       });
     }
   }
@@ -174,7 +166,9 @@ export default class UpdateAssemblies extends Component {
                   onSubmit={this.handleSubmit.bind(this)}
                   className={style.form}
                 >
+                  <p>Assembly name</p>
                   <input
+                    className={style.input}
                     type='text'
                     placeholder={
                       this.state.assembly[this.state.selectIndex].assemblyName
@@ -183,7 +177,9 @@ export default class UpdateAssemblies extends Component {
                     readOnly
                   />
 
+                  <p>Motherboard</p>
                   <select
+                    className={style.select}
                     value={this.state.modelMotherboard}
                     label='MOTHERBOARD'
                     onChange={e =>
@@ -191,9 +187,6 @@ export default class UpdateAssemblies extends Component {
                         modelMotherboard: e.target.value,
                       })
                     }
-                    // onChange={e =>
-                    //   this.setState({ modelMotherboard: e.target.value })
-                    // }
                   >
                     <option value='' disabled>
                       {
@@ -210,7 +203,9 @@ export default class UpdateAssemblies extends Component {
                     })}
                   </select>
 
+                  <p>CPU</p>
                   <select
+                    className={style.select}
                     value={this.state.modelCPU}
                     label='CPU'
                     onChange={e => this.setState({ modelCPU: e.target.value })}
@@ -227,7 +222,9 @@ export default class UpdateAssemblies extends Component {
                     })}
                   </select>
 
+                  <p>CPU Cooler</p>
                   <select
+                    className={style.select}
                     value={this.state.modelCPUCooler}
                     label='CPU Cooler'
                     onChange={e =>
@@ -252,7 +249,9 @@ export default class UpdateAssemblies extends Component {
                     })}
                   </select>
 
+                  <p>GPU</p>
                   <select
+                    className={style.select}
                     value={this.state.modelGPU}
                     label='GPU'
                     onChange={e => this.setState({ modelGPU: e.target.value })}
@@ -269,7 +268,9 @@ export default class UpdateAssemblies extends Component {
                     })}
                   </select>
 
+                  <p>PSU</p>
                   <select
+                    className={style.select}
                     value={this.state.modelPSU}
                     label='PSU'
                     onChange={e => this.setState({ modelPSU: e.target.value })}
@@ -286,7 +287,9 @@ export default class UpdateAssemblies extends Component {
                     })}
                   </select>
 
+                  <p>Ram</p>
                   <select
+                    className={style.select}
                     value={this.state.modelRAM}
                     label='RAM'
                     onChange={e => this.setState({ modelRAM: e.target.value })}
@@ -303,7 +306,9 @@ export default class UpdateAssemblies extends Component {
                     })}
                   </select>
 
+                  <p>SSD</p>
                   <select
+                    className={style.select}
                     value={this.state.modelSSD}
                     label='SSD'
                     onChange={e => this.setState({ modelSSD: e.target.value })}
@@ -322,7 +327,9 @@ export default class UpdateAssemblies extends Component {
                     )}
                   </select>
 
+                  <p>Case</p>
                   <select
+                    className={style.select}
                     value={this.state.modelCase}
                     label='CASE'
                     onChange={e => this.setState({ modelCase: e.target.value })}
@@ -338,9 +345,11 @@ export default class UpdateAssemblies extends Component {
                       );
                     })}
                   </select>
+                  <div className={style.btn}>
+                    <Button type='submit' text='submit' />
+                  </div>
 
-                  <Button type='submit' text='submit' />
-                  <p>{this.state.showResult}</p>
+                  <p className={style.showResult}>{this.state.showResult}</p>
                 </form>
               </section>
             </section>

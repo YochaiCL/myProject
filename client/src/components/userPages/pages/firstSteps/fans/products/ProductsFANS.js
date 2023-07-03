@@ -19,7 +19,8 @@ export default class productsFANS extends Component {
   async getProducts() {
     const response = await fetch('http://localhost:5000/getComponent/fans');
     const result = await response.json();
-    console.log(result);
+    result.sort((a, b) => a.model.localeCompare(b.model));
+    // console.log(result);
     this.setState({ products: result });
   }
 

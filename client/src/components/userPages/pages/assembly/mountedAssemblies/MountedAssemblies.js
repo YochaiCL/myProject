@@ -21,7 +21,8 @@ export default class MountedAssemblies extends Component {
       'http://localhost:5000/getAssembly'
     );
     const result = await response.json();
-    console.log(result);
+    result.sort((a, b) => a.assemblyName.localeCompare(b.assemblyName));
+    // console.log(result);
     this.setState({ assembly: result });
   }
 

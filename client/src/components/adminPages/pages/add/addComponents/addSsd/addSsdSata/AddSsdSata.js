@@ -38,9 +38,21 @@ export default class AddSsdSata extends Component {
     const result = await response.json();
     if (result.status === 'ok') {
       this.setState({ showResult: 'Component have added' });
+      setTimeout(() => {
+        this.setState({
+          showResult: '',
+          model: '',
+          capacity: '',
+          type: '',
+        });
+      }, 1000);
     } else if (result.status === 'Model already exist') {
       this.setState({ showResult: 'Component already exist' });
-    } else if (result.status === 'Error !! check your details') {
+      setTimeout(() => {
+        this.setState({
+          showResult: '',
+        });
+      }, 1000);
     }
   }
   render() {
@@ -65,6 +77,7 @@ export default class AddSsdSata extends Component {
               className={style.input}
               type='text'
               placeholder='Enter Capacity:'
+              value={this.state.capacity}
               required
               onChange={e => this.setState({ capacity: e.target.value })}
             />
@@ -73,6 +86,7 @@ export default class AddSsdSata extends Component {
               className={style.input}
               type='text'
               placeholder='Enter Type:'
+              value={this.state.type}
               required
               onChange={e => this.setState({ type: e.target.value })}
             />

@@ -43,9 +43,25 @@ export default class AddCpu extends Component {
     const result = await response.json();
     if (result.status === 'ok') {
       this.setState({ showResult: 'Component have added' });
+      setTimeout(() => {
+        this.setState({
+          showResult: '',
+          model: '',
+          cores: '',
+          threads: '',
+          frequency: '',
+          cache: '',
+          memory_type: '',
+          socket: '',
+        });
+      }, 1000);
     } else if (result.status === 'Model already exist') {
       this.setState({ showResult: 'Component already exist' });
-    } else if (result.status === 'Error !! check your details') {
+      setTimeout(() => {
+        this.setState({
+          showResult: '',
+        });
+      }, 1000);
     }
   }
   render() {
@@ -69,6 +85,7 @@ export default class AddCpu extends Component {
               placeholder='Enter Cors:'
               required
               onChange={e => this.setState({ cores: e.target.value })}
+              value={this.state.cores}
             />
 
             <input
@@ -76,6 +93,7 @@ export default class AddCpu extends Component {
               placeholder='Enter Threads:'
               required
               onChange={e => this.setState({ threads: e.target.value })}
+              value={this.state.threads}
             />
 
             <input
@@ -83,6 +101,7 @@ export default class AddCpu extends Component {
               placeholder='Enter Frequency:'
               required
               onChange={e => this.setState({ frequency: e.target.value })}
+              value={this.state.frequency}
             />
 
             <input
@@ -90,6 +109,7 @@ export default class AddCpu extends Component {
               placeholder='Enter Cache:'
               required
               onChange={e => this.setState({ cache: e.target.value })}
+              value={this.state.cache}
             />
 
             <input
@@ -97,6 +117,7 @@ export default class AddCpu extends Component {
               placeholder='Enter Type:'
               required
               onChange={e => this.setState({ memory_type: e.target.value })}
+              value={this.state.memory_type}
             />
 
             <input
@@ -104,6 +125,7 @@ export default class AddCpu extends Component {
               placeholder='Enter Socket Type:'
               required
               onChange={e => this.setState({ socket: e.target.value })}
+              value={this.state.socket}
             />
 
             <Button type='submit' text='submit' />

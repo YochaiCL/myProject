@@ -42,9 +42,25 @@ export default class AddMotherboard extends Component {
     const result = await response.json();
     if (result.status === 'ok') {
       this.setState({ showResult: 'Component have added' });
+      setTimeout(() => {
+        this.setState({
+          showResult: '',
+          model: '',
+          cpu_socket_support: '',
+          chipset: '',
+          memory: '',
+          form_factor: '',
+          expansion_slots: '',
+          M2Slot: '',
+        });
+      }, 1000);
     } else if (result.status === 'Model already exist') {
       this.setState({ showResult: 'Component already exist' });
-    } else if (result.status === 'Error !! check your details') {
+      setTimeout(() => {
+        this.setState({
+          showResult: '',
+        });
+      }, 1000);
     }
   }
 
@@ -68,6 +84,7 @@ export default class AddMotherboard extends Component {
               type='text'
               placeholder='Enter Cpu Socket:'
               required
+              value={this.state.cpu_socket_support}
               onChange={e =>
                 this.setState({ cpu_socket_support: e.target.value })
               }
@@ -78,6 +95,7 @@ export default class AddMotherboard extends Component {
               type='text'
               placeholder='Enter Chip set:'
               required
+              value={this.state.chipset}
               onChange={e => this.setState({ chipset: e.target.value })}
             />
 
@@ -86,6 +104,7 @@ export default class AddMotherboard extends Component {
               type='text'
               placeholder='Enter Memory:'
               required
+              value={this.state.memory}
               onChange={e => this.setState({ memory: e.target.value })}
             />
 
@@ -94,6 +113,7 @@ export default class AddMotherboard extends Component {
               type='text'
               placeholder='Enter Form Factor:'
               required
+              value={this.state.form_factor}
               onChange={e => this.setState({ form_factor: e.target.value })}
             />
 
@@ -102,6 +122,7 @@ export default class AddMotherboard extends Component {
               type='text'
               placeholder='Enter Expansion Slots:'
               required
+              value={this.state.expansion_slots}
               onChange={e => this.setState({ expansion_slots: e.target.value })}
             />
 
@@ -110,6 +131,7 @@ export default class AddMotherboard extends Component {
               type='text'
               placeholder='Enter M.2 slot:'
               required
+              value={this.state.M2Slot}
               onChange={e => this.setState({ M2Slot: e.target.value })}
             />
 

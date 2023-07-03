@@ -3,7 +3,6 @@ import PageLayout from '../../../../../layouts/pageLayout/PageLayout';
 import Header from '../../../../../../pageSettings/header/Header';
 import style from '../../../motherboard/products/productsMOTHERBOARD.module.css';
 
-
 /**
  * Description - This class display the ssd sata products
  */
@@ -20,7 +19,8 @@ export default class ProductsSsdSata extends Component {
   async getProducts() {
     const response = await fetch('http://localhost:5000/getComponent/ssdSata');
     const result = await response.json();
-    console.log(result);
+    result.sort((a, b) => a.model.localeCompare(b.model));
+    // console.log(result);
     this.setState({ products: result });
   }
 
