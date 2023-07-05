@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Button from '../../../../../../pageSettings/button/Button';
+import Button from '../../../../../../commonComponents/button/Button';
 import PageLayout from '../../../../../layouts/pageLayout/PageLayout';
-import Header from '../../../../../../pageSettings/header/Header';
+import Header from '../../../../../../commonComponents/header/Header';
 import style from '../../addMotherboard/addMotherboard.module.css';
 
 /**

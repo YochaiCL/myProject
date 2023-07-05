@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PageLayout from '../../../../layouts/pageLayout/PageLayout';
-import Header from '../../../../../pageSettings/header/Header';
+import Header from '../../../../../commonComponents/header/Header';
 import style from './addSsd.module.css';
-import LinkLayout from '../../../../../pageSettings/linkLayout/LinkLayout';
+import LinkLayout from '../../../../../commonComponents/linkLayout/LinkLayout';
 
 export default class AddSsd extends Component {
   render() {

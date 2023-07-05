@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import Button from '../../../../../pageSettings/button/Button';
+import Button from '../../../../../commonComponents/button/Button';
 import PageLayout from '../../../../layouts/pageLayout/PageLayout';
-import Header from '../../../../../pageSettings/header/Header';
+import Header from '../../../../../commonComponents/header/Header';
 import style from './updateMotherboard.module.css';
 
+/**
+ * Description - This class update the component data by the user inputs
+ */
 export default class UpdateMotherboard extends Component {
-  // Initializing state variables for component properties
   state = {
     products: [{ model: 'Loading data...' }],
     showData: false,
@@ -20,50 +22,51 @@ export default class UpdateMotherboard extends Component {
     showResult: '',
   };
 
+  /**
+   * Description - This function activate the getProducts function when the wab is upload
+   */
   componentDidMount() {
     this.getProducts();
   }
 
+  /**
+   * Description - This function set the value of the inputs when we click on the selected component and show his data
+   * @param {*} index - Selected component
+   */
   handelClick = index => {
     this.setState({
       showData: true,
       selectIndex: index,
-    });
-    this.setState({
       model: this.state.products[index].model,
-    });
-    this.setState({
       cpu_socket_support: this.state.products[index].cpu_socket_support,
-    });
-    this.setState({
       chipset: this.state.products[index].chipset,
-    });
-    this.setState({
       memory: this.state.products[index].memory,
-    });
-    this.setState({
       form_factor: this.state.products[index].form_factor,
-    });
-    this.setState({
       expansion_slots: this.state.products[index].expansion_slots,
-    });
-    this.setState({
       M2Slot: this.state.products[index].M2Slot,
     });
   };
+
+  /**
+   * Description - This function get the component data from the server
+   */
   async getProducts() {
     const response = await fetch(
       'http://localhost:5000/getComponent/motherboard'
     );
     const result = await response.json();
-    console.log(result);
+     result.sort((a, b) => a.model.localeCompare(b.model));
+    // console.log(result);
     this.setState({ products: result });
   }
 
+  /**
+   * Description - This function update the component data in the server
+   * @param {*} e  - inputs to prevent from the page to refresh
+   */
   async handleSubmit(e) {
-    // Preventing the default form submission behavior
     e.preventDefault();
-    console.log(this.state.model);
+    // console.log(this.state.model);
     let newComponent = {
       model: this.state.model,
       cpu_socket_support: this.state.cpu_socket_support,
@@ -73,17 +76,15 @@ export default class UpdateMotherboard extends Component {
       expansion_slots: this.state.expansion_slots,
       M2Slot: this.state.M2Slot,
     };
-    console.log(newComponent);
+    // console.log(newComponent);
     const options = {
       method: 'POST',
       crossDomain: true,
-      // Setting headers for the HTTP request
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
         'Accept-Control-Allow-Origin': '*',
       },
-      // Converting the state object to JSON and setting it as the request body
       body: JSON.stringify({
         model: this.state.model,
         newComponent,
@@ -93,18 +94,18 @@ export default class UpdateMotherboard extends Component {
       'http://localhost:5000/updateComponent/motherboard',
       options
     );
-    // Parsing the response as JSON
     const result = await response.json();
-    console.log(result);
-    // Checking if the request was successful
-    if (result.status === 'ok') {
+    // console.log(result);
+    if (result.status === 'true') {
       this.setState({
-        showResult: 'The Assembly has been added',
+        showResult: 'The component has been update',
       });
-    } else if (result.status === 'Assembly already exist') {
-      this.setState({
-        showResult: 'This assembly already  exist',
-      });
+      setTimeout(() => {
+        this.setState({
+          showResult: '',
+        });
+      }, 1000);
+      this.getProducts();
     }
   }
 
@@ -137,17 +138,23 @@ export default class UpdateMotherboard extends Component {
                     onSubmit={this.handleSubmit.bind(this)}
                     className={`${style.form} ${style.smallForm}`}
                   >
+                    <p>
+                      Model
+                      <span className={style.span}> - Read Only</span>
+                    </p>
                     <input
+                      className={style.input}
                       type='text'
                       placeholder={
                         this.state.products[this.state.selectIndex].model
                       }
                       value={this.state.model}
-                     
                       readOnly
                     />
-
+                    <p>CPU Socket Support</p>
                     <input
+                      value={this.state.cpu_socket_support}
+                      className={style.input}
                       type='text'
                       placeholder={
                         this.state.products[this.state.selectIndex]
@@ -157,8 +164,10 @@ export default class UpdateMotherboard extends Component {
                         this.setState({ cpu_socket_support: e.target.value })
                       }
                     />
-
+                    <p>ChipSet</p>
                     <input
+                      value={this.state.chipset}
+                      className={style.input}
                       type='text'
                       placeholder={
                         this.state.products[this.state.selectIndex].chipset
@@ -169,8 +178,10 @@ export default class UpdateMotherboard extends Component {
                         })
                       }
                     />
-
+                    <p>Memory</p>
                     <input
+                      value={this.state.memory}
+                      className={style.input}
                       type='text'
                       placeholder={
                         this.state.products[this.state.selectIndex].memory
@@ -181,8 +192,10 @@ export default class UpdateMotherboard extends Component {
                         })
                       }
                     />
-
+                    <p>Form Factory</p>
                     <input
+                      value={this.state.form_factor}
+                      className={style.input}
                       type='text'
                       placeholder={
                         this.state.products[this.state.selectIndex].form_factor
@@ -193,8 +206,10 @@ export default class UpdateMotherboard extends Component {
                         })
                       }
                     />
-
+                    <p>Expansion Slots</p>
                     <input
+                      value={this.state.expansion_slots}
+                      className={style.input}
                       type='text'
                       placeholder={
                         this.state.products[this.state.selectIndex]
@@ -206,8 +221,10 @@ export default class UpdateMotherboard extends Component {
                         })
                       }
                     />
-
+                    <p>M2 Slots</p>
                     <input
+                      value={this.state.M2Slot}
+                      className={style.input}
                       type='text'
                       placeholder={
                         this.state.products[this.state.selectIndex].M2Slot
@@ -219,8 +236,11 @@ export default class UpdateMotherboard extends Component {
                       }
                     />
 
-                    <Button type='submit' text='submit' />
-                    <p>{this.state.showResult}</p>
+                    <div className={style.btn}>
+                      <Button type='submit' text='submit' />
+                    </div>
+
+                    <p className={style.showResult}>{this.state.showResult}</p>
                   </form>
                 </section>
               </div>

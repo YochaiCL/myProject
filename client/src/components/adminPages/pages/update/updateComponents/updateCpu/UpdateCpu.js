@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import Button from '../../../../../pageSettings/button/Button';
+import Button from '../../../../../commonComponents/button/Button';
 import PageLayout from '../../../../layouts/pageLayout/PageLayout';
-import Header from '../../../../../pageSettings/header/Header';
+import Header from '../../../../../commonComponents/header/Header';
 import style from '../updateMotherboard/updateMotherboard.module.css';
 
+/**
+ * Description - This class update the component data by the user inputs
+ */
 export default class UpdateCpu extends Component {
-  // Initializing state variables for component properties
   state = {
     products: [{ model: 'Loading data...' }],
     showData: false,
@@ -20,30 +22,59 @@ export default class UpdateCpu extends Component {
     showResult: '',
   };
 
+  /**
+   * Description - This function activate the getProducts function when the wab is upload
+   */
   componentDidMount() {
     this.getProducts();
   }
 
+  /**
+   * Description - This function set the value of the inputs when we click on the selected component and show his data
+   * @param {*} index - Selected component
+   */
   handelClick = index => {
     this.setState({
       showData: true,
       selectIndex: index,
+      model: this.state.products[index].model,
+      cores: this.state.products[index].cores,
+      threads: this.state.products[index].threads,
+      frequency: this.state.products[index].frequency,
+      cache: this.state.products[index].cache,
+      memory_type: this.state.products[index].memory_type,
+      socket: this.state.products[index].socket,
     });
   };
+
+  /**
+   * Description - This function get the component data from the server
+   */
   async getProducts() {
     const response = await fetch('http://localhost:5000/getComponent/cpu');
     const result = await response.json();
-    console.log(result);
+     result.sort((a, b) => a.model.localeCompare(b.model));
+    // console.log(result);
     this.setState({ products: result });
   }
 
-  // Asynchronous function to handle form submission
+  /**
+   * Description - This function update the component data in the server
+   * @param {*} e  - inputs to prevent from the page to refresh
+   */
   async handleSubmit(e) {
-    // Preventing the default form submission behavior
     e.preventDefault();
-    console.log(this.state);
+    // console.log(this.state);
+    let newComponent = {
+      model: this.state.model,
+      cores: this.state.cores,
+      threads: this.state.threads,
+      frequency: this.state.frequency,
+      cache: this.state.cache,
+      memory_type: this.state.memory_type,
+      socket: this.state.socket,
+    };
     const options = {
-      // Setting headers for the HTTP request
       method: 'POST',
       crossDomain: true,
       headers: {
@@ -51,26 +82,24 @@ export default class UpdateCpu extends Component {
         Accept: 'application/json',
         'Accept-Control-Allow-Origin': '*',
       },
-      // Converting the state object to JSON and setting it as the request body
-      body: JSON.stringify(this.state),
+      body: JSON.stringify({
+        model: this.state.model,
+        newComponent,
+      }),
     };
-    // Sending the POST request with options
     const response = await fetch(
-      'http://localhost:5000/addComponent/cpu',
+      'http://localhost:5000/updateComponent/cpu',
       options
     );
-    // Parsing the response as JSON
     const result = await response.json();
-
-    // Checking the status of the response
-
-    // Updating the state to display a success message
-    if (result.status === 'ok') {
-      this.setState({ showResult: 'Component have added' });
-    } // Handling different response statuses
-    else if (result.status === 'Model already exist') {
-      this.setState({ showResult: 'Component already exist' });
-    } else if (result.status === 'Error !! check your details') {
+    if (result.status === 'true') {
+      this.setState({ showResult: 'The component has been update' });
+      setTimeout(() => {
+        this.setState({
+          showResult: '',
+        });
+      }, 1000);
+      this.getProducts();
     }
   }
   render() {
@@ -102,82 +131,88 @@ export default class UpdateCpu extends Component {
                     onSubmit={this.handleSubmit.bind(this)}
                     className={`${style.form} ${style.smallForm}`}
                   >
+                    <p>
+                      Model
+                      <span className={style.span}> - Read Only</span>
+                    </p>
                     <input
+                      readOnly
                       type='text'
                       placeholder={
                         this.state.products[this.state.selectIndex].model
                       }
                       value={this.state.model}
-                      required
                       onChange={e => this.setState({ model: e.target.value })}
                     />
-
+                    <p>Cores</p>
                     <input
+                      value={this.state.cores}
                       type='text'
                       placeholder={
                         this.state.products[this.state.selectIndex].cores
                       }
-                      required
                       onChange={e => this.setState({ cores: e.target.value })}
                     />
-
+                    <p>Threads</p>
                     <input
+                      value={this.state.threads}
                       type='text'
                       placeholder={
                         this.state.products[this.state.selectIndex].threads
                       }
-                      required
                       onChange={e =>
                         this.setState({
                           threads: e.target.value,
                         })
                       }
                     />
-
+                    <p>Frequency</p>
                     <input
+                      value={this.state.frequency}
                       type='text'
                       placeholder={
                         this.state.products[this.state.selectIndex].frequency
                       }
-                      required
                       onChange={e =>
                         this.setState({ frequency: e.target.value })
                       }
                     />
-
+                    <p>Cache</p>
                     <input
+                      value={this.state.cache}
                       type='text'
                       placeholder={
                         this.state.products[this.state.selectIndex].cache
                       }
-                      required
                       onChange={e =>
                         this.setState({ frequency: e.target.value })
                       }
                     />
-
+                    <p>Memory Type</p>
                     <input
+                      value={this.state.memory_type}
                       type='text'
                       placeholder={
                         this.state.products[this.state.selectIndex].memory_type
                       }
-                      required
                       onChange={e =>
                         this.setState({ memory_type: e.target.value })
                       }
                     />
-
+                    <p>Socket</p>
                     <input
+                      value={this.state.socket}
                       type='text'
                       placeholder={
                         this.state.products[this.state.selectIndex].socket
                       }
-                      required
                       onChange={e => this.setState({ socket: e.target.value })}
                     />
 
-                    <Button type='submit' text='submit' />
-                    <p>{this.state.showResult}</p>
+                    <div className={style.btn}>
+                      <Button type='submit' text='submit' />
+                    </div>
+                    <p className={style.showResult}>{this.state.showResult}</p>
                   </form>
                 </section>
               </div>

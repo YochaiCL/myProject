@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PageLayout from '../../../layouts/pageLayout/PageLayout'
-import Header from '../../../../pageSettings/header/Header'
+import Header from '../../../../commonComponents/header/Header';
 
 export default class PremiumReports extends Component {
   render() {

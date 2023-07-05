@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Navbar from '../../navbar/Navbar';
-import Footer from '../../../pageSettings/footer/Footer';
+import Footer from '../../../commonComponents/footer/Footer';
 import style from './componentLearnLayout.module.css';
-import Button from '../../../pageSettings/button/Button';
+import Button from '../../../commonComponents/button/Button';
 
 /**
  * Description - This function organize the products information page

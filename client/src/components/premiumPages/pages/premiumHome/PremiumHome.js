@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Header from '../../../pageSettings/header/Header';
+import Header from '../../../commonComponents/header/Header';
 import style from './premiumHome.module.css';
 import PageLayout from '../../layouts/pageLayout/PageLayout';
 

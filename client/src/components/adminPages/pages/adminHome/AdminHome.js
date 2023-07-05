@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Header from '../../../pageSettings/header/Header';
+import Header from '../../../commonComponents/header/Header';
 import style from './adminHome.module.css';
 import DiagnosticInformationLayout from '../../layouts/diagnosticInformationLayout/DiagnosticInformationLayout';
 import PageLayout from '../../layouts/pageLayout/PageLayout';

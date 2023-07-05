@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from '../../../images/navbar/logo.png';
 import style from './navbar.module.css';
-import LinkNavbar from '../../pageSettings/linkNavbar/LinkNavbar';
+import LinkNavbar from '../../commonComponents/linkNavbar/LinkNavbar';
 /**
  * Description - This function organize the navbar page
  * @returns - The navbar page

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import style from './signIn.module.css';
-import Button from '../../pageSettings/button/Button';
+import Button from '../../commonComponents/button/Button';
 
 /**
  * Description - This class display the signIn page
@@ -36,10 +36,11 @@ export default class SignIn extends Component {
     })
       .then(res => res.json())
       .then(data => {
-        if (data.status === 'ok') {
+        if (data.status === 'true') {
           this.setState({
-            showResult: 'Login successful, Entering...',
+            showResult: 'Login successful',
           });
+
           // Storing the token in local storage
           window.localStorage.setItem('token', data.data);
           // Storing the login status in local storage
@@ -59,10 +60,24 @@ export default class SignIn extends Component {
               window.location.href = '/userHome';
             }, 2000);
           }
-        } else {
+        } else if (data.status === 'User not found') {
           this.setState({
-            showResult: 'Something wrong, please check the details',
+            showResult: 'User Not Found',
           });
+          setTimeout(() => {
+            this.setState({
+              showResult: '',
+            });
+          }, 2000);
+        } else if (data.status === 'Invalid Password') {
+          this.setState({
+            showResult: 'Invalid Password',
+          });
+          setTimeout(() => {
+            this.setState({
+              showResult: '',
+            });
+          }, 2000);
         }
       });
   }

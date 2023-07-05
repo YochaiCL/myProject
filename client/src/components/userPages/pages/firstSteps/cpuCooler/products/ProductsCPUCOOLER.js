@@ -1,8 +1,8 @@
 import React from 'react';
 import PageLayout from '../../../../layouts/pageLayout/PageLayout';
-import Header from '../../../../../pageSettings/header/Header';
+import Header from '../../../../../commonComponents/header/Header';
 import style from '../../ssd/products/productsSSD.module.css';
-import LinkLayout from '../../../../../pageSettings/linkLayout/LinkLayout';
+import LinkLayout from '../../../../../commonComponents/linkLayout/LinkLayout';
 
 /**
  * Description - This function organize the cpu cooler button layout

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PageLayout from '../../../layouts/pageLayout/PageLayout';
-import Header from '../../../../pageSettings/header/Header';
-import LinkLayout from '../../../../pageSettings/linkLayout/LinkLayout';
+import Header from '../../../../commonComponents/header/Header';
+import LinkLayout from '../../../../commonComponents/linkLayout/LinkLayout';
 import style from './updtateCompLinks.module.css';
 
 export default class UpdateCompLinks extends Component {

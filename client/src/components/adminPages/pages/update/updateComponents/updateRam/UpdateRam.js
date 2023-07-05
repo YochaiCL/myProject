@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import Button from '../../../../../pageSettings/button/Button';
+import Button from '../../../../../commonComponents/button/Button';
 import PageLayout from '../../../../layouts/pageLayout/PageLayout';
-import Header from '../../../../../pageSettings/header/Header';
+import Header from '../../../../../commonComponents/header/Header';
 import style from '../updateMotherboard/updateMotherboard.module.css';
 
+/**
+ * Description - This class update the component data by the user inputs
+ */
 export default class UpdateRam extends Component {
-  // Initializing state variables for component properties
   state = {
     products: [{ model: 'Loading data...' }],
     showData: false,
@@ -18,30 +20,54 @@ export default class UpdateRam extends Component {
     showResult: '',
   };
 
+  /**
+   * Description - This function activate the getProducts function when the wab is upload
+   */
   componentDidMount() {
     this.getProducts();
   }
 
+  /**
+   * Description - This function set the value of the inputs when we click on the selected component and show his data
+   * @param {*} index - Selected component
+   */
   handelClick = index => {
     this.setState({
       showData: true,
       selectIndex: index,
+      model: this.state.products[index].model,
+      memory_series: this.state.products[index].memory_series,
+      memory_size: this.state.products[index].memory_size,
+      latency: this.state.products[index].latency,
+      speed: this.state.products[index].speed,
     });
   };
+
+  /**
+   * Description - This function get the component data from the server
+   */
   async getProducts() {
     const response = await fetch('http://localhost:5000/getComponent/ram');
     const result = await response.json();
-    console.log(result);
+     result.sort((a, b) => a.model.localeCompare(b.model));
+    // console.log(result);
     this.setState({ products: result });
   }
 
-  // Asynchronous function to handle form submission
-  async handleSubmit(e) {
-    // Preventing the default form submission behavior
+  /**
+   * Description - This function update the component data in the server
+   * @param {*} e  - inputs to prevent from the page to refresh
+   */ async handleSubmit(e) {
     e.preventDefault();
-
+    let newComponent = {
+      model: this.state.model,
+      memory_series: this.state.memory_series,
+      memory_size: this.state.memory_size,
+      memory: this.state.memory,
+      latency: this.state.latency,
+      speed: this.state.speed,
+    };
     const options = {
-      // Setting headers for the HTTP request
       method: 'POST',
       crossDomain: true,
       headers: {
@@ -49,25 +75,24 @@ export default class UpdateRam extends Component {
         Accept: 'application/json',
         'Accept-Control-Allow-Origin': '*',
       },
-      // Converting the state object to JSON and setting it as the request body
-      body: JSON.stringify(this.state),
+      body: JSON.stringify({
+        model: this.state.model,
+        newComponent,
+      }),
     };
-    // Sending the POST request with options
     const response = await fetch(
-      'http://localhost:5000/addComponent/ram',
+      'http://localhost:5000/updateComponent/ram',
       options
     );
-    // Parsing the response as JSON
     const result = await response.json();
-    // Checking the status of the response
-
-    // Updating the state to display a success message
-    if (result.status === 'ok') {
-      this.setState({ showResult: 'Component have added' });
-    } // Handling different response statuses
-    else if (result.status === 'Model already exist') {
-      this.setState({ showResult: 'Component already exist' });
-    } else if (result.status === 'Error !! check your details') {
+    if (result.status === 'true') {
+      this.setState({ showResult: 'The component has been update' });
+      setTimeout(() => {
+        this.setState({
+          showResult: '',
+        });
+      }, 1000);
+      this.getProducts();
     }
   }
   render() {
@@ -99,59 +124,65 @@ export default class UpdateRam extends Component {
                     onSubmit={this.handleSubmit.bind(this)}
                     className={`${style.form} ${style.smallForm}`}
                   >
+                    <p>
+                      Model
+                      <span className={style.span}> - Read Only</span>
+                    </p>
                     <input
+                      readOnly
                       type='text'
                       placeholder={
                         this.state.products[this.state.selectIndex].model
                       }
                       value={this.state.model}
-                      required
                       onChange={e => this.setState({ model: e.target.value })}
                     />
-
+                    <p>Memory Series</p>
                     <input
+                      value={this.state.memory_series}
                       type='text'
                       placeholder={
                         this.state.products[this.state.selectIndex]
                           .memory_series
                       }
-                      required
                       onChange={e =>
                         this.setState({ memory_series: e.target.value })
                       }
                     />
-
+                    <p>Memory Size</p>
                     <input
+                      value={this.state.memory_size}
                       type='text'
                       placeholder={
                         this.state.products[this.state.selectIndex].memory_size
                       }
-                      required
                       onChange={e =>
                         this.setState({ memory_size: e.target.value })
                       }
                     />
-
+                    <p>Latency</p>
                     <input
+                      value={this.state.latency}
                       type='text'
                       placeholder={
                         this.state.products[this.state.selectIndex].latency
                       }
-                      required
                       onChange={e => this.setState({ latency: e.target.value })}
                     />
-
+                    <p>Speed</p>
                     <input
+                      value={this.state.speed}
                       type='text'
                       placeholder={
                         this.state.products[this.state.selectIndex].speed
                       }
-                      required
                       onChange={e => this.setState({ speed: e.target.value })}
                     />
 
-                    <Button type='submit' text='submit' />
-                    <p>{this.state.showResult}</p>
+                    <div className={style.btn}>
+                      <Button type='submit' text='submit' />
+                    </div>
+                    <p className={style.showResult}>{this.state.showResult}</p>
                   </form>
                 </section>
               </div>

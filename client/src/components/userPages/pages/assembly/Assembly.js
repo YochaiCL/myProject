@@ -1,6 +1,6 @@
 import React from 'react';
 import PageLayout from '../../layouts/pageLayout/PageLayout';
-import Header from '../../../pageSettings/header/Header';
+import Header from '../../../commonComponents/header/Header';
 import imgVideo from '../../../../images/assembly/see-assembly-videos.jpg';
 import imgMounted from '../../../../images/assembly/see-mounted-assemblys.jpg';
 import { Link } from 'react-router-dom';

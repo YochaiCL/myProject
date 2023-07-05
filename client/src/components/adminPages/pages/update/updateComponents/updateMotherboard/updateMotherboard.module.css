@@ -14,13 +14,17 @@
   margin-right: auto;
   gap: 5rem;
   display: flex;
+  max-width: 100%;
 }
 
 .showAllData {
   border: solid black 5px;
   border-radius: 10px;
-
   padding: 2rem;
+  width: 600px;
+  max-width: 1000px;
+  background-color: white;
+  opacity: 0.7;
 }
 
 .productButton {
@@ -33,6 +37,24 @@
   font-size: 2rem;
 }
 
+.span {
+  font-size: 2rem;
+}
+
 .productButton:hover {
   background-color: gray;
+}
+
+.input {
+  width: 100%;
+}
+.btn {
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.showResult {
+  text-align: center;
+  color: rgb(32, 86, 178);
 }

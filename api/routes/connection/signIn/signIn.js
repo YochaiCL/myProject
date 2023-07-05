@@ -18,14 +18,14 @@ router.post('/', async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email });
   if (!user) {
-    return res.json({ error: 'User not found' });
+    return res.json({ status: 'User not found' });
   }
   if (await bcrypt.compare(password, user.password)) {
     const token = jsonWebToken.sign({ email: user.email }, jsonWebTokenSecret); // check the password of
     // console.log(user.userType)
-    return res.json({ status: 'ok', data: token, userType: user.userType });
+    return res.json({ status: 'true', data: token, userType: user.userType });
   } else {
-    return res.json({ error: 'Invalid Password' });
+    return res.json({ status: 'Invalid Password' });
   }
 });
 module.exports = router;

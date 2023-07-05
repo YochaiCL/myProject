@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from '../../../../../pageSettings/header/Header';
+import Header from '../../../../../commonComponents/header/Header';
 import { Link } from 'react-router-dom';
 import ComponentLearnLayout from '../../../../layouts/componentLearnLayout/ComponentLearnLayout';
 import style from '../../motherboard/info/infoMOTHERBOARD.module.css';

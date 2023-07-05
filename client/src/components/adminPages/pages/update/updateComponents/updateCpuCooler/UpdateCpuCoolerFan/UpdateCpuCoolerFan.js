@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import Button from '../../../../../../pageSettings/button/Button';
+import Button from '../../../../../../commonComponents/button/Button';
 import PageLayout from '../../../../../layouts/pageLayout/PageLayout';
-import Header from '../../../../../../pageSettings/header/Header';
+import Header from '../../../../../../commonComponents/header/Header';
 import style from '../../updateMotherboard/updateMotherboard.module.css';
 
+/**
+ * Description - This class update the component data by the user inputs
+ */
 export default class UpdateCpuCoolerFan extends Component {
-  // Initializing state variables for component properties
   state = {
     products: [{ model: 'Loading data...' }],
     showData: false,
@@ -16,32 +18,53 @@ export default class UpdateCpuCoolerFan extends Component {
     showResult: '',
   };
 
+  /**
+   * Description - This function activate the getProducts function when the wab is upload
+   */
   componentDidMount() {
     this.getProducts();
   }
 
+  /**
+   * Description - This function set the value of the inputs when we click on the selected component and show his data
+   * @param {*} index - Selected component
+   */
   handelClick = index => {
     this.setState({
       showData: true,
       selectIndex: index,
+      model: this.state.products[index].model,
+      socket_support: this.state.products[index].socket_support,
+      fan_diameter: this.state.products[index].fan_diameter,
     });
   };
+
+  /**
+   * Description - This function get the component data from the server
+   */
   async getProducts() {
     const response = await fetch(
       'http://localhost:5000/getComponent/cpuCoolerFan'
     );
     const result = await response.json();
-    console.log(result);
+     result.sort((a, b) => a.model.localeCompare(b.model));
+    // console.log(result);
     this.setState({ products: result });
   }
 
-  // Asynchronous function to handle form submission
+  /**
+   * Description - This function update the component data in the server
+   * @param {*} e  - inputs to prevent from the page to refresh
+   */
   async handleSubmit(e) {
-    // Preventing the default form submission behavior
     e.preventDefault();
 
+    let newComponent = {
+      model: this.state.model,
+      socket_support: this.state.socket_support,
+      fan_diameter: this.state.fan_diameter,
+    };
     const options = {
-      // Setting headers for the HTTP request
       method: 'POST',
       crossDomain: true,
       headers: {
@@ -49,26 +72,24 @@ export default class UpdateCpuCoolerFan extends Component {
         Accept: 'application/json',
         'Accept-Control-Allow-Origin': '*',
       },
-      // Converting the state object to JSON and setting it as the request body
-      body: JSON.stringify(this.state),
+      body: JSON.stringify({
+        model: this.state.model,
+        newComponent,
+      }),
     };
-    // Sending the POST request with options
     const response = await fetch(
-      'http://localhost:5000/addComponent/cpuCooleFan',
+      'http://localhost:5000/updateComponent/cpuCoolerFan',
       options
     );
-    // Parsing the response as JSON
     const result = await response.json();
-
-    // Checking the status of the response
-
-    // Updating the state to display a success message
-    if (result.status === 'ok') {
-      this.setState({ showResult: 'Component have added' });
-    } // Handling different response statuses
-    else if (result.status === 'Model already exist') {
-      this.setState({ showResult: 'Component already exist' });
-    } else if (result.status === 'Error !! check your details') {
+    if (result.status === 'true') {
+      this.setState({ showResult: 'The component has been update' });
+      setTimeout(() => {
+        this.setState({
+          showResult: '',
+        });
+      }, 1000);
+      this.getProducts();
     }
   }
   render() {
@@ -100,34 +121,38 @@ export default class UpdateCpuCoolerFan extends Component {
                     onSubmit={this.handleSubmit.bind(this)}
                     className={`${style.form} ${style.smallForm}`}
                   >
+                    <p>
+                      Model
+                      <span className={style.span}> - Read Only</span>
+                    </p>
                     <input
+                      readOnly
                       type='text'
                       placeholder={
                         this.state.products[this.state.selectIndex].model
                       }
                       value={this.state.model}
-                      required
                       onChange={e => this.setState({ model: e.target.value })}
                     />
-
+                    <p>Socket Support</p>
                     <input
+                      value={this.state.socket_support}
                       type='text'
                       placeholder={
                         this.state.products[this.state.selectIndex]
                           .socket_support
                       }
-                      required
                       onChange={e =>
                         this.setState({ socket_support: e.target.value })
                       }
                     />
-
+                    <p>Fan Diameter</p>
                     <input
+                      value={this.state.fan_diameter}
                       type='text'
                       placeholder={
                         this.state.products[this.state.selectIndex].fan_diameter
                       }
-                      required
                       onChange={e =>
                         this.setState({
                           fan_diameter: e.target.value,
@@ -135,8 +160,10 @@ export default class UpdateCpuCoolerFan extends Component {
                       }
                     />
 
-                    <Button type='submit' text='submit' />
-                    <p>{this.state.showResult}</p>
+                    <div className={style.btn}>
+                      <Button type='submit' text='submit' />
+                    </div>
+                    <p className={style.showResult}>{this.state.showResult}</p>
                   </form>
                 </section>
               </div>

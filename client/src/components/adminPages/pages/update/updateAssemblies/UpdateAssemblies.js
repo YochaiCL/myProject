@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PageLayout from '../../../layouts/pageLayout/PageLayout';
-import Header from '../../../../pageSettings/header/Header';
+import Header from '../../../../commonComponents/header/Header';
 import style from './updateAssemblies.module.css';
-import Button from '../../../../pageSettings/button/Button';
+import Button from '../../../../commonComponents/button/Button';
 
 /**
  * Description - This class update the assembly data and save it in database
@@ -102,11 +102,16 @@ export default class UpdateAssemblies extends Component {
       options
     );
     const result = await response.json();
-    console.log(result);
+    // console.log(result);
     if (result.status === 'true') {
       this.setState({
         showResult: 'The Assembly has updated',
       });
+      setTimeout(() => {
+        this.setState({
+          showResult: '',
+        });
+      }, 1000);
     }
   }
 

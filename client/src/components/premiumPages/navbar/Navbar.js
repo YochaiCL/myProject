@@ -1,7 +1,7 @@
 import React from 'react';
 import style from './navbar.module.css';
 import logo from '../../../images/navbar/logo.png';
-import LinkNavbar from '../../pageSettings/linkNavbar/LinkNavbar';
+import LinkNavbar from '../../commonComponents/linkNavbar/LinkNavbar';
 
 export default function Navbar() {
   return (

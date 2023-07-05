@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PageLayout from '../../../layouts/pageLayout/PageLayout';
-import Header from '../../../../pageSettings/header/Header';
+import Header from '../../../../commonComponents/header/Header';
 import style from './deleteComponents.module.css';
-import Button from '../../../../pageSettings/button/Button';
-import Option from '../../../../pageSettings/option/Option';
+import Button from '../../../../commonComponents/button/Button';
+import Option from '../../../../commonComponents/option/Option';
 
 /**
  * Description - This class delete selected component from the database

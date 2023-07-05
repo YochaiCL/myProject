@@ -4,6 +4,9 @@ const mongoose = require('mongoose');
 const Assemblies = mongoose.model('Assemblies');
 require('../../Scehmas/addAssemblies/addAssembliesScehmas');
 
+/**
+ * Description - This function update the assembly in the database according to the user inputs
+ */
 router.post('/', async (req, res) => {
   console.log(req.body);
   try {

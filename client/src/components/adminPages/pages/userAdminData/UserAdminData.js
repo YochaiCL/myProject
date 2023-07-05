@@ -1,6 +1,6 @@
 import PageLayout from '../../layouts/pageLayout/PageLayout';
-import Header from '../../../pageSettings/header/Header';
-import UserDetails from '../../../pageSettings/userDetails/UserDetails';
+import Header from '../../../commonComponents/header/Header';
+import UserDetails from '../../../commonComponents/userDetails/UserDetails';
 import React from 'react';
 
 /**

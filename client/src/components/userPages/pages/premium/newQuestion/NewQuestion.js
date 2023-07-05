@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PageLayout from '../../../layouts/pageLayout/PageLayout';
-import Header from '../../../../pageSettings/header/Header';
+import Header from '../../../../commonComponents/header/Header';
 import style from './newQuestion.module.css';
-import Button from '../../../../pageSettings/button/Button';
+import Button from '../../../../commonComponents/button/Button';
 
 export default class NewQuestion extends Component {
   state = {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import style from './ForgetPassword.module.css';
 import { Link } from 'react-router-dom';
-import Button from '../../pageSettings/button/Button';
+import Button from '../../commonComponents/button/Button';
 
 /**
  * Description - This class display the forget password page

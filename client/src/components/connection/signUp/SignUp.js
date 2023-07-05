@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import style from './signUp.module.css';
 import { Link } from 'react-router-dom';
-import Button from '../../pageSettings/button/Button';
+import Button from '../../commonComponents/button/Button';
 
 /**
  * Description - This class manage the signUp page
@@ -16,6 +16,25 @@ export default class SignUp extends Component {
     secretKey: '',
     showResult: '',
   };
+
+  /**
+   * Description - This function check if the fullName contain only letters and at least 2 letters
+   * @param {*} fullName - Full name entered by the user
+   * @returns - True if fullName contain only letters and at least 2 letters and False otherwise
+   */
+  checkName(fullName) {
+    const onlyLetters = /^[A-Za-z]+$/;
+    if (!onlyLetters.test(fullName)) {
+      return false;
+    }
+
+    var letterCount = fullName.replace(/[^a-zA-Z]/g, '').length;
+    if (letterCount < 2) {
+      return false;
+    }
+
+    return true;
+  }
 
   /**
    * Description - This function checks if the password entered by the user meets the requirements
@@ -40,20 +59,37 @@ export default class SignUp extends Component {
     e.preventDefault();
     const { fullName, email, password, userType } = this.state;
     if (this.state.userType === 'Admin' && this.state.secretKey !== 'Admin') {
-      this.setState({
-        showResult: 'Invalid Admin Password',
-      });
+      this.setState({ showResult: 'Invalid Admin Password' });
+      setTimeout(() => {
+        this.setState({
+          showResult: '',
+        });
+      }, 1000);
     } else if (
       this.state.userType === 'Premium' &&
       this.state.secretKey !== 'Premium'
     ) {
-      this.setState({
-        showResult: 'Invalid Premium Password',
-      });
+      this.setState({ showResult: 'Invalid Premium Password' });
+
+      setTimeout(() => {
+        this.setState({
+          showResult: '',
+        });
+      }, 1000);
     } else if (!this.checkPassword(password)) {
-      this.setState({
-        showResult: 'Invalid Password',
-      });
+      this.setState({ showResult: 'Invalid Password' });
+      setTimeout(() => {
+        this.setState({
+          showResult: '',
+        });
+      }, 1000);
+    } else if (!this.checkName(fullName)) {
+      this.setState({ showResult: 'Invalid User Name' });
+      setTimeout(() => {
+        this.setState({
+          showResult: '',
+        });
+      }, 1000);
     } else {
       fetch('http://localhost:5000/signUp', {
         method: 'POST',
@@ -80,13 +116,23 @@ export default class SignUp extends Component {
               window.location.href = '/';
             }, 2000);
           } else if (data.status === 'User Exists') {
-            this.setState({
-              showResult: 'User already Exist, reset your password if needed ',
-            });
+            setTimeout(() => {
+              this.setState({
+                showResult: 'User already Exist, reset your password if needed',
+              });
+              this.setState({
+                showResult: '',
+              });
+            }, 1000);
           } else if (data.status === 'error') {
             this.setState({
-              showResult: 'Something went wrong, please check your details ',
+              showResult: 'User already Exist, reset your password if needed',
             });
+            setTimeout(() => {
+              this.setState({
+                showResult: '',
+              });
+            }, 1000);
           }
         });
     }
@@ -166,6 +212,9 @@ export default class SignUp extends Component {
           )}
           <div>
             <label>Full Name</label>
+            <p className={style.p}>
+              Require only letters and at least 2 letters
+            </p>
             <input
               type='text'
               placeholder='Full Name'
@@ -185,11 +234,12 @@ export default class SignUp extends Component {
           </div>
           <div>
             <label>Password</label>
-            <p className={style.p}>require 3-8 characters with numbers and latter's</p>
+            <p className={style.p}>
+              Require 3-8 characters with at least 1 numbers and 1 latter's
+            </p>
             <input
               type='password'
               placeholder='Enter password'
-              
               onChange={e => this.setState({ password: e.target.value })}
               required
             />
@@ -198,7 +248,7 @@ export default class SignUp extends Component {
             <Button type='submit' className={style.submit} text='Sign Up' />
           </div>
           <p className={style.showResult}>{this.state.showResult}</p>
-          <p>
+          <p className={style.showResult}>
             Already registered? <Link to='/'>sign in</Link>
           </p>
         </form>

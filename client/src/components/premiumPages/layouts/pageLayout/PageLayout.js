@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from '../../navbar/Navbar';
 import style from './pageLayout.module.css';
-import Footer from '../../../pageSettings/footer/Footer';
+import Footer from '../../../commonComponents/footer/Footer';
 
 export default function PageLayout({ children }) {
   return (

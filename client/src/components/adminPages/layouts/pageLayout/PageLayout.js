@@ -1,5 +1,5 @@
 import Navbar from '../../navbar/Navbar';
-import Footer from '../../../pageSettings/footer/Footer';
+import Footer from '../../../commonComponents/footer/Footer';
 import style from './layout.module.css';
 
 /**

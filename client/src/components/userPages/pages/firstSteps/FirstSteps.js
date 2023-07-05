@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import PageLayout from '../../layouts/pageLayout/PageLayout';
-import Header from '../../../pageSettings/header/Header';
+import Header from '../../../commonComponents/header/Header';
 import LearnLayout from '../../layouts/learnLayout/LearnLayout';
 
 import ssd from '../../../../images/Learn-Your-Hardware/ssd.PNG';

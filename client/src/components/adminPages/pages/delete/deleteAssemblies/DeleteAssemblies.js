@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PageLayout from '../../../layouts/pageLayout/PageLayout';
-import Header from '../../../../pageSettings/header/Header';
+import Header from '../../../../commonComponents/header/Header';
 import style from './deleteAssemblies.module.css';
-import Button from '../../../../pageSettings/button/Button';
+import Button from '../../../../commonComponents/button/Button';
 
 /**
  * Description - This class delete selected assembly from the database

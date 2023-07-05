@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import PageLayout from '../../../layouts/pageLayout/PageLayout';
-import Header from '../../../../pageSettings/header/Header';
+import Header from '../../../../commonComponents/header/Header';
 import Videos from './videos/Videos';
 import { videos } from './video-data/video-data';
 

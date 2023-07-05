@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PageLayout from '../../../../layouts/pageLayout/PageLayout';
-import Header from '../../../../../pageSettings/header/Header';
+import Header from '../../../../../commonComponents/header/Header';
 import style from '../../motherboard/products/productsMOTHERBOARD.module.css';
 
 /**

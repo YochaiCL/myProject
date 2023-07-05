@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PageLayout from '../../../layouts/pageLayout/PageLayout';
-import Header from '../../../../pageSettings/header/Header';
-import Button from '../../../../pageSettings/button/Button';
+import Header from '../../../../commonComponents/header/Header';
+import Button from '../../../../commonComponents/button/Button';
 import style from './testWithoutHelp.module.css';
 
 export default class TestWithoutHelp extends Component {

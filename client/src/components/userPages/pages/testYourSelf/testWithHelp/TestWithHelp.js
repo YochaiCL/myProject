@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PageLayout from '../../../layouts/pageLayout/PageLayout';
 import style from './testWithHelp.module.css';
-import Button from '../../../../pageSettings/button/Button';
-import Header from '../../../../pageSettings/header/Header';
+import Button from '../../../../commonComponents/button/Button';
+import Header from '../../../../commonComponents/header/Header';
 
 export default class TestWithHelp extends Component {
   state = {

@@ -1,6 +1,6 @@
 import React from 'react';
 import ComponentLearnLayout from '../../../../layouts/componentLearnLayout/ComponentLearnLayout';
-import Header from '../../../../../pageSettings/header/Header';
+import Header from '../../../../../commonComponents/header/Header';
 import style from '../../motherboard/info/infoMOTHERBOARD.module.css';
 import { Link } from 'react-router-dom';
 
