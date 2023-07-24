@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 
-// define ssdM2 type data
+/**
+ * Description - Define the ssd m2 scehma
+ */
 const ssdM2Scehma = new mongoose.Schema(
   {
     model: String,

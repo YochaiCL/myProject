@@ -14,6 +14,7 @@ export default class UserData extends Component {
     password: '',
     email: '',
     name: '',
+    showResult: '',
   };
 
   /**
@@ -39,7 +40,7 @@ export default class UserData extends Component {
         window.localStorage.setItem('user', JSON.stringify(data.data));
         this.setState({ userData: data.data });
         this.setState({ oldUser: data.data });
-        console.log(this.state.oldUser);
+        // console.log(this.state.oldUser);
         if (this.state.userData.userType === 'Admin') {
           this.setState({
             showLinkAdmin: true,
@@ -62,51 +63,126 @@ export default class UserData extends Component {
    * Description - This function change the password of the user
    */
   changePassword = () => {
-    let user = this.state.userData;
-    fetch('http://localhost:5000/userData/changePassword', {
-      method: 'POST',
-      crossDomain: true,
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-        'Access-Control-Allow-Origin': '*',
-      },
-      body: JSON.stringify({
-        user: { ...user, password: this.state.password },
-        email: this.state.userData.email,
-      }),
-    })
-      .then(res => res.json())
-      .then(data => {
-        console.log(data);
-        this.setState({ userData: { ...user, password: this.state.password } });
-      });
+    if (!this.checkPassword()) {
+      this.setState({ showResult: 'Invalid Password' });
+      setTimeout(() => {
+        this.setState({
+          showResult: '',
+        });
+      }, 1000);
+    } else {
+      let user = this.state.userData;
+      fetch('http://localhost:5000/userData/changePassword', {
+        method: 'POST',
+        crossDomain: true,
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          'Access-Control-Allow-Origin': '*',
+        },
+        body: JSON.stringify({
+          user: { ...user, password: this.state.password },
+          email: this.state.userData.email,
+        }),
+      })
+        .then(res => res.json())
+        .then(data => {
+          console.log(data);
+          this.setState({
+            userData: { ...user, password: this.state.password },
+          });
+          setTimeout(() => {
+            this.setState({
+              showResult: 'Password have been change',
+            });
+          }, 1000);
+        });
+    }
   };
+
+  /**
+   * Description - This function check the password
+   * @returns True if the password contain 3-8 characters and and have at least 1 letter and 1 number and False otherwise
+   */
+  checkPassword() {
+    if (this.state.password === '') {
+      return false;
+    }
+    if (
+      !(/\d/.test(this.state.password) && /[a-zA-Z]/.test(this.state.password))
+    ) {
+      return false;
+    }
+    if (this.state.password.length < 3 || this.state.password.length > 8) {
+      return false;
+    }
+    return true;
+  }
 
   /**
    * Description - This function change the name of the user
    */
   changeName = () => {
-    let user = this.state.userData;
-    fetch('http://localhost:5000/userData/changeNameOrEmail', {
-      method: 'POST',
-      crossDomain: true,
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-        'Access-Control-Allow-Origin': '*',
-      },
-      body: JSON.stringify({
-        user: { ...user, fullName: this.state.name },
-        email: this.state.userData.email,
-      }),
-    })
-      .then(res => res.json())
-      .then(data => {
-        console.log(data);
-        this.setState({ userData: { ...user, fullName: this.state.name } });
-      });
+    if (!this.checkName()) {
+      this.setState({ showResult: 'Invalid User Name' });
+      setTimeout(() => {
+        this.setState({
+          showResult: '',
+        });
+      }, 1000);
+    } else {
+      let user = this.state.userData;
+      fetch('http://localhost:5000/userData/changeNameOrEmail', {
+        method: 'POST',
+        crossDomain: true,
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          'Access-Control-Allow-Origin': '*',
+        },
+        body: JSON.stringify({
+          user: { ...user, fullName: this.state.name },
+          email: this.state.userData.email,
+        }),
+      })
+        .then(res => res.json())
+        .then(data => {
+          console.log(data);
+          this.setState({ userData: { ...user, fullName: this.state.name } });
+          setTimeout(() => {
+            this.setState({
+              showResult: 'Name have been change',
+            });
+          }, 1000);
+        });
+    }
   };
+
+  /**
+   * Description - This function check if the fullName contain only letters and at least 2 letters
+   * @param {*} fullName - Full name entered by the user
+   * @returns - True if fullName contain only letters and at least 2 letters and False otherwise
+   */
+  checkName() {
+    let name = this.state.name;
+    // console.log(name);
+    name = name.replace(' ', '');
+    // console.log(name);
+    if (name === '') {
+      return false;
+    }
+    const onlyLetters = /^[A-Za-z\s]+$/;
+    if (!onlyLetters.test(name)) {
+      return false;
+    }
+
+    const letterCount = name.replace(/[^a-zA-Z]/g, '').length;
+    if (letterCount < 2) {
+      return false;
+    }
+
+    return true;
+  }
 
   /**
    * Description - This function change the email of the user
@@ -131,7 +207,12 @@ export default class UserData extends Component {
         localStorage.setItem('token', data.token);
         console.log(data);
         this.setState({ userData: { ...user, email: this.state.email } });
-        console.log(this.state.userData);
+        // console.log(this.state.userData);
+        setTimeout(() => {
+          this.setState({
+            showResult: 'Email have been change',
+          });
+        }, 1000);
       });
   };
 
@@ -156,7 +237,10 @@ export default class UserData extends Component {
 
         {this.state.showLinkAdmin && (
           <section className={style.linkAdmin}>
-            <LinkLayout nameLink='Transfer to Admin home Page' toLink='/adminHome' />
+            <LinkLayout
+              nameLink='Transfer to Admin home Page'
+              toLink='/adminHome'
+            />
           </section>
         )}
 
@@ -164,6 +248,9 @@ export default class UserData extends Component {
           <h2>Change your details</h2>
           <section className={style.sectionInput}>
             <section>
+              <p className={style.p}>
+                Require only letters and at least 2 letters
+              </p>
               <input
                 className={style.input}
                 type='text'
@@ -184,6 +271,9 @@ export default class UserData extends Component {
             </section>
 
             <section>
+              <p className={style.p}>
+                Require 3-8 characters with at least 1 numbers and 1 latter's
+              </p>
               <input
                 className={style.input}
                 type='password'
@@ -193,7 +283,8 @@ export default class UserData extends Component {
 
               <Button text='Change' fun={this.changePassword} />
             </section>
-          </section>{' '}
+            <p className={style.showResult}>{this.state.showResult}</p>
+          </section>
         </section>
       </div>
     );

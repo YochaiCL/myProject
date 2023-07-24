@@ -47,22 +47,24 @@ export default class UpdateAssemblies extends Component {
   }
 
   /**
-   * Description - This function get the model components of the selected assembly
+   * Description - This function get the data components
    */
   async getModels() {
     const response = await fetch('http://localhost:5000/getComponentsModels');
     const result = await response.json();
     // Updating the components array in the component state
-    this.setState({ cpuArray: result.Cpu });
-    this.setState({ gpuArray: result.Gpu });
-    this.setState({ caseArray: result.Case });
-    this.setState({ cpuCoolerFanArray: result.CpuCoolerFan });
-    this.setState({ cpuCoolerLiquidArray: result.CpuCoolerLiquid });
-    this.setState({ motherboardArray: result.Motherboard });
-    this.setState({ psuArray: result.Psu });
-    this.setState({ ramArray: result.Ram });
-    this.setState({ ssdM2Array: result.SsdM2 });
-    this.setState({ ssdSataArray: result.SsdSata });
+    this.setState({
+      cpuArray: result.Cpu,
+      gpuArray: result.Gpu,
+      caseArray: result.Case,
+      cpuCoolerFanArray: result.CpuCoolerFan,
+      cpuCoolerLiquidArray: result.CpuCoolerLiquid,
+      motherboardArray: result.Motherboard,
+      psuArray: result.Psu,
+      ramArray: result.Ram,
+      ssdM2Array: result.SsdM2,
+      ssdSataArray: result.SsdSata,
+    });
   }
 
   /**
@@ -112,32 +114,35 @@ export default class UpdateAssemblies extends Component {
           showResult: '',
         });
       }, 1000);
+      this.getAssembly();
     }
   }
 
-  // Lifecycle method called after the component is mounted
+  /**
+   * Description - This function activate those functions when the page is uploaded
+   */
   componentDidMount() {
-    // Fetching the component models when the component is mounted
     this.getModels();
     this.getAssembly();
   }
+
+  /**
+   * Description - This function show the selected assembly and set the index value of components
+   * @param {*} index - Selected assembly
+   */
   handelClick = index => {
     this.setState({
       showData: true,
       selectIndex: index,
-    });
-    this.setState({ modelCase: this.state.assembly[index].modelCase });
-    this.setState({
+      modelCase: this.state.assembly[index].modelCase,
       modelMotherboard: this.state.assembly[index].modelMotherboard,
-    });
-    this.setState({ modelCPU: this.state.assembly[index].modelCPU });
-    this.setState({ modelSSD: this.state.assembly[index].modelSSD });
-    this.setState({ modelPSU: this.state.assembly[index].modelPSU });
-    this.setState({
+      modelCPU: this.state.assembly[index].modelCPU,
+      modelSSD: this.state.assembly[index].modelSSD,
+      modelPSU: this.state.assembly[index].modelPSU,
       modelCPUCooler: this.state.assembly[index].modelCPUCooler,
+      modelRAM: this.state.assembly[index].modelRAM,
+      modelGPU: this.state.assembly[index].modelGPU,
     });
-    this.setState({ modelRAM: this.state.assembly[index].modelRAM });
-    this.setState({ modelGPU: this.state.assembly[index].modelGPU });
   };
   render() {
     return (

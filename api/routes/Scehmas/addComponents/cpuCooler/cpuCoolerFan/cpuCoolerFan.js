@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 
-// define cpu Cooler Fan type data
+/**
+ * Description - Define the cpu cooler fan scehma
+ */
 const cpuCoolerFanScehma = new mongoose.Schema(
   {
     model: String,

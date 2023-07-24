@@ -4,6 +4,9 @@ import Header from '../../../../commonComponents/header/Header';
 import Videos from './videos/Videos';
 import { videos } from './video-data/video-data';
 
+/**
+ * Description -
+ */
 export default class AssembliesVideos extends Component {
   state = {
     allVideos: videos,

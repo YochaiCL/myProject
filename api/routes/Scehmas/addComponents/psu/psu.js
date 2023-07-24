@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 
-// define psu type data
+/**
+ * Description - Define the psu scehma
+ */
 const psudScehma = new mongoose.Schema(
   {
     model: String,

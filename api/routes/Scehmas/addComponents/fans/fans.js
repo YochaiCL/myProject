@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 
-// define fans type data
+/**
+ * Description - Define the fans scehma
+ */
 const fansScehma = new mongoose.Schema(
   {
     model: String,

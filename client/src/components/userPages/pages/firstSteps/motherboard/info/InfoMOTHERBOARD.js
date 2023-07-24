@@ -23,7 +23,7 @@ function infoMOTHERBOARD() {
         </Link>
 
         <h2 className={style.h2}>Memory slot</h2>
-        <p>
+        <p className={style.p}>
           A memory slot, allows RAM to be inserted into the computer. Most
           motherboards have two to four memory slots, which determine the type
           of RAM used with the computer.
@@ -70,12 +70,12 @@ function infoMOTHERBOARD() {
         </ul>
 
         <h2 className={style.h2}>PCI Express</h2>
-        <p>
+        <p className={style.p}>
           PCIe is short for “peripheral component interconnect express” and it’s
           primarily used as a standardized interface for motherboard components
           including graphics, memory, and storage.
         </p>
-        <p>
+        <p className={style.p}>
           While different sizes and configurations do exist, most users will
           only encounter four primary size specifications. The size represents
           the number of direct connections provided by either a PCIe slot or

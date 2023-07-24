@@ -4,6 +4,9 @@ import Header from '../../../../commonComponents/header/Header';
 import LinkLayout from '../../../../commonComponents/linkLayout/LinkLayout';
 import style from './updtateCompLinks.module.css';
 
+/**
+ * Description - This function show the links layout of update components
+ */
 export default class UpdateCompLinks extends Component {
   render() {
     return (

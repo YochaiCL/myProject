@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 
-// define Assembly type data
+/**
+ * Description - Define the assemblies scehma
+ */
 const assembliesScehma = new mongoose.Schema(
   {
     assemblyName: String,

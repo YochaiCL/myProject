@@ -4,6 +4,10 @@ import Header from '../../../commonComponents/header/Header';
 import LinkLayout from '../../../commonComponents/linkLayout/LinkLayout';
 import style from './update.module.css';
 
+/**
+ * Description - This function display the links update of assembly and components
+ * @returns 
+ */
 export default function Update() {
   return (
     <PageLayout>

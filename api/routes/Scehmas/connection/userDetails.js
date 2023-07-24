@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 
-// define user type data
+/**
+ * Description - Define the connection scehma
+ */
 const userDetailsScehma = new mongoose.Schema(
   {
     fullName: String,

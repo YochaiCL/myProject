@@ -4,6 +4,9 @@ import Header from '../../../../../commonComponents/header/Header';
 import style from './updateSsd.module.css';
 import LinkLayout from '../../../../../commonComponents/linkLayout/LinkLayout';
 
+/**
+ * Description - This function display the links layout of the update ssd
+ */
 export default class UpdateSsd extends Component {
   render() {
     return (

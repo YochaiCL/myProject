@@ -3,6 +3,9 @@ import PageLayout from '../../../layouts/pageLayout/PageLayout';
 import Header from '../../../../commonComponents/header/Header';
 import style from './existsTests.module.css';
 
+/**
+ * Description - 
+ */
 export default class ExistsTests extends Component {
   state = {
     products: [{ model: 'Loading data...' }],
@@ -10,6 +13,9 @@ export default class ExistsTests extends Component {
     selectIndex: null,
   };
 
+  /**
+   * Description
+   */
   async getProducts() {
     const response = await fetch('http://localhost:5000/getData/fans');
     const result = await response.json();
@@ -17,10 +23,17 @@ export default class ExistsTests extends Component {
     this.setState({ products: result });
   }
 
+  /**
+   * Description
+   */
   componentDidMount() {
     this.getProducts();
   }
 
+  /**
+   * Description
+   * @param {*} index 
+   */
   handelClick = index => {
     this.setState({
       showData: true,

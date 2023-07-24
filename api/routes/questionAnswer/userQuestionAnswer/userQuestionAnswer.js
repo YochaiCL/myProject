@@ -13,6 +13,9 @@ const QuestionAnswer = mongoose.model('QuestionAnswer');
 // Import scehma of how data is in database
 require('../../Scehmas/questionAnswer/questionAnswer');
 
+/**
+ * Description -
+ */
 router.post('/', async (req, res) => {
   try {
     let existingQuestion = await QuestionAnswer.find({
@@ -32,6 +35,9 @@ router.post('/', async (req, res) => {
   }
 });
 
+/**
+ * Description -
+ */
 router.post('/getData', async (req, res) => {
   try {
     // Find all 'CompLearned' documents in the MongoDB collection with the matching 'userId'

@@ -4,6 +4,10 @@ import Header from '../../../commonComponents/header/Header';
 import LinkLayout from '../../../commonComponents/linkLayout/LinkLayout';
 import style from './report.module.css';
 
+/**
+ * Description -
+ * @returns 
+ */
 export default function Reports() {
   return (
     <PageLayout>

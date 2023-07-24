@@ -4,9 +4,12 @@ import style from './testWithHelp.module.css';
 import Button from '../../../../commonComponents/button/Button';
 import Header from '../../../../commonComponents/header/Header';
 
+/**
+ * Description -
+ */
 export default class TestWithHelp extends Component {
   state = {
-    assemblyName: '',
+    testName: '',
     modelCase: '',
     modelMotherboard: '',
     modelCPU: '',
@@ -15,104 +18,104 @@ export default class TestWithHelp extends Component {
     modelPSU: '',
     modelRAM: '',
     modelSSD: '',
-    cpuArray: [], // Array to store CPU models
-    gpuArray: [], // Array to store GPU models
-    caseArray: [], // Array to store Case models
-    cpuCoolerFanArray: [], // Array to store CPU COOLER FAN models
-    cpuCoolerLiquidArray: [], // Array to store CPU COOLER LIQUID models
-    fanArray: [], // Array to store FAN models
-    motherboardArray: [], // Array to store MOTHERBOARD models
-    psuArray: [], // Array to store PSU models
-    ramArray: [], // Array to store RAM models
-    ssdM2Array: [], // Array to store SSD M2 models
-    ssdSataArray: [], // Array to store SSD SATA models
+    cpuArray: [],
+    gpuArray: [],
+    caseArray: [],
+    cpuCoolerFanArray: [],
+    cpuCoolerLiquidArray: [],
+    fanArray: [],
+    motherboardArray: [],
+    psuArray: [],
+    ramArray: [],
+    ssdM2Array: [],
+    ssdSataArray: [],
     showResult: '',
   };
 
-  // Asynchronous function to fetch component models
+  /**
+   * Description - This function get all models of all components from database
+   */
   async getModels() {
-    // Fetching component models from the server
-    const response = await fetch('http://localhost:5000/getAssemblies/modals');
-    // Parsing the response as JSON
+    const response = await fetch('http://localhost:5000/getComponentsModels');
     const result = await response.json();
-    // Updating the CPU array in the component state with fetched models
-    this.setState({ cpuArray: result.cpu });
-    // Updating the GPU array in the component state with fetched models
-    this.setState({ gpuArray: result.gpu });
-    // Updating the CASE array in the component state with fetched models
-    this.setState({ caseArray: result.case });
-    // Updating the CPU COOLER FAN array in the component state with fetched models
-    this.setState({ cpuCoolerFanArray: result.cpuCoolerFan });
-    // Updating the CPU COOLER LIQUID array in the component state with fetched models
-    this.setState({ cpuCoolerLiquidArray: result.cpuCoolerLiquid });
-    // Updating the MOTHERBOARD array in the component state with fetched models
-    this.setState({ motherboardArray: result.motherboard });
-    // Updating the PSU array in the component state with fetched models
-    this.setState({ psuArray: result.psu });
-    // Updating the RAM array in the component state with fetched models
-    this.setState({ ramArray: result.ram });
-    // Updating the SSD M2 array in the component state with fetched models
-    this.setState({ ssdM2Array: result.ssdM2 });
-    // Updating the SSD SATA array in the component state with fetched models
-    this.setState({ ssdSataArray: result.ssdSata });
+    console.log(result);
+    this.setState({ cpuArray: result.Cpu });
+    this.setState({ gpuArray: result.Gpu });
+    this.setState({ caseArray: result.Case });
+    this.setState({ cpuCoolerFanArray: result.CpuCoolerFan });
+    this.setState({ cpuCoolerLiquidArray: result.CpuCoolerLiquid });
+    this.setState({ motherboardArray: result.Motherboard });
+    this.setState({ psuArray: result.Psu });
+    this.setState({ ramArray: result.Ram });
+    this.setState({ ssdM2Array: result.SsdM2 });
+    this.setState({ ssdSataArray: result.SsdSata });
   }
 
-  // Asynchronous function to handle form submission
+  /**
+   *Description - This Function save the choose assembly in the database
+   * @param {*} e - Components selected by the admin
+   */
   async handleSubmit(e) {
-    // Preventing the default form submission behavior
     e.preventDefault();
+    console.log('ll');
     const options = {
       method: 'POST',
       crossDomain: true,
-      // Setting headers for the HTTP request
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
         'Accept-Control-Allow-Origin': '*',
       },
-      // Converting the state object to JSON and setting it as the request body
       body: JSON.stringify(this.state),
     };
-    const response = await fetch(
-      'http://localhost:5000/addAssemblies',
-      options
-    );
-    // Parsing the response as JSON
+    const response = await fetch('http://localhost:5000/testWithHelp', options);
     const result = await response.json();
     console.log(result);
-    // Checking if the request was successful
     if (result.status === 'ok') {
       this.setState({
-        showResult: 'The Assembly has been added',
+        showResult: 'The Test has been added',
       });
-    } else if (result.status === 'Assembly already exist') {
+      setTimeout(() => {
+        this.setState({
+          showResult: '',
+          modelCase: '',
+          modelMotherboard: '',
+          modelCPU: '',
+          modelCPUCooler: '',
+          modelGPU: '',
+          modelPSU: '',
+          modelRAM: '',
+          modelSSD: '',
+        });
+      }, 1000);
+    } else if (result.status === 'Test already exist') {
       this.setState({
-        showResult: 'This assembly already  exist',
+        showResult: 'This test already  exist',
       });
     }
   }
 
-  // Lifecycle method called after the component is mounted
+  /**
+   *Description - This function start when the page is upload and activate the function getModels
+   */
   componentDidMount() {
-    // Fetching the component models when the component is mounted
     this.getModels();
   }
+
   render() {
     return (
       <PageLayout>
         <Header h1Heading='Test With Help' />
-
         <section>
           <form onSubmit={this.handleSubmit.bind(this)} className={style.form}>
             <input
               className={style.input}
               type='text'
               placeholder='Enter Test Name:'
-              value={this.state.assemblyName}
+              value={this.state.testName}
               required
               onChange={e => this.setState({ assemblyName: e.target.value })}
             />
-
             <select
               className={style.select}
               value={this.state.modelMotherboard}
@@ -133,7 +136,6 @@ export default class TestWithHelp extends Component {
                 );
               })}
             </select>
-
             <select
               className={style.select}
               value={this.state.modelCPU}
@@ -152,7 +154,6 @@ export default class TestWithHelp extends Component {
                 );
               })}
             </select>
-
             <select
               className={style.select}
               value={this.state.modelCPUCooler}
@@ -174,7 +175,6 @@ export default class TestWithHelp extends Component {
                 );
               })}
             </select>
-
             <select
               className={style.select}
               value={this.state.modelGPU}
@@ -193,7 +193,6 @@ export default class TestWithHelp extends Component {
                 );
               })}
             </select>
-
             <select
               className={style.select}
               value={this.state.modelPSU}
@@ -212,7 +211,6 @@ export default class TestWithHelp extends Component {
                 );
               })}
             </select>
-
             <select
               className={style.select}
               value={this.state.modelRAM}
@@ -231,7 +229,6 @@ export default class TestWithHelp extends Component {
                 );
               })}
             </select>
-
             <select
               className={style.select}
               value={this.state.modelSSD}
@@ -252,7 +249,6 @@ export default class TestWithHelp extends Component {
                 }
               )}
             </select>
-
             <select
               className={style.select}
               value={this.state.modelCase}
@@ -271,9 +267,8 @@ export default class TestWithHelp extends Component {
                 );
               })}
             </select>
-
             <Button type='submit' text='submit' />
-            <p>{this.state.showResult}</p>
+            <p className={style.showResult}>{this.state.showResult}</p>
           </form>
         </section>
       </PageLayout>

@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 
-// define motherboard type data
+/**
+ * Description - Define the motherboard scehma
+ */
 const motherboardScehma = new mongoose.Schema(
   {
     model: String,

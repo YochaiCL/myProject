@@ -1,7 +1,11 @@
-import React from 'react'
+import React from 'react';
 import PageLayout from '../../../../layouts/pageLayout/PageLayout';
 import Header from '../../../../../commonComponents/header/Header';
 
+/**
+ * Description -
+ * @returns
+ */
 function productsHD() {
   return (
     <PageLayout>
@@ -10,4 +14,4 @@ function productsHD() {
   );
 }
 
-export default productsHD
+export default productsHD;

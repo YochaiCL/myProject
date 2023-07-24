@@ -12,7 +12,7 @@ function infoCASE() {
     <ComponentLearnLayout name='case'>
       <Header h1Heading='Case Information' />
       <article>
-        <p>
+        <p className={style.p}>
           The computer case serves mainly as a way to physically mount and
           contain all the actual components inside a computer, like the
           motherboard, hard drive, power supply etc.
@@ -24,12 +24,12 @@ function infoCASE() {
           of a computer
         </p>
         <h2 className={style.h2}>How to choose</h2>
-        <p>
+        <p className={style.p}>
           Motherboards, computer cases, and power supplies all come in different
           sizes called form factors. All three must be compatible to work
           properly together.
         </p>
-        <p>
+        <p className={style.p}>
           Before anything else, decide what size case you need. There are three
           major case sizes: Full tower, mid-tower, and mini-ITX.
         </p>
@@ -43,7 +43,7 @@ function infoCASE() {
           graphics cards, and a lot of storage.
         </p>
         <h2 className={style.h2}>Water-cooling support</h2>
-        <p>
+        <p className={style.p}>
           The rise of sealed all-in-one coolers have made liquid-cooling more
           popular than ever. If you plan to water-cool your PC, pay fine
           attention to the support provided by your case. You probably won’t be

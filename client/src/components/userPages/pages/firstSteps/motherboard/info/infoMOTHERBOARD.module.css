@@ -6,10 +6,11 @@
 .link {
   text-decoration: none;
   color: rgb(10, 128, 174);
-  
 }
 
 .link:hover {
   color: rgb(78, 200, 248);
 }
-
+.p {
+  margin-bottom: 2rem;
+}

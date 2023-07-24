@@ -49,9 +49,7 @@ export default class ComponentLearnLayout extends Component {
     let user = JSON.parse(localStorage.getItem('user'));
     let productsArray = this.state.array;
     productsArray[name].comment = this.state.comment;
-    this.setState({
-      showResult: 'Comment have added',
-    });
+
     fetch('http://localhost:5000/compLearned', {
       method: 'POST',
       crossDomain: true,
@@ -68,6 +66,14 @@ export default class ComponentLearnLayout extends Component {
       .then(res => res.json())
       .then(data => {
         console.log(data);
+        this.setState({
+          showResult: 'Comment have added',
+        });
+        setTimeout(() => {
+          this.setState({
+            showResult: '',
+          });
+        }, 1000);
       });
   };
   render() {
@@ -81,7 +87,7 @@ export default class ComponentLearnLayout extends Component {
             Write yourself a comment about this component
           </h2>
           <input
-          className={style.input}
+            className={style.input}
             type='text'
             placeholder='please enter comment'
             value={this.state.comment}

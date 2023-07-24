@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 
-// define ram type data
+/**
+ * Description - Define the ram scehma
+ */
 const ramScehma = new mongoose.Schema(
   {
     model: String,

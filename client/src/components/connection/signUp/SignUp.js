@@ -23,12 +23,15 @@ export default class SignUp extends Component {
    * @returns - True if fullName contain only letters and at least 2 letters and False otherwise
    */
   checkName(fullName) {
-    const onlyLetters = /^[A-Za-z]+$/;
-    if (!onlyLetters.test(fullName)) {
+    let name = fullName;
+    // console.log(name);
+    name = name.replace(' ', '');
+    const onlyLetters = /^[A-Za-z\s]+$/;
+    if (!onlyLetters.test(name)) {
       return false;
     }
 
-    var letterCount = fullName.replace(/[^a-zA-Z]/g, '').length;
+    const letterCount = name.replace(/[^a-zA-Z]/g, '').length;
     if (letterCount < 2) {
       return false;
     }

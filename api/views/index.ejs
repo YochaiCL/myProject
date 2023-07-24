@@ -46,10 +46,10 @@
       status = '<%- JSON.stringify(status) %>';
       // check if the user is verify
       if (JSON.parse(status) === 'not good password') {
-        alert('not good');
+        alert('Invalid Password');
       }
       if (JSON.parse(status) === 'verified') {
-        if (confirm('Password have Change , Do you want to signIn?')) {
+        if (confirm('Password have been Change , Do you want to signIn?')) {
           window.location.href = 'http://localhost:3000/';
         }
       }

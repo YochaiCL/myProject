@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 
-// define learned data
+/**
+ * Description - Define the learned scehma
+ */
 const compLearnedScehma = new mongoose.Schema(
   {
     userId: String,

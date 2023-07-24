@@ -4,6 +4,9 @@ import Header from '../../../../../commonComponents/header/Header';
 import style from './addSsd.module.css';
 import LinkLayout from '../../../../../commonComponents/linkLayout/LinkLayout';
 
+/**
+ * Description - This class show the link layout of the add ssd components
+ */
 export default class AddSsd extends Component {
   render() {
     return (

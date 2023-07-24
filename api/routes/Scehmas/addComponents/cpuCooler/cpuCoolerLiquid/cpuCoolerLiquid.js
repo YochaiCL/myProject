@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 
-// define cpu Cooler Liquid type data
+/**
+ * Description - Define the cpu cooler liquid scehma
+ */
 const cpuCoolerLiquidScehma = new mongoose.Schema(
   {
     model: String,

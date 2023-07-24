@@ -18,17 +18,17 @@ function infoSSD() {
           using flash memory.
         </p>
         <h2 className={style.h2}>M.2</h2>
-        <p>
+        <p className={style.p}>
           M.2 SSDs typically come in three dimensions, which may be deduced from
           the card name —2242, 2260, and 2280 — "22" represents the width in
           millimeters, while the next two digits represent the length, also in
           mm.
         </p>
-        <p>
+        <p className={style.p}>
           The longer the drive, the more NAND flash chips can be mounted and
           therefore more capacity.
         </p>
-        <p>
+        <p className={style.p}>
           The drive is connected directly to the motherboard, so make sure there
           is a connection on the motherboard
         </p>
@@ -53,7 +53,7 @@ function infoSSD() {
         </ul>
 
         <h2 className={style.h2}>SATA III</h2>
-        <p>
+        <p className={style.p}>
           SATA (Serial Advanced Technology Attachment) is from 500 GB to 16 TB
           and available at a lower cost than M.2
         </p>

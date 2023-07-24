@@ -33,7 +33,7 @@ export default function InfoCPU() {
           simultaneous programming.
         </p>
         <h3 className={style.h2}>Single-Threading And Multithreading? </h3>
-        <p>
+        <p className={style.p}>
           Single threading means the execution of instructions in one sequence,
           that is, a single command is processed at a time.
         </p>
@@ -46,7 +46,7 @@ export default function InfoCPU() {
         </p>
 
         <h2 className={style.h2}>Clock speed</h2>
-        <p>
+        <p className={style.p}>
           Clock speed is one of your CPU’s key specifications — but what does it
           really mean? The performance of your CPU — the “brain” of your PC —
           has a major impact on the speed at which programs load and how

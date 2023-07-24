@@ -4,6 +4,10 @@ import Header from '../../../commonComponents/header/Header';
 import LinkLayout from '../../../commonComponents/linkLayout/LinkLayout';
 import style from './premium.module.css';
 
+/**
+ * Description -
+ * @returns
+ */
 function Premium() {
   return (
     <PageLayout>

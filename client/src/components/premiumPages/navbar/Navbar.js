@@ -3,6 +3,10 @@ import style from './navbar.module.css';
 import logo from '../../../images/navbar/logo.png';
 import LinkNavbar from '../../commonComponents/linkNavbar/LinkNavbar';
 
+/**
+ * Description - This function define the navbar layout of premium pages
+ * @returns - Navbar layout
+ */
 export default function Navbar() {
   return (
     <nav className={style.nav}>

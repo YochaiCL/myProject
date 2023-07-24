@@ -1,7 +1,9 @@
 // Import mongo
 const mongoose = require('mongoose');
 
-// define test type data
+/**
+ * Description -
+ */
 const testYourSelfScehma = new mongoose.Schema(
   {
     testName: String,

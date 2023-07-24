@@ -1,6 +1,9 @@
 import { Component } from 'react';
 import style from './videos.module.css';
 
+/**
+ * Description - 
+ */
 export default class Videos extends Component {
   render() {
     const { video, name } = this.props.details;

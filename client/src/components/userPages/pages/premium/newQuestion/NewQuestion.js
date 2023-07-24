@@ -4,6 +4,9 @@ import Header from '../../../../commonComponents/header/Header';
 import style from './newQuestion.module.css';
 import Button from '../../../../commonComponents/button/Button';
 
+/**
+ * Description - 
+ */
 export default class NewQuestion extends Component {
   state = {
     questionName: '',

@@ -33,22 +33,43 @@ export default class ForgetPassword extends Component {
     })
       .then(res => res.json())
       .then(data => {
-        if (data.status === 'User Not Exist')
+        if (data.status === 'User Not Exist') {
           this.setState({
             showResult: 'User Not Exists!! Check your details',
           });
-        else if (data.status === 'Error email not send')
+          setTimeout(() => {
+            this.setState({
+              showResult: '',
+            });
+          }, 2000);
+        } else if (data.status === 'Error email not send') {
           this.setState({
             showResult: 'Error email not send',
           });
-        else if (data.status === 'Something wrong check your details')
+          setTimeout(() => {
+            this.setState({
+              showResult: '',
+            });
+          }, 2000);
+        } else if (data.status === 'Something wrong check your details') {
           this.setState({
             showResult: 'Something wrong check your details',
           });
-        else if (data.status === 'Email send')
+          setTimeout(() => {
+            this.setState({
+              showResult: '',
+            });
+          }, 2000);
+        } else if (data.status === 'Email send') {
           this.setState({
             showResult: 'Email sended, Check your email',
           });
+          setTimeout(() => {
+            this.setState({
+              showResult: '',
+            });
+          }, 2000);
+        }
       });
   }
   render() {

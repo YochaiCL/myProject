@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 
-// define case type data
+/**
+ * Description - Define the case scehma
+ */
 const caseScehma = new mongoose.Schema(
   {
     model: String,

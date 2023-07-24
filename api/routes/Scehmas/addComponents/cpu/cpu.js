@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 
-// define cpu type data
+/**
+ * Description - Define the cpu scehma
+ */
 const cpuScehma = new mongoose.Schema(
   {
     model: String,

@@ -2,8 +2,11 @@ import React, { Component } from 'react';
 import PageLayout from '../../../../layouts/pageLayout/PageLayout';
 import Header from '../../../../../commonComponents/header/Header';
 import LinkLayout from '../../../../../commonComponents/linkLayout/LinkLayout';
-import style from './addCpuCooler.module.css'
+import style from './addCpuCooler.module.css';
 
+/**
+ * Description - This class show the links layout of the add cpu coolers
+ */
 export default class AddCpuCooler extends Component {
   render() {
     return (

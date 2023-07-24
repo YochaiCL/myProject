@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 
-// define gpu type data
+/**
+ * Description - Define the gpu scehma
+ */
 const gpuScehma = new mongoose.Schema(
   {
     model: String,

@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 
-// define question answer data
+/**
+ * Description -
+ */
 const questionAnswerScehma = new mongoose.Schema(
   {
     userId: String,

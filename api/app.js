@@ -49,6 +49,7 @@ require('./routes/Scehmas/addComponents/ssd/ssdM2/ssdM2');
 require('./routes/Scehmas/addComponents/ssd/ssdSata/ssdSata');
 require('./routes/Scehmas/addAssemblies/addAssembliesScehmas');
 require('./routes/Scehmas/questionAnswer/questionAnswer');
+require('./routes/Scehmas/testYourSelf/testYourSelf');
 
 // Requiring and activating the routes related to user connection (signUp, login, etc.).
 const signUp = require('./routes/connection/signUp/signUp');
@@ -95,6 +96,12 @@ const updateAssembly = require('./routes/update/updateAssembly/updateAssembly');
 app.use('/updateAssembly', updateAssembly);
 const updateComponent = require('./routes/update/updateComponent/updateComponent');
 app.use('/updateComponent', updateComponent);
+
+// Requiring and activating the routes for test by the usertestWithHelp
+const testWithHelp = require('./routes/testYourSelf/testWithHelp/testWithHelp');
+app.use('/testWithHelp', testWithHelp);
+const testWithoutHelp = require('./routes/testYourSelf/testWithoutHelp/testWithoutHelp');
+app.use('/testWithoutHelp', testWithoutHelp);
 
 // Starting the server on port 5000.
 app.listen(5000, () => {

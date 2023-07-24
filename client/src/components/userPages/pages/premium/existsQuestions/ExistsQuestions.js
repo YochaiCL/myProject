@@ -4,6 +4,9 @@ import Header from '../../../../commonComponents/header/Header';
 import style from './existsQuestions.module.css';
 import Button from '../../../../commonComponents/button/Button';
 
+/**
+ * Description - 
+ */
 export default class ExistsQuestions extends Component {
   state = {
     products: [{ questionName: 'Loading data...' }],

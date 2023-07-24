@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 
-// define ssdSata type data
+/**
+ * Description - Define the ssd sata scehma
+ */
 const ssdSataScehma = new mongoose.Schema(
   {
     model: String,
