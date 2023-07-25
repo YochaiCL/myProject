@@ -14,3 +14,9 @@
 .p {
   margin-bottom: 2rem;
 }
+
+.attention{
+  margin-top: 2rem;
+  text-align: center;
+  color: rgb(252, 84, 0);
+}

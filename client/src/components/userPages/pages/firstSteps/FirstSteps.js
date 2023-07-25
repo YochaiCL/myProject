@@ -120,17 +120,6 @@ export default function FirstSteps() {
         />
 
         <LearnLayout
-          img={hd}
-          imgName='hd'
-          name='HARD DISK'
-          compInfo='/infoHD'
-          compProduct='/productsHD'
-          learn={array.hd}
-          changeLearn={setArray}
-          oldState={array}
-        />
-
-        <LearnLayout
           img={ram}
           imgName='ram'
           name='RAM'
@@ -162,23 +151,31 @@ export default function FirstSteps() {
           changeLearn={setArray}
           oldState={array}
         />
-        <LearnLayout
-          img={cables}
-          imgName='cables'
-          name='CABLES'
-          compInfo='/infoCABLE'
-          compProduct='/productsCABLES'
-          learn={array.cables}
-          changeLearn={setArray}
-          oldState={array}
-        />
+
         <LearnLayout
           img={dvd}
           imgName='dvd'
           name='DVD'
           compInfo='/infoDVD'
-          compProduct='/productsDVD'
           learn={array.dvd}
+          changeLearn={setArray}
+          oldState={array}
+        />
+        <LearnLayout
+          img={hd}
+          imgName='hd'
+          name='HARD DISK'
+          compInfo='/infoHD'
+          learn={array.hd}
+          changeLearn={setArray}
+          oldState={array}
+        />
+        <LearnLayout
+          img={cables}
+          imgName='cables'
+          name='CABLES'
+          compInfo='/infoCABLE'
+          learn={array.cables}
           changeLearn={setArray}
           oldState={array}
         />

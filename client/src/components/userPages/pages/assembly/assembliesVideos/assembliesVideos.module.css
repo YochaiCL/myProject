@@ -1,0 +1,31 @@
+.link {
+  text-decoration: none;
+  color: rgb(10, 128, 174);
+}
+
+.link:hover {
+  color: rgb(78, 200, 248);
+}
+
+table {
+  border-collapse: collapse;
+  text-align: center;
+  margin: 20px;
+}
+td,
+th {
+  vertical-align: middle;
+  border: 1px solid gray;
+  padding: 15px;
+}
+th {
+  height: 100px;
+}
+
+.article {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+

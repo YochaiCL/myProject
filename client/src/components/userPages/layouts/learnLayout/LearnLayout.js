@@ -69,9 +69,13 @@ export default class LearnLayout extends Component {
           <Link className={style.link} to={compInfo}>
             Information
           </Link>
-          <Link className={style.link} to={compProduct}>
-            Products
-          </Link>
+          {this.props.imgName !== 'dvd' &&
+            this.props.imgName !== 'cables' &&
+            this.props.imgName !== 'hd' && (
+              <Link className={style.link} to={compProduct}>
+                Products
+              </Link>
+            )}
           {this.props.learn ? (
             <div>
               {this.props.learn.haveLearned ? (

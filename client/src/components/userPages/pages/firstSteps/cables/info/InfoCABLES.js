@@ -11,7 +11,7 @@ function infoCABLES() {
     <ComponentLearnLayout name='cables'>
       <Header h1Heading='Cable Information' />
       <article>
-        <h2>What are the Internal PC Cables?</h2>
+        <h2 className={style.h2}>What are the Internal PC Cables?</h2>
         <p className={style.p}>
           Once you have installed the motherboard and power supply, fitted in
           the CPU, and slotted your RAM modules, it’s time to connect all the
@@ -32,24 +32,25 @@ function infoCABLES() {
           </li>
         </ul>
 
-        <h2>SATA cables</h2>
+        <h2 className={style.h2}>SATA cables</h2>
         <p>
           Serial Advanced Technology Attachment cables are special types of
           cables, which are mainly used to connect multiple types of storage
           drives (optical drives, hard drives, solid-state drives) to a
           motherboard.
         </p>
-        <h2>Fan cables</h2>
+        <h2 className={style.h2}>Fan cables</h2>
         <p>
           A motherboard fan connector is a small three or four-pin connector
           located on the motherboard. The fan will have one set of cables that
           will connect into the connector on the motherboard.
         </p>
-
-        <p>
-          Please pay attention, this component is not available for selection
-          because this is a custom selected product
-        </p>
+        <section className={style.attention}>
+          <p>
+            Please pay attention, this component is not available for selection
+            because this is a custom selected product
+          </p>
+        </section>
       </article>
     </ComponentLearnLayout>
   );

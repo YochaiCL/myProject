@@ -24,6 +24,13 @@ function infoDVD() {
           The most common use of a disc drive is for playing discs or burning
           discs
         </p>
+
+        <section className={style.attention}>
+          <p>
+            Please pay attention, this component is not available for selection
+            because this is a custom selected product
+          </p>
+        </section>
       </article>
     </ComponentLearnLayout>
   );

@@ -38,6 +38,12 @@ function infoHD() {
           the drive can be damaged so that the data on them is not retrievable
           by end users.
         </p>
+        <section className={style.attention}>
+          <p>
+            Please pay attention, this component is not available for selection
+            because this is a custom selected product
+          </p>
+        </section>
       </article>
     </ComponentLearnLayout>
   );

@@ -24,9 +24,7 @@ import ProductsCPU from './components/userPages/pages/firstSteps/cpu/products/Pr
 import InfoGPU from './components/userPages/pages/firstSteps/gpu/info/InfoGPU';
 import ProductsGPU from './components/userPages/pages/firstSteps/gpu/products/ProductsGPU';
 import InfoDVD from './components/userPages/pages/firstSteps/dvd/info/InfoDVD';
-import ProductsDVD from './components/userPages/pages/firstSteps/dvd/products/ProductsDVD';
 import InfoHD from './components/userPages/pages/firstSteps/hd/info/InfoHD';
-import ProductsHD from './components/userPages/pages/firstSteps/hd/products/ProductsHD';
 import InfoMOTHERBOARD from './components/userPages/pages/firstSteps/motherboard/info/InfoMOTHERBOARD';
 import ProductsMOTHERBOARD from './components/userPages/pages/firstSteps/motherboard/products/ProductsMOTHERBOARD';
 import InfoPSU from './components/userPages/pages/firstSteps/psu/info/InfoPSU';
@@ -34,7 +32,6 @@ import ProductsPSU from './components/userPages/pages/firstSteps/psu/products/Pr
 import InfoRAM from './components/userPages/pages/firstSteps/ram/info/InfoRAM';
 import ProductsRAM from './components/userPages/pages/firstSteps/ram/products/ProductsRAM';
 import InfoCABLES from './components/userPages/pages/firstSteps/cables/info/InfoCABLES';
-import ProductsCABLES from './components/userPages/pages/firstSteps/cables/products/ProductsCABLES';
 import InfoCASE from './components/userPages/pages/firstSteps/case/info/InfoCASE';
 import ProductsCASE from './components/userPages/pages/firstSteps/case/products/ProductsCASE';
 import InfoFANS from './components/userPages/pages/firstSteps/fans/info/InfoFANS';
@@ -149,9 +146,7 @@ function App() {
           <Route path='/infoGPU' element={<InfoGPU />} />
           <Route path='/productsGPU' element={<ProductsGPU />} />
           <Route path='/infoDVD' element={<InfoDVD />} />
-          <Route path='/productsDVD' element={<ProductsDVD />} />
           <Route path='/infoHD' element={<InfoHD />} />
-          <Route path='/productsHD' element={<ProductsHD />} />
           <Route path='/infoMOTHERBOARD' element={<InfoMOTHERBOARD />} />
           <Route
             path='/productsMOTHERBOARD'
@@ -162,7 +157,6 @@ function App() {
           <Route path='/infoRAM' element={<InfoRAM />} />
           <Route path='/productsRAM' element={<ProductsRAM />} />
           <Route path='/infoCABLE' element={<InfoCABLES />} />
-          <Route path='/productsCABLES' element={<ProductsCABLES />} />
           <Route path='/infoCASE' element={<InfoCASE />} />
           <Route path='/productsCASE' element={<ProductsCASE />} />
           <Route path='/infoFANS' element={<InfoFANS />} />
