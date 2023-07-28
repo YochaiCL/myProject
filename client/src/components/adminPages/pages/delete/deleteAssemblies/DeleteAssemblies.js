@@ -66,6 +66,7 @@ export default class DeleteAssemblies extends Component {
             setTimeout(() => {
               this.setState({
                 showResult: '',
+                deleteAssembly : ''
               });
             }, 1000);
           }

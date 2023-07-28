@@ -4,6 +4,30 @@ import Header from '../../../../commonComponents/header/Header';
 import Button from '../../../../commonComponents/button/Button';
 import style from './testWithoutHelp.module.css';
 
+let optionsTest = [
+  {
+    case: 'Corsair iCUE 7000X',
+    motherboard: 'ROG STRIX Z790-F GAMING WIFI',
+    cpu: 'i9-12900KF',
+    gpu: 'TUF Gaming GeForce RTX 3070 Ti V2 OC Edition 8GB GDDR6X',
+    liquid_cpu_cooler: 'H150 RGB 360mm Liquid CPU Cooler',
+    psu: 'ROG-STRIX-750G',
+    ram: 'Corsair Vengeance 2x32GB DDR5 4800MHz CL40',
+    storage: 'Samsung 980 PRO M.2 NVMe 1TB SSD',
+    fan: 'none',
+  },
+  {
+    case: 'TUF Gaming GT301',
+    motherboard: 'PRIME H610M-D D4',
+    cpu: 'i5-13400',
+    gpu: 'ASUS TUF GTX 1660 SUPER GAMING OC 6GB GDDR6 DVI HDMI DP',
+    fan_cpu_cooler: 'Arctic Alpine 17 CO',
+    psu: 'Asus ROG-STRIX 550W GOLD ROG-STRIX-550G',
+    ram: 'G.Skill Aegis 2x8GB 2666Mhz DDR4 CL19 Kit',
+    storage: 'Kingston NV2 PCIe 4.0 x4 NVMe M.2 2280 1TB SSD',
+    fan: 'none',
+  },
+];
 /**
  * Description -
  */
@@ -18,6 +42,7 @@ export default class TestWithoutHelp extends Component {
     modelPSU: '',
     modelRAM: '',
     modelSSD: '',
+    currectCase : '',
     cpuArray: [],
     gpuArray: [],
     caseArray: [],
@@ -30,6 +55,7 @@ export default class TestWithoutHelp extends Component {
     ssdM2Array: [],
     ssdSataArray: [],
     showResult: '',
+    gradeShow: 0,
   };
 
   /**
@@ -57,7 +83,26 @@ export default class TestWithoutHelp extends Component {
    */
   async handleSubmit(e) {
     e.preventDefault();
-    console.log('ll');
+    let grade = 0;
+    let chosenOption = null;
+    for (let option of optionsTest) {
+      if (this.state.modelMotherboard === option.motherboard)
+        chosenOption = option;
+    }
+    if (chosenOption) {
+      if (chosenOption.case === this.state.modelCase) grade = grade + 10;
+      else this.setState({ currectCase: chosenOption.case });
+      if (chosenOption.cpu === this.state.modelCPU) grade = grade + 10;
+      if (chosenOption.liquid_cpu_cooler === this.state.modelCPUCooler)
+        grade = grade + 10;
+      if (chosenOption.gpu === this.state.modelGPU) grade = grade + 10;
+      if (chosenOption.psu === this.state.modelPSU) grade = grade + 10;
+      if (chosenOption.ram === this.state.modelRAM) grade = grade + 10;
+      if (chosenOption.ssd === this.state.modelSSD) grade = grade + 10;
+    }
+
+    this.setState({ gradeShow: grade });
+
     const options = {
       method: 'POST',
       crossDomain: true,
@@ -78,19 +123,6 @@ export default class TestWithoutHelp extends Component {
       this.setState({
         showResult: 'The Test has been added',
       });
-      setTimeout(() => {
-        this.setState({
-          showResult: '',
-          modelCase: '',
-          modelMotherboard: '',
-          modelCPU: '',
-          modelCPUCooler: '',
-          modelGPU: '',
-          modelPSU: '',
-          modelRAM: '',
-          modelSSD: '',
-        });
-      }, 1000);
     } else if (result.status === 'Test already exist') {
       this.setState({
         showResult: 'This test already  exist',
@@ -117,7 +149,7 @@ export default class TestWithoutHelp extends Component {
               placeholder='Enter Test Name:'
               value={this.state.testName}
               required
-              onChange={e => this.setState({ assemblyName: e.target.value })}
+              onChange={e => this.setState({ testName: e.target.value })}
             />
             <select
               className={style.select}
@@ -270,8 +302,29 @@ export default class TestWithoutHelp extends Component {
                 );
               })}
             </select>
+            {this.state.currectCase !== '' ? (
+              <div>
+                <h1>you have an error in case</h1>
+                <button>link</button>
+                <button>link 2</button>
+                <button
+                  onClick={() =>
+                    this.setState({ modelCase: this.state.currectCase })
+                  }
+                >
+                  you want to see the answer
+                </button>
+              </div>
+            ) : (
+              ''
+            )}
             <Button type='submit' text='submit' />
             <p className={style.showResult}>{this.state.showResult}</p>
+            {this.state.gradeShow > 0 ? (
+              <p>your result is:{this.state.gradeShow}/100</p>
+            ) : (
+              ''
+            )}
           </form>
         </section>
       </PageLayout>

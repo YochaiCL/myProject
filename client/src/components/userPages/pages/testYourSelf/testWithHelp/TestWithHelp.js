@@ -86,6 +86,7 @@ export default class TestWithHelp extends Component {
           modelPSU: '',
           modelRAM: '',
           modelSSD: '',
+          currentCpu: '',
         });
       }, 1000);
     } else if (result.status === 'Test already exist') {
@@ -114,15 +115,19 @@ export default class TestWithHelp extends Component {
               placeholder='Enter Test Name:'
               value={this.state.testName}
               required
-              onChange={e => this.setState({ assemblyName: e.target.value })}
+              onChange={e => this.setState({ testName: e.target.value })}
             />
             <select
               className={style.select}
               value={this.state.modelMotherboard}
               label='MOTHERBOARD'
-              onChange={e =>
-                this.setState({ modelMotherboard: e.target.value })
-              }
+              onChange={e => {
+                this.setState({ modelMotherboard: e.target.value });
+                if (e.target.value === 'ROG STRIX Z790-F GAMING WIFI')
+                  this.setState({ currentCpu: 'i9-12900KF' });
+                if (e.target.value === 'PRIME H610M-D D4')
+                  this.setState({ currentCpu: 'i5-13400' });
+              }}
               required
             >
               <option value='' disabled>
@@ -147,11 +152,27 @@ export default class TestWithHelp extends Component {
                 Select a CPU
               </option>
               {this.state.cpuArray.map(itemCpu => {
-                return (
-                  <option key={itemCpu} value={itemCpu}>
-                    {itemCpu}
-                  </option>
-                );
+                if (this.state.currentCpu === itemCpu){
+                  return (
+                    <option
+                      key={itemCpu}
+                      value={itemCpu}
+                      style={{ color: 'green' }}
+                    >
+                       { itemCpu } 
+                    </option>
+                  )
+                } else {
+                  return (
+                    <option
+                      key={itemCpu}
+                      value={itemCpu}
+                    >
+                      {itemCpu}
+                    </option>
+                  );
+                }
+                  
               })}
             </select>
             <select

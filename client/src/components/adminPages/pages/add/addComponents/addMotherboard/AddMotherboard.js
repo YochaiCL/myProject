@@ -17,7 +17,31 @@ export default class AddMotherboard extends Component {
     expansion_slots: '',
     M2Slot: '',
     showResult: '',
+    modelsArray: [],
   };
+
+  /**
+   * Description - This function get all models names from the server and set them on array
+   */
+  async getModels() {
+    const response = await fetch('http://localhost:5000/getComponentsModels');
+    const result = await response.json();
+    // console.log(result);
+    let allModels = [];
+    for (let key in result) {
+      // console.log(result[key]);
+      for (let model of result[key]) allModels.push(model);
+    }
+    // console.log(allModels);
+    this.setState({ modelsArray: allModels });
+  }
+
+  /**
+   * Description - This function activate the getModels function when the page is upload
+   */
+  componentDidMount() {
+    this.getModels();
+  }
 
   /**
    * Description - This function add motherboard to collection
@@ -25,6 +49,12 @@ export default class AddMotherboard extends Component {
    */
   async handleSubmit(e) {
     e.preventDefault();
+    for (let model of this.state.modelsArray) {
+      if (model === this.state.model) {
+        this.setState({ showResult: 'This model name already exists' });
+        return;
+      }
+    }
     const options = {
       method: 'POST',
       crossDomain: true,

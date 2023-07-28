@@ -72,12 +72,12 @@ export default class DeleteComponents extends Component {
     for (let key in this.state.allArrays) {
       for (let component of this.state.allArrays[key]) {
         if (component === this.state.selectedComponent) {
-          console.log(this.state.allArrays[key]);
+          // console.log(this.state.allArrays[key]);
           let result = this.state.allArrays[key].filter(item => {
-            console.log(item, this.state.selectedComponent);
+            // console.log(item, this.state.selectedComponent);
             return item !== this.state.selectedComponent;
           });
-          console.log(result, key, component, this.state.allArrays[key]);
+          // console.log(result, key, component, this.state.allArrays[key]);
           this.setState({ [key]: result });
           // this.setState({allArrays : [...this.state.allArrays , result] })
           try {
