@@ -102,6 +102,8 @@ const testWithHelp = require('./routes/testYourSelf/testWithHelp/testWithHelp');
 app.use('/testWithHelp', testWithHelp);
 const testWithoutHelp = require('./routes/testYourSelf/testWithoutHelp/testWithoutHelp');
 app.use('/testWithoutHelp', testWithoutHelp);
+const existsTest=require('./routes/testYourSelf/existsTests/existsTests')
+app.use('/existsTests',existsTest)
 
 // Starting the server on port 5000.
 app.listen(5000, () => {
