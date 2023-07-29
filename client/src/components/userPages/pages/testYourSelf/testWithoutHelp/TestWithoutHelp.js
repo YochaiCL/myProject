@@ -6,7 +6,7 @@ import style from './testWithoutHelp.module.css';
 import { Link } from 'react-router-dom';
 
 /**
- * Description - This class test the user for crate assembly
+ * Description - This class test the user for crate assembly without help
  */
 export default class TestWithoutHelp extends Component {
   state = {
@@ -49,6 +49,8 @@ export default class TestWithoutHelp extends Component {
     selectClassCpuCooler: '',
     selectClassRam: '',
     selectClassSsd: '',
+    userId: JSON.parse(localStorage.getItem('user')),
+    textFinalResult: '',
   };
 
   /**
@@ -152,10 +154,13 @@ export default class TestWithoutHelp extends Component {
       }
     }
 
-    this.setState({ gradeShow: grade });
+    this.setState({
+      gradeShow: grade,
+      textFinalResult: `your result is:${grade}/100`,
+    });
 
     if (grade === 100) {
-      const options = {
+      const testInputData = {
         method: 'POST',
         crossDomain: true,
         headers: {
@@ -167,19 +172,21 @@ export default class TestWithoutHelp extends Component {
       };
       const response = await fetch(
         'http://localhost:5000/testWithoutHelp',
-        options
+        testInputData
       );
       const result = await response.json();
-      console.log(result);
+      // console.log(result);
       if (result.status === 'ok') {
         this.setState({
           showResult: 'The Test has been added',
+          textFinalResult: `your result is:${this.state.gradeShow}/100`,
         });
 
         setTimeout(() => {
           this.setState({
             testName: '',
             showResult: '',
+            textFinalResult: '',
             modelCase: '',
             modelMotherboard: '',
             modelCPU: '',
@@ -223,7 +230,7 @@ export default class TestWithoutHelp extends Component {
     const response = await fetch('http://localhost:5000/getAssembly');
     const result = await response.json();
     result.sort((a, b) => a.assemblyName.localeCompare(b.assemblyName));
-    console.log(result);
+    // console.log(result);
     this.setState({ assembly: result });
   }
 
@@ -280,10 +287,14 @@ export default class TestWithoutHelp extends Component {
               <section className={style.wrongAnswer}>
                 <h2 className={style.h2}>you have an error in motherboard</h2>
                 <section className={style.moreInformation}>
-                  <Link to='/infoMOTHERBOARD' className={style.link}>
+                  <Link
+                    to='/infoMOTHERBOARD'
+                    className={style.link}
+                    target='_blank'
+                  >
                     motherboard Information
                   </Link>
-                  <Link to='/premium' className={style.link}>
+                  <Link to='/premium' className={style.link} target='_blank'>
                     Question/Answer
                   </Link>
                   <button
@@ -333,10 +344,10 @@ export default class TestWithoutHelp extends Component {
               <section className={style.wrongAnswer}>
                 <h2 className={style.h2}>you have an error in cpu</h2>
                 <section className={style.moreInformation}>
-                  <Link to='/infoCPU' className={style.link}>
+                  <Link to='/infoCPU' className={style.link} target='_blank'>
                     cpu Information
                   </Link>
-                  <Link to='/premium' className={style.link}>
+                  <Link to='/premium' className={style.link} target='_blank'>
                     Question/Answer
                   </Link>
                   <button
@@ -390,10 +401,14 @@ export default class TestWithoutHelp extends Component {
               <section className={style.wrongAnswer}>
                 <h2 className={style.h2}>you have an error in cpu cooler</h2>
                 <section className={style.moreInformation}>
-                  <Link to='/infoCPUCOOLER' className={style.link}>
+                  <Link
+                    to='/infoCPUCOOLER'
+                    className={style.link}
+                    target='_blank'
+                  >
                     cpu cooler Information
                   </Link>
-                  <Link to='/premium' className={style.link}>
+                  <Link to='/premium' className={style.link} target='_blank'>
                     Question/Answer
                   </Link>
                   <button
@@ -444,10 +459,10 @@ export default class TestWithoutHelp extends Component {
               <section className={style.wrongAnswer}>
                 <h2 className={style.h2}>you have an error in gpu</h2>
                 <section className={style.moreInformation}>
-                  <Link to='/infoGPU' className={style.link}>
+                  <Link to='/infoGPU' className={style.link} target='_blank'>
                     gpu Information
                   </Link>
-                  <Link to='/premium' className={style.link}>
+                  <Link to='/premium' className={style.link} target='_blank'>
                     Question/Answer
                   </Link>
                   <button
@@ -498,10 +513,10 @@ export default class TestWithoutHelp extends Component {
               <section className={style.wrongAnswer}>
                 <h2 className={style.h2}>you have an error in psu</h2>
                 <section className={style.moreInformation}>
-                  <Link to='/infoPSU' className={style.link}>
+                  <Link to='/infoPSU' className={style.link} target='_blank'>
                     psu Information
                   </Link>
-                  <Link to='/premium' className={style.link}>
+                  <Link to='/premium' className={style.link} target='_blank'>
                     Question/Answer
                   </Link>
                   <button
@@ -552,10 +567,10 @@ export default class TestWithoutHelp extends Component {
               <section className={style.wrongAnswer}>
                 <h2 className={style.h2}>you have an error in ram</h2>
                 <section className={style.moreInformation}>
-                  <Link to='/infoRAM' className={style.link}>
+                  <Link to='/infoRAM' className={style.link} target='_blank'>
                     ram Information
                   </Link>
-                  <Link to='/premium' className={style.link}>
+                  <Link to='/premium' className={style.link} target='_blank'>
                     Question/Answer
                   </Link>
                   <button
@@ -608,10 +623,10 @@ export default class TestWithoutHelp extends Component {
               <section className={style.wrongAnswer}>
                 <h2 className={style.h2}>you have an error in ssd</h2>
                 <section className={style.moreInformation}>
-                  <Link to='/infoSSD' className={style.link}>
+                  <Link to='/infoSSD' className={style.link} target='_blank'>
                     ssd Information
                   </Link>
-                  <Link to='/premium' className={style.link}>
+                  <Link to='/premium' className={style.link} target='_blank'>
                     Question/Answer
                   </Link>
                   <button
@@ -662,10 +677,10 @@ export default class TestWithoutHelp extends Component {
               <section className={style.wrongAnswer}>
                 <h2 className={style.h2}>you have an error in case</h2>
                 <section className={style.moreInformation}>
-                  <Link to='/infoCASE' className={style.link}>
+                  <Link to='/infoCASE' className={style.link} target='_blank'>
                     case Information
                   </Link>
-                  <Link to='/premium' className={style.link}>
+                  <Link to='/premium' className={style.link} target='_blank'>
                     Question/Answer
                   </Link>
                   <button
@@ -688,9 +703,7 @@ export default class TestWithoutHelp extends Component {
             <Button type='submit' text='submit' />
             <p className={style.showResult}>{this.state.showResult}</p>
             {this.state.gradeShow > 0 ? (
-              <p className={style.showResult}>
-                your result is:{this.state.gradeShow}/100
-              </p>
+              <p className={style.showResult}>{this.state.textFinalResult}</p>
             ) : (
               ''
             )}

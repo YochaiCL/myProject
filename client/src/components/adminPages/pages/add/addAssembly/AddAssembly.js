@@ -38,7 +38,7 @@ export default class AddAssembly extends Component {
   async getModels() {
     const response = await fetch('http://localhost:5000/getComponentsModels');
     const result = await response.json();
-    console.log(result);
+    // console.log(result);
     this.setState({ cpuArray: result.Cpu });
     this.setState({ gpuArray: result.Gpu });
     this.setState({ caseArray: result.Case });
@@ -57,7 +57,6 @@ export default class AddAssembly extends Component {
    */
   async handleSubmit(e) {
     e.preventDefault();
-    console.log('ll');
     const options = {
       method: 'POST',
       crossDomain: true,

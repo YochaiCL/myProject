@@ -29,7 +29,10 @@ export default class TestWithHelp extends Component {
     ramArray: [],
     ssdM2Array: [],
     ssdSataArray: [],
+    assembly: [],
     showResult: '',
+    chosenOption: null,
+    selectedTest: [],
   };
 
   /**
@@ -57,49 +60,93 @@ export default class TestWithHelp extends Component {
    */
   async handleSubmit(e) {
     e.preventDefault();
-    const options = {
-      method: 'POST',
-      crossDomain: true,
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-        'Accept-Control-Allow-Origin': '*',
-      },
-      body: JSON.stringify(this.state),
-    };
-    const response = await fetch('http://localhost:5000/testWithHelp', options);
-    const result = await response.json();
-    // console.log(result);
-    if (result.status === 'ok') {
-      this.setState({
-        showResult: 'The Test has been added',
-      });
-      setTimeout(() => {
-        this.setState({
-          showResult: '',
-          modelCase: '',
-          modelMotherboard: '',
-          modelCPU: '',
-          modelCPUCooler: '',
-          modelGPU: '',
-          modelPSU: '',
-          modelRAM: '',
-          modelSSD: '',
-          currentMotherboard: '',
-          currentCpu: '',
-          currentCPUCooler: '',
-          currentGPU: '',
-          currentPSU: '',
-          currentRAM: '',
-          currentSSD: '',
-          currentCase: '',
-        });
-      }, 1000);
-    } else if (result.status === 'Test already exist') {
-      this.setState({
-        showResult: 'This test already  exist',
-      });
+
+    const propertiesToCheck = [
+      'modelCPU',
+      'modelGPU',
+      'modelMotherboard',
+      'modelCPUCooler',
+      'modelSSD',
+      'modelRAM',
+      'modelCase',
+      'modelPSU',
+    ];
+
+    let allConditionsMet = true;
+    for (const property of propertiesToCheck) {
+      if (this.state[property] !== this.state.chosenOption[property]) {
+        allConditionsMet = false;
+        setTimeout(() => {
+          this.setState({
+            showResult: 'Please choose only the Green Rows',
+          });
+        }, 1000);
+        break;
+      }
     }
+
+    if (allConditionsMet) {
+      const options = {
+        method: 'POST',
+        crossDomain: true,
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          'Accept-Control-Allow-Origin': '*',
+        },
+        body: JSON.stringify(this.state),
+      };
+      const response = await fetch(
+        'http://localhost:5000/testWithHelp',
+        options
+      );
+      const result = await response.json();
+      // console.log(result);
+      if (result.status === 'ok') {
+        this.setState({
+          showResult: 'The Test has been added',
+        });
+        setTimeout(() => {
+          // this.setState({
+          //   showResult: '',
+          //   modelCase: '',
+          //   modelMotherboard: '',
+          //   modelCPU: '',
+          //   modelCPUCooler: '',
+          //   modelGPU: '',
+          //   modelPSU: '',
+          //   modelRAM: '',
+          //   modelSSD: '',
+          //   currentMotherboard: '',
+          //   currentCpu: '',
+          //   currentCPUCooler: '',
+          //   currentGPU: '',
+          //   currentPSU: '',
+          //   currentRAM: '',
+          //   currentSSD: '',
+          //   currentCase: '',
+          //   testName: '',
+          // });
+            window.location.href = '/testWithHelp';
+        }, 2000);
+      } else if (result.status === 'Test already exist') {
+        this.setState({
+          showResult: 'This test already  exist',
+        });
+      }
+    }
+  }
+
+  /**
+   * Description - This function display the assembly products
+   */
+  async getAssembly() {
+    const response = await fetch('http://localhost:5000/getAssembly');
+    const result = await response.json();
+    result.sort((a, b) => a.assemblyName.localeCompare(b.assemblyName));
+    // console.log(result);
+    this.setState({ assembly: result });
+    this.getAssembly();
   }
 
   /**
@@ -107,9 +154,21 @@ export default class TestWithHelp extends Component {
    */
   componentDidMount() {
     this.getModels();
+    this.getAssembly();
   }
 
   render() {
+    const isCpuSelected = this.state.modelCPU === this.state.currentCpu;
+    const isCpuCoolerSelected =
+      this.state.modelCPUCooler === this.state.currentCPUCooler;
+    const isGpuSelected = this.state.modelGPU === this.state.currentGPU;
+    const isPsuSelected = this.state.modelPSU === this.state.currentPSU;
+    const isSsdSelected = this.state.modelSSD === this.state.currentSSD;
+    const isRamSelected = this.state.modelRAM === this.state.currentRAM;
+    const isCaseSelected = this.state.modelCase === this.state.currentCase;
+    const isMotherboardSelected =
+      this.state.modelMotherboard === this.state.currentMotherboard;
+
     return (
       <PageLayout>
         <Header h1Heading='Test With Help' />
@@ -126,29 +185,30 @@ export default class TestWithHelp extends Component {
 
             {/* motherboard */}
             <select
-              className={style.select}
+              className={`${style.select} ${
+                isMotherboardSelected ? style.backgroundGreen : ''
+              }`}
               value={this.state.modelMotherboard}
               label='MOTHERBOARD'
               onChange={e => {
-                this.setState({ modelMotherboard: e.target.value });
-                if (e.target.value === 'ROG STRIX Z790-F GAMING WIFI') {
-                  this.setState({
-                    currentCpu: 'i9-12900KF',
-                    currentGPU:
-                      'TUF Gaming GeForce RTX 3070 Ti V2 OC Edition 8GB GDDR6X',
-                    currentRAM: 'Corsair Vengeance 2x32GB DDR5 4800MHz CL40',
-                    currentCase: 'Corsair iCUE 7000X',
-                  });
-                }
-                if (e.target.value === 'PRIME H610M-D D4') {
-                  this.setState({
-                    currentCpu: 'i5-13400',
-                    currentGPU:
-                      'ASUS TUF GTX 1660 SUPER GAMING OC 6GB GDDR6 DVI HDMI DP',
-                    currentRAM: 'G.Skill Aegis 2x8GB 2666Mhz DDR4 CL19 Kit',
-                    currentCase: 'TUF Gaming GT301',
-                  });
-                }
+                this.setState({ modelMotherboard: e.target.value }, () => {
+                  for (let option of this.state.assembly) {
+                    if (
+                      this.state.modelMotherboard === option.modelMotherboard
+                    ) {
+                      this.setState({
+                        chosenOption: option,
+                        currentMotherboard: this.state.modelMotherboard,
+                        currentCpu: option.modelCPU,
+                        currentGPU: option.modelGPU,
+                        currentRAM: option.modelRAM,
+                        currentCase: option.modelCase,
+                        currentSSD: option.modelSSD,
+                      });
+                      this.state.selectedTest.push(this.state.modelMotherboard);
+                    }
+                  }
+                });
               }}
               required
             >
@@ -166,21 +226,21 @@ export default class TestWithHelp extends Component {
 
             {/* cpu */}
             <select
-              className={style.select}
+              className={`${style.select} ${
+                isCpuSelected ? style.backgroundGreen : style.backgroundRed
+              }`}
               value={this.state.modelCPU}
               label='CPU'
               onChange={e => {
-                this.setState({ modelCPU: e.target.value });
-                if (e.target.value === 'i9-12900KF') {
+                this.setState({ modelCPU: e.target.value }, () => {
                   this.setState({
-                    currentCPUCooler: 'H150 RGB 360mm Liquid CPU Cooler',
+                    currentCPUCooler: this.state.chosenOption.modelCPUCooler,
                   });
-                }
-                if (e.target.value === 'i5-13400') {
-                  this.setState({ currentCPUCooler: 'Arctic Alpine 17 CO' });
-                }
+                  this.state.selectedTest.push(this.state.modelCPU);
+                });
               }}
               required
+              disabled={!isMotherboardSelected}
             >
               <option value='' disabled>
                 Select a CPU
@@ -208,21 +268,19 @@ export default class TestWithHelp extends Component {
 
             {/* cpu cooler */}
             <select
-              className={style.select}
+              className={`${style.select} ${
+                isCpuCoolerSelected
+                  ? style.backgroundGreen
+                  : style.backgroundRed
+              }`}
               value={this.state.modelCPUCooler}
               label='CPU Cooler'
               onChange={e => {
                 this.setState({ modelCPUCooler: e.target.value });
-                if (e.target.value === 'H150 RGB 360mm Liquid CPU Cooler') {
-                  this.setState({
-                    currentCase: 'Corsair iCUE 7000X',
-                  });
-                }
-                if (e.target.value === 'Arctic Alpine 17 CO') {
-                  this.setState({ currentCase: 'TUF Gaming GT301' });
-                }
+                this.state.selectedTest.push(this.state.modelCPUCooler);
               }}
               required
+              disabled={!isCpuSelected}
             >
               <option value='' disabled>
                 Select a CPU Cooler
@@ -253,29 +311,21 @@ export default class TestWithHelp extends Component {
 
             {/* gpu */}
             <select
-              className={style.select}
+              className={`${style.select} ${
+                isGpuSelected ? style.backgroundGreen : style.backgroundRed
+              }`}
               value={this.state.modelGPU}
               label='GPU'
               onChange={e => {
-                this.setState({ modelGPU: e.target.value });
-                if (
-                  e.target.value ===
-                  'TUF Gaming GeForce RTX 3070 Ti V2 OC Edition 8GB GDDR6X'
-                ) {
+                this.setState({ modelGPU: e.target.value }, () => {
                   this.setState({
-                    currentPSU: 'ROG-THOR-1000P2-GAMING',
+                    currentPSU: this.state.chosenOption.modelPSU,
                   });
-                }
-                if (
-                  e.target.value ===
-                  'ASUS TUF GTX 1660 SUPER GAMING OC 6GB GDDR6 DVI HDMI DP'
-                ) {
-                  this.setState({
-                    currentPSU: 'Asus ROG-STRIX 550W GOLD ROG-STRIX-550G',
-                  });
-                }
+                  this.state.selectedTest.push(this.state.modelGPU);
+                });
               }}
               required
+              disabled={!isMotherboardSelected}
             >
               <option value='' disabled>
                 Select a GPU
@@ -303,11 +353,18 @@ export default class TestWithHelp extends Component {
 
             {/* psu */}
             <select
-              className={style.select}
+              className={`${style.select} ${
+                isPsuSelected ? style.backgroundGreen : style.backgroundRed
+              }`}
               value={this.state.modelPSU}
               label='PSU'
-              onChange={e => this.setState({ modelPSU: e.target.value })}
+              onChange={e => {
+                this.setState({ modelPSU: e.target.value }, () => {
+                  this.state.selectedTest.push(this.state.modelPSU);
+                });
+              }}
               required
+              disabled={!isGpuSelected}
             >
               <option value='' disabled>
                 Select a PSU
@@ -335,11 +392,18 @@ export default class TestWithHelp extends Component {
 
             {/* ram */}
             <select
-              className={style.select}
+              className={`${style.select} ${
+                isRamSelected ? style.backgroundGreen : style.backgroundRed
+              }`}
               value={this.state.modelRAM}
               label='RAM'
-              onChange={e => this.setState({ modelRAM: e.target.value })}
+              onChange={e => {
+                this.setState({ modelRAM: e.target.value }, () => {
+                  this.state.selectedTest.push(this.state.modelRAM);
+                });
+              }}
               required
+              disabled={!isMotherboardSelected}
             >
               <option value='' disabled>
                 Select a RAM
@@ -367,37 +431,59 @@ export default class TestWithHelp extends Component {
 
             {/* ssd */}
             <select
-              className={style.select}
+              className={`${style.select} ${
+                isSsdSelected ? style.backgroundGreen : style.backgroundRed
+              }`}
               value={this.state.modelSSD}
               label='SSD'
-              onChange={e => this.setState({ modelSSD: e.target.value })}
+              onChange={e => {
+                this.setState({ modelSSD: e.target.value }, () => {
+                  this.state.selectedTest.push(this.state.modelSSD);
+                });
+              }}
               required
+              disabled={!isMotherboardSelected}
             >
               <option value='' disabled>
                 Select a SSD
               </option>
               {[...this.state.ssdM2Array, ...this.state.ssdSataArray].map(
                 itemSSD => {
-                  return (
-                    <option
-                      key={itemSSD}
-                      value={itemSSD}
-                      className={style.nextComp}
-                    >
-                      {itemSSD}
-                    </option>
-                  );
+                  if (this.state.currentSSD === itemSSD) {
+                    return (
+                      <option
+                        key={itemSSD}
+                        value={itemSSD}
+                        className={style.nextComp}
+                      >
+                        {itemSSD}
+                      </option>
+                    );
+                  } else {
+                    return (
+                      <option key={itemSSD} value={itemSSD}>
+                        {itemSSD}
+                      </option>
+                    );
+                  }
                 }
               )}
             </select>
 
             {/* case */}
             <select
-              className={style.select}
+              className={`${style.select} ${
+                isCaseSelected ? style.backgroundGreen : style.backgroundRed
+              }`}
               value={this.state.modelCase}
               label='CASE'
-              onChange={e => this.setState({ modelCase: e.target.value })}
+              onChange={e => {
+                this.setState({ modelCase: e.target.value }, () => {
+                  this.state.selectedTest.push(this.state.modelCase);
+                });
+              }}
               required
+              disabled={!isMotherboardSelected}
             >
               <option value='' disabled>
                 Select a Case

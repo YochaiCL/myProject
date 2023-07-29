@@ -42,3 +42,10 @@
   color: rgb(32, 86, 178);
 }
 
+.backgroundGreen {
+  background-color: green;
+}
+
+.backgroundRed {
+  background-color: red;
+}

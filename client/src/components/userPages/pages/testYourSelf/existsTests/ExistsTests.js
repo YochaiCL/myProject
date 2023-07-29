@@ -8,16 +8,28 @@ import style from './existsTests.module.css';
  */
 export default class ExistsTests extends Component {
   state = {
-    tests: [{ testName: 'Loading data...' }],
+    tests: [],
     showData: false,
     selectIndex: null,
+    userId: JSON.parse(localStorage.getItem('user')),
   };
 
   /**
    * Description
    */
   async getProducts() {
-    const response = await fetch('http://localhost:5000/existsTests/getTests');
+    const response = await fetch('http://localhost:5000/existsTests/getTests', {
+      method: 'POST',
+      crossDomain: true,
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        'Accept-Control-Allow-Origin': '*',
+      },
+      body: JSON.stringify({
+        userId: this.state.userId._id,
+      }),
+    });
     const result = await response.json();
     // console.log(result);
     this.setState({ tests: result });
@@ -63,6 +75,7 @@ export default class ExistsTests extends Component {
           'Access-Control-Allow-Origin': '*',
         },
         body: JSON.stringify({
+          userId: this.state.userId._id,
           testName: testName,
         }),
       })
@@ -70,7 +83,7 @@ export default class ExistsTests extends Component {
         .then(res => res.json())
         // Handling the response data
         .then(data => {
-          if (data.status === 'Component deleted') {
+          if (data.status === 'Test deleted') {
             this.setState({ showResult: 'Test has been deleted' });
             setTimeout(() => {
               this.setState({
@@ -162,6 +175,7 @@ export default class ExistsTests extends Component {
             </section>
           )}
         </section>
+        <p className={style.showResult}>{this.state.showResult}</p>
       </PageLayout>
     );
   }

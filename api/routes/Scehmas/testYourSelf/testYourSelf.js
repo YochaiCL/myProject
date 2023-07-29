@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
  */
 const testYourSelfScehma = new mongoose.Schema(
   {
+    userId: String,
     testName: String,
     modelCase: String,
     modelMotherboard: String,
