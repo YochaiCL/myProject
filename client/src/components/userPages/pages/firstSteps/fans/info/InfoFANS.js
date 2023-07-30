@@ -65,6 +65,12 @@ function infoFANS() {
           the build. This configuration creates the perfect airflow to keep your
           PC components cool and disperse a huge amount of hot air.
         </p>
+        <section className={style.attention}>
+          <p>
+            Please pay attention, this component is not available for selection
+            because this is a custom selected product
+          </p>
+        </section>
       </article>
     </ComponentLearnLayout>
   );

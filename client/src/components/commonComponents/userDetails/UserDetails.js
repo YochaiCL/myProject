@@ -218,8 +218,8 @@ export default class UserData extends Component {
 
   render() {
     return (
-      <div>
-        <section>
+      <div >
+        <section className={style.userDetails}>
           <p>
             <span className={style.span}>Name:</span>
             {this.state.userData.fullName}

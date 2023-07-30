@@ -33,6 +33,7 @@ export default class TestWithHelp extends Component {
     showResult: '',
     chosenOption: null,
     selectedTest: [],
+    userId: JSON.parse(localStorage.getItem('user')),
   };
 
   /**
@@ -107,27 +108,7 @@ export default class TestWithHelp extends Component {
           showResult: 'The Test has been added',
         });
         setTimeout(() => {
-          // this.setState({
-          //   showResult: '',
-          //   modelCase: '',
-          //   modelMotherboard: '',
-          //   modelCPU: '',
-          //   modelCPUCooler: '',
-          //   modelGPU: '',
-          //   modelPSU: '',
-          //   modelRAM: '',
-          //   modelSSD: '',
-          //   currentMotherboard: '',
-          //   currentCpu: '',
-          //   currentCPUCooler: '',
-          //   currentGPU: '',
-          //   currentPSU: '',
-          //   currentRAM: '',
-          //   currentSSD: '',
-          //   currentCase: '',
-          //   testName: '',
-          // });
-            window.location.href = '/testWithHelp';
+          window.location.href = '/testWithHelp';
         }, 2000);
       } else if (result.status === 'Test already exist') {
         this.setState({
