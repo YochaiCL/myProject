@@ -16,28 +16,28 @@ require('../../Scehmas/questionAnswer/questionAnswer');
 /**
  * Description -
  */
-router.post('/', async (req, res) => {
+router.post('/newQuestion', async (req, res) => {
   // console.log(req.body);
 
   const userId = req.body.userId._id;
   try {
-    const arrayId = await TestYourSelf.find({ userId });
+    const arrayId = await QuestionAnswer.find({ userId });
     // console.log(arrayId);
     if (arrayId.length > 0) {
-      const testNameExists = await TestYourSelf.find({
+      const testNameExists = await QuestionAnswer.find({
         userId,
-        testName: req.body.testName,
+        questionName: req.body.questionName,
       });
 
       if (testNameExists.length > 0) {
-        res.send({ status: 'Test already exist' });
+        res.send({ status: 'Question already exist' });
         return;
       } else {
-        await TestYourSelf.create(req.body);
+        await QuestionAnswer.create(req.body);
         res.send({ status: 'ok' });
       }
     } else {
-      await TestYourSelf.create(req.body);
+      await QuestionAnswer.create(req.body);
       res.send({ status: 'ok' });
     }
   } catch (error) {
@@ -55,6 +55,54 @@ router.post('/getData', async (req, res) => {
     // Send the array of 'CompLearned' documents as the response
     res.send(array);
   } catch (error) {
+    res.send({ status: 'error' });
+  }
+});
+
+/**
+ * Description - This function delete the selected test from the database
+ */
+router.post('/deleteQuestionAnswer', async (req, res) => {
+  const userId = req.body.userId;
+  const questionName = req.body.questionName;
+  try {
+    const deletedQuestionAnswer = await QuestionAnswer.findOneAndDelete({
+      userId,
+      questionName,
+    });
+    if (deletedQuestionAnswer) {
+      res.send({ status: 'Question deleted' });
+    } else {
+      res.send({ status: 'Question not found' });
+    }
+  } catch (error) {
+    // Send a response with a 'status' property set to 'error' indicating an error occurred
+    res.send({ status: 'error' });
+  }
+});
+
+/**
+ * Description - This function update the data in compLearned collection
+ * req - array of all database data
+ * res - status of update data
+ */
+router.post('/updateQuestion', async (req, res) => {
+  const userId = req.body.userId;
+  const questionName = req.body.questionName;
+  const questionTest = req.body.questionText;
+
+  try {
+    await QuestionAnswer.updateOne(
+      {
+        userId,
+        questionName,
+      },
+      // Update the document with the values from the 'data' object
+      questionTest
+    );
+    res.send({ status: 'true' });
+  } catch (error) {
+    console.log(error.message);
     res.send({ status: 'error' });
   }
 });
