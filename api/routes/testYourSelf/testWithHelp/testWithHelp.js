@@ -10,14 +10,25 @@ require('../../Scehmas/testYourSelf/testYourSelf');
  * res - if the test name already exist the test will not add otherwise it will add
  */
 router.post('/', async (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
+
+  const userId = req.body.userId._id;
   try {
-    let array = await TestYourSelf.find({
-      testName: req.body.testName,
-    });
-    if (array.length > 0) {
-      res.send({ status: 'Test already exist' });
-      return;
+    const arrayId = await TestYourSelf.find({ userId });
+    // console.log(arrayId);
+    if (arrayId.length > 0) {
+      const testNameExists = await TestYourSelf.find({
+        userId,
+        testName: req.body.testName,
+      });
+
+      if (testNameExists.length > 0) {
+        res.send({ status: 'Test already exist' });
+        return;
+      } else {
+        await TestYourSelf.create(req.body);
+        res.send({ status: 'ok' });
+      }
     } else {
       await TestYourSelf.create(req.body);
       res.send({ status: 'ok' });

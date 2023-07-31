@@ -4,7 +4,7 @@ import Header from '../../../../commonComponents/header/Header';
 import style from './existsTests.module.css';
 
 /**
- * Description -
+ * Description - This class show the exists tests and can delete them
  */
 export default class ExistsTests extends Component {
   state = {
@@ -15,9 +15,9 @@ export default class ExistsTests extends Component {
   };
 
   /**
-   * Description
+   * Description - This Function get all the tests from the server
    */
-  async getProducts() {
+  async getTest() {
     const response = await fetch('http://localhost:5000/existsTests/getTests', {
       method: 'POST',
       crossDomain: true,
@@ -36,14 +36,14 @@ export default class ExistsTests extends Component {
   }
 
   /**
-   * Description
+   * Description - This function activate the getTest function When the page is uploaded
    */
   componentDidMount() {
-    this.getProducts();
+    this.getTest();
   }
 
   /**
-   * Description
+   * Description - This function open the data of the selected test
    * @param {*} index
    */
   handelClick = index => {
@@ -54,19 +54,16 @@ export default class ExistsTests extends Component {
   };
 
   /**
-   * Description - This function delete selected assembly from the database
+   * Description - This function delete selected test from the database
    */
   deleteTest(testName) {
-    // Remove the deleted test from the state
     let result = this.state.tests.filter(item => {
       return item.testName !== testName;
     });
     this.setState({ tests: result });
 
-    // Now, call the backend API to delete the test from the database
     try {
       fetch('http://localhost:5000/existsTests/deleteTest', {
-        // Setting headers for the HTTP request
         method: 'POST',
         crossDomain: true,
         headers: {
@@ -79,9 +76,7 @@ export default class ExistsTests extends Component {
           testName: testName,
         }),
       })
-        // Parsing the response as JSON
         .then(res => res.json())
-        // Handling the response data
         .then(data => {
           if (data.status === 'Test deleted') {
             this.setState({ showResult: 'Test has been deleted' });
@@ -98,13 +93,14 @@ export default class ExistsTests extends Component {
   }
 
   render() {
+    const { tests, showData, selectIndex, showResult } = this.state;
     return (
       <PageLayout>
         <Header h1Heading='Exists Test' />
         <section className={style.external}>
           <section className={style.model}>
             <h2>List Of Tests</h2>
-            {this.state.tests.map((test, index) => (
+            {tests.map((test, index) => (
               <section key={index}>
                 <button
                   onClick={() => {
@@ -114,18 +110,10 @@ export default class ExistsTests extends Component {
                 >
                   {test.testName}
                 </button>
-                <button
-                  onClick={() => {
-                    this.deleteTest(test.testName);
-                  }}
-                  className={style.deleteButton}
-                >
-                  Delete
-                </button>
               </section>
             ))}
           </section>
-          {this.state.showData && this.state.selectIndex !== null && (
+          {showData && selectIndex !== null && selectIndex < tests.length && (
             <section className={style.showAllData}>
               <h2 className={style.h2}>Test Data</h2>
               <div>
@@ -171,11 +159,23 @@ export default class ExistsTests extends Component {
 
                   {this.state.tests[this.state.selectIndex].modelCase}
                 </h3>
+
+                <button
+                  onClick={() => {
+                    const indexToDelete =
+                      this.state.tests[this.state.selectIndex].testName;
+
+                    this.deleteTest(indexToDelete);
+                  }}
+                  className={style.deleteButton}
+                >
+                  Delete
+                </button>
               </div>
             </section>
           )}
         </section>
-        <p className={style.showResult}>{this.state.showResult}</p>
+        <p className={style.showResult}>{showResult}</p>
       </PageLayout>
     );
   }

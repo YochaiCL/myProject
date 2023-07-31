@@ -17,19 +17,29 @@ require('../../Scehmas/questionAnswer/questionAnswer');
  * Description -
  */
 router.post('/', async (req, res) => {
+  // console.log(req.body);
+
+  const userId = req.body.userId._id;
   try {
-    let existingQuestion = await QuestionAnswer.find({
-      questionName: req.body.questionName,
-    });
-    if (existingQuestion != null) {
-      return res.send({ status: 'Question already exist' });
+    const arrayId = await TestYourSelf.find({ userId });
+    // console.log(arrayId);
+    if (arrayId.length > 0) {
+      const testNameExists = await TestYourSelf.find({
+        userId,
+        testName: req.body.testName,
+      });
+
+      if (testNameExists.length > 0) {
+        res.send({ status: 'Test already exist' });
+        return;
+      } else {
+        await TestYourSelf.create(req.body);
+        res.send({ status: 'ok' });
+      }
+    } else {
+      await TestYourSelf.create(req.body);
+      res.send({ status: 'ok' });
     }
-    await QuestionAnswer.create({
-      userId: req.body.userId,
-      questionName: req.body.questionName,
-      questionText: req.body.questionText,
-    });
-    res.send({ status: 'ok' });
   } catch (error) {
     res.send({ status: 'error' });
   }

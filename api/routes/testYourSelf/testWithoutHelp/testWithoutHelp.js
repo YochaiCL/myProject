@@ -11,18 +11,28 @@ require('../../Scehmas/testYourSelf/testYourSelf');
  */
 router.post('/', async (req, res) => {
   // console.log(req.body);
-  const userId = req.body.userId;
-  const testName = req.body.testName;
+
+  const userId = req.body.userId._id;
   try {
-    let array = await TestYourSelf.find({ userId });
-    for (test in array) {
-      if (testName === test.testName) {
+    const arrayId = await TestYourSelf.find({ userId });
+    // console.log(arrayId);
+    if (arrayId.length > 0) {
+      const testNameExists = await TestYourSelf.find({
+        userId,
+        testName: req.body.testName,
+      });
+
+      if (testNameExists.length > 0) {
         res.send({ status: 'Test already exist' });
         return;
+      } else {
+        await TestYourSelf.create(req.body);
+        res.send({ status: 'ok' });
       }
+    } else {
+      await TestYourSelf.create(req.body);
+      res.send({ status: 'ok' });
     }
-    await TestYourSelf.create(req.body);
-    res.send({ status: 'ok' });
   } catch (error) {
     res.send({ status: 'error' });
   }

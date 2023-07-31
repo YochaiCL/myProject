@@ -112,7 +112,7 @@ export default class TestWithHelp extends Component {
         }, 2000);
       } else if (result.status === 'Test already exist') {
         this.setState({
-          showResult: 'This test already  exist',
+          showResult: 'This test already exist',
         });
       }
     }
