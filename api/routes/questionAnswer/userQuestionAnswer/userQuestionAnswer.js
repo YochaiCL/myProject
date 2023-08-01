@@ -19,7 +19,7 @@ require('../../Scehmas/questionAnswer/questionAnswer');
 router.post('/newQuestion', async (req, res) => {
   // console.log(req.body);
 
-  const userId = req.body.userId._id;
+  const userId = req.body.userId;
   try {
     const arrayId = await QuestionAnswer.find({ userId });
     // console.log(arrayId);
@@ -91,6 +91,8 @@ router.post('/updateQuestion', async (req, res) => {
   const questionName = req.body.questionName;
   const questionTest = req.body.questionText;
 
+  console.log(questionTest);
+
   try {
     await QuestionAnswer.updateOne(
       {
@@ -98,7 +100,7 @@ router.post('/updateQuestion', async (req, res) => {
         questionName,
       },
       // Update the document with the values from the 'data' object
-      questionTest
+      { $set: { questionText: questionTest } }
     );
     res.send({ status: 'true' });
   } catch (error) {

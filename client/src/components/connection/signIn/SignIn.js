@@ -53,7 +53,7 @@ export default class SignIn extends Component {
             }, 2000);
           } else if (data.userType === 'Premium') {
             setTimeout(() => {
-              window.location.href = '/premiumHome';
+              window.location.href = '/questionAnswerHome';
             }, 2000);
           } else if (data.userType === 'User') {
             setTimeout(() => {

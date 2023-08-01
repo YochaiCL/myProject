@@ -6,8 +6,13 @@ const mongoose = require('mongoose');
 const questionAnswerScehma = new mongoose.Schema(
   {
     userId: String,
+    userFullName: String,
+    userEmail: String,
     questionName: String,
     questionText: String,
+    answerText: String,
+    haveAnAnswer: Boolean,
+    scoreResult:Number,
   },
   {
     collection: 'QuestionAnswer',

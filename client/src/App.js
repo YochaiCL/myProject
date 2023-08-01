@@ -8,9 +8,9 @@ import UserHome from './components/userPages/pages/userHome/UserHome';
 import About from './components/userPages/pages/about/About';
 import UserData from './components/userPages/pages/userData/UserData';
 
-import QuestionAnswer from './components/userPages/pages/questionAnswer/QuestionAnswer';
-import NewQuestion from './components/userPages/pages/questionAnswer/newQuestion/NewQuestion';
-import ExistsQuestions from './components/userPages/pages/questionAnswer/existsQuestions/ExistsQuestions';
+import QuestionAnswerUser from './components/userPages/pages/questionAnswerUser/QuestionAnswerUser';
+import NewQuestion from './components/userPages/pages/questionAnswerUser/newQuestion/NewQuestion';
+import ExistsQuestionsUser from './components/userPages/pages/questionAnswerUser/existsQuestionsUser/ExistsQuestionsUser';
 
 // Import firstSteps + pages of firstSteps
 import FirstSteps from './components/userPages/pages/firstSteps/FirstSteps';
@@ -108,7 +108,7 @@ import PremiumReports from './components/adminPages/pages/reports/premiumReports
 //import premium pages
 import PremiumHome from './components/premiumPages/pages/premiumHome/PremiumHome';
 import UserPremiumData from './components/premiumPages/pages/userPremiumData/UserPremiumData';
-import QuetionAnswer from './components/premiumPages/pages/questionAnswer/QuestionAnswer';
+import QuestionAnswerPremium from './components/premiumPages/pages/questionAnswerPremium/QuestionAnswerPremium';
 
 function App() {
   // take from local storage the information if user is loggedIn or not
@@ -131,9 +131,9 @@ function App() {
           <Route path='/about' element={<About />} />
           <Route path='/user' element={<UserData />} />
 
-          <Route path='/questionAnswer' element={<QuestionAnswer />} />
+          <Route path='/questionAnswerUser' element={<QuestionAnswerUser />} />
           <Route path='/newQuestion' element={<NewQuestion />} />
-          <Route path='/existsQuestions' element={<ExistsQuestions />} />
+          <Route path='/existsQuestionsUser' element={<ExistsQuestionsUser />} />
 
           {/* firstSteps + pages of firstSteps */}
           <Route path='/firstSteps' element={<FirstSteps />} />
@@ -234,9 +234,9 @@ function App() {
           <Route path='/premiumReports' element={<PremiumReports />} />
 
           {/* premium pages */}
-          <Route path='/premiumHome' element={<PremiumHome />} />
+          <Route path='/questionAnswerHome' element={<PremiumHome />} />
           <Route path='/userPremium' element={<UserPremiumData />} />
-          <Route path='/questionAnswer' element={<QuetionAnswer />} />
+          <Route path='/questionAnswerPremium' element={<QuestionAnswerPremium />} />
         </Routes>
       </div>
     </Router>

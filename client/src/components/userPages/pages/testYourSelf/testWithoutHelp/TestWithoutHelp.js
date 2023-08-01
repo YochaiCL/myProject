@@ -294,7 +294,7 @@ export default class TestWithoutHelp extends Component {
                   >
                     motherboard Information
                   </Link>
-                  <Link to='/premium' className={style.link} target='_blank'>
+                  <Link to='/questionAnswer' className={style.link} target='_blank'>
                     Question/Answer
                   </Link>
                   <button
@@ -347,7 +347,7 @@ export default class TestWithoutHelp extends Component {
                   <Link to='/infoCPU' className={style.link} target='_blank'>
                     cpu Information
                   </Link>
-                  <Link to='/premium' className={style.link} target='_blank'>
+                  <Link to='/questionAnswer' className={style.link} target='_blank'>
                     Question/Answer
                   </Link>
                   <button
@@ -408,7 +408,7 @@ export default class TestWithoutHelp extends Component {
                   >
                     cpu cooler Information
                   </Link>
-                  <Link to='/premium' className={style.link} target='_blank'>
+                  <Link to='/questionAnswer' className={style.link} target='_blank'>
                     Question/Answer
                   </Link>
                   <button
@@ -462,7 +462,7 @@ export default class TestWithoutHelp extends Component {
                   <Link to='/infoGPU' className={style.link} target='_blank'>
                     gpu Information
                   </Link>
-                  <Link to='/premium' className={style.link} target='_blank'>
+                  <Link to='/questionAnswer' className={style.link} target='_blank'>
                     Question/Answer
                   </Link>
                   <button
@@ -516,7 +516,7 @@ export default class TestWithoutHelp extends Component {
                   <Link to='/infoPSU' className={style.link} target='_blank'>
                     psu Information
                   </Link>
-                  <Link to='/premium' className={style.link} target='_blank'>
+                  <Link to='/questionAnswer' className={style.link} target='_blank'>
                     Question/Answer
                   </Link>
                   <button
@@ -570,7 +570,7 @@ export default class TestWithoutHelp extends Component {
                   <Link to='/infoRAM' className={style.link} target='_blank'>
                     ram Information
                   </Link>
-                  <Link to='/premium' className={style.link} target='_blank'>
+                  <Link to='/questionAnswer' className={style.link} target='_blank'>
                     Question/Answer
                   </Link>
                   <button
@@ -626,7 +626,7 @@ export default class TestWithoutHelp extends Component {
                   <Link to='/infoSSD' className={style.link} target='_blank'>
                     ssd Information
                   </Link>
-                  <Link to='/premium' className={style.link} target='_blank'>
+                  <Link to='/questionAnswer' className={style.link} target='_blank'>
                     Question/Answer
                   </Link>
                   <button
@@ -680,7 +680,7 @@ export default class TestWithoutHelp extends Component {
                   <Link to='/infoCASE' className={style.link} target='_blank'>
                     case Information
                   </Link>
-                  <Link to='/premium' className={style.link} target='_blank'>
+                  <Link to='/questionAnswer' className={style.link} target='_blank'>
                     Question/Answer
                   </Link>
                   <button

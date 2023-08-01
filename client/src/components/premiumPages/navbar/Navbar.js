@@ -20,11 +20,11 @@ export default function Navbar() {
             lang='100'
           />
         }
-        toLink='/premiumHome'
+        toLink='/questionAnswerHome'
       />
 
       <LinkNavbar nameLink='User Data' toLink='/userPremium' />
-      <LinkNavbar nameLink='Questions & Answer' toLink='/questionAnswer' />
+      <LinkNavbar nameLink='Questions & Answer' toLink='/questionAnswerPremium' />
       <LinkNavbar nameLink='Front End' toLink='/userHome' />
     </nav>
   );

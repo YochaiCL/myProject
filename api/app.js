@@ -84,6 +84,9 @@ app.use('/getComponentsModels', showComponentsData);
 // Requiring and activating the routes for getting and inserting question and answer
 const userQuestionAnswer = require('./routes/questionAnswer/userQuestionAnswer/userQuestionAnswer');
 app.use('/userQuestionAnswer', userQuestionAnswer);
+const premiumQuestionAnswer = require('./routes/questionAnswer/premiumQuestionAnswer/premiumQuestionAnswer');
+app.use('/premiumQuestionAnswer', premiumQuestionAnswer);
+
 
 // Requiring and activating the routes for delete components and assemblies
 const deleteAssemblies = require('./routes/delete/deleteAssemblies/deleteAssemblies');
