@@ -42,4 +42,37 @@ router.post('/deleteTest', async (req, res) => {
   }
 });
 
+/**
+ * Description - This function delete the selected test from the database
+ */
+router.post('/sendByEmail', async (req, res) => {
+  const email = req.body.email;
+  const selectedTest = req.body.selectedTest;
+   // this link will send to the user email and redirect him to reset the password
+    // const text = `Thanks for joining and happy learning.\nFor any question, you can contact with our question/answer service which provide you a human answer.\nThank you,\nPc Builder`;
+    // activate send email to the user
+    var transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: 'pcbuilderweb@gmail.com',
+        pass: 'oggemnxdvgbieqcy',
+      },
+    });
+
+    var mailOptions = {
+      from: 'youremail@gmail.com',
+      to: email,
+      subject: 'PC Builder',
+      text: selectedTest,
+    };
+
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        return res.json({ status: 'Error email not send' });
+      } else {
+        return res.json({ status: 'Email send' });
+      }
+    });
+});
+
 module.exports = router;

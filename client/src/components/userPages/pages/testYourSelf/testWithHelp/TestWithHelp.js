@@ -33,7 +33,6 @@ export default class TestWithHelp extends Component {
     showResult: '',
     chosenOption: null,
     chosenOptions: [],
-    selectedTest: [],
     currentSSD: [],
     currentCase: [],
     currentGPU: [],
@@ -71,32 +70,33 @@ export default class TestWithHelp extends Component {
    */
   async handleSubmit(e) {
     e.preventDefault();
-
-    const propertiesToCheck = [
-      'modelCPU',
-      'modelGPU',
-      'modelMotherboard',
-      'modelCPUCooler',
-      'modelSSD',
-      'modelRAM',
-      'modelCase',
-      'modelPSU',
-    ];
-
-    let allConditionsMet = true;
-    for (const property of propertiesToCheck) {
-      if (this.state[property] !== this.state.chosenOption[property]) {
-        allConditionsMet = false;
-        setTimeout(() => {
-          this.setState({
-            showResult: 'Please choose only the Green Rows',
-          });
-        }, 1000);
-        break;
+    let status = false;
+    for (const assemblyItem of this.state.assembly) {
+      if (
+        assemblyItem.modelMotherboard === this.state.modelMotherboard &&
+        assemblyItem.modelCPU === this.state.modelCPU &&
+        assemblyItem.modelCPUCooler === this.state.modelCPUCooler &&
+        assemblyItem.modelCase === this.state.modelCase &&
+        assemblyItem.modelGPU === this.state.modelGPU &&
+        assemblyItem.modelPSU === this.state.modelPSU &&
+        assemblyItem.modelRAM === this.state.modelRAM &&
+        assemblyItem.modelSSD === this.state.modelSSD
+      ) {
+        status = true;
+        break; // No need to continue checking
       }
     }
+    if (!status) {
+      this.setState({
+        showResult: 'Please choose only the Green Rows',
+      });
 
-    if (allConditionsMet) {
+      setTimeout(() => {
+        this.setState({
+          showResult: '',
+        });
+      }, 1000); // Clear the error message after 3 seconds
+    } else {
       const options = {
         method: 'POST',
         crossDomain: true,
@@ -237,7 +237,6 @@ export default class TestWithHelp extends Component {
                       this.state.currentCPUCooler.push(option.modelCPUCooler);
                     }
                   }
-                  this.state.selectedTest.push(this.state.modelCPU);
                 });
               }}
               required
@@ -277,8 +276,7 @@ export default class TestWithHelp extends Component {
               value={this.state.modelCPUCooler}
               label='CPU Cooler'
               onChange={e => {
-                this.setState({ modelCPUCooler: e.target.value });
-                this.state.selectedTest.push(this.state.modelCPUCooler);
+                this.setState({ modelCPUCooler: e.target.value }, () => {});
               }}
               required
               disabled={!isCpuSelected}
@@ -328,7 +326,6 @@ export default class TestWithHelp extends Component {
                       this.state.currentPSU.push(option.modelPSU);
                     }
                   }
-                  this.state.selectedTest.push(this.state.modelGPU);
                 });
               }}
               required
@@ -366,9 +363,7 @@ export default class TestWithHelp extends Component {
               value={this.state.modelPSU}
               label='PSU'
               onChange={e => {
-                this.setState({ modelPSU: e.target.value }, () => {
-                  this.state.selectedTest.push(this.state.modelPSU);
-                });
+                this.setState({ modelPSU: e.target.value }, () => {});
               }}
               required
               disabled={!isGpuSelected}
@@ -405,9 +400,7 @@ export default class TestWithHelp extends Component {
               value={this.state.modelRAM}
               label='RAM'
               onChange={e => {
-                this.setState({ modelRAM: e.target.value }, () => {
-                  this.state.selectedTest.push(this.state.modelRAM);
-                });
+                this.setState({ modelRAM: e.target.value }, () => {});
               }}
               required
               disabled={!isMotherboardSelected}
@@ -444,9 +437,7 @@ export default class TestWithHelp extends Component {
               value={this.state.modelSSD}
               label='SSD'
               onChange={e => {
-                this.setState({ modelSSD: e.target.value }, () => {
-                  this.state.selectedTest.push(this.state.modelSSD);
-                });
+                this.setState({ modelSSD: e.target.value }, () => {});
               }}
               required
               disabled={!isMotherboardSelected}
@@ -485,9 +476,7 @@ export default class TestWithHelp extends Component {
               value={this.state.modelCase}
               label='CASE'
               onChange={e => {
-                this.setState({ modelCase: e.target.value }, () => {
-                  this.state.selectedTest.push(this.state.modelCase);
-                });
+                this.setState({ modelCase: e.target.value }, () => {});
               }}
               required
               disabled={!isMotherboardSelected}
