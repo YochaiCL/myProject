@@ -64,6 +64,7 @@ router.post('/getData', async (req, res) => {
  */
 router.post('/deleteQuestionAnswer', async (req, res) => {
   const userId = req.body.userId;
+  console.log(userId);
   const questionName = req.body.questionName;
   try {
     const deletedQuestionAnswer = await QuestionAnswer.findOneAndDelete({
@@ -90,8 +91,6 @@ router.post('/updateQuestion', async (req, res) => {
   const userId = req.body.userId;
   const questionName = req.body.questionName;
   const questionTest = req.body.questionText;
-
-  console.log(questionTest);
 
   try {
     await QuestionAnswer.updateOne(

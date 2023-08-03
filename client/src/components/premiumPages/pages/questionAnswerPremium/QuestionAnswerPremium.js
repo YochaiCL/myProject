@@ -10,8 +10,12 @@ import Button from '../../../commonComponents/button/Button';
 export default class QuestionAnswerPremium extends Component {
   state = {
     questionAnswerData: [],
+    questions: [],
+    users: [],
     showData: false,
     selectIndex: null,
+    showQuestionsNames: false,
+    questionIndex: null,
   };
 
   async getQuestionAnswer() {
@@ -29,67 +33,154 @@ export default class QuestionAnswerPremium extends Component {
     );
     const result = await response.json();
     this.setState({ questionAnswerData: result });
+    for (let user of result) {
+      console.log(user, this.state.users);
+      if (!this.state.users.includes(user.userEmail)) {
+        this.state.users.push(user.userEmail);
+      }
+    }
   }
 
   componentDidMount() {
     this.getQuestionAnswer();
   }
 
+  // componentDidUpdate(){
+  //   if(this.state.selectIndex < this.state.questions.length){
+  //     this.setState({selectIndex : this.state.selectIndex})
+  //   } else {
+  //     this.setState({selectIndex : 0})
+  //   }
+  // }
+
   handelClick = index => {
-    this.setState({
-      showData: true,
-      selectIndex: index,
-    });
+    console.log(index, this.state.questions.length);
+    if (index >= this.state.questions.length) {
+      this.setState({
+        showData: true,
+        selectIndex: 0,
+      });
+    } else {
+      this.setState({
+        showData: true,
+        selectIndex: index,
+      });
+      console.log(1245);
+    }
+  };
+
+  handelClickQuestion = (qA, index) => {
+    this.setState({ questions: [] });
+    if (this.state.selectIndex) this.setState({ selectIndex: 0 });
+    let array = [];
+    for (let data of this.state.questionAnswerData) {
+      if (data.userEmail === qA) {
+        console.log(qA, data);
+        array.push(data);
+        this.setState(prevState => ({
+          showQuestionsNames: true,
+          // questionIndex: index,
+        }));
+      }
+    }
+    this.setState({ questions: array });
+    console.log(this.state.questions, this.state.showQuestionsNames);
   };
   render() {
-    const { questionAnswerData, showData, selectIndex } = this.state;
+    const { showData, selectIndex, showQuestionsNames } = this.state;
     return (
       <PageLayout>
         <Header h1Heading='Question Answer' />
         <section className={style.external}>
           <section className={style.model}>
             <h2>List Of Questions/Answers</h2>
-            {questionAnswerData.map((qA, index) => (
+            {this.state.users.map((qA, index) => (
               <section key={index}>
                 <button
                   onClick={() => {
-                    this.handelClick(index);
+                    this.handelClickQuestion(qA, index);
                   }}
                   className={style.productButton}
                 >
-                  {qA.questionName}
+                  {qA}
                 </button>
               </section>
             ))}
+            {/* {showQuestionsNames &&
+              questionIndex !== null &&
+              questionIndex < questionAnswerData.length && (
+                <section className={style.showAllData}>
+                  <button
+                    className={style.h2}
+                    onClick={() => {
+                      this.handelClick(questionIndex);
+                    }}
+                  >
+                    {questionAnswerData[questionIndex].questionName}
+                  </button>
+                </section>
+              )} */}
+            {console.log(this.state.questions, showQuestionsNames)}
+            {showQuestionsNames ? (
+              <div>
+                {this.state.questions.map((qA, index) => {
+                  console.log(qA);
+                  return (
+                    <section className={style.showAllData} key={qA._id}>
+                      <button
+                        className={style.h2}
+                        onClick={() => {
+                          this.handelClick(index);
+                        }}
+                      >
+                        {qA.questionName}
+                      </button>
+                    </section>
+                  );
+                })}
+              </div>
+            ) : (
+              ''
+            )}
+            {/* {showQuestionsNames &&
+              this.state.questions.length > 0 &&
+              this.state.questions.map((qA, index) => {
+                <section className={style.showAllData}>
+                  <button
+                    className={style.h2}
+                    onClick={() => {
+                      this.handelClick(index);
+                    }}
+                  >
+                    {qA.questionName}
+                  </button>
+                </section>;
+              })} */}
           </section>
+
           {showData &&
             selectIndex !== null &&
-            selectIndex < questionAnswerData.length && (
+            selectIndex < this.state.questions.length && (
               <section className={style.showAllData}>
                 <h2 className={style.h2}>Question/Answer Data</h2>
                 <div>
                   <h3>
                     Question Name:
-                    {questionAnswerData[selectIndex].questionName}
+                    {this.state.questions[selectIndex].questionName}
                   </h3>
                   <h3>
                     Question Text:
-                    {questionAnswerData[selectIndex].questionText}
+                    {this.state.questions[selectIndex].questionText}
                   </h3>
-                  <button
-                    onClick={() => {
-                      const indexToDelete =
-                        questionAnswerData[selectIndex].questionName;
 
-                      this.deleteQuestion(indexToDelete);
-                    }}
-                    className={style.deleteButton}
-                  >
-                    Delete
-                  </button>
+                  <h3>
+                    Question Answer:
+                    {this.state.questions[selectIndex].answerText}
+                  </h3>
+
                   <section>
                     <form
-                      onSubmit={this.handleSubmit.bind(this)}
+                      // onSubmit={this.handleSubmit.bind(this)}
                       className={style.form}
                     >
                       <textarea
@@ -105,14 +196,26 @@ export default class QuestionAnswerPremium extends Component {
                         }
                       ></textarea>
 
-                      <p className={style.showResult}>
-                        {this.state.showResult}
-                      </p>
-
                       <Button type='submit' text='submit' />
-                      <p className={style.showResult}>
-                        {this.state.showResult}
-                      </p>
+
+                      {/* {questionAnswerData[selectIndex].haveAnAnswer && (
+                        <section className={style.starsLocation}>
+                          {[1, 2, 3, 4, 5].map(star => (
+                            <span
+                              key={star}
+                              style={{
+                                cursor: 'pointer',
+                                color:
+                                  star <= selectedStars ? 'orange' : 'grey',
+                                fontSize: `60px`, // Set the font size to control the star size
+                              }}
+                              onClick={() => this.handleStarClick(star)}
+                            >
+                              ★
+                            </span>
+                          ))}
+                        </section>
+                      )} */}
                     </form>
                   </section>
                 </div>

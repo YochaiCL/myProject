@@ -32,7 +32,17 @@ export default class TestWithHelp extends Component {
     assembly: [],
     showResult: '',
     chosenOption: null,
+    chosenOptions: [],
     selectedTest: [],
+    currentSSD: [],
+    currentCase: [],
+    currentGPU: [],
+    currentCpu: [],
+    currentCPUCooler: [],
+    currentMotherboard: [],
+    currentPSU: [],
+    currentRAM: [],
+    current: [],
     userId: JSON.parse(localStorage.getItem('user')),
   };
 
@@ -139,16 +149,20 @@ export default class TestWithHelp extends Component {
   }
 
   render() {
-    const isCpuSelected = this.state.modelCPU === this.state.currentCpu;
-    const isCpuCoolerSelected =
-      this.state.modelCPUCooler === this.state.currentCPUCooler;
-    const isGpuSelected = this.state.modelGPU === this.state.currentGPU;
-    const isPsuSelected = this.state.modelPSU === this.state.currentPSU;
-    const isSsdSelected = this.state.modelSSD === this.state.currentSSD;
-    const isRamSelected = this.state.modelRAM === this.state.currentRAM;
-    const isCaseSelected = this.state.modelCase === this.state.currentCase;
-    const isMotherboardSelected =
-      this.state.modelMotherboard === this.state.currentMotherboard;
+    const isCpuSelected = this.state.currentCpu.includes(this.state.modelCPU);
+    const isCpuCoolerSelected = this.state.currentCPUCooler.includes(
+      this.state.modelCPUCooler
+    );
+    const isGpuSelected = this.state.currentGPU.includes(this.state.modelGPU);
+    const isPsuSelected = this.state.currentPSU.includes(this.state.modelPSU);
+    const isSsdSelected = this.state.currentSSD.includes(this.state.modelSSD);
+    const isRamSelected = this.state.currentRAM.includes(this.state.modelRAM);
+    const isCaseSelected = this.state.currentCase.includes(
+      this.state.modelCase
+    );
+    const isMotherboardSelected = this.state.currentMotherboard.includes(
+      this.state.modelMotherboard
+    );
 
     return (
       <PageLayout>
@@ -177,16 +191,16 @@ export default class TestWithHelp extends Component {
                     if (
                       this.state.modelMotherboard === option.modelMotherboard
                     ) {
+                      // console.log(option)
                       this.setState({
                         chosenOption: option,
                         currentMotherboard: this.state.modelMotherboard,
-                        currentCpu: option.modelCPU,
-                        currentGPU: option.modelGPU,
-                        currentRAM: option.modelRAM,
-                        currentCase: option.modelCase,
-                        currentSSD: option.modelSSD,
                       });
-                      this.state.selectedTest.push(this.state.modelMotherboard);
+                      this.state.currentCase.push(option.modelCase);
+                      this.state.currentSSD.push(option.modelSSD);
+                      this.state.currentCpu.push(option.modelCPU);
+                      this.state.currentGPU.push(option.modelGPU);
+                      this.state.currentRAM.push(option.modelRAM);
                     }
                   }
                 });
@@ -214,9 +228,15 @@ export default class TestWithHelp extends Component {
               label='CPU'
               onChange={e => {
                 this.setState({ modelCPU: e.target.value }, () => {
-                  this.setState({
-                    currentCPUCooler: this.state.chosenOption.modelCPUCooler,
-                  });
+                  for (let option of this.state.assembly) {
+                    if (this.state.modelCPU === option.modelCPU) {
+                      this.setState({
+                        chosenOption: option,
+                      });
+
+                      this.state.currentCPUCooler.push(option.modelCPUCooler);
+                    }
+                  }
                   this.state.selectedTest.push(this.state.modelCPU);
                 });
               }}
@@ -227,7 +247,7 @@ export default class TestWithHelp extends Component {
                 Select a CPU
               </option>
               {this.state.cpuArray.map(itemCpu => {
-                if (this.state.currentCpu === itemCpu) {
+                if (this.state.currentCpu.includes(itemCpu)) {
                   return (
                     <option
                       key={itemCpu}
@@ -270,7 +290,7 @@ export default class TestWithHelp extends Component {
                 ...this.state.cpuCoolerFanArray,
                 ...this.state.cpuCoolerLiquidArray,
               ].map(itemCpuCooler => {
-                if (this.state.currentCPUCooler === itemCpuCooler) {
+                if (this.state.currentCPUCooler.includes(itemCpuCooler)) {
                   return (
                     <option
                       key={itemCpuCooler}
@@ -299,9 +319,15 @@ export default class TestWithHelp extends Component {
               label='GPU'
               onChange={e => {
                 this.setState({ modelGPU: e.target.value }, () => {
-                  this.setState({
-                    currentPSU: this.state.chosenOption.modelPSU,
-                  });
+                  for (let option of this.state.assembly) {
+                    if (this.state.modelGPU === option.modelGPU) {
+                      this.setState({
+                        chosenOption: option,
+                      });
+
+                      this.state.currentPSU.push(option.modelPSU);
+                    }
+                  }
                   this.state.selectedTest.push(this.state.modelGPU);
                 });
               }}
@@ -312,7 +338,7 @@ export default class TestWithHelp extends Component {
                 Select a GPU
               </option>
               {this.state.gpuArray.map(itemGpu => {
-                if (this.state.currentGPU === itemGpu) {
+                if (this.state.currentGPU.includes(itemGpu)) {
                   return (
                     <option
                       key={itemGpu}
@@ -351,7 +377,7 @@ export default class TestWithHelp extends Component {
                 Select a PSU
               </option>
               {this.state.psuArray.map(itemPsu => {
-                if (this.state.currentPSU === itemPsu) {
+                if (this.state.currentPSU.includes(itemPsu)) {
                   return (
                     <option
                       key={itemPsu}
@@ -390,7 +416,7 @@ export default class TestWithHelp extends Component {
                 Select a RAM
               </option>
               {this.state.ramArray.map(itemRam => {
-                if (this.state.currentRAM === itemRam) {
+                if (this.state.currentRAM.includes(itemRam)) {
                   return (
                     <option
                       key={itemRam}
@@ -430,7 +456,7 @@ export default class TestWithHelp extends Component {
               </option>
               {[...this.state.ssdM2Array, ...this.state.ssdSataArray].map(
                 itemSSD => {
-                  if (this.state.currentSSD === itemSSD) {
+                  if (this.state.currentSSD.includes(itemSSD)) {
                     return (
                       <option
                         key={itemSSD}
@@ -470,7 +496,7 @@ export default class TestWithHelp extends Component {
                 Select a Case
               </option>
               {this.state.caseArray.map(itemCase => {
-                if (this.state.currentCase === itemCase) {
+                if (this.state.currentCase.includes(itemCase)) {
                   return (
                     <option
                       key={itemCase}

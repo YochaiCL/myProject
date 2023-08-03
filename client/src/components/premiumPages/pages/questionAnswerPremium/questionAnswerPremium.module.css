@@ -9,7 +9,6 @@
 }
 
 .external {
-  
   padding: 2rem;
   margin-left: auto;
   margin-right: auto;
@@ -20,12 +19,15 @@
 .showAllData {
   border: solid black 5px;
   border-radius: 10px;
-
-  padding: 2rem;
+  background-color: #2e2d2d;
+  color: white;
+  padding: 1rem;
+  width: fit-content;
+  font-size: 1.5rem;
 }
 
 .productButton {
-  width: 200px;
+  width: 400px;
   height: 50px;
   background-color: #2e2d2d;
   color: white;
@@ -54,11 +56,10 @@
   margin-right: auto;
   background-color: white;
   padding: 3rem;
-  
+
   border-radius: 10px;
   margin-bottom: 2rem;
 }
-
 
 .smallForm {
   position: absolute;
@@ -69,9 +70,8 @@
   margin-bottom: -4rem;
 }
 
-
-.textArea{
-   padding: 1rem 3rem;
+.textArea {
+  padding: 1rem 3rem;
   margin: 1rem 0;
   display: inline-block;
   border: 1px solid #ccc;
@@ -79,4 +79,3 @@
   font-size: 2rem;
   width: 100%;
 }
-

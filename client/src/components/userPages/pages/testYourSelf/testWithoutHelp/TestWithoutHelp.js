@@ -80,75 +80,87 @@ export default class TestWithoutHelp extends Component {
     e.preventDefault();
     let grade = 12.5;
     const point = 12.5;
-    let chosenOption = null;
+    let modelCase = [];
+    let modelCPU =[];
+    let modelCPUCooler=[]
+    let modelGPU=[]
+    let modelPSU=[]
+    let modelRAM=[]
+    let modelSSD=[]
     for (let option of this.state.assembly) {
       if (this.state.modelMotherboard === option.modelMotherboard) {
-        chosenOption = option;
+        modelCase.push(option.modelCase)
+        modelCPU.push(option.modelCPU)
+        modelCPUCooler.push(option.modelCPUCooler)
+        modelGPU.push(option.modelGPU)
+        modelPSU.push(option.modelPSU)
+        modelRAM.push(option.modelRAM)
+        modelSSD.push(option.modelSSD)
         this.setState({ selectClassMotherboard: 'style.selectCorrect' });
       }
     }
-    if (chosenOption) {
-      if (chosenOption.modelCase === this.state.modelCase) {
+    if (this.state.modelMotherboard) {
+      if (modelCase.includes(this.state.modelCase)) {
         grade += point;
         this.setState({ selectClassCase: 'style.selectCorrect' });
       } else {
         this.setState({
-          resultCase: chosenOption.modelCase,
+          resultCase: modelCase,
           selectClassCase: 'style.selectIncorrect',
         });
       }
-      if (chosenOption.modelCPU === this.state.modelCPU) {
+      if (modelCPU.includes(this.state.modelCPU)) {
         grade += point;
         this.setState({ selectClassCpu: 'style.selectCorrect' });
       } else {
         this.setState({
-          resultCpu: chosenOption.modelCPU,
+          resultCpu: modelCPU,
           selectClassCpu: 'style.selectIncorrect',
         });
       }
-      if (chosenOption.modelCPUCooler === this.state.modelCPUCooler) {
+      if (modelCPUCooler.includes(this.state.modelCPUCooler)) {
         grade += point;
         this.setState({ selectClassCpuCooler: 'style.selectCorrect' });
       } else {
         this.setState({
-          resultCpuCooler: chosenOption.modelCPUCooler,
+          resultCpuCooler: modelCPUCooler,
           selectClassCpuCooler: 'style.selectIncorrect',
         });
       }
 
-      if (chosenOption.modelGPU === this.state.modelGPU) {
+      if (modelGPU.includes(this.state.modelGPU)) {
         grade += point;
         this.setState({ selectClassGpu: 'style.selectCorrect' });
       } else {
         this.setState({
-          resultGpu: chosenOption.modelGPU,
+          resultGpu: modelGPU,
           selectClassGpu: 'style.selectIncorrect',
         });
       }
-      if (chosenOption.modelPSU === this.state.modelPSU) {
+      if (modelPSU.includes(this.state.modelPSU)) {
         grade += point;
         this.setState({ selectClassPsu: 'style.selectCorrect' });
       } else {
         this.setState({
-          resultPsu: chosenOption.modelPSU,
+          resultPsu: modelPSU,
           selectClassPsu: 'style.selectIncorrect',
         });
       }
-      if (chosenOption.modelRAM === this.state.modelRAM) {
+      if (modelRAM.includes(this.state.modelRAM)) {
         grade += point;
         this.setState({ selectClassRam: 'style.selectCorrect' });
       } else {
         this.setState({
-          resultRam: chosenOption.modelRAM,
+          resultRam: modelRAM,
           selectClassRam: 'style.selectIncorrect',
         });
       }
-      if (chosenOption.modelSSD === this.state.modelSSD) {
+      if (modelSSD.includes(this.state.modelSSD)) {
         grade += point;
         this.setState({ selectClassSsd: 'style.selectCorrect' });
       } else {
         this.setState({
-          resultSsd: chosenOption.modelSSD,
+          resultSsd: modelSSD,
           selectClassSsd: 'style.selectIncorrect',
         });
       }
@@ -294,13 +306,17 @@ export default class TestWithoutHelp extends Component {
                   >
                     motherboard Information
                   </Link>
-                  <Link to='/questionAnswer' className={style.link} target='_blank'>
+                  <Link
+                    to='/questionAnswer'
+                    className={style.link}
+                    target='_blank'
+                  >
                     Question/Answer
                   </Link>
                   <button
                     onClick={() =>
                       this.setState({
-                        modelMotherboard: this.state.resultMotherboard,
+                        modelMotherboard: this.state.resultMotherboard[0],
                         resultMotherboard: '',
                       })
                     }
@@ -347,13 +363,17 @@ export default class TestWithoutHelp extends Component {
                   <Link to='/infoCPU' className={style.link} target='_blank'>
                     cpu Information
                   </Link>
-                  <Link to='/questionAnswer' className={style.link} target='_blank'>
+                  <Link
+                    to='/questionAnswer'
+                    className={style.link}
+                    target='_blank'
+                  >
                     Question/Answer
                   </Link>
                   <button
                     onClick={() =>
                       this.setState({
-                        modelCPU: this.state.resultCpu,
+                        modelCPU: this.state.resultCpu[0],
                         resultCpu: '',
                         selectClassCpu: 'style.selectCorrect',
                       })
@@ -408,13 +428,17 @@ export default class TestWithoutHelp extends Component {
                   >
                     cpu cooler Information
                   </Link>
-                  <Link to='/questionAnswer' className={style.link} target='_blank'>
+                  <Link
+                    to='/questionAnswer'
+                    className={style.link}
+                    target='_blank'
+                  >
                     Question/Answer
                   </Link>
                   <button
                     onClick={() =>
                       this.setState({
-                        modelCPUCooler: this.state.resultCpuCooler,
+                        modelCPUCooler: this.state.resultCpuCooler[0],
                         resultCpuCooler: '',
                         selectClassCpuCooler: 'style.selectCorrect',
                       })
@@ -462,13 +486,17 @@ export default class TestWithoutHelp extends Component {
                   <Link to='/infoGPU' className={style.link} target='_blank'>
                     gpu Information
                   </Link>
-                  <Link to='/questionAnswer' className={style.link} target='_blank'>
+                  <Link
+                    to='/questionAnswer'
+                    className={style.link}
+                    target='_blank'
+                  >
                     Question/Answer
                   </Link>
                   <button
                     onClick={() =>
                       this.setState({
-                        modelGPU: this.state.resultGpu,
+                        modelGPU: this.state.resultGpu[0],
                         resultGpu: '',
                         selectClassGpu: 'style.selectCorrect',
                       })
@@ -516,13 +544,17 @@ export default class TestWithoutHelp extends Component {
                   <Link to='/infoPSU' className={style.link} target='_blank'>
                     psu Information
                   </Link>
-                  <Link to='/questionAnswer' className={style.link} target='_blank'>
+                  <Link
+                    to='/questionAnswer'
+                    className={style.link}
+                    target='_blank'
+                  >
                     Question/Answer
                   </Link>
                   <button
                     onClick={() =>
                       this.setState({
-                        modelPSU: this.state.resultPsu,
+                        modelPSU: this.state.resultPsu[0],
                         resultPsu: '',
                         selectClassPsu: 'style.selectCorrect',
                       })
@@ -570,13 +602,17 @@ export default class TestWithoutHelp extends Component {
                   <Link to='/infoRAM' className={style.link} target='_blank'>
                     ram Information
                   </Link>
-                  <Link to='/questionAnswer' className={style.link} target='_blank'>
+                  <Link
+                    to='/questionAnswer'
+                    className={style.link}
+                    target='_blank'
+                  >
                     Question/Answer
                   </Link>
                   <button
                     onClick={() =>
                       this.setState({
-                        modelRAM: this.state.resultRam,
+                        modelRAM: this.state.resultRam[0],
                         resultRam: '',
                         selectClassRam: 'style.selectCorrect',
                       })
@@ -626,13 +662,17 @@ export default class TestWithoutHelp extends Component {
                   <Link to='/infoSSD' className={style.link} target='_blank'>
                     ssd Information
                   </Link>
-                  <Link to='/questionAnswer' className={style.link} target='_blank'>
+                  <Link
+                    to='/questionAnswer'
+                    className={style.link}
+                    target='_blank'
+                  >
                     Question/Answer
                   </Link>
                   <button
                     onClick={() =>
                       this.setState({
-                        modelSSD: this.state.resultSsd,
+                        modelSSD: this.state.resultSsd[0],
                         resultSsd: '',
                         selectClassSsd: 'style.selectCorrect',
                       })
@@ -680,13 +720,17 @@ export default class TestWithoutHelp extends Component {
                   <Link to='/infoCASE' className={style.link} target='_blank'>
                     case Information
                   </Link>
-                  <Link to='/questionAnswer' className={style.link} target='_blank'>
+                  <Link
+                    to='/questionAnswer'
+                    className={style.link}
+                    target='_blank'
+                  >
                     Question/Answer
                   </Link>
                   <button
                     onClick={() =>
                       this.setState({
-                        modelCase: this.state.resultCase,
+                        modelCase: this.state.resultCase[0],
                         resultCase: '',
                         selectClassCase: 'style.selectCorrect',
                       })

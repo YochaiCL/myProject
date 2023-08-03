@@ -13,6 +13,7 @@ export default class ExistsQuestionsUser extends Component {
     showData: false,
     selectIndex: null,
     questionText: '',
+    questionText2: "",
     userId: JSON.parse(localStorage.getItem('user'))._id,
     selectedStars: 0,
   };
@@ -31,12 +32,14 @@ export default class ExistsQuestionsUser extends Component {
           Accept: 'application/json',
           'Accept-Control-Allow-Origin': '*',
         },
+
         body: JSON.stringify({
           userId: this.state.userId,
         }),
       }
     );
     const result = await response.json();
+    result.sort((a, b) => a.questionName.localeCompare(b.questionName));
     this.setState({ questionAnswerData: result });
   }
 
@@ -52,6 +55,7 @@ export default class ExistsQuestionsUser extends Component {
    * @param {*} index
    */
   handelClick = index => {
+    this.setState({ questionText2: this.state.questionAnswerData[index].questionText });
     this.setState({
       showData: true,
       selectIndex: index,
@@ -77,7 +81,7 @@ export default class ExistsQuestionsUser extends Component {
           'Access-Control-Allow-Origin': '*',
         },
         body: JSON.stringify({
-          userId: this.state.userId._id,
+          userId: this.state.userId,
           questionName: questionName,
         }),
       })
@@ -89,7 +93,7 @@ export default class ExistsQuestionsUser extends Component {
               this.setState({
                 showResult: '',
               });
-            }, 1000);
+            }, 2000);
           }
         });
     } catch (error) {
@@ -107,6 +111,14 @@ export default class ExistsQuestionsUser extends Component {
    */
   async handleSubmit(e) {
     e.preventDefault();
+    let newObj = {
+      userId: this.state.userId,
+      questionText:
+        this.state.questionAnswerData[this.state.selectIndex].questionText + " ? " + this
+          .state.questionText,
+      questionName:
+        this.state.questionAnswerData[this.state.selectIndex].questionName,
+    };
     const questionInputData = {
       method: 'POST',
       crossDomain: true,
@@ -115,7 +127,7 @@ export default class ExistsQuestionsUser extends Component {
         Accept: 'application/json',
         'Accept-Control-Allow-Origin': '*',
       },
-      body: JSON.stringify(this.state),
+      body: JSON.stringify(newObj),
     };
 
     const response = await fetch(
@@ -127,6 +139,12 @@ export default class ExistsQuestionsUser extends Component {
     if (result.status === 'true') {
       this.setState({
         showResult: 'The Question has been updated',
+      });
+      this.setState({
+        questionText2:
+          this.state.questionAnswerData[this.state.selectIndex].questionText +
+          ' ? ' +
+          this.state.questionText,
       });
 
       setTimeout(() => {
@@ -176,7 +194,7 @@ export default class ExistsQuestionsUser extends Component {
                   </h3>
                   <h3>
                     Question Text:
-                    {questionAnswerData[selectIndex].questionText}
+                    {this.state.questionText2}
                   </h3>
                   {!questionAnswerData[selectIndex].haveAnAnswer && (
                     <button
@@ -191,6 +209,8 @@ export default class ExistsQuestionsUser extends Component {
                       Delete
                     </button>
                   )}
+
+                  <p className={style.showResult}>{this.state.showResult}</p>
 
                   <h3>
                     Question Answer:
@@ -215,14 +235,7 @@ export default class ExistsQuestionsUser extends Component {
                         }
                       ></textarea>
 
-                      <p className={style.showResult}>
-                        {this.state.showResult}
-                      </p>
-
                       <Button type='submit' text='submit' />
-                      <p className={style.showResult}>
-                        {this.state.showResult}
-                      </p>
 
                       {questionAnswerData[selectIndex].haveAnAnswer && (
                         <section className={style.starsLocation}>
@@ -248,6 +261,7 @@ export default class ExistsQuestionsUser extends Component {
               </section>
             )}
         </section>
+        <p className={style.showResult}>{this.state.showResult}</p>
       </PageLayout>
     );
   }

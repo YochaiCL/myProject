@@ -11,6 +11,7 @@ export default class UserData extends Component {
     userData: '',
     oldUser: '',
     showLinkAdmin: false,
+    showLinkPremium:false,
     password: '',
     email: '',
     name: '',
@@ -46,6 +47,12 @@ export default class UserData extends Component {
             showLinkAdmin: true,
           });
         }
+
+         if (this.state.userData.userType === 'Premium') {
+           this.setState({
+             showLinkPremium: true,
+           });
+         }
       });
   }
 
@@ -218,7 +225,7 @@ export default class UserData extends Component {
 
   render() {
     return (
-      <div >
+      <div>
         <section className={style.userDetails}>
           <p>
             <span className={style.span}>Name:</span>
@@ -234,6 +241,15 @@ export default class UserData extends Component {
             <Button text='sign out' fun={this.logout} />
           </div>
         </section>
+
+        {this.state.showLinkPremium && (
+          <section className={style.linkAdmin}>
+            <LinkLayout
+              nameLink='Transfer to Premium home Page'
+              toLink='/questionAnswerHome'
+            />
+          </section>
+        )}
 
         {this.state.showLinkAdmin && (
           <section className={style.linkAdmin}>
