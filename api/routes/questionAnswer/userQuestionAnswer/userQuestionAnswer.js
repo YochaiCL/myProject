@@ -101,7 +101,30 @@ router.post('/updateQuestion', async (req, res) => {
         questionName,
       },
       // Update the document with the values from the 'data' object
-      { $set: { questionText: questionTest } }
+      { $set: { questionText: questionTest, haveAnAnswer :false} }
+    );
+    res.send({ status: 'true' });
+  } catch (error) {
+    console.log(error.message);
+    res.send({ status: 'error' });
+  }
+});
+
+router.post('/updateStars', async (req, res) => {
+  const userId = req.body.userIdStar;
+  const questionName = req.body.questionName;
+  const selectedStars = req.body.selectedStars;
+
+
+
+  try {
+    await QuestionAnswer.updateOne(
+      {
+        userId,
+        questionName,
+      },
+      // Update the document with the values from the 'data' object
+      { $set: { selectedStars: selectedStars } }
     );
     res.send({ status: 'true' });
   } catch (error) {

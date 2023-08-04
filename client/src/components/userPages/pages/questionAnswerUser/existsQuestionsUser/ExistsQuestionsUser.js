@@ -104,15 +104,47 @@ export default class ExistsQuestionsUser extends Component {
     }
   }
 
-  handleStarClick = selectedStarCount => {
-    this.setState({ selectedStars: selectedStarCount });
-  };
+  handleStarClick(selectedStarCount) {
+    const dataStar = {
+      userIdStar: this.state.userId,
+      questionName:
+        this.state.questionAnswerData[this.state.selectIndex].questionName,
+      selectedStars: selectedStarCount,
+    };
+
+    try {
+      fetch('http://localhost:5000/userQuestionAnswer/updateStars', {
+        method: 'POST',
+        crossDomain: true,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(dataStar),
+      })
+        .then(res => res.json())
+        .then(data => {
+          if (data.status === 'true') {
+            this.setState({ showResult: 'Star has been updated' });
+            // this.setState({ showData: false });
+            setTimeout(() => {
+              this.setState({
+                showResult: '',
+              });
+            }, 2000);
+            this.getQuestionAnswer();
+          }
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   /**
    * Description - This function update the question text in the server
    * @param {*} e - Question text value
    */
   async handleSubmit(e) {
+    console.log(this.state.userId);
     e.preventDefault();
     let dataToSend = {
       userId: this.state.userId,
@@ -159,9 +191,9 @@ export default class ExistsQuestionsUser extends Component {
       }, 1000);
     }
   }
+
   render() {
-    const { questionAnswerData, showData, selectIndex, selectedStars } =
-      this.state;
+    const { questionAnswerData, showData, selectIndex } = this.state;
     return (
       <PageLayout>
         <Header h1Heading='Exists Questions/Answers' />
@@ -251,31 +283,52 @@ export default class ExistsQuestionsUser extends Component {
 
                       <Button type='submit' text='submit' />
 
-                      {questionAnswerData[selectIndex].haveAnAnswer && (
-                        <section className={style.starsLocation}>
-                          {[1, 2, 3, 4, 5].map(star => (
-                            <span
-                              key={star}
-                              style={{
-                                cursor: 'pointer',
-                                color:
-                                  star <= selectedStars ? 'orange' : 'grey',
-                                fontSize: `60px`, // Set the font size to control the star size
-                              }}
-                              onClick={() => this.handleStarClick(star)}
-                            >
-                              ★
-                            </span>
-                          ))}
-                        </section>
-                      )}
+                      {questionAnswerData[selectIndex].haveAnAnswer &&
+                        questionAnswerData[selectIndex].selectedStars === 0 && (
+                          <section className={style.starsLocation}>
+                            {[1, 2, 3, 4, 5].map(star => (
+                              <span
+                                key={star}
+                                style={{
+                                  cursor: 'pointer',
+                                  color:
+                                    star <=
+                                    questionAnswerData[selectIndex]
+                                      .selectedStars
+                                      ? 'orange'
+                                      : 'grey',
+                                  fontSize: `60px`,
+                                }}
+                                onClick={() => {
+                                  this.setState({
+                                    selectedStars:
+                                      star <=
+                                      questionAnswerData[selectIndex]
+                                        .selectedStars
+                                        ? 0
+                                        : star,
+                                  });
+                                  this.handleStarClick(
+                                    star <=
+                                      questionAnswerData[selectIndex]
+                                        .selectedStars
+                                      ? 0
+                                      : star
+                                  );
+                                }}
+                              >
+                                ★
+                              </span>
+                            ))}
+                          </section>
+                        )}
                     </form>
+                    <p className={style.showResult}>{this.state.showResult}</p>
                   </section>
                 </div>
               </section>
             )}
         </section>
-        <p className={style.showResult}>{this.state.showResult}</p>
       </PageLayout>
     );
   }

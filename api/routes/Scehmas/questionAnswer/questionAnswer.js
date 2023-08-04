@@ -12,7 +12,7 @@ const questionAnswerScehma = new mongoose.Schema(
     questionText: String,
     answerText: String,
     haveAnAnswer: Boolean,
-    scoreResult:Number,
+    selectedStars: Number,
   },
   {
     collection: 'QuestionAnswer',

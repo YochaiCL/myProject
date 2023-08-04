@@ -17,6 +17,7 @@ export default class NewQuestion extends Component {
     answerText: '',
     haveAnAnswer: false,
     showResult: '',
+    selectedStars: 0,
   };
 
   async handleSubmit(e) {

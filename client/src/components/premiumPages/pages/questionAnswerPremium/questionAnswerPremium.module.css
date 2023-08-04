@@ -104,3 +104,11 @@
   border: solid 1px white;
   border-radius: 10px;
 }
+
+.greenBackground {
+  background-color: green;
+}
+
+.redBackground {
+  background-color:red;
+}

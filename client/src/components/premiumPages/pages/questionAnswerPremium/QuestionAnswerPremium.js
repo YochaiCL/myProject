@@ -86,10 +86,6 @@ export default class QuestionAnswerPremium extends Component {
   async handleSubmit(e) {
     e.preventDefault();
 
-    console.log(
-      this.state.questionAnswerData[this.state.selectIndex].haveAnAnswer
-    );
-
     let dataToSend;
     if (!this.state.questionAnswerData[this.state.selectIndex].haveAnAnswer) {
       dataToSend = {
@@ -143,9 +139,16 @@ export default class QuestionAnswerPremium extends Component {
         this.setState({
           showResult: '',
         });
-      }, 1000);
+      }, 2000);
       this.getQuestionAnswer();
     }
+  }
+
+  checkUserAllHaveAnswers(userEmail) {
+    const { questionAnswerData } = this.state;
+    return questionAnswerData.every(
+      data => data.userEmail === userEmail && data.haveAnAnswer
+    );
   }
   render() {
     const { showData, selectIndex, showQuestionsNames } = this.state;
@@ -161,7 +164,11 @@ export default class QuestionAnswerPremium extends Component {
                   onClick={() => {
                     this.handelClickQuestion(qA, index);
                   }}
-                  className={style.productButton}
+                  className={`${style.productButton} ${
+                    this.checkUserAllHaveAnswers(qA)
+                      ? style.greenBackground
+                      : style.redBackground
+                  }`}
                 >
                   {qA}
                 </button>
@@ -171,11 +178,19 @@ export default class QuestionAnswerPremium extends Component {
             {showQuestionsNames ? (
               <section className={style.questions}>
                 {this.state.questions.map((qA, index) => {
-                  // console.log(qA);
+                  // Use the updated questionAnswerData to determine if the answer is available
+                  const hasAnswer = this.state.questionAnswerData.find(
+                    data => data._id === qA._id
+                  ).haveAnAnswer;
+
                   return (
                     <section key={qA._id}>
                       <button
-                        className={style.btn}
+                        className={`${style.btn} ${
+                          hasAnswer
+                            ? style.greenBackground
+                            : style.redBackground
+                        }`}
                         onClick={() => {
                           this.handelClick(index);
                         }}
