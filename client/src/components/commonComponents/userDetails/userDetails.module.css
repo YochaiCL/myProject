@@ -2,8 +2,8 @@
   font-size: 3rem;
   padding: 2rem;
   max-width: 80%;
-  background-color: white;
-  opacity: 0.7;
+  color: white;
+  background-color:lightsteelblue;
   border-radius: 50px;
   margin-left: auto;
   margin-right: auto;
@@ -41,7 +41,7 @@
 }
 
 .p {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   color: rgb(32, 86, 178);
 }
 

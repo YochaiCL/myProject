@@ -32,10 +32,10 @@ router.post('/getData', async (req, res) => {
  * req - array of all database data
  * res - status of update data
  */
-router.post('/updateQuestion', async (req, res) => {
+router.post('/updateAnswer', async (req, res) => {
   const userId = req.body.userId;
   const questionName = req.body.questionName;
-  const questionTest = req.body.questionText;
+  const answerText = req.body.answerText;
 
   try {
     await QuestionAnswer.updateOne(
@@ -44,7 +44,7 @@ router.post('/updateQuestion', async (req, res) => {
         questionName,
       },
       // Update the document with the values from the 'data' object
-      questionTest
+      { $set: { answerText: answerText, haveAnAnswer: true } }
     );
     res.send({ status: 'true' });
   } catch (error) {

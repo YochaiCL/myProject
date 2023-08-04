@@ -92,6 +92,8 @@ router.post('/updateQuestion', async (req, res) => {
   const questionName = req.body.questionName;
   const questionTest = req.body.questionText;
 
+  console.log(questionName);
+
   try {
     await QuestionAnswer.updateOne(
       {

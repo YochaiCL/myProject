@@ -13,7 +13,7 @@ export default class ExistsQuestionsUser extends Component {
     showData: false,
     selectIndex: null,
     questionText: '',
-    questionText2: "",
+    questionText2: '',
     userId: JSON.parse(localStorage.getItem('user'))._id,
     selectedStars: 0,
   };
@@ -55,7 +55,9 @@ export default class ExistsQuestionsUser extends Component {
    * @param {*} index
    */
   handelClick = index => {
-    this.setState({ questionText2: this.state.questionAnswerData[index].questionText });
+    this.setState({
+      questionText2: this.state.questionAnswerData[index].questionText,
+    });
     this.setState({
       showData: true,
       selectIndex: index,
@@ -89,6 +91,7 @@ export default class ExistsQuestionsUser extends Component {
         .then(data => {
           if (data.status === 'Question deleted') {
             this.setState({ showResult: 'Test has been deleted' });
+            this.setState({ showData: false });
             setTimeout(() => {
               this.setState({
                 showResult: '',
@@ -111,14 +114,16 @@ export default class ExistsQuestionsUser extends Component {
    */
   async handleSubmit(e) {
     e.preventDefault();
-    let newObj = {
+    let dataToSend = {
       userId: this.state.userId,
       questionText:
-        this.state.questionAnswerData[this.state.selectIndex].questionText + " ? " + this
-          .state.questionText,
+        this.state.questionAnswerData[this.state.selectIndex].questionText +
+        ' ? ' +
+        this.state.questionText,
       questionName:
         this.state.questionAnswerData[this.state.selectIndex].questionName,
     };
+
     const questionInputData = {
       method: 'POST',
       crossDomain: true,
@@ -127,7 +132,7 @@ export default class ExistsQuestionsUser extends Component {
         Accept: 'application/json',
         'Accept-Control-Allow-Origin': '*',
       },
-      body: JSON.stringify(newObj),
+      body: JSON.stringify(dataToSend),
     };
 
     const response = await fetch(
@@ -150,12 +155,6 @@ export default class ExistsQuestionsUser extends Component {
       setTimeout(() => {
         this.setState({
           showResult: '',
-        });
-      }, 1000);
-    } else if (result.status === 'Question already exist') {
-      setTimeout(() => {
-        this.setState({
-          showResult: 'This question name already exist',
         });
       }, 1000);
     }
@@ -188,13 +187,22 @@ export default class ExistsQuestionsUser extends Component {
               <section className={style.showAllData}>
                 <h2 className={style.h2}>Question/Answer Data</h2>
                 <div>
-                  <h3>
-                    Question Name:
+                  <h3 className={style.h3}>
+                    <span className={style.span}> Question Name:</span>
                     {questionAnswerData[selectIndex].questionName}
                   </h3>
-                  <h3>
-                    Question Text:
-                    {this.state.questionText2}
+                  <h3 className={style.h3}>
+                    <span className={style.span}> Question Text:</span>
+                    {this.state.questionText2
+                      .split('?')
+                      .map((part, index, array) => (
+                        <span key={index}>
+                          {part}
+                          {index !== array.length - 1 && (
+                            <span style={{ color: 'red' }}>?</span>
+                          )}
+                        </span>
+                      ))}
                   </h3>
                   {!questionAnswerData[selectIndex].haveAnAnswer && (
                     <button
@@ -210,13 +218,19 @@ export default class ExistsQuestionsUser extends Component {
                     </button>
                   )}
 
-                  <p className={style.showResult}>{this.state.showResult}</p>
-
-                  <h3>
-                    Question Answer:
-                    {questionAnswerData[selectIndex].answerText}
+                  <h3 className={style.h3}>
+                    <span className={style.span}>Question Answer:</span>
+                    {questionAnswerData[selectIndex].answerText
+                      .split('|')
+                      .map((part, index, array) => (
+                        <span key={index}>
+                          {part}
+                          {index !== array.length - 1 && (
+                            <span style={{ color: 'red' }}>|</span>
+                          )}
+                        </span>
+                      ))}
                   </h3>
-
                   <section>
                     <form
                       onSubmit={this.handleSubmit.bind(this)}
