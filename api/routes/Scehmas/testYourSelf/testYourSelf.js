@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 
 /**
- * Description -
+ * Description - Define the test scehma
  */
 const testYourSelfScehma = new mongoose.Schema(
   {

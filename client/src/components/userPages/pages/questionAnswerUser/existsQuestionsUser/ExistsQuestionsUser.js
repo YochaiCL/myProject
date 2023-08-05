@@ -52,7 +52,7 @@ export default class ExistsQuestionsUser extends Component {
 
   /**
    * Description - This function show the question/answer data
-   * @param {*} index
+   * @param {*} index  - Selected question
    */
   handelClick = index => {
     this.setState({
@@ -104,6 +104,10 @@ export default class ExistsQuestionsUser extends Component {
     }
   }
 
+  /**
+   * Description - This function define the stars amount by the user selection
+   * @param {*} selectedStarCount - Amount of stars that the user selected
+   */
   handleStarClick(selectedStarCount) {
     const dataStar = {
       userIdStar: this.state.userId,
@@ -125,7 +129,6 @@ export default class ExistsQuestionsUser extends Component {
         .then(data => {
           if (data.status === 'true') {
             this.setState({ showResult: 'Star has been updated' });
-            // this.setState({ showData: false });
             setTimeout(() => {
               this.setState({
                 showResult: '',
@@ -144,7 +147,6 @@ export default class ExistsQuestionsUser extends Component {
    * @param {*} e - Question text value
    */
   async handleSubmit(e) {
-    console.log(this.state.userId);
     e.preventDefault();
     let dataToSend = {
       userId: this.state.userId,
@@ -172,7 +174,6 @@ export default class ExistsQuestionsUser extends Component {
       questionInputData
     );
     const result = await response.json();
-    // console.log(result);
     if (result.status === 'true') {
       this.setState({
         showResult: 'The Question has been updated',

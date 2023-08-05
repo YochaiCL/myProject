@@ -31,7 +31,6 @@ export default class ExistsTests extends Component {
       }),
     });
     const result = await response.json();
-    // console.log(result);
     this.setState({ tests: result });
   }
 

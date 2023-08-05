@@ -5,7 +5,7 @@ import style from './questionAnswerPremium.module.css';
 import Button from '../../../commonComponents/button/Button';
 
 /**
- * Description -
+ * Description - This class show all question from the users and this class answering those questions
  */
 export default class QuestionAnswerPremium extends Component {
   state = {
@@ -20,6 +20,9 @@ export default class QuestionAnswerPremium extends Component {
     questionIndex: null,
   };
 
+  /**
+   * Description - This function get all the data from the server
+   */
   async getQuestionAnswer() {
     const response = await fetch(
       'http://localhost:5000/premiumQuestionAnswer/getData',
@@ -36,19 +39,24 @@ export default class QuestionAnswerPremium extends Component {
     const result = await response.json();
     this.setState({ questionAnswerData: result });
     for (let user of result) {
-      // console.log(user, this.state.users);
       if (!this.state.users.includes(user.userEmail)) {
         this.state.users.push(user.userEmail);
       }
     }
   }
 
+  /**
+   * Description - This function activate the getQuestionAnswer function when the page is uploaded
+   */
   componentDidMount() {
     this.getQuestionAnswer();
   }
 
+  /**
+   * Description - This function show all the data by click on selected item
+   * @param {*} index  - Selected item
+   */
   handelClick = index => {
-    // console.log(index, this.state.questions.length);
     this.setState({
       answerText2: this.state.questionAnswerData[index].answerText,
     });
@@ -65,27 +73,33 @@ export default class QuestionAnswerPremium extends Component {
     }
   };
 
-  handelClickQuestion = (qA, index) => {
+  /**
+   *Description  - This function show all the question of the selected user
+   * @param {*} qA - Selsected user
+   */
+  handelClickQuestion = qA => {
     this.setState({ questions: [] });
-    if (this.state.selectIndex) this.setState({ selectIndex: 0 });
+    if (this.state.selectIndex) {
+      this.setState({ selectIndex: 0 });
+    }
     let array = [];
     for (let data of this.state.questionAnswerData) {
       if (data.userEmail === qA) {
-        // console.log(qA, data);
         array.push(data);
         this.setState(prevState => ({
           showQuestionsNames: true,
-          // questionIndex: index,
         }));
       }
     }
     this.setState({ questions: array });
-    // console.log(this.state.questions, this.state.showQuestionsNames);
   };
 
+  /**
+   * Description - This function update an answer to the selected question
+   * @param {*} e - Selected question
+   */
   async handleSubmit(e) {
     e.preventDefault();
-
     let dataToSend;
     if (!this.state.questionAnswerData[this.state.selectIndex].haveAnAnswer) {
       dataToSend = {
@@ -121,7 +135,6 @@ export default class QuestionAnswerPremium extends Component {
       questionInputData
     );
     const result = await response.json();
-    // console.log(result);
     if (result.status === 'true') {
       this.setState({
         answerText: this.state.answerText,
@@ -144,6 +157,11 @@ export default class QuestionAnswerPremium extends Component {
     }
   }
 
+  /**
+   * Description - This function check if the all question of the user get an answer
+   * @param {*} userEmail  - User data
+   * @returns - True if all question are answered and false otherwise
+   */
   checkUserAllHaveAnswers(userEmail) {
     const { questionAnswerData } = this.state;
     return questionAnswerData.every(
@@ -178,7 +196,6 @@ export default class QuestionAnswerPremium extends Component {
             {showQuestionsNames ? (
               <section className={style.questions}>
                 {this.state.questions.map((qA, index) => {
-                  // Use the updated questionAnswerData to determine if the answer is available
                   const hasAnswer = this.state.questionAnswerData.find(
                     data => data._id === qA._id
                   ).haveAnAnswer;

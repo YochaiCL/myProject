@@ -7,22 +7,19 @@ const router = express.Router();
 // Import mongoose
 const mongoose = require('mongoose');
 
-// Import CompLearned data from database mongoDB
+// Import question/answer data from database mongoDB
 const QuestionAnswer = mongoose.model('QuestionAnswer');
 
 // Import scehma of how data is in database
 require('../../Scehmas/questionAnswer/questionAnswer');
 
 /**
- * Description -
+ * Description - Create new question and added to the server
  */
 router.post('/newQuestion', async (req, res) => {
-  // console.log(req.body);
-
   const userId = req.body.userId;
   try {
     const arrayId = await QuestionAnswer.find({ userId });
-    // console.log(arrayId);
     if (arrayId.length > 0) {
       const testNameExists = await QuestionAnswer.find({
         userId,
@@ -46,13 +43,11 @@ router.post('/newQuestion', async (req, res) => {
 });
 
 /**
- * Description -
+ * Description - Get all question/answer from the server
  */
 router.post('/getData', async (req, res) => {
   try {
-    // Find all 'CompLearned' documents in the MongoDB collection with the matching 'userId'
     let array = await QuestionAnswer.find({ userId: req.body.userId });
-    // Send the array of 'CompLearned' documents as the response
     res.send(array);
   } catch (error) {
     res.send({ status: 'error' });
@@ -64,7 +59,6 @@ router.post('/getData', async (req, res) => {
  */
 router.post('/deleteQuestionAnswer', async (req, res) => {
   const userId = req.body.userId;
-  console.log(userId);
   const questionName = req.body.questionName;
   try {
     const deletedQuestionAnswer = await QuestionAnswer.findOneAndDelete({
@@ -77,13 +71,12 @@ router.post('/deleteQuestionAnswer', async (req, res) => {
       res.send({ status: 'Question not found' });
     }
   } catch (error) {
-    // Send a response with a 'status' property set to 'error' indicating an error occurred
     res.send({ status: 'error' });
   }
 });
 
 /**
- * Description - This function update the data in compLearned collection
+ * Description - This function update the data in question/answer collection
  * req - array of all database data
  * res - status of update data
  */
@@ -91,17 +84,13 @@ router.post('/updateQuestion', async (req, res) => {
   const userId = req.body.userId;
   const questionName = req.body.questionName;
   const questionTest = req.body.questionText;
-
-  console.log(questionName);
-
   try {
     await QuestionAnswer.updateOne(
       {
         userId,
         questionName,
       },
-      // Update the document with the values from the 'data' object
-      { $set: { questionText: questionTest, haveAnAnswer :false} }
+      { $set: { questionText: questionTest, haveAnAnswer: false } }
     );
     res.send({ status: 'true' });
   } catch (error) {
@@ -110,20 +99,19 @@ router.post('/updateQuestion', async (req, res) => {
   }
 });
 
+/**
+ * Description - This function update the amount of stars in the question/answer collection
+ */
 router.post('/updateStars', async (req, res) => {
   const userId = req.body.userIdStar;
   const questionName = req.body.questionName;
   const selectedStars = req.body.selectedStars;
-
-
-
   try {
     await QuestionAnswer.updateOne(
       {
         userId,
         questionName,
       },
-      // Update the document with the values from the 'data' object
       { $set: { selectedStars: selectedStars } }
     );
     res.send({ status: 'true' });

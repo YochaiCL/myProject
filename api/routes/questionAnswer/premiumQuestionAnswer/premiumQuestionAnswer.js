@@ -14,13 +14,11 @@ const QuestionAnswer = mongoose.model('QuestionAnswer');
 require('../../Scehmas/questionAnswer/questionAnswer');
 
 /**
- * Description -
+ * Description - Get all Question/Answer from the server
  */
 router.post('/getData', async (req, res) => {
   try {
-    // Find all 'CompLearned' documents in the MongoDB collection with the matching 'userId'
     let array = await QuestionAnswer.find({});
-    // Send the array of 'CompLearned' documents as the response
     res.send(array);
   } catch (error) {
     res.send({ status: 'error' });
@@ -28,7 +26,7 @@ router.post('/getData', async (req, res) => {
 });
 
 /**
- * Description - This function update the data in compLearned collection
+ * Description - This function update the data in question/answer collection
  * req - array of all database data
  * res - status of update data
  */

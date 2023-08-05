@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 /**
- * Description -
+ * Description - Define the question/answer scehma
  */
 const questionAnswerScehma = new mongoose.Schema(
   {

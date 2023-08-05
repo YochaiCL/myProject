@@ -51,7 +51,6 @@ export default class TestWithHelp extends Component {
   async getModels() {
     const response = await fetch('http://localhost:5000/getComponentsModels');
     const result = await response.json();
-    // console.log(result);
     this.setState({ cpuArray: result.Cpu });
     this.setState({ gpuArray: result.Gpu });
     this.setState({ caseArray: result.Case });
@@ -83,7 +82,7 @@ export default class TestWithHelp extends Component {
         assemblyItem.modelSSD === this.state.modelSSD
       ) {
         status = true;
-        break; // No need to continue checking
+        break;
       }
     }
     if (!status) {
@@ -95,7 +94,7 @@ export default class TestWithHelp extends Component {
         this.setState({
           showResult: '',
         });
-      }, 1000); // Clear the error message after 3 seconds
+      }, 1000);
     } else {
       const options = {
         method: 'POST',
@@ -112,7 +111,6 @@ export default class TestWithHelp extends Component {
         options
       );
       const result = await response.json();
-      // console.log(result);
       if (result.status === 'ok') {
         this.setState({
           showResult: 'The Test has been added',
@@ -135,7 +133,6 @@ export default class TestWithHelp extends Component {
     const response = await fetch('http://localhost:5000/getAssembly');
     const result = await response.json();
     result.sort((a, b) => a.assemblyName.localeCompare(b.assemblyName));
-    // console.log(result);
     this.setState({ assembly: result });
     this.getAssembly();
   }
@@ -191,7 +188,6 @@ export default class TestWithHelp extends Component {
                     if (
                       this.state.modelMotherboard === option.modelMotherboard
                     ) {
-                      // console.log(option)
                       this.setState({
                         chosenOption: option,
                         currentMotherboard: this.state.modelMotherboard,

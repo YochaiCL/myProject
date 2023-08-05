@@ -59,7 +59,6 @@ export default class TestWithoutHelp extends Component {
   async getModels() {
     const response = await fetch('http://localhost:5000/getComponentsModels');
     const result = await response.json();
-    // console.log(result);
     this.setState({ cpuArray: result.Cpu });
     this.setState({ gpuArray: result.Gpu });
     this.setState({ caseArray: result.Case });
@@ -187,7 +186,6 @@ export default class TestWithoutHelp extends Component {
         testInputData
       );
       const result = await response.json();
-      // console.log(result);
       if (result.status === 'ok') {
         this.setState({
           showResult: 'The Test has been added',
@@ -242,7 +240,6 @@ export default class TestWithoutHelp extends Component {
     const response = await fetch('http://localhost:5000/getAssembly');
     const result = await response.json();
     result.sort((a, b) => a.assemblyName.localeCompare(b.assemblyName));
-    // console.log(result);
     this.setState({ assembly: result });
   }
 

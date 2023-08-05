@@ -5,7 +5,7 @@ import style from './newQuestion.module.css';
 import Button from '../../../../commonComponents/button/Button';
 
 /**
- * Description -
+ * Description - This class add question to the server
  */
 export default class NewQuestion extends Component {
   state = {
@@ -20,6 +20,10 @@ export default class NewQuestion extends Component {
     selectedStars: 0,
   };
 
+  /**
+   * Description - This function add the question data to the server
+   * @param {*} e - Question data
+   */
   async handleSubmit(e) {
     e.preventDefault();
     const questionInputData = {
@@ -38,7 +42,6 @@ export default class NewQuestion extends Component {
       questionInputData
     );
     const result = await response.json();
-    // console.log(result);
     if (result.status === 'ok') {
       this.setState({
         showResult: 'The Question has been added',
