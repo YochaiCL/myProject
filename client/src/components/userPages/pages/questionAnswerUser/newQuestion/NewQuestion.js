@@ -9,15 +9,9 @@ import Button from '../../../../commonComponents/button/Button';
  */
 export default class NewQuestion extends Component {
   state = {
-    userId: JSON.parse(localStorage.getItem('user'))._id,
-    userEmail: JSON.parse(localStorage.getItem('user')).email,
-    userFullName: JSON.parse(localStorage.getItem('user')).fullName,
     questionName: '',
     questionText: '',
-    answerText: '',
-    haveAnAnswer: false,
     showResult: '',
-    selectedStars: 0,
   };
 
   /**
@@ -25,6 +19,27 @@ export default class NewQuestion extends Component {
    * @param {*} e - Question data
    */
   async handleSubmit(e) {
+    const date = new Date();
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
+
+    const questionDate = `${day}/${month}/${year}`;
+
+    const userId = JSON.parse(localStorage.getItem('user'));
+
+    const dataToSend = {
+      userId: userId._id,
+      userEmail: userId.email,
+      userFullName: userId.fullName,
+      questionName: this.state.questionName,
+      questionText: this.state.questionText,
+      answerText: '',
+      haveAnAnswer: false,
+      selectedStars: 0,
+      questionDate,
+    };
+
     e.preventDefault();
     const questionInputData = {
       method: 'POST',
@@ -34,7 +49,7 @@ export default class NewQuestion extends Component {
         Accept: 'application/json',
         'Accept-Control-Allow-Origin': '*',
       },
-      body: JSON.stringify(this.state),
+      body: JSON.stringify(dataToSend),
     };
 
     const response = await fetch(

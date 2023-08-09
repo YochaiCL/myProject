@@ -13,6 +13,7 @@ const questionAnswerScehma = new mongoose.Schema(
     answerText: String,
     haveAnAnswer: Boolean,
     selectedStars: Number,
+    questionDate: String,
   },
   {
     collection: 'QuestionAnswer',

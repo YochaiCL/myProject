@@ -102,8 +102,9 @@ import UpdateSsdM2 from './components/adminPages/pages/update/updateComponents/u
 import UpdateSsdSata from './components/adminPages/pages/update/updateComponents/updateSsd/updateSsdSata/UpdateSsdSata';
 
 import Reports from './components/adminPages/pages/reports/Reports';
-import UserReports from './components/adminPages/pages/reports/userReports/UserReports';
-import PremiumReports from './components/adminPages/pages/reports/premiumReports/PremiumReports';
+import QuestionsAnswersReport from './components/adminPages/pages/reports/questionsAnswersReport/QuestionsAnswersReport';
+import UsersDataReports from './components/adminPages/pages/reports/usersDataReport/UsersDataReports';
+import LearnedDataReport from './components/adminPages/pages/reports/learnedDataReport/LearnedDataReport';
 
 //import premium pages
 import PremiumHome from './components/premiumPages/pages/premiumHome/PremiumHome';
@@ -133,7 +134,10 @@ function App() {
 
           <Route path='/questionAnswerUser' element={<QuestionAnswerUser />} />
           <Route path='/newQuestion' element={<NewQuestion />} />
-          <Route path='/existsQuestionsUser' element={<ExistsQuestionsUser />} />
+          <Route
+            path='/existsQuestionsUser'
+            element={<ExistsQuestionsUser />}
+          />
 
           {/* firstSteps + pages of firstSteps */}
           <Route path='/firstSteps' element={<FirstSteps />} />
@@ -230,13 +234,20 @@ function App() {
           <Route path='/addSsdSata' element={<AddSsdSata />} />
 
           <Route path='/reports' element={<Reports />} />
-          <Route path='/userReports' element={<UserReports />} />
-          <Route path='/premiumReports' element={<PremiumReports />} />
+          <Route
+            path='/questionsAnswersReport'
+            element={<QuestionsAnswersReport />}
+          />
+          <Route path='/usersDataReport' element={<UsersDataReports />} />
+          <Route path='/learnedDataReport' element={<LearnedDataReport />} />
 
           {/* premium pages */}
           <Route path='/questionAnswerHome' element={<PremiumHome />} />
           <Route path='/userPremium' element={<UserPremiumData />} />
-          <Route path='/questionAnswerPremium' element={<QuestionAnswerPremium />} />
+          <Route
+            path='/questionAnswerPremium'
+            element={<QuestionAnswerPremium />}
+          />
         </Routes>
       </div>
     </Router>

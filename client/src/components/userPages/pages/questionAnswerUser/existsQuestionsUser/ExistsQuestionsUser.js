@@ -221,6 +221,10 @@ export default class ExistsQuestionsUser extends Component {
                 <h2 className={style.h2}>Question/Answer Data</h2>
                 <div>
                   <h3 className={style.h3}>
+                    <span className={style.span}> Question Date:</span>
+                    {questionAnswerData[selectIndex].questionDate}
+                  </h3>
+                  <h3 className={style.h3}>
                     <span className={style.span}> Question Name:</span>
                     {questionAnswerData[selectIndex].questionName}
                   </h3>

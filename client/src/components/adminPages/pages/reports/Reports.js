@@ -6,15 +6,23 @@ import style from './report.module.css';
 
 /**
  * Description -
- * @returns 
+ * @returns
  */
 export default function Reports() {
   return (
     <PageLayout>
       <Header h1Heading='Reports' />
       <section className={style.container}>
-        <LinkLayout toLink='/userReports' nameLink='User Reports' />
-        <LinkLayout toLink='/premiumReports' nameLink='Premium Reports' />
+        <LinkLayout
+          toLink='/questionsAnswersReport'
+          nameLink='Questions Answers Report'
+        />
+        <LinkLayout toLink='/usersDataReport' nameLink='Users Data Report' />
+
+        <LinkLayout
+          toLink='/learnedDataReport'
+          nameLink='Most Learned Component'
+        />
       </section>
     </PageLayout>
   );

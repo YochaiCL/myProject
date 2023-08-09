@@ -87,7 +87,6 @@ app.use('/userQuestionAnswer', userQuestionAnswer);
 const premiumQuestionAnswer = require('./routes/questionAnswer/premiumQuestionAnswer/premiumQuestionAnswer');
 app.use('/premiumQuestionAnswer', premiumQuestionAnswer);
 
-
 // Requiring and activating the routes for delete components and assemblies
 const deleteAssemblies = require('./routes/delete/deleteAssemblies/deleteAssemblies');
 const deleteComponents = require('./routes/delete/deleteComponents/deleteComponents');
@@ -105,8 +104,12 @@ const testWithHelp = require('./routes/testYourSelf/testWithHelp/testWithHelp');
 app.use('/testWithHelp', testWithHelp);
 const testWithoutHelp = require('./routes/testYourSelf/testWithoutHelp/testWithoutHelp');
 app.use('/testWithoutHelp', testWithoutHelp);
-const existsTest=require('./routes/testYourSelf/existsTests/existsTests')
-app.use('/existsTests',existsTest)
+const existsTest = require('./routes/testYourSelf/existsTests/existsTests');
+app.use('/existsTests', existsTest);
+
+// Requiring and activating the routes for adminReports
+const adminReports = require('./routes/adminReports/adminReports');
+app.use('/adminReports', adminReports);
 
 // Starting the server on port 5000.
 app.listen(5000, () => {
