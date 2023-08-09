@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import PageLayout from '../../../layouts/pageLayout/PageLayout';
 import Header from '../../../../commonComponents/header/Header';
-import style from './questionsAnswersReport.module.css'
+import style from './questionsAnswersReportAdmin.module.css';
 
+/**
+ * Description - This class display the question/answer report
+ */
 export default class QuestionsAnswersReport extends Component {
   state = {
     questionAnswerData: [],
@@ -10,10 +13,16 @@ export default class QuestionsAnswersReport extends Component {
     closedQuestions: 0,
   };
 
+  /**
+   * Description - This function activate the function getQuestionAnswer when the page is uploaded
+   */
   async componentDidMount() {
     this.getQuestionAnswer();
   }
 
+  /**
+   * Description - This function get all the data of the question/answer from the server
+   */
   async getQuestionAnswer() {
     try {
       const response = await fetch(
@@ -44,7 +53,7 @@ export default class QuestionsAnswersReport extends Component {
         <table className={style.table}>
           <thead>
             <tr className={style.tr}>
-              <th >User Name</th>
+              <th>User Name</th>
               <th>User Email</th>
               <th>Question Name</th>
               <th>Question Text</th>

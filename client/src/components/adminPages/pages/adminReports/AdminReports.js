@@ -2,22 +2,22 @@ import React from 'react';
 import PageLayout from '../../layouts/pageLayout/PageLayout';
 import Header from '../../../commonComponents/header/Header';
 import LinkLayout from '../../../commonComponents/linkLayout/LinkLayout';
-import style from './report.module.css';
+import style from './adminReports.module.css';
 
 /**
- * Description -
- * @returns
+ * Description - This function shows the reports links
+ * @returns - Reports links
  */
-export default function Reports() {
+export default function AdminReports() {
   return (
     <PageLayout>
       <Header h1Heading='Reports' />
       <section className={style.container}>
         <LinkLayout
-          toLink='/questionsAnswersReport'
+          toLink='/questionsAnswersReportAdmin'
           nameLink='Questions Answers Report'
         />
-        <LinkLayout toLink='/usersDataReport' nameLink='Users Data Report' />
+        <LinkLayout toLink='/usersDataReportAdmin' nameLink='Users Data Report' />
 
         <LinkLayout
           toLink='/learnedDataReport'

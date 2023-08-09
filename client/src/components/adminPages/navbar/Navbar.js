@@ -24,7 +24,7 @@ export default function Navbar() {
       />
 
       <LinkNavbar nameLink='Admin Data' toLink='/userAdmin' />
-      <LinkNavbar nameLink='Reports' toLink='/reports' />
+      <LinkNavbar nameLink='Reports' toLink='/adminReports' />
       <LinkNavbar nameLink='Add' toLink='/add' />
       <LinkNavbar nameLink='Delete' toLink='/delete' />
       <LinkNavbar nameLink='Update' toLink='/update' />

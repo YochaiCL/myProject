@@ -23,8 +23,12 @@ export default function Navbar() {
         toLink='/questionAnswerHome'
       />
 
-      <LinkNavbar nameLink='User Data' toLink='/userPremium' />
-      <LinkNavbar nameLink='Questions & Answer' toLink='/questionAnswerPremium' />
+      <LinkNavbar nameLink='Premium Data' toLink='/userPremium' />
+      <LinkNavbar nameLink='Reports' toLink='/premiumReports' />
+      <LinkNavbar
+        nameLink='Questions & Answer'
+        toLink='/questionAnswerPremium'
+      />
       <LinkNavbar nameLink='Client View' toLink='/userHome' />
     </nav>
   );

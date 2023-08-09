@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PageLayout from '../../../layouts/pageLayout/PageLayout';
 import Header from '../../../../commonComponents/header/Header';
-import style from './usersDataReports.module.css';
+import style from './usersDataReportsAdmin.module.css';
 
-export default class UsersDataReports extends Component {
+export default class UsersDataReportsAdmin extends Component {
   state = {
     usersData: [],
     amountOfUsers: 0,

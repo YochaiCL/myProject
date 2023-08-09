@@ -101,15 +101,18 @@ import UpdateSsd from './components/adminPages/pages/update/updateComponents/upd
 import UpdateSsdM2 from './components/adminPages/pages/update/updateComponents/updateSsd/updateSsdM2/UpdateSsdM2';
 import UpdateSsdSata from './components/adminPages/pages/update/updateComponents/updateSsd/updateSsdSata/UpdateSsdSata';
 
-import Reports from './components/adminPages/pages/reports/Reports';
-import QuestionsAnswersReport from './components/adminPages/pages/reports/questionsAnswersReport/QuestionsAnswersReport';
-import UsersDataReports from './components/adminPages/pages/reports/usersDataReport/UsersDataReports';
-import LearnedDataReport from './components/adminPages/pages/reports/learnedDataReport/LearnedDataReport';
+import AdminReports from './components/adminPages/pages/adminReports/AdminReports';
+import QuestionsAnswersReportAdmin from './components/adminPages/pages/adminReports/questionsAnswersReportAdmin/QuestionsAnswersReportAdmin';
+import UsersDataReportsAdmin from './components/adminPages/pages/adminReports/usersDataReportAdmin/UsersDataReportsAdmin';
+import LearnedDataReport from './components/adminPages/pages/adminReports/learnedDataReport/LearnedDataReport';
 
 //import premium pages
 import PremiumHome from './components/premiumPages/pages/premiumHome/PremiumHome';
 import UserPremiumData from './components/premiumPages/pages/userPremiumData/UserPremiumData';
 import QuestionAnswerPremium from './components/premiumPages/pages/questionAnswerPremium/QuestionAnswerPremium';
+import PremiumReports from './components/premiumPages/pages/premiumReports/PremiumReports';
+import QuestionAnswerReportPremium from './components/premiumPages/pages/premiumReports/questionAnswerReportPremium/QuestionAnswerReportPremium';
+import UserDataReportPremium from './components/premiumPages/pages/premiumReports/userDataReportPremium/userDataReportPremium';
 
 function App() {
   // take from local storage the information if user is loggedIn or not
@@ -233,12 +236,15 @@ function App() {
           <Route path='/addSsdM2' element={<AddSsdM2 />} />
           <Route path='/addSsdSata' element={<AddSsdSata />} />
 
-          <Route path='/reports' element={<Reports />} />
+          <Route path='/adminReports' element={<AdminReports />} />
           <Route
-            path='/questionsAnswersReport'
-            element={<QuestionsAnswersReport />}
+            path='/questionsAnswersReportAdmin'
+            element={<QuestionsAnswersReportAdmin />}
           />
-          <Route path='/usersDataReport' element={<UsersDataReports />} />
+          <Route
+            path='/usersDataReportAdmin'
+            element={<UsersDataReportsAdmin />}
+          />
           <Route path='/learnedDataReport' element={<LearnedDataReport />} />
 
           {/* premium pages */}
@@ -247,6 +253,15 @@ function App() {
           <Route
             path='/questionAnswerPremium'
             element={<QuestionAnswerPremium />}
+          />
+          <Route path='/premiumReports' element={<PremiumReports />} />
+          <Route
+            path='/questionsAnswersReportPremium'
+            element={<QuestionAnswerReportPremium />}
+          />
+          <Route
+            path='/usersDataReportPremium'
+            element={<UserDataReportPremium />}
           />
         </Routes>
       </div>
