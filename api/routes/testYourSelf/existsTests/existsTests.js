@@ -42,37 +42,38 @@ router.post('/deleteTest', async (req, res) => {
   }
 });
 
+const nodemailer = require('nodemailer');
+
 /**
  * Description - This function delete the selected test from the database
  */
 router.post('/sendByEmail', async (req, res) => {
-  const email = req.body.email;
-  const selectedTest = req.body.selectedTest;
-   // this link will send to the user email and redirect him to reset the password
-    // const text = `Thanks for joining and happy learning.\nFor any question, you can contact with our question/answer service which provide you a human answer.\nThank you,\nPc Builder`;
-    // activate send email to the user
-    var transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: 'pcbuilderweb@gmail.com',
-        pass: 'oggemnxdvgbieqcy',
-      },
-    });
+  const userEmail = req.body.email;
+  const testData = req.body.testData;
 
-    var mailOptions = {
-      from: 'youremail@gmail.com',
-      to: email,
-      subject: 'PC Builder',
-      text: selectedTest,
-    };
+  var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'pcbuilderweb@gmail.com',
+      pass: 'oggemnxdvgbieqcy',
+    },
+  });
 
-    transporter.sendMail(mailOptions, function (error, info) {
-      if (error) {
-        return res.json({ status: 'Error email not send' });
-      } else {
-        return res.json({ status: 'Email send' });
-      }
-    });
+  var mailOptions = {
+    from: 'youremail@gmail.com',
+    // to: userEmail,
+    to: userEmail,
+    subject: 'PC Builder',
+    text: `Your Test data is:\nTest Name: ${testData.testName}\nMotherboard: ${testData.modelMotherboard}\nCPU: ${testData.modelCPU}\nCPU Cooler: ${testData.modelCPUCooler}\nGPU: ${testData.modelGPU}\nPSU: ${testData.modelPSU}\nRAM: ${testData.modelRAM}\nSSD: ${testData.modelSSD}\nCase: ${testData.modelCase}\nThank you,\nPc Builder`,
+  };
+
+  transporter.sendMail(mailOptions, function (error, info) {
+    if (error) {
+      return res.json({ status: 'Error email not send' });
+    } else {
+      return res.json({ status: 'Email send' });
+    }
+  });
 });
 
 module.exports = router;

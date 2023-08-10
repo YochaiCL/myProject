@@ -28,8 +28,12 @@ export default class userDataReportPremium extends Component {
         }
       );
       const result = await response.json();
+
+      // Filter users of type 'user'
+      const usersOfTypeUser = result.filter(data => data.userType === 'User');
+
       this.setState({
-        usersData: result,
+        usersData: usersOfTypeUser,
       });
     } catch (error) {
       console.error('Error fetching data:', error);

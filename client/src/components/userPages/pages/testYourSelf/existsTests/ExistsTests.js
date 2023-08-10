@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PageLayout from '../../../layouts/pageLayout/PageLayout';
 import Header from '../../../../commonComponents/header/Header';
 import style from './existsTests.module.css';
+import { CSVLink } from 'react-csv';
 
 /**
  * Description - This class show the exists tests and can delete them
@@ -79,6 +80,37 @@ export default class ExistsTests extends Component {
         .then(data => {
           if (data.status === 'Test deleted') {
             this.setState({ showResult: 'Test has been deleted' });
+            setTimeout(() => {
+              this.setState({
+                showResult: '',
+              });
+            }, 1000);
+          }
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  exportByEmail(testData) {
+    try {
+      fetch('http://localhost:5000/existsTests/sendByEmail', {
+        method: 'POST',
+        crossDomain: true,
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          'Access-Control-Allow-Origin': '*',
+        },
+        body: JSON.stringify({
+          userEmail: this.state.userId.email,
+          testData: testData,
+        }),
+      })
+        .then(res => res.json())
+        .then(data => {
+          if (data.status === 'Email send') {
+            this.setState({ showResult: 'Email has been sended' });
             setTimeout(() => {
               this.setState({
                 showResult: '',
@@ -170,11 +202,35 @@ export default class ExistsTests extends Component {
                 >
                   Delete
                 </button>
+                <button
+                  className={style.deleteButton}
+                  onClick={() => {
+                    this.exportByEmail(
+                      this.state.tests[this.state.selectIndex]
+                    );
+                  }}
+                >
+                  Export To Email
+                </button>
+                <CSVLink
+                  data={[this.state.tests[this.state.selectIndex]]}
+                  filename={`test_data_${
+                    this.state.tests[this.state.selectIndex].testName
+                  }.csv`}
+                  className={style.exportButton}
+                >
+                  Export To Excel
+                </CSVLink>
               </div>
+              {this.state.tests.length >= 1 && (
+                <p className={style.showResult}>{showResult}</p>
+              )}
             </section>
           )}
         </section>
-        <p className={style.showResult}>{showResult}</p>
+        {this.state.tests.length === 0 && (
+          <p className={style.showResult}>{showResult}</p>
+        )}
       </PageLayout>
     );
   }

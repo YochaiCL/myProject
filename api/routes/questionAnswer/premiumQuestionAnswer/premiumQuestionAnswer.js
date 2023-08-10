@@ -25,6 +25,9 @@ router.post('/getData', async (req, res) => {
   }
 });
 
+// module makes it easy to send emails from your computer.
+const nodemailer = require('nodemailer');
+
 /**
  * Description - This function update the data in question/answer collection
  * req - array of all database data
@@ -44,6 +47,35 @@ router.post('/updateAnswer', async (req, res) => {
       // Update the document with the values from the 'data' object
       { $set: { answerText: answerText, haveAnAnswer: true } }
     );
+
+    const userEmail = req.body.userEmail;
+
+    const text = `You received an answer to your question about the ${questionName}, please log in to see it.\nThank you,\nPc Builder`;
+
+    // activate send email to the user
+    var transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: 'pcbuilderweb@gmail.com',
+        pass: 'oggemnxdvgbieqcy',
+      },
+    });
+
+    var mailOptions = {
+      from: 'youremail@gmail.com',
+      to: userEmail,
+      subject: 'PC Builder',
+      text: text,
+    };
+
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        return res.json({ status: 'Error email not send' });
+      } else {
+        return res.json({ status: 'Email send' });
+      }
+    });
+
     res.send({ status: 'true' });
   } catch (error) {
     console.log(error.message);
