@@ -58,7 +58,7 @@ export default class QuestionAnswerPremium extends Component {
    */
   handelClick = index => {
     this.setState({
-      answerText2: this.state.questionAnswerData[index].answerText,
+      answerText2: this.state.questions[index].answerText,
     });
     if (index >= this.state.questions.length) {
       this.setState({
@@ -100,23 +100,25 @@ export default class QuestionAnswerPremium extends Component {
    */
   async handleSubmit(e) {
     e.preventDefault();
+
     let dataToSend;
-    if (!this.state.questionAnswerData[this.state.selectIndex].haveAnAnswer) {
+    console.log(this.state.questions[this.state.selectIndex]);
+    if (!this.state.questions[this.state.selectIndex].haveAnAnswer) {
       dataToSend = {
-        userId: this.state.questionAnswerData[this.state.selectIndex].userId,
+        userId: this.state.questions[this.state.selectIndex].userId,
+        userEmail: this.state.questions[this.state.selectIndex].userEmail,
         answerText: this.state.answerText,
-        questionName:
-          this.state.questionAnswerData[this.state.selectIndex].questionName,
+        questionName: this.state.questions[this.state.selectIndex].questionName,
       };
     } else {
       dataToSend = {
-        userId: this.state.questionAnswerData[this.state.selectIndex].userId,
+        userId: this.state.questions[this.state.selectIndex].userId,
         answerText:
-          this.state.questionAnswerData[this.state.selectIndex].answerText +
+          this.state.questions[this.state.selectIndex].answerText +
           ' | ' +
           this.state.answerText,
-        questionName:
-          this.state.questionAnswerData[this.state.selectIndex].questionName,
+        userEmail: this.state.questions[this.state.selectIndex].userEmail,
+        questionName: this.state.questions[this.state.selectIndex].questionName,
       };
     }
     const questionInputData = {
@@ -135,7 +137,8 @@ export default class QuestionAnswerPremium extends Component {
       questionInputData
     );
     const result = await response.json();
-    if (result.status === 'true') {
+    console.log(result);
+    if (result.status === 'Email send') {
       this.setState({
         answerText: this.state.answerText,
         showResult: 'The Answer has been updated',
@@ -143,11 +146,17 @@ export default class QuestionAnswerPremium extends Component {
 
       this.setState({
         answerText2:
-          this.state.questionAnswerData[this.state.selectIndex].answerText +
+          this.state.questions[this.state.selectIndex].answerText +
           ' | ' +
           this.state.answerText,
       });
-
+      console.log(
+        this.state.questions[this.state.selectIndex].answerText +
+          ' | ' +
+          this.state.answerText
+      );
+      console.log(this.state.answerText2);
+      this.setState({ answerText: '' });
       setTimeout(() => {
         this.setState({
           showResult: '',
@@ -163,8 +172,13 @@ export default class QuestionAnswerPremium extends Component {
    * @returns - True if all question are answered and false otherwise
    */
   checkUserAllHaveAnswers(userEmail) {
-    const { questionAnswerData } = this.state;
-    return questionAnswerData.every(
+    let array = [];
+    for (let data of this.state.questionAnswerData) {
+      if (data.userEmail === userEmail) {
+        array.push(data);
+      }
+    }
+    return array.every(
       data => data.userEmail === userEmail && data.haveAnAnswer
     );
   }
@@ -286,13 +300,16 @@ export default class QuestionAnswerPremium extends Component {
                       ></textarea>
 
                       <Button type='submit' text='submit' />
+
+                      <p className={style.showResult}>
+                        {this.state.showResult}
+                      </p>
                     </form>
                   </section>
                 </div>
               </section>
             )}
         </section>
-        <p className={style.showResult}>{this.state.showResult}</p>
       </PageLayout>
     );
   }

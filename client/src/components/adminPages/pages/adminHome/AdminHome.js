@@ -44,10 +44,6 @@ export default class AdminHome extends Component {
       this.showQuestionAnswerData();
       this.calculateRate();
     }
-
-    if (prevState.learnedData !== this.state.learnedData) {
-      this.calculateMostLearnedComponent();
-    }
   }
 
   /**
@@ -193,7 +189,8 @@ export default class AdminHome extends Component {
       });
 
       // Call the function here to calculate most learned component
-      this.calculateMostLearnedComponent();
+      if (this.state.learnedData.length > 0)
+        this.calculateMostLearnedComponent();
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -203,7 +200,6 @@ export default class AdminHome extends Component {
    * Description - This function show the most learned component in the server
    */
   calculateMostLearnedComponent = () => {
-    console.log(1);
     const componentCounts = {};
 
     this.state.learnedData.forEach(user => {
@@ -242,32 +238,33 @@ export default class AdminHome extends Component {
             <DiagnosticInformationLayout
               h2='Open Questions'
               text={this.state.openQuestions}
-              to='/questionsAnswersReport'
+              to='/questionsAnswersReportPremium'
               name='More Info'
             />
             <DiagnosticInformationLayout
               h2='Close Questions'
               text={this.state.closedQuestions}
-              to='/questionsAnswersReport'
+              to='/questionsAnswersReportPremium'
               name='More Info'
             />
 
             <DiagnosticInformationLayout
               h2='Overall Users Rate'
-              text={Array.from(
-                { length: this.state.overallUsersRate },
-                (_, index) => (
-                  <span key={index}>★</span>
-                )
-              )}
-              to='/questionsAnswersReport'
+              text={
+                this.state.overallUsersRate > 0
+                  ? Array.from(
+                      { length: this.state.overallUsersRate },
+                      (_, index) => <span key={index}>★</span>
+                    )
+                  : 'No Data'
+              }
+              to='/questionsAnswersReportPremium'
               name='More Info'
             />
-
             <DiagnosticInformationLayout
               h2='Amount Of Users'
               text={this.state.amountOfUsers}
-              to='/usersDataReport'
+              to='/usersDataReportAdmin'
               name='More Info'
             />
 

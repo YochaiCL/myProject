@@ -183,6 +183,17 @@ export default class TestWithHelp extends Component {
               value={this.state.modelMotherboard}
               label='MOTHERBOARD'
               onChange={e => {
+                this.setState({
+                  currentSSD: [],
+                  currentCase: [],
+                  currentGPU: [],
+                  currentCpu: [],
+                  currentCPUCooler: [],
+                  currentMotherboard: [],
+                  currentPSU: [],
+                  currentRAM: [],
+                  current: [],
+                });
                 this.setState({ modelMotherboard: e.target.value }, () => {
                   for (let option of this.state.assembly) {
                     if (
@@ -223,6 +234,7 @@ export default class TestWithHelp extends Component {
               value={this.state.modelCPU}
               label='CPU'
               onChange={e => {
+                this.setState({ currentCPUCooler: [] });
                 this.setState({ modelCPU: e.target.value }, () => {
                   for (let option of this.state.assembly) {
                     if (this.state.modelCPU === option.modelCPU) {
@@ -312,6 +324,7 @@ export default class TestWithHelp extends Component {
               value={this.state.modelGPU}
               label='GPU'
               onChange={e => {
+                this.setState({ currentPSU: [] });
                 this.setState({ modelGPU: e.target.value }, () => {
                   for (let option of this.state.assembly) {
                     if (this.state.modelGPU === option.modelGPU) {

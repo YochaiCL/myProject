@@ -112,3 +112,9 @@
 .redBackground {
   background-color:red;
 }
+
+
+.showResult {
+  text-align: center;
+  color: rgb(32, 86, 178);
+}

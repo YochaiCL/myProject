@@ -191,12 +191,14 @@ export default class PremiumHome extends Component {
 
             <DiagnosticInformationLayout
               h2='Overall Users Rate'
-              text={Array.from(
-                { length: this.state.overallUsersRate },
-                (_, index) => (
-                  <span key={index}>★</span>
-                )
-              )}
+              text={
+                this.state.overallUsersRate > 0
+                  ? Array.from(
+                      { length: this.state.overallUsersRate },
+                      (_, index) => <span key={index}>★</span>
+                    )
+                  : 'No Data'
+              }
               to='/questionsAnswersReportPremium'
               name='More Info'
             />

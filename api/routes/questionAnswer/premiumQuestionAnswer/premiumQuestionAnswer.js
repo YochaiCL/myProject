@@ -49,6 +49,7 @@ router.post('/updateAnswer', async (req, res) => {
     );
 
     const userEmail = req.body.userEmail;
+    console.log(userEmail)
 
     const text = `You received an answer to your question about the ${questionName}, please log in to see it.\nThank you,\nPc Builder`;
 
@@ -76,7 +77,7 @@ router.post('/updateAnswer', async (req, res) => {
       }
     });
 
-    res.send({ status: 'true' });
+    // res.send({ status: 'true' });
   } catch (error) {
     console.log(error.message);
     res.send({ status: 'error' });

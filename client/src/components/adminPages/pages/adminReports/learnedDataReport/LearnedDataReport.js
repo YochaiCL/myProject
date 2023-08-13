@@ -34,6 +34,7 @@ export default class LearnedDataReport extends Component {
    * Description - This function get all the data about the learned components from the server
    */
   async getLearnedData() {
+    console.log(1)
     try {
       const response = await fetch(
         'http://localhost:5000/adminReports/getLearnedData',
@@ -50,7 +51,20 @@ export default class LearnedDataReport extends Component {
       const result = await response.json();
 
       // Create a new object to hold the updated componentSums
-      const updatedComponentSums = { ...this.state.componentSums };
+      const updatedComponentSums = {
+        motherboard: 0,
+        cpu: 0,
+        cpuCooler: 0,
+        gpu: 0,
+        psu: 0,
+        ram: 0,
+        ssd: 0,
+        dvd: 0,
+        cables: 0,
+        case: 0,
+        fans: 0,
+        hd: 0,
+      };
 
       result.forEach(data => {
         Object.keys(updatedComponentSums).forEach(component => {
