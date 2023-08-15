@@ -304,7 +304,7 @@ export default class TestWithoutHelp extends Component {
                     motherboard Information
                   </Link>
                   <Link
-                    to='/questionAnswer'
+                    to='/questionAnswerUsers'
                     className={style.link}
                     target='_blank'
                   >
@@ -361,7 +361,7 @@ export default class TestWithoutHelp extends Component {
                     cpu Information
                   </Link>
                   <Link
-                    to='/questionAnswer'
+                    to='/questionAnswerUser'
                     className={style.link}
                     target='_blank'
                   >
@@ -426,7 +426,7 @@ export default class TestWithoutHelp extends Component {
                     cpu cooler Information
                   </Link>
                   <Link
-                    to='/questionAnswer'
+                    to='/questionAnswerUser'
                     className={style.link}
                     target='_blank'
                   >
@@ -484,7 +484,7 @@ export default class TestWithoutHelp extends Component {
                     gpu Information
                   </Link>
                   <Link
-                    to='/questionAnswer'
+                    to='/questionAnswerUser'
                     className={style.link}
                     target='_blank'
                   >
@@ -542,7 +542,7 @@ export default class TestWithoutHelp extends Component {
                     psu Information
                   </Link>
                   <Link
-                    to='/questionAnswer'
+                    to='/questionAnswerUser'
                     className={style.link}
                     target='_blank'
                   >
@@ -600,7 +600,7 @@ export default class TestWithoutHelp extends Component {
                     ram Information
                   </Link>
                   <Link
-                    to='/questionAnswer'
+                    to='/questionAnswerUser'
                     className={style.link}
                     target='_blank'
                   >
@@ -660,7 +660,7 @@ export default class TestWithoutHelp extends Component {
                     ssd Information
                   </Link>
                   <Link
-                    to='/questionAnswer'
+                    to='/questionAnswerUser'
                     className={style.link}
                     target='_blank'
                   >
@@ -718,7 +718,7 @@ export default class TestWithoutHelp extends Component {
                     case Information
                   </Link>
                   <Link
-                    to='/questionAnswer'
+                    to='/questionAnswerUser'
                     className={style.link}
                     target='_blank'
                   >

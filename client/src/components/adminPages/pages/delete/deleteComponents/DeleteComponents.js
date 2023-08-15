@@ -24,7 +24,6 @@ export default class DeleteComponents extends Component {
     caseArray: [],
     cpuCoolerFanArray: [],
     cpuCoolerLiquidArray: [],
-    Fans: [],
     motherboardArray: [],
     psuArray: [],
     ramArray: [],
@@ -54,7 +53,6 @@ export default class DeleteComponents extends Component {
     this.setState({ ramArray: result.Ram.sort() });
     this.setState({ ssdM2Array: result.SsdM2.sort() });
     this.setState({ ssdSataArray: result.SsdSata.sort() });
-    this.setState({ Fans: result.Fans.sort() });
   }
 
   /**
@@ -195,15 +193,7 @@ export default class DeleteComponents extends Component {
               </option>
             );
           })}
-          <Option optionText='Select Fan' />
 
-          {this.state.Fans.map(item => {
-            return (
-              <option key={item} value={item}>
-                {item}
-              </option>
-            );
-          })}
           <Option optionText='Select Case' />
 
           {this.state.caseArray.map(item => {

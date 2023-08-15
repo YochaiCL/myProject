@@ -26,7 +26,6 @@ export default function AddCompLinks() {
         <section className={style.container}>
           <LinkLayout nameLink='CASE' toLink='/addCase' />
           <LinkLayout nameLink='RAM' toLink='/addRam' />
-          <LinkLayout nameLink='FANS' toLink='/addFans' />
         </section>
 
         <section className={style.container}>

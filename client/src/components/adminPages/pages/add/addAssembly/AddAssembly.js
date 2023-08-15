@@ -23,7 +23,6 @@ export default class AddAssembly extends Component {
     caseArray: [],
     cpuCoolerFanArray: [],
     cpuCoolerLiquidArray: [],
-    fanArray: [],
     motherboardArray: [],
     psuArray: [],
     ramArray: [],

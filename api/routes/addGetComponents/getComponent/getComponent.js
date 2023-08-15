@@ -35,22 +35,6 @@ router.get('/gpu', async (req, res) => {
   }
 });
 
-///////////////////////////////////////////////////////////////////////////////
-// Import Fans data from database mongoDB
-const Fans = mongoose.model('Fans');
-
-/**
- * Description - This function sand array of all data in fans database
- * res - array of fans from database
- */
-router.get('/fans', async (req, res) => {
-  try {
-    let array = await Fans.find({});
-    res.send(array);
-  } catch (error) {
-    res.send({ status: 'error' });
-  }
-});
 
 ///////////////////////////////////////////////////////////////////////////////
 // Import Case data from database mongoDB

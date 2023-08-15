@@ -35,7 +35,6 @@ import InfoCABLES from './components/userPages/pages/firstSteps/cables/info/Info
 import InfoCASE from './components/userPages/pages/firstSteps/case/info/InfoCASE';
 import ProductsCASE from './components/userPages/pages/firstSteps/case/products/ProductsCASE';
 import InfoFANS from './components/userPages/pages/firstSteps/fans/info/InfoFANS';
-import ProductsFANS from './components/userPages/pages/firstSteps/fans/products/ProductsFANS';
 import InfoCPUCOOLER from './components/userPages/pages/firstSteps/cpuCooler/info/InfoCPUCOOLER';
 import ProductsCPUCOOLER from './components/userPages/pages/firstSteps/cpuCooler/products/ProductsCPUCOOLER';
 import ProductsCpuCoolerFan from './components/userPages/pages/firstSteps/cpuCooler/products/productsCpuCoolerFan/ProductsCpuCoolerFan';
@@ -71,7 +70,7 @@ import AddCpu from './components/adminPages/pages/add/addComponents/addCpu/AddCp
 import AddCpuCooler from './components/adminPages/pages/add/addComponents/addCpuCooler/AddCpuCooler';
 import AddCpuCoolerFan from './components/adminPages/pages/add/addComponents/addCpuCooler/addCpuCoolerFan/AddCpuCoolerFan';
 import AddCpuCoolerLiquid from './components/adminPages/pages/add/addComponents/addCpuCooler/addCpuCoolerLiquid/AddCpuCoolerLiquid';
-import AddFans from './components/adminPages/pages/add/addComponents/addFans/AddFans';
+
 import AddGpu from './components/adminPages/pages/add/addComponents/addGpu/AddGpu';
 import AddPsu from './components/adminPages/pages/add/addComponents/addPsu/AddPsu';
 import AddRam from './components/adminPages/pages/add/addComponents/addRam/AddRam';
@@ -92,7 +91,6 @@ import UpdateCpu from './components/adminPages/pages/update/updateComponents/upd
 import UpdateCpuCooler from './components/adminPages/pages/update/updateComponents/updateCpuCooler/UpdateCpuCooler';
 import UpdateCpuCoolerLiquid from './components/adminPages/pages/update/updateComponents/updateCpuCooler/UpdateCpuCoolerLiquid/UpdateCpuCoolerLiquid';
 import UpdateCpuCoolerFan from './components/adminPages/pages/update/updateComponents/updateCpuCooler/UpdateCpuCoolerFan/UpdateCpuCoolerFan';
-import UpdateFans from './components/adminPages/pages/update/updateComponents/updateFans/UpdateFans';
 import UpdateGpu from './components/adminPages/pages/update/updateComponents/updateGpu/UpdateGpu';
 import UpdateMotherboard from './components/adminPages/pages/update/updateComponents/updateMotherboard/UpdateMotherboard';
 import UpdatePsu from './components/adminPages/pages/update/updateComponents/updatePsu/UpdatePsu';
@@ -167,7 +165,6 @@ function App() {
           <Route path='/infoCASE' element={<InfoCASE />} />
           <Route path='/productsCASE' element={<ProductsCASE />} />
           <Route path='/infoFANS' element={<InfoFANS />} />
-          <Route path='/productsFANS' element={<ProductsFANS />} />
           <Route path='/infoCPUCOOLER' element={<InfoCPUCOOLER />} />
           <Route path='/productsCPUCOOLER' element={<ProductsCPUCOOLER />} />
           <Route
@@ -212,7 +209,6 @@ function App() {
             path='/updateCpuCoolerLiquid'
             element={<UpdateCpuCoolerLiquid />}
           />
-          <Route path='/updateFans' element={<UpdateFans />} />
           <Route path='/updateGpu' element={<UpdateGpu />} />
           <Route path='/updateMotherboard' element={<UpdateMotherboard />} />
           <Route path='/updatePsu' element={<UpdatePsu />} />
@@ -227,7 +223,6 @@ function App() {
           <Route path='/addCpuCooler' element={<AddCpuCooler />} />
           <Route path='/addCpuCoolerFan' element={<AddCpuCoolerFan />} />
           <Route path='/addCpuCoolerLiquid' element={<AddCpuCoolerLiquid />} />
-          <Route path='/addFans' element={<AddFans />} />
           <Route path='/addGpu' element={<AddGpu />} />
           <Route path='/addMotherboard' element={<AddMotherboard />} />
           <Route path='/addPsu' element={<AddPsu />} />

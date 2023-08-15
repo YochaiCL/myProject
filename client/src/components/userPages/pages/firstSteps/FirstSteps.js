@@ -146,7 +146,6 @@ export default function FirstSteps() {
           imgName='fans'
           name='FANS'
           compInfo='/infoFANS'
-          compProduct='/productsFANS'
           learn={array.fans}
           changeLearn={setArray}
           oldState={array}

@@ -48,7 +48,7 @@ const nodemailer = require('nodemailer');
  * Description - This function delete the selected test from the database
  */
 router.post('/sendByEmail', async (req, res) => {
-  const userEmail = req.body.email;
+  const userEmail = req.body.userEmail;
   const testData = req.body.testData;
 
   var transporter = nodemailer.createTransport({
@@ -61,7 +61,6 @@ router.post('/sendByEmail', async (req, res) => {
 
   var mailOptions = {
     from: 'youremail@gmail.com',
-    // to: userEmail,
     to: userEmail,
     subject: 'PC Builder',
     text: `Your Test data is:\nTest Name: ${testData.testName}\nMotherboard: ${testData.modelMotherboard}\nCPU: ${testData.modelCPU}\nCPU Cooler: ${testData.modelCPUCooler}\nGPU: ${testData.modelGPU}\nPSU: ${testData.modelPSU}\nRAM: ${testData.modelRAM}\nSSD: ${testData.modelSSD}\nCase: ${testData.modelCase}\nThank you,\nPc Builder`,

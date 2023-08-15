@@ -6,7 +6,6 @@ const Case = mongoose.model('Case');
 const Cpu = mongoose.model('Cpu');
 const CpuCoolerFan = mongoose.model('CpuCoolerFan');
 const CpuCoolerLiquid = mongoose.model('CpuCoolerLiquid');
-const Fans = mongoose.model('Fans');
 const Gpu = mongoose.model('Gpu');
 const Motherboard = mongoose.model('Motherboard');
 const Psu = mongoose.model('Psu');
@@ -43,12 +42,6 @@ router.get('/', async (req, res) => {
     let sendCpuCoolerLiquid = [];
     for (let model of getCpuCoolerLiquid) {
       sendCpuCoolerLiquid.push(model.model);
-    }
-    //////////////////////////////////////////////////////////////////////////////
-    let getFans = await Fans.find({});
-    let sendFans = [];
-    for (let model of getFans) {
-      sendFans.push(model.model);
     }
     //////////////////////////////////////////////////////////////////////////////
     let getGpu = await Gpu.find({});
@@ -91,7 +84,6 @@ router.get('/', async (req, res) => {
       Cpu: sendCpu,
       CpuCoolerFan: sendCpuCoolerFan,
       CpuCoolerLiquid: sendCpuCoolerLiquid,
-      Fans: sendFans,
       Gpu: sendGpu,
       Motherboard: sendMotherboard,
       Psu: sendPsu,

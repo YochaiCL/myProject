@@ -156,31 +156,6 @@ router.post('/cpuCoolerLiquid', async (req, res) => {
   }
 });
 
-//////////////////////////////////////////////////////////////////////////////
-// Import Fans data from database mongoDB
-const Fans = mongoose.model('Fans');
-// Import scehma of how data is in database
-require('../../Scehmas/addComponents/fans/fans');
-
-/**
- * Description - This function create new fans component
- * req - All fans data from the client
- * res - Send status of creation in database
- */
-router.post('/fans', async (req, res) => {
-  try {
-    let array = await Fans.find({ model: req.body.model });
-    if (array.length > 0) {
-      res.send({ status: 'Model already exist' });
-      return;
-    } else {
-      await Fans.create(req.body);
-      res.send({ status: 'ok' });
-    }
-  } catch (error) {
-    res.send({ status: 'error' });
-  }
-});
 
 //////////////////////////////////////////////////////////////////////////////
 // Import Psu data from database mongoDB

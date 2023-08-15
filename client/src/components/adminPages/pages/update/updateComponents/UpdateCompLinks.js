@@ -26,7 +26,6 @@ export default class UpdateCompLinks extends Component {
           <section className={style.container}>
             <LinkLayout nameLink='CASE' toLink='/updateCase' />
             <LinkLayout nameLink='RAM' toLink='/updateRam' />
-            <LinkLayout nameLink='FANS' toLink='/updateFans' />
           </section>
 
           <section className={style.container}>

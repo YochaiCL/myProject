@@ -40,7 +40,6 @@ require('./routes/Scehmas/addComponents/case/case');
 require('./routes/Scehmas/addComponents/cpu/cpu');
 require('./routes/Scehmas/addComponents/cpuCooler/cpuCoolerFan/cpuCoolerFan');
 require('./routes/Scehmas/addComponents/cpuCooler/cpuCoolerLiquid/cpuCoolerLiquid');
-require('./routes/Scehmas/addComponents/fans/fans');
 require('./routes/Scehmas/addComponents/gpu/gpu');
 require('./routes/Scehmas/addComponents/motherboard/motherboard');
 require('./routes/Scehmas/addComponents/psu/psu');
