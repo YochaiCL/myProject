@@ -1,5 +1,3 @@
-// Yochai Chen Levi
-
 // Import express: Importing the Express framework to create a server and handle HTTP requests.
 const express = require('express');
 const app = express();
@@ -98,7 +96,7 @@ app.use('/updateAssembly', updateAssembly);
 const updateComponent = require('./routes/update/updateComponent/updateComponent');
 app.use('/updateComponent', updateComponent);
 
-// Requiring and activating the routes for test by the usertestWithHelp
+// Requiring and activating the routes for testing
 const testWithHelp = require('./routes/testYourSelf/testWithHelp/testWithHelp');
 app.use('/testWithHelp', testWithHelp);
 const testWithoutHelp = require('./routes/testYourSelf/testWithoutHelp/testWithoutHelp');
@@ -106,9 +104,9 @@ app.use('/testWithoutHelp', testWithoutHelp);
 const existsTest = require('./routes/testYourSelf/existsTests/existsTests');
 app.use('/existsTests', existsTest);
 
-// Requiring and activating the routes for adminReports
-const adminReports = require('./routes/adminReports/adminReports');
-app.use('/adminReports', adminReports);
+// Requiring and activating the routes for reports
+const reports = require('./routes/reports/reports');
+app.use('/reports', reports);
 
 // Starting the server on port 5000.
 app.listen(5000, () => {

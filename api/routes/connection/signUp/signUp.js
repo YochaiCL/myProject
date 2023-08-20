@@ -6,7 +6,6 @@ const bcrypt = require('bcryptjs');
 // Import user data from database mongoDB
 const User = mongoose.model('UserInfo');
 const CompLearned = mongoose.model('CompLearned');
-// module makes it easy to send emails from your computer.
 const nodemailer = require('nodemailer');
 // Import scehma of how data is in database
 require('../../Scehmas/connection/userDetails');
@@ -28,9 +27,7 @@ router.post('/', async (req, res) => {
       password: encryptedPassword,
       userType,
     });
-    // this link will send to the user email and redirect him to reset the password
     const text = `Thanks for joining and happy learning.\nFor any question, you can contact with our question/answer service which provide you a human answer.\nThank you,\nPc Builder`;
-    // activate send email to the user
     var transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
@@ -53,9 +50,7 @@ router.post('/', async (req, res) => {
         return res.json({ status: 'Email send' });
       }
     });
-    // when user is sign up all the status of components are enter to the data base
     const newUser = await User.findOne({ email });
-    // console.log(newUser);
     await CompLearned.create({
       userId: newUser._id,
       cables: {

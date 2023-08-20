@@ -1,6 +1,6 @@
 import Navbar from '../../navbar/Navbar';
 import Footer from '../../../commonComponents/footer/Footer';
-import style from './layout.module.css';
+import style from './pageLayout.module.css';
 
 /**
  * Description - This function set the default page for Admin user

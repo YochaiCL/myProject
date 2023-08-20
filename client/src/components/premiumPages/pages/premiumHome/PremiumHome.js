@@ -55,7 +55,7 @@ export default class PremiumHome extends Component {
   async getUsersData() {
     try {
       const response = await fetch(
-        'http://localhost:5000/adminReports/getUsersData',
+        'http://localhost:5000/reports/getUsersData',
         {
           method: 'POST',
           crossDomain: true,
@@ -100,7 +100,7 @@ export default class PremiumHome extends Component {
   async getQuestionAnswer() {
     try {
       const response = await fetch(
-        'http://localhost:5000/adminReports/getQuestionAnswerData',
+        'http://localhost:5000/reports/getQuestionAnswerData',
         {
           method: 'POST',
           crossDomain: true,

@@ -16,7 +16,7 @@ export default class userDataReportPremium extends Component {
   async getUsersData() {
     try {
       const response = await fetch(
-        'http://localhost:5000/adminReports/getUsersData',
+        'http://localhost:5000/reports/getUsersData',
         {
           method: 'POST',
           crossDomain: true,

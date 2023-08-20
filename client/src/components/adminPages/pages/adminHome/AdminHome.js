@@ -52,7 +52,7 @@ export default class AdminHome extends Component {
   async getUsersData() {
     try {
       const response = await fetch(
-        'http://localhost:5000/adminReports/getUsersData',
+        'http://localhost:5000/reports/getUsersData',
         {
           method: 'POST',
           crossDomain: true,
@@ -81,9 +81,7 @@ export default class AdminHome extends Component {
     let amountOfUsers = 0;
 
     for (let index = 0; index < usersData.length; index++) {
-      if (usersData[index].userType === 'User') {
-        amountOfUsers = amountOfUsers + 1;
-      }
+      amountOfUsers = amountOfUsers + 1;
     }
 
     this.setState({
@@ -97,7 +95,7 @@ export default class AdminHome extends Component {
   async getQuestionAnswer() {
     try {
       const response = await fetch(
-        'http://localhost:5000/adminReports/getQuestionAnswerData',
+        'http://localhost:5000/reports/getQuestionAnswerData',
         {
           method: 'POST',
           crossDomain: true,
@@ -172,7 +170,7 @@ export default class AdminHome extends Component {
   async getLearnedData() {
     try {
       const response = await fetch(
-        'http://localhost:5000/adminReports/getLearnedData',
+        'http://localhost:5000/reports/getLearnedData',
         {
           method: 'POST',
           crossDomain: true,

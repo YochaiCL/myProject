@@ -1,13 +1,6 @@
-// Import express
 const express = require('express');
-
-// use router as app
 const router = express.Router();
-
-// Import mongoose
 const mongoose = require('mongoose');
-
-// Import question/answer data from database mongoDB
 const QuestionAnswer = mongoose.model('QuestionAnswer');
 
 // Import scehma of how data is in database

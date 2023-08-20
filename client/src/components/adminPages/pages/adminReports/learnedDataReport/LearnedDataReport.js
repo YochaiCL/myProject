@@ -3,6 +3,9 @@ import PageLayout from '../../../layouts/pageLayout/PageLayout';
 import Header from '../../../../commonComponents/header/Header';
 import style from './learnedDataReport.module.css';
 
+/**
+ * Description - This class define the amount components that have learned by the users
+ */
 export default class LearnedDataReport extends Component {
   state = {
     mostLearnedComp: '',
@@ -34,10 +37,9 @@ export default class LearnedDataReport extends Component {
    * Description - This function get all the data about the learned components from the server
    */
   async getLearnedData() {
-    console.log(1)
     try {
       const response = await fetch(
-        'http://localhost:5000/adminReports/getLearnedData',
+        'http://localhost:5000/reports/getLearnedData',
         {
           method: 'POST',
           crossDomain: true,
@@ -83,6 +85,15 @@ export default class LearnedDataReport extends Component {
     }
   }
   render() {
+    // Convert componentSums object into an array of key-value pairs
+    const componentSumsArray = Object.entries(this.state.componentSums);
+
+    // Sort the array by values in descending order
+    componentSumsArray.sort((a, b) => b[1] - a[1]);
+
+    // Create a new object using the sorted array
+    const sortedComponentSums = Object.fromEntries(componentSumsArray);
+
     return (
       <PageLayout>
         <Header h1Heading='Learned Data Report' />
@@ -94,10 +105,10 @@ export default class LearnedDataReport extends Component {
             </tr>
           </thead>
           <tbody>
-            {Object.keys(this.state.componentSums).map(component => (
+            {Object.keys(sortedComponentSums).map(component => (
               <tr key={component}>
                 <td>{component}</td>
-                <td>{this.state.componentSums[component]}</td>
+                <td>{sortedComponentSums[component]}</td>
               </tr>
             ))}
           </tbody>

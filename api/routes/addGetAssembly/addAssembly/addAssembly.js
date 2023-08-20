@@ -10,7 +10,6 @@ require('../../Scehmas/addAssemblies/addAssembliesScehmas');
  * res - if the assembly name already exist the assembly will not add otherwise it will add
  */
 router.post('/', async (req, res) => {
-  console.log(req.body);
   try {
     let array = await Assemblies.find({ assemblyName: req.body.assemblyName });
     if (array.length > 0) {

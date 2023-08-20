@@ -9,10 +9,6 @@ const compLearnedScehma = new mongoose.Schema(
     cables: {
       haveLearned: Boolean,
       comment: String,
-      new: {
-        type: Boolean,
-        required: false,
-      },
     },
     case: {
       haveLearned: Boolean,
