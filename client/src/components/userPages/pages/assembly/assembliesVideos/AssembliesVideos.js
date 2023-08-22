@@ -4,6 +4,10 @@ import PageLayout from '../../../layouts/pageLayout/PageLayout';
 import { Link } from 'react-router-dom';
 import style from './assembliesVideos.module.css';
 
+/**
+ * Description - This function display the video links of components
+ * @returns 
+ */
 export default function AssembliesVideos() {
   return (
     <PageLayout>

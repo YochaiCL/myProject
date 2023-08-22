@@ -66,18 +66,13 @@ export default class DeleteComponents extends Component {
    * Description - This function delete the selected component from the database
    */
   deleteComponent() {
-    // console.log(this.state.selectedComponent);
     for (let key in this.state.allArrays) {
       for (let component of this.state.allArrays[key]) {
         if (component === this.state.selectedComponent) {
-          // console.log(this.state.allArrays[key]);
           let result = this.state.allArrays[key].filter(item => {
-            // console.log(item, this.state.selectedComponent);
             return item !== this.state.selectedComponent;
           });
-          // console.log(result, key, component, this.state.allArrays[key]);
           this.setState({ [key]: result });
-          // this.setState({allArrays : [...this.state.allArrays , result] })
           try {
             fetch('http://localhost:5000/deleteComponents', {
               method: 'POST',

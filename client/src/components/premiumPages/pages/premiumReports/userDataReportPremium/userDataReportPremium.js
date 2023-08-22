@@ -3,16 +3,25 @@ import PageLayout from '../../../layouts/pageLayout/PageLayout';
 import Header from '../../../../commonComponents/header/Header';
 import style from './userDataReportPremium.module.css';
 
+/**
+ * Description - This class show the users data information 
+ */
 export default class userDataReportPremium extends Component {
   state = {
     usersData: [],
     amountOfUsers: 0,
   };
 
+  /**
+   * Description - This function activate the getUsersData() function when the page is uploaded
+   */
   async componentDidMount() {
     await this.getUsersData();
   }
 
+  /**
+   * Description - This function get the users data from the server
+   */
   async getUsersData() {
     try {
       const response = await fetch(

@@ -5,7 +5,7 @@ import PageLayout from '../../layouts/pageLayout/PageLayout';
 import DiagnosticInformationLayout from '../../../adminPages/layouts/diagnosticInformationLayout/DiagnosticInformationLayout';
 
 /**
- * Description -
+ * Description - This class display the user question/answer and data of users in home page of premium
  */
 export default class PremiumHome extends Component {
   state = {

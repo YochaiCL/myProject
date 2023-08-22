@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import PageLayout from '../../layouts/pageLayout/PageLayout';
 import Header from '../../../commonComponents/header/Header';
 import LinkLayout from '../../../commonComponents/linkLayout/LinkLayout';
@@ -6,7 +6,7 @@ import style from './update.module.css';
 
 /**
  * Description - This function display the links update of assembly and components
- * @returns 
+ * @returns - Updates links
  */
 export default function Update() {
   return (

@@ -1,6 +1,4 @@
 .footer p {
-  /*em - This method resizes depending on the size of the father (article is the father of p) - so the size of P will be twice the article 
-  */
   margin: 0.5em 0;
 }
 footer .link {

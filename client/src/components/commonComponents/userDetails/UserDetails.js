@@ -11,7 +11,7 @@ export default class UserData extends Component {
     userData: '',
     oldUser: '',
     showLinkAdmin: false,
-    showLinkPremium:false,
+    showLinkPremium: false,
     password: '',
     email: '',
     name: '',
@@ -48,11 +48,11 @@ export default class UserData extends Component {
           });
         }
 
-         if (this.state.userData.userType === 'Premium') {
-           this.setState({
-             showLinkPremium: true,
-           });
-         }
+        if (this.state.userData.userType === 'Premium') {
+          this.setState({
+            showLinkPremium: true,
+          });
+        }
       });
   }
 

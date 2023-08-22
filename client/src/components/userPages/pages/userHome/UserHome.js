@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { Link } from 'react-router-dom';
-import style from './main.module.css';
+import style from './userHome.module.css';
 import Header from '../../../commonComponents/header/Header';
 import PageLayout from '../../layouts/pageLayout/PageLayout';
 
