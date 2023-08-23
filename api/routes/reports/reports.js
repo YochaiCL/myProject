@@ -25,7 +25,7 @@ const UserInfo = mongoose.model('UserInfo');
 require('../Scehmas/connection/userDetails');
 
 /**
- * Description - Get all question/answer from the server
+ * Description - Get all user data from the server
  */
 router.post('/getUsersData', async (req, res) => {
   try {
@@ -43,7 +43,7 @@ const compLearned = mongoose.model('CompLearned');
 require('../Scehmas/learnedDetails/learnedDetails');
 
 /**
- * Description - Get all question/answer from the server
+ * Description - Get all learned data from the server
  */
 router.post('/getLearnedData', async (req, res) => {
   try {
