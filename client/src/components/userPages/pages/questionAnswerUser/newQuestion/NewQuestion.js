@@ -12,6 +12,7 @@ export default class NewQuestion extends Component {
     questionName: '',
     questionText: '',
     showResult: '',
+    questionAnswerText: [],
   };
 
   /**
@@ -33,7 +34,10 @@ export default class NewQuestion extends Component {
       userEmail: userId.email,
       userFullName: userId.fullName,
       questionName: this.state.questionName,
-      questionText: this.state.questionText,
+      questionAnswerText: {
+        questionText: this.state.questionText,
+        userType: userId.userType,
+      },
       answerText: '',
       haveAnAnswer: false,
       selectedStars: 0,

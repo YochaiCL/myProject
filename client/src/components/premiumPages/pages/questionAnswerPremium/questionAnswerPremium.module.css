@@ -110,11 +110,22 @@
 }
 
 .redBackground {
-  background-color:red;
+  background-color: red;
 }
-
 
 .showResult {
   text-align: center;
   color: rgb(32, 86, 178);
 }
+
+.user {
+  direction: 'ltr';
+  color:blue;
+}
+
+.premium {
+  direction: 'ltr';
+  color:green;
+}
+
+

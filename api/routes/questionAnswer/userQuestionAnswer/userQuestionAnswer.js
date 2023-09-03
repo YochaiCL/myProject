@@ -83,16 +83,22 @@ router.post('/deleteQuestionAnswer', async (req, res) => {
 router.post('/updateQuestion', async (req, res) => {
   const userId = req.body.userId;
   const questionName = req.body.questionName;
-  const questionTest = req.body.questionText;
+  const questionText = req.body.questionText;
+  const userType = req.body.userType;
   try {
-    await QuestionAnswer.updateOne(
-      {
-        userId,
-        questionName,
-      },
-      { $set: { questionText: questionTest, haveAnAnswer: false } }
-    );
-    res.send({ status: 'true' });
+    let array = await QuestionAnswer.find({ userId: userId, questionName });
+    if (array.length > 0) {
+      let allQuestions = array[0].questionAnswerText;
+      allQuestions.push({ questionText, userType });
+      await QuestionAnswer.updateOne(
+        {
+          userId,
+          questionName,
+        },
+        { $set: { questionAnswerText: [...allQuestions], haveAnAnswer: false } }
+      );
+      res.send({ status: 'true' });
+    }
   } catch (error) {
     console.log(error.message);
     res.send({ status: 'error' });

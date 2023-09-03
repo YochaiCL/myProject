@@ -5,8 +5,8 @@ import LinkLayout from '../../../commonComponents/linkLayout/LinkLayout';
 import style from './questionAnswerUser.module.css';
 
 /**
- * Description -
- * @returns
+ * Description - This function define the links of new Question and exists questions
+ * @returns - Question links
  */
 function QuestionAnswerUser() {
   return (

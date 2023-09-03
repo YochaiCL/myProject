@@ -10,10 +10,10 @@ import Button from '../../../../commonComponents/button/Button';
 export default class ExistsQuestionsUser extends Component {
   state = {
     questionAnswerData: [],
+    messages: [],
     showData: false,
     selectIndex: null,
     questionText: '',
-    questionText2: '',
     userId: JSON.parse(localStorage.getItem('user'))._id,
     selectedStars: 0,
   };
@@ -56,11 +56,9 @@ export default class ExistsQuestionsUser extends Component {
    */
   handelClick = index => {
     this.setState({
-      questionText2: this.state.questionAnswerData[index].questionText,
-    });
-    this.setState({
       showData: true,
       selectIndex: index,
+      messages: this.state.questionAnswerData[index].questionAnswerText,
     });
   };
 
@@ -90,8 +88,11 @@ export default class ExistsQuestionsUser extends Component {
         .then(res => res.json())
         .then(data => {
           if (data.status === 'Question deleted') {
-            this.setState({ showResult: 'Test has been deleted' });
-            this.setState({ showData: false });
+            this.setState({
+              showResult: 'Test has been deleted',
+              showData: false,
+            });
+
             setTimeout(() => {
               this.setState({
                 showResult: '',
@@ -150,10 +151,8 @@ export default class ExistsQuestionsUser extends Component {
     e.preventDefault();
     let dataToSend = {
       userId: this.state.userId,
-      questionText:
-        this.state.questionAnswerData[this.state.selectIndex].questionText +
-        ' ? ' +
-        this.state.questionText,
+      userType: JSON.parse(localStorage.getItem('user')).userType,
+      questionText: this.state.questionText,
       questionName:
         this.state.questionAnswerData[this.state.selectIndex].questionName,
     };
@@ -178,12 +177,7 @@ export default class ExistsQuestionsUser extends Component {
       this.setState({
         showResult: 'The Question has been updated',
       });
-      this.setState({
-        questionText2:
-          this.state.questionAnswerData[this.state.selectIndex].questionText +
-          ' ? ' +
-          this.state.questionText,
-      });
+      this.setState({ messages: [...this.state.messages, dataToSend] });
 
       setTimeout(() => {
         this.setState({
@@ -228,46 +222,22 @@ export default class ExistsQuestionsUser extends Component {
                     <span className={style.span}> Question Name:</span>
                     {questionAnswerData[selectIndex].questionName}
                   </h3>
-                  <h3 className={style.h3}>
-                    <span className={style.span}> Question Text:</span>
-                    {this.state.questionText2
-                      .split('?')
-                      .map((part, index, array) => (
-                        <span key={index}>
-                          {part}
-                          {index !== array.length - 1 && (
-                            <span style={{ color: 'red' }}>?</span>
-                          )}
-                        </span>
-                      ))}
-                  </h3>
-                  {!questionAnswerData[selectIndex].haveAnAnswer && (
-                    <button
-                      onClick={() => {
-                        const indexToDelete =
-                          questionAnswerData[selectIndex].questionName;
+                  {this.state.messages.map((oneMessage, index) => {
+                    if (oneMessage.userType !== 'Premium') {
+                      return (
+                        <section className={style.user} key={index}>
+                          <p>User: {oneMessage.questionText}</p>
+                        </section>
+                      );
+                    } else {
+                      return (
+                        <section className={style.premium} key={index}>
+                          <p>Premium: {oneMessage.questionText}</p>
+                        </section>
+                      );
+                    }
+                  })}
 
-                        this.deleteQuestion(indexToDelete);
-                      }}
-                      className={style.deleteButton}
-                    >
-                      Delete
-                    </button>
-                  )}
-
-                  <h3 className={style.h3}>
-                    <span className={style.span}>Question Answer:</span>
-                    {questionAnswerData[selectIndex].answerText
-                      .split('|')
-                      .map((part, index, array) => (
-                        <span key={index}>
-                          {part}
-                          {index !== array.length - 1 && (
-                            <span style={{ color: 'red' }}>|</span>
-                          )}
-                        </span>
-                      ))}
-                  </h3>
                   <section>
                     <form
                       onSubmit={this.handleSubmit.bind(this)}
@@ -287,6 +257,19 @@ export default class ExistsQuestionsUser extends Component {
                       ></textarea>
 
                       <Button type='submit' text='submit' />
+                      {!questionAnswerData[selectIndex].haveAnAnswer && (
+                        <button
+                          onClick={() => {
+                            const indexToDelete =
+                              questionAnswerData[selectIndex].questionName;
+
+                            this.deleteQuestion(indexToDelete);
+                          }}
+                          className={style.deleteButton}
+                        >
+                          Delete
+                        </button>
+                      )}
 
                       {questionAnswerData[selectIndex].haveAnAnswer &&
                         questionAnswerData[selectIndex].selectedStars === 0 && (

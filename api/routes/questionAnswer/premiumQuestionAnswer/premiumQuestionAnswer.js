@@ -39,45 +39,47 @@ router.post('/updateAnswer', async (req, res) => {
   const answerText = req.body.answerText;
 
   try {
-    await QuestionAnswer.updateOne(
-      {
-        userId,
-        questionName,
-      },
-      // Update the document with the values from the 'data' object
-      { $set: { answerText: answerText, haveAnAnswer: true } }
-    );
+    let array = await QuestionAnswer.find({ userId: userId, questionName });
+    if (array.length > 0) {
+      let allQuestions = array[0].questionAnswerText;
+      allQuestions.push({ questionText: answerText, userType: 'Premium' });
+      await QuestionAnswer.updateOne(
+        {
+          userId,
+          questionName,
+        },
+        { $set: { questionAnswerText: [...allQuestions], haveAnAnswer: true } }
+      );
+      const userEmail = req.body.userEmail;
+      console.log(userEmail);
 
-    const userEmail = req.body.userEmail;
-    console.log(userEmail)
+      const text = `You received an answer to your question about the ${questionName}, please log in to see it.\nThank you,\nPc Builder`;
 
-    const text = `You received an answer to your question about the ${questionName}, please log in to see it.\nThank you,\nPc Builder`;
+      // activate send email to the user
+      var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: 'pcbuilderweb@gmail.com',
+          pass: 'oggemnxdvgbieqcy',
+        },
+      });
 
-    // activate send email to the user
-    var transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: 'pcbuilderweb@gmail.com',
-        pass: 'oggemnxdvgbieqcy',
-      },
-    });
+      var mailOptions = {
+        from: 'youremail@gmail.com',
+        to: userEmail,
+        subject: 'PC Builder',
+        text: text,
+      };
 
-    var mailOptions = {
-      from: 'youremail@gmail.com',
-      to: userEmail,
-      subject: 'PC Builder',
-      text: text,
-    };
-
-    transporter.sendMail(mailOptions, function (error, info) {
-      if (error) {
-        return res.json({ status: 'Error email not send' });
-      } else {
-        return res.json({ status: 'Email send' });
-      }
-    });
-
-    // res.send({ status: 'true' });
+      transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+          return res.json({ status: 'Error email not send' });
+        } else {
+          return res.json({ status: 'Email send' });
+        }
+      });
+      res.send({ status: 'true' });
+    }
   } catch (error) {
     console.log(error.message);
     res.send({ status: 'error' });

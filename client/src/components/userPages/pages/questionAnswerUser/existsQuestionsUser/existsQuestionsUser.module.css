@@ -104,5 +104,18 @@
 }
 
 
+.user {
+  direction: 'ltr';
+  color:blue;
+}
+
+.premium {
+  direction: 'ltr';
+  color:green;
+}
+
+
+
+
 
 
