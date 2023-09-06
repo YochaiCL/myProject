@@ -74,9 +74,19 @@
   color: white;
 }
 
-.pComment{
+.pComment {
   font-size: 1.5rem;
   margin-top: 5px;
+}
+
+.newComp {
+  color: white;
+  position: fixed;
+  border-radius: 50px;
+  border: solid red 5px;
+  background-color: red;
+  transform: translate(-50%, -50%) rotate(315deg);
+  margin-top: 5rem;
 }
 
 @media (max-width: 700px) {

@@ -37,6 +37,7 @@ export default class QuestionAnswerPremium extends Component {
       }
     );
     const result = await response.json();
+    console.log(result)
     this.setState({ questionAnswerData: result });
 
     for (let user of result) {
@@ -147,14 +148,28 @@ export default class QuestionAnswerPremium extends Component {
         answerText: this.state.answerText,
         showResult: 'The Answer has been updated',
       });
-      this.setState({ answerText: '' });
-      setTimeout(() => {
-        this.setState({
-          showResult: '',
-        });
-      }, 2000);
-      this.getQuestionAnswer();
     }
+    let object = this.state.questions[this.state.selectIndex];
+    object.haveAnAnswer = true;
+    console.log(object)
+    let array = [...this.state.questionAnswerData];
+    let newArray = array.filter(
+      qa => qa._id !== this.state.questions[this.state.selectIndex]
+    ._id);
+    console.log(newArray)
+    newArray.push(object)
+    this.setState({
+      questionAnswerData: [
+        ...newArray,
+      ],
+    });
+    this.setState({ answerText: '' });
+    setTimeout(() => {
+      this.setState({
+        showResult: '',
+      });
+    }, 2000);
+    this.getQuestionAnswer();
   }
 
   /**

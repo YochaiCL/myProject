@@ -2,12 +2,19 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 // Import Motherboard data from database Motherboard
+
+// Import CompLearned data from database Cpu
+const CompLearned = mongoose.model('CompLearned');
+// Import scehma of how data is in database
+require('../../Scehmas/learnedDetails/learnedDetails');
+
+///////////////////////////////////////////////////////////////////////////////
 const Motherboard = mongoose.model('Motherboard');
 // Import scehma of how Motherboard is in database
 require('../../Scehmas/addComponents/motherboard/motherboard');
 
 /**
- * Description - This function create new motherboard component
+ * Description - This function create new motherboard component and set that have new component
  * req - All motherboard data from the client
  * res - Send status of creation in database
  */
@@ -19,6 +26,10 @@ router.post('/motherboard', async (req, res) => {
       return;
     } else {
       await Motherboard.create(req.body);
+      await CompLearned.updateMany(
+        {},
+        { 'motherboard.haveNewComponent': true }
+      );
       res.send({ status: 'ok' });
     }
   } catch (error) {
@@ -33,7 +44,7 @@ const Cpu = mongoose.model('Cpu');
 require('../../Scehmas/addComponents/cpu/cpu');
 
 /**
- * Description - This function create new cpu component
+ * Description - This function create new cpu component and set have new component
  * req - All cpu data from the client
  * res - Send status of creation in database
  */
@@ -45,6 +56,8 @@ router.post('/cpu', async (req, res) => {
       return;
     } else {
       await Cpu.create(req.body);
+      //change haveNewComponent to true
+      await CompLearned.updateMany({}, { 'cpu.haveNewComponent': true });
       res.send({ status: 'ok' });
     }
   } catch (error) {
@@ -59,7 +72,7 @@ const Case = mongoose.model('Case');
 require('../../Scehmas/addComponents/case/case');
 
 /**
- * Description - This function create new case component
+ * Description - This function create new case component and set have new component
  * req - All case data from the client
  * res - Send status of creation in database
  */
@@ -71,6 +84,8 @@ router.post('/case', async (req, res) => {
       return;
     } else {
       await Case.create(req.body);
+      //change haveNewComponent to true
+      await CompLearned.updateMany({}, { 'case.haveNewComponent': true });
       res.send({ status: 'ok' });
     }
   } catch (error) {
@@ -85,7 +100,7 @@ const Gpu = mongoose.model('Gpu');
 require('../../Scehmas/addComponents/gpu/gpu');
 
 /**
- * Description - This function create new gpu component
+ * Description - This function create new gpu component and set have new component
  * req - All gpu data from the client
  * res - Send status of creation in database
  */
@@ -97,6 +112,8 @@ router.post('/gpu', async (req, res) => {
       return;
     } else {
       await Gpu.create(req.body);
+      //change haveNewComponent to true
+      await CompLearned.updateMany({}, { 'gpu.haveNewComponent': true });
       res.send({ status: 'ok' });
     }
   } catch (error) {
@@ -111,8 +128,8 @@ const CpuCoolerFan = mongoose.model('CpuCoolerFan');
 require('../../Scehmas/addComponents/cpuCooler/cpuCoolerFan/cpuCoolerFan');
 
 /**
- * Description - This function create new cpuCooleFan component
- * req - All cpuCooleFan data from the client
+ * Description - This function create new cpuCoolerFan component and set have new component
+ * req - All cpuCoolerFan data from the client
  * res - Send status of creation in database
  */
 router.post('/cpuCoolerFan', async (req, res) => {
@@ -123,6 +140,8 @@ router.post('/cpuCoolerFan', async (req, res) => {
       return;
     } else {
       await CpuCoolerFan.create(req.body);
+      //change haveNewComponent to true
+      await CompLearned.updateMany({}, { 'cpuCooler.haveNewComponent': true });
       res.send({ status: 'ok' });
     }
   } catch (error) {
@@ -137,7 +156,7 @@ const CpuCoolerLiquid = mongoose.model('CpuCoolerLiquid');
 require('../../Scehmas/addComponents/cpuCooler/cpuCoolerLiquid/cpuCoolerLiquid');
 
 /**
- * Description - This function create new cpuCoolerLiquid component
+ * Description - This function create new cpuCoolerLiquid component and set have new component
  * req - All cpuCoolerLiquid data from the client
  * res - Send status of creation in database
  */
@@ -149,13 +168,14 @@ router.post('/cpuCoolerLiquid', async (req, res) => {
       return;
     } else {
       await CpuCoolerLiquid.create(req.body);
+      //change haveNewComponent to true
+      await CompLearned.updateMany({}, { 'cpuCooler.haveNewComponent': true });
       res.send({ status: 'ok' });
     }
   } catch (error) {
     res.send({ status: 'error' });
   }
 });
-
 
 //////////////////////////////////////////////////////////////////////////////
 // Import Psu data from database mongoDB
@@ -164,7 +184,7 @@ const Psu = mongoose.model('Psu');
 require('../../Scehmas/addComponents/psu/psu');
 
 /**
- * Description - This function create new psu component
+ * Description - This function create new psu component and set have new component
  * req - All psu data from the client
  * res - Send status of creation in database
  */
@@ -176,6 +196,8 @@ router.post('/psu', async (req, res) => {
       return;
     } else {
       await Psu.create(req.body);
+      //change haveNewComponent to true
+      await CompLearned.updateMany({}, { 'psu.haveNewComponent': true });
       res.send({ status: 'ok' });
     }
   } catch (error) {
@@ -190,7 +212,7 @@ const Ram = mongoose.model('Ram');
 require('../../Scehmas/addComponents/ram/ram');
 
 /**
- * Description - This function create new ram component
+ * Description - This function create new ram component and set have new component
  * req - All ram data from the client
  * res - Send status of creation in database
  */
@@ -202,6 +224,8 @@ router.post('/ram', async (req, res) => {
       return;
     } else {
       await Ram.create(req.body);
+      //change haveNewComponent to true
+      await CompLearned.updateMany({}, { 'ram.haveNewComponent': true });
       res.send({ status: 'ok' });
     }
   } catch (error) {
@@ -216,7 +240,7 @@ const SsdM2 = mongoose.model('SsdM2');
 require('../../Scehmas/addComponents/ssd/ssdM2/ssdM2');
 
 /**
- * Description - This function create new ssdM2 component
+ * Description - This function create new ssdM2 component and set have new component
  * req - All ssdM2 data from the client
  * res - Send status of creation in database
  */
@@ -228,6 +252,8 @@ router.post('/ssdM2', async (req, res) => {
       return;
     } else {
       await SsdM2.create(req.body);
+      //change haveNewComponent to true
+      await CompLearned.updateMany({}, { 'ssd.haveNewComponent': true });
       res.send({ status: 'ok' });
     }
   } catch (error) {
@@ -242,7 +268,7 @@ const SsdSata = mongoose.model('SsdSata');
 require('../../Scehmas/addComponents/ssd/ssdSata/ssdSata');
 
 /**
- * Description - This function create new SsdSata component
+ * Description - This function create new SsdSata component and set have new component
  * req - All SsdSata data from the client
  * res - Send status of creation in database
  */
@@ -254,6 +280,8 @@ router.post('/ssdSata', async (req, res) => {
       return;
     } else {
       await SsdSata.create(req.body);
+      //change haveNewComponent to true
+      await CompLearned.updateMany({}, { 'ssd.haveNewComponent': true });
       res.send({ status: 'ok' });
     }
   } catch (error) {

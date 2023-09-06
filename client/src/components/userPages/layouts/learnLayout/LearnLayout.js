@@ -40,6 +40,38 @@ export default class LearnLayout extends Component {
       });
   }
 
+  /**
+   * Description - This function update the selected component that the there is not longer a new component
+   * @param {*} selectedComp - selected component
+   */
+  updateNotNew(selectedComp) {
+    let user = JSON.parse(localStorage.getItem('user'));
+    let productsArray = this.props.oldState;
+    // console.log(productsArray);
+    if (productsArray[selectedComp].haveNewComponent === true) {
+      productsArray[selectedComp].haveNewComponent = false;
+    }
+    // console.log(productsArray);
+    this.props.changeLearn({ ...productsArray });
+    fetch('http://localhost:5000/compLearned', {
+      method: 'POST',
+      crossDomain: true,
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        'Access-Control-Allow-Origin': '*',
+      },
+      body: JSON.stringify({
+        productsArray: productsArray,
+        userId: user._id,
+      }),
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+      });
+  }
+
   render() {
     //console.log(this.props.learn)
     const image = this.props.img;
@@ -56,6 +88,7 @@ export default class LearnLayout extends Component {
           height='180'
           className={style.img}
         />
+
         <div
           className={`${style.text} ${
             this.props.learn && this.props.learn.haveLearned === true
@@ -73,10 +106,20 @@ export default class LearnLayout extends Component {
             this.props.imgName !== 'cables' &&
             this.props.imgName !== 'hd' &&
             this.props.imgName !== 'fans' && (
-              <Link className={style.link} to={compProduct}>
+              <Link
+                className={style.link}
+                to={compProduct}
+                onClick={() => this.updateNotNew(imageName)}
+              >
                 Products
               </Link>
             )}
+          {this.props.learn && this.props.learn.haveNewComponent ? (
+            <div className={`${style.newComp}`}>New</div>
+          ) : (
+            ''
+          )}
+
           {this.props.learn ? (
             <div>
               {this.props.learn.haveLearned ? (

@@ -59,14 +59,17 @@ router.post('/', async (req, res) => {
       },
       case: {
         haveLearned: false,
+        haveNewComponent: false,
         comment: '',
       },
       cpu: {
         haveLearned: false,
+        haveNewComponent: false,
         comment: '',
       },
       cpuCooler: {
         haveLearned: false,
+        haveNewComponent: false,
         comment: '',
       },
       dvd: {
@@ -79,6 +82,7 @@ router.post('/', async (req, res) => {
       },
       gpu: {
         haveLearned: false,
+        haveNewComponent: false,
         comment: '',
       },
       hd: {
@@ -87,18 +91,22 @@ router.post('/', async (req, res) => {
       },
       motherboard: {
         haveLearned: false,
+        haveNewComponent: false,
         comment: '',
       },
       psu: {
         haveLearned: false,
+        haveNewComponent: false,
         comment: '',
       },
       ram: {
         haveLearned: false,
+        haveNewComponent: false,
         comment: '',
       },
       ssd: {
         haveLearned: false,
+        haveNewComponent: false,
         comment: '',
       },
     });

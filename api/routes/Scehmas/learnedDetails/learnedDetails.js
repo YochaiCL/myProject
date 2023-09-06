@@ -12,14 +12,17 @@ const compLearnedScehma = new mongoose.Schema(
     },
     case: {
       haveLearned: Boolean,
+      haveNewComponent: Boolean,
       comment: String,
     },
     cpu: {
       haveLearned: Boolean,
+      haveNewComponent: Boolean,
       comment: String,
     },
     cpuCooler: {
       haveLearned: Boolean,
+      haveNewComponent: Boolean,
       comment: String,
     },
     dvd: {
@@ -32,6 +35,7 @@ const compLearnedScehma = new mongoose.Schema(
     },
     gpu: {
       haveLearned: Boolean,
+      haveNewComponent: Boolean,
       comment: String,
     },
     hd: {
@@ -40,18 +44,22 @@ const compLearnedScehma = new mongoose.Schema(
     },
     motherboard: {
       haveLearned: Boolean,
+      haveNewComponent: Boolean,
       comment: String,
     },
     psu: {
       haveLearned: Boolean,
+      haveNewComponent: Boolean,
       comment: String,
     },
     ram: {
       haveLearned: Boolean,
+      haveNewComponent: Boolean,
       comment: String,
     },
     ssd: {
       haveLearned: Boolean,
+      haveNewComponent: Boolean,
       comment: String,
     },
   },
