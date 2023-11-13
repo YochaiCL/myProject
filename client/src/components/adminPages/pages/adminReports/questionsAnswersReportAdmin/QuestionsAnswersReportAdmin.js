@@ -39,6 +39,8 @@ export default class QuestionsAnswersReport extends Component {
       );
       const result = await response.json();
 
+      console.log(result);
+
       this.setState({
         questionAnswerData: result,
       });
@@ -69,8 +71,18 @@ export default class QuestionsAnswersReport extends Component {
                 <td>{data.userFullName}</td>
                 <td>{data.userEmail}</td>
                 <td>{data.questionName}</td>
-                <td>{data.questionText}</td>
-                <td>{data.answerText}</td>
+                <td>
+                  {
+                    data.questionAnswerText[data.questionAnswerText.length - 2]
+                      .questionText
+                  }
+                </td>
+                <td>
+                  {
+                    data.questionAnswerText[data.questionAnswerText.length - 1]
+                      .questionText
+                  }
+                </td>
                 <td>{data.haveAnAnswer ? 'Yes' : 'No'}</td>
                 <td>{data.selectedStars}</td>
                 <td>{data.questionDate}</td>

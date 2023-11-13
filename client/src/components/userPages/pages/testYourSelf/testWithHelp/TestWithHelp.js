@@ -46,6 +46,25 @@ export default class TestWithHelp extends Component {
   };
 
   /**
+   * Description - This function display the assembly products
+   */
+  async getAssembly() {
+    const response = await fetch('http://localhost:5000/getAssembly');
+    const result = await response.json();
+    result.sort((a, b) => a.assemblyName.localeCompare(b.assemblyName));
+    this.setState({ assembly: result });
+    this.getAssembly();
+  }
+
+  /**
+   *Description - This function start when the page is upload and activate the function getModels
+   */
+  componentDidMount() {
+    this.getModels();
+    this.getAssembly();
+  }
+
+  /**
    * Description - This function get all models of all components from database
    */
   async getModels() {
@@ -124,25 +143,6 @@ export default class TestWithHelp extends Component {
         });
       }
     }
-  }
-
-  /**
-   * Description - This function display the assembly products
-   */
-  async getAssembly() {
-    const response = await fetch('http://localhost:5000/getAssembly');
-    const result = await response.json();
-    result.sort((a, b) => a.assemblyName.localeCompare(b.assemblyName));
-    this.setState({ assembly: result });
-    this.getAssembly();
-  }
-
-  /**
-   *Description - This function start when the page is upload and activate the function getModels
-   */
-  componentDidMount() {
-    this.getModels();
-    this.getAssembly();
   }
 
   render() {

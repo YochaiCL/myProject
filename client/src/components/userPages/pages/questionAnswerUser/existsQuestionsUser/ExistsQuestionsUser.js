@@ -274,6 +274,9 @@ export default class ExistsQuestionsUser extends Component {
                       {questionAnswerData[selectIndex].haveAnAnswer &&
                         questionAnswerData[selectIndex].selectedStars === 0 && (
                           <section className={style.starsLocation}>
+                            <p className={style.pLocation}>
+                              Please rate the answer
+                            </p>
                             {[1, 2, 3, 4, 5].map(star => (
                               <span
                                 key={star}

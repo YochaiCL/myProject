@@ -36,10 +36,12 @@ export default class DeleteAssemblies extends Component {
    * Description - This function delete selected assembly from the database
    */
   deleteAssembly() {
+    //keeps all the items whose assemblyName is different from this.state.deleteAssembly and removes those that match
     let result = this.state.assembly.filter(item => {
-      console.log(item, this.state.deleteAssembly);
+      //console.log(item, this.state.deleteAssembly);
       return item.assemblyName !== this.state.deleteAssembly;
     });
+
     // console.log(result);
     this.setState({ assembly: result });
     try {
@@ -52,27 +54,25 @@ export default class DeleteAssemblies extends Component {
           Accept: 'application/json',
           'Access-Control-Allow-Origin': '*',
         },
-        // Converting fullName, email, password, and userType to JSON and setting it as the request body
+
         body: JSON.stringify({
           assemblyName: this.state.deleteAssembly,
         }),
       })
-        // Parsing the response as JSON
         .then(res => res.json())
-        // Handling the response data
         .then(data => {
           if (data.status === 'Assembly deleted') {
             this.setState({ showResult: 'Assembly have been deleted' });
             setTimeout(() => {
               this.setState({
                 showResult: '',
-                deleteAssembly : ''
+                deleteAssembly: '',
               });
             }, 1000);
           }
         });
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   }
 

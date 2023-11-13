@@ -1,15 +1,18 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-// Import Motherboard data from database Motherboard
 
-// Import CompLearned data from database Cpu
+// Import CompLearned data from database
 const CompLearned = mongoose.model('CompLearned');
+
 // Import scehma of how data is in database
 require('../../Scehmas/learnedDetails/learnedDetails');
 
-///////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+// Import Motherboard data from database Motherboard
 const Motherboard = mongoose.model('Motherboard');
+
 // Import scehma of how Motherboard is in database
 require('../../Scehmas/addComponents/motherboard/motherboard');
 
@@ -40,6 +43,7 @@ router.post('/motherboard', async (req, res) => {
 ///////////////////////////////////////////////////////////////////////////////
 // Import Cpu data from database Cpu
 const Cpu = mongoose.model('Cpu');
+
 // Import scehma of how data is in database
 require('../../Scehmas/addComponents/cpu/cpu');
 
@@ -56,7 +60,6 @@ router.post('/cpu', async (req, res) => {
       return;
     } else {
       await Cpu.create(req.body);
-      //change haveNewComponent to true
       await CompLearned.updateMany({}, { 'cpu.haveNewComponent': true });
       res.send({ status: 'ok' });
     }
@@ -68,6 +71,7 @@ router.post('/cpu', async (req, res) => {
 //////////////////////////////////////////////////////////////////////////////
 // Import Case data from database mongoDB
 const Case = mongoose.model('Case');
+
 // Import scehma of how data is in database
 require('../../Scehmas/addComponents/case/case');
 
@@ -84,7 +88,6 @@ router.post('/case', async (req, res) => {
       return;
     } else {
       await Case.create(req.body);
-      //change haveNewComponent to true
       await CompLearned.updateMany({}, { 'case.haveNewComponent': true });
       res.send({ status: 'ok' });
     }
@@ -96,6 +99,7 @@ router.post('/case', async (req, res) => {
 //////////////////////////////////////////////////////////////////////////////
 // Import Gpu data from database mongoDB
 const Gpu = mongoose.model('Gpu');
+
 // Import scehma of how data is in database
 require('../../Scehmas/addComponents/gpu/gpu');
 
@@ -112,7 +116,6 @@ router.post('/gpu', async (req, res) => {
       return;
     } else {
       await Gpu.create(req.body);
-      //change haveNewComponent to true
       await CompLearned.updateMany({}, { 'gpu.haveNewComponent': true });
       res.send({ status: 'ok' });
     }
@@ -124,6 +127,7 @@ router.post('/gpu', async (req, res) => {
 //////////////////////////////////////////////////////////////////////////////
 // Import Cpu Cooler Fan data from database mongoDB
 const CpuCoolerFan = mongoose.model('CpuCoolerFan');
+
 // Import scehma of how data is in database
 require('../../Scehmas/addComponents/cpuCooler/cpuCoolerFan/cpuCoolerFan');
 
@@ -140,7 +144,6 @@ router.post('/cpuCoolerFan', async (req, res) => {
       return;
     } else {
       await CpuCoolerFan.create(req.body);
-      //change haveNewComponent to true
       await CompLearned.updateMany({}, { 'cpuCooler.haveNewComponent': true });
       res.send({ status: 'ok' });
     }
@@ -152,6 +155,7 @@ router.post('/cpuCoolerFan', async (req, res) => {
 //////////////////////////////////////////////////////////////////////////////
 // Import Cpu Cooler Liquid data from database mongoDB
 const CpuCoolerLiquid = mongoose.model('CpuCoolerLiquid');
+
 // Import scehma of how data is in database
 require('../../Scehmas/addComponents/cpuCooler/cpuCoolerLiquid/cpuCoolerLiquid');
 
@@ -168,7 +172,6 @@ router.post('/cpuCoolerLiquid', async (req, res) => {
       return;
     } else {
       await CpuCoolerLiquid.create(req.body);
-      //change haveNewComponent to true
       await CompLearned.updateMany({}, { 'cpuCooler.haveNewComponent': true });
       res.send({ status: 'ok' });
     }
@@ -180,6 +183,7 @@ router.post('/cpuCoolerLiquid', async (req, res) => {
 //////////////////////////////////////////////////////////////////////////////
 // Import Psu data from database mongoDB
 const Psu = mongoose.model('Psu');
+
 // Import scehma of how data is in database
 require('../../Scehmas/addComponents/psu/psu');
 
@@ -196,7 +200,6 @@ router.post('/psu', async (req, res) => {
       return;
     } else {
       await Psu.create(req.body);
-      //change haveNewComponent to true
       await CompLearned.updateMany({}, { 'psu.haveNewComponent': true });
       res.send({ status: 'ok' });
     }
@@ -208,6 +211,7 @@ router.post('/psu', async (req, res) => {
 //////////////////////////////////////////////////////////////////////////////
 // Import Ram data from database mongoDB
 const Ram = mongoose.model('Ram');
+
 // Import scehma of how data is in database
 require('../../Scehmas/addComponents/ram/ram');
 
@@ -224,7 +228,6 @@ router.post('/ram', async (req, res) => {
       return;
     } else {
       await Ram.create(req.body);
-      //change haveNewComponent to true
       await CompLearned.updateMany({}, { 'ram.haveNewComponent': true });
       res.send({ status: 'ok' });
     }
@@ -236,6 +239,7 @@ router.post('/ram', async (req, res) => {
 //////////////////////////////////////////////////////////////////////////////
 // Import Ssd M2 data from database mongoDB
 const SsdM2 = mongoose.model('SsdM2');
+
 // Import scehma of how data is in database
 require('../../Scehmas/addComponents/ssd/ssdM2/ssdM2');
 
@@ -252,7 +256,6 @@ router.post('/ssdM2', async (req, res) => {
       return;
     } else {
       await SsdM2.create(req.body);
-      //change haveNewComponent to true
       await CompLearned.updateMany({}, { 'ssd.haveNewComponent': true });
       res.send({ status: 'ok' });
     }
@@ -264,6 +267,7 @@ router.post('/ssdM2', async (req, res) => {
 //////////////////////////////////////////////////////////////////////////////
 // Import Ssd Sata data from database mongoDB
 const SsdSata = mongoose.model('SsdSata');
+
 // Import scehma of how data is in database
 require('../../Scehmas/addComponents/ssd/ssdSata/ssdSata');
 
@@ -280,7 +284,6 @@ router.post('/ssdSata', async (req, res) => {
       return;
     } else {
       await SsdSata.create(req.body);
-      //change haveNewComponent to true
       await CompLearned.updateMany({}, { 'ssd.haveNewComponent': true });
       res.send({ status: 'ok' });
     }

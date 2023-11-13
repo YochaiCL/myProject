@@ -65,7 +65,7 @@ export default class ComponentLearnLayout extends Component {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data);
+        // console.log(data);
         this.setState({
           showResult: 'Comment have added',
         });

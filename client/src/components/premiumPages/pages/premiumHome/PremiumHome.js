@@ -15,7 +15,6 @@ export default class PremiumHome extends Component {
     openQuestions: 0,
     closedQuestions: 0,
     overallUsersRate: 0,
-  
   };
 
   /**
@@ -27,7 +26,6 @@ export default class PremiumHome extends Component {
     this.calculateRate();
     await this.getUsersData();
     this.showAmountOfUser();
-   
   }
 
   /**
@@ -169,7 +167,6 @@ export default class PremiumHome extends Component {
     }
   }
 
-  
   render() {
     return (
       <PageLayout>
@@ -177,14 +174,14 @@ export default class PremiumHome extends Component {
         <div className={style.premiumHome}>
           <section className={style.section}>
             <DiagnosticInformationLayout
-              h2='Open Questions'
-              text={this.state.openQuestions}
-              to='/questionsAnswersReportPremium'
-              name='More Info'
-            />
-            <DiagnosticInformationLayout
-              h2='Close Questions'
-              text={this.state.closedQuestions}
+              h2='Questions'
+              text={
+                <>
+                  open {this.state.openQuestions}
+                  <br />
+                  close {this.state.closedQuestions}
+                </>
+              }
               to='/questionsAnswersReportPremium'
               name='More Info'
             />

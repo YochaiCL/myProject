@@ -30,7 +30,7 @@ export default function FirstSteps() {
    */
   useEffect(() => {
     let user = JSON.parse(localStorage.getItem('user'));
-    console.log(user);
+    // console.log(user);
     fetch('http://localhost:5000/compLearned/getData', {
       method: 'POST',
       crossDomain: true,
@@ -45,10 +45,11 @@ export default function FirstSteps() {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data, 'userData');
+        // console.log(data, 'userData');
         setArray(data[0]);
       });
   }, []);
+
   return (
     <PageLayout>
       <Header h1Heading='First Steps - Learn Your Hardware' />

@@ -2,7 +2,9 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 
-// Import Motherboard  data from database mongoDB
+///////////////////////////////////////////////////////////////////////////////
+
+// Import Motherboard data from database mongoDB
 const Motherboard = mongoose.model('Motherboard');
 
 /**
@@ -34,7 +36,6 @@ router.get('/gpu', async (req, res) => {
     res.send({ status: 'error' });
   }
 });
-
 
 ///////////////////////////////////////////////////////////////////////////////
 // Import Case data from database mongoDB

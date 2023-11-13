@@ -1,8 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
+
 // Import CompLearned data from database mongoDB
 const CompLearned = mongoose.model('CompLearned');
+
 // Import scehma of how data is in database
 require('../Scehmas/learnedDetails/learnedDetails');
 

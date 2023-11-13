@@ -5,7 +5,7 @@ import Button from '../../../../commonComponents/button/Button';
 import style from './addAssembly.module.css';
 
 /**
- * Description - This function add assembly to the database
+ * Description - This class add assembly to the database
  */
 export default class AddAssembly extends Component {
   state = {
@@ -68,7 +68,7 @@ export default class AddAssembly extends Component {
     };
     const response = await fetch('http://localhost:5000/addAssembly', options);
     const result = await response.json();
-    console.log(result);
+    // console.log(result);
     if (result.status === 'ok') {
       this.setState({
         showResult: 'The Assembly has been added',

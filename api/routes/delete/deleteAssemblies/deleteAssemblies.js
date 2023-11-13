@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
+
 // Import Motherboard data from database Motherboard
 const Assemblies = mongoose.model('Assemblies');
 

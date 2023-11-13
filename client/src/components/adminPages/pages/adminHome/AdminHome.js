@@ -234,15 +234,15 @@ export default class AdminHome extends Component {
         <div className={style.adminHome}>
           <section className={style.section}>
             <DiagnosticInformationLayout
-              h2='Open Questions'
-              text={this.state.openQuestions}
-              to='/questionsAnswersReportPremium'
-              name='More Info'
-            />
-            <DiagnosticInformationLayout
-              h2='Close Questions'
-              text={this.state.closedQuestions}
-              to='/questionsAnswersReportPremium'
+              h2='Questions'
+              text={
+                <>
+                  open {this.state.openQuestions}
+                  <br />
+                  close {this.state.closedQuestions}
+                </>
+              }
+              to='/questionsAnswersReportAdmin'
               name='More Info'
             />
 
