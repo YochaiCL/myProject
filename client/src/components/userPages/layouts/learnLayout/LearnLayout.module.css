@@ -81,7 +81,7 @@
 
 .newComp {
   color: white;
-  position: fixed;
+  position: absolute;
   border-radius: 50px;
   border: solid red 5px;
   background-color: red;

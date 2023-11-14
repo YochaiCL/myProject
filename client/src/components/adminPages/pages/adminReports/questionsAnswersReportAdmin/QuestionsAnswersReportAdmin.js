@@ -72,16 +72,20 @@ export default class QuestionsAnswersReport extends Component {
                 <td>{data.userEmail}</td>
                 <td>{data.questionName}</td>
                 <td>
-                  {
-                    data.questionAnswerText[data.questionAnswerText.length - 2]
-                      .questionText
-                  }
+                  {data.questionAnswerText.length >= 2
+                    ? data.questionAnswerText[
+                        data.questionAnswerText.length - 2
+                      ].questionText
+                    : data.questionAnswerText[
+                        data.questionAnswerText.length - 1
+                      ].questionText}
                 </td>
                 <td>
-                  {
-                    data.questionAnswerText[data.questionAnswerText.length - 1]
-                      .questionText
-                  }
+                  {data.questionAnswerText.length >= 2
+                    ? data.questionAnswerText[
+                        data.questionAnswerText.length - 1
+                      ].questionText
+                    : ''}
                 </td>
                 <td>{data.haveAnAnswer ? 'Yes' : 'No'}</td>
                 <td>{data.selectedStars}</td>

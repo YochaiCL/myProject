@@ -149,16 +149,14 @@ export default class PremiumHome extends Component {
     let rate = 0;
     let users = 0;
     let index = 0;
+
     for (; index < questionAnswerData.length; index++) {
-      if (
-        questionAnswerData[index].haveAnAnswer &&
-        questionAnswerData[index].selectedStars > 0
-      ) {
+      if (questionAnswerData[index].selectedStars > 0) {
         rate = rate + questionAnswerData[index].selectedStars;
         users = users + 1;
       }
     }
-
+    //
     if (users > 0) {
       const overallRate = rate / users;
       this.setState({
@@ -185,7 +183,7 @@ export default class PremiumHome extends Component {
               to='/questionsAnswersReportPremium'
               name='More Info'
             />
-
+            {/* {console.log(this.state.overallUsersRate)} */}
             <DiagnosticInformationLayout
               h2='Overall Users Rate'
               text={
@@ -196,8 +194,6 @@ export default class PremiumHome extends Component {
                     )
                   : 'No Data'
               }
-              to='/questionsAnswersReportPremium'
-              name='More Info'
             />
 
             <DiagnosticInformationLayout

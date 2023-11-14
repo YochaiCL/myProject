@@ -37,7 +37,7 @@ export default class QuestionAnswerPremium extends Component {
       }
     );
     const result = await response.json();
-    console.log(result)
+    console.log(result);
     this.setState({ questionAnswerData: result });
 
     for (let user of result) {
@@ -151,17 +151,15 @@ export default class QuestionAnswerPremium extends Component {
     }
     let object = this.state.questions[this.state.selectIndex];
     object.haveAnAnswer = true;
-    console.log(object)
+    console.log(object);
     let array = [...this.state.questionAnswerData];
     let newArray = array.filter(
-      qa => qa._id !== this.state.questions[this.state.selectIndex]
-    ._id);
-    console.log(newArray)
-    newArray.push(object)
+      qa => qa._id !== this.state.questions[this.state.selectIndex]._id
+    );
+    console.log(newArray);
+    newArray.push(object);
     this.setState({
-      questionAnswerData: [
-        ...newArray,
-      ],
+      questionAnswerData: [...newArray],
     });
     this.setState({ answerText: '' });
     setTimeout(() => {
@@ -190,6 +188,7 @@ export default class QuestionAnswerPremium extends Component {
   }
   render() {
     const { showData, selectIndex, showQuestionsNames } = this.state;
+
     return (
       <PageLayout>
         <Header h1Heading='Question Answer' />
@@ -198,18 +197,21 @@ export default class QuestionAnswerPremium extends Component {
             <h2>List Of Questions/Answers</h2>
             {this.state.users.map((qA, index) => (
               <section key={index}>
-                <button
-                  onClick={() => {
-                    this.handelClickQuestion(qA, index);
-                  }}
-                  className={`${style.productButton} ${
-                    this.checkUserAllHaveAnswers(qA)
-                      ? style.greenBackground
-                      : style.redBackground
-                  }`}
-                >
-                  {qA}
-                </button>
+                {this.state.questionAnswerData[index].questionAnswerText[0]
+                  .userType === 'Premium' ? null : (
+                  <button
+                    onClick={() => {
+                      this.handelClickQuestion(qA, index);
+                    }}
+                    className={`${style.productButton} ${
+                      this.checkUserAllHaveAnswers(qA)
+                        ? style.greenBackground
+                        : style.redBackground
+                    }`}
+                  >
+                    {qA}
+                  </button>
+                )}
               </section>
             ))}
 
