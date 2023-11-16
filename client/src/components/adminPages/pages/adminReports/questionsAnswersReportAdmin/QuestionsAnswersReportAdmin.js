@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PageLayout from '../../../layouts/pageLayout/PageLayout';
 import Header from '../../../../commonComponents/header/Header';
 import style from './questionsAnswersReportAdmin.module.css';
+// import LinkLayout from '../../../../commonComponents/linkLayout/LinkLayout';
 
 /**
  * Description - This class display the question/answer report
@@ -39,7 +40,7 @@ export default class QuestionsAnswersReport extends Component {
       );
       const result = await response.json();
 
-      console.log(result);
+      // console.log(result);
 
       this.setState({
         questionAnswerData: result,
@@ -52,6 +53,7 @@ export default class QuestionsAnswersReport extends Component {
     return (
       <PageLayout>
         <Header h1Heading='Question Answer Reports' />
+
         <table className={style.table}>
           <thead>
             <tr className={style.tr}>
@@ -94,6 +96,13 @@ export default class QuestionsAnswersReport extends Component {
             ))}
           </tbody>
         </table>
+        <section className={style.link}>
+          {' '}
+          {/* <LinkLayout
+            toLink='/premiumQuestions'
+            nameLink='To see full conversation'
+          /> */}
+        </section>
       </PageLayout>
     );
   }

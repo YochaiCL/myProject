@@ -105,6 +105,8 @@ import UsersDataReportsAdmin from './components/adminPages/pages/adminReports/us
 import LearnedDataReport from './components/adminPages/pages/adminReports/learnedDataReport/LearnedDataReport';
 
 import QuestionAnswerAdmin from './components/adminPages/pages/questionAnswerAdmin/QuestionAnswerAdmin';
+import PremiumQuestions from './components/adminPages/pages/questionAnswerAdmin/premiumQuestions/PremiumQuestions';
+import AdminQuestions from './components/adminPages/pages/questionAnswerAdmin/adminQuestions/AdminQuestions';
 
 //import premium pages
 import PremiumHome from './components/premiumPages/pages/premiumHome/PremiumHome';
@@ -245,9 +247,11 @@ function App() {
           <Route path='/learnedDataReport' element={<LearnedDataReport />} />
 
           <Route
-            path='/adminQuestionAnswer'
+            path='/questionAnswerAdmin'
             element={<QuestionAnswerAdmin />}
           />
+          <Route path='/premiumQuestions' element={<PremiumQuestions />} />
+          <Route path='/adminQuestions' element={<AdminQuestions />} />
 
           {/* premium pages */}
           <Route path='/questionAnswerHome' element={<PremiumHome />} />

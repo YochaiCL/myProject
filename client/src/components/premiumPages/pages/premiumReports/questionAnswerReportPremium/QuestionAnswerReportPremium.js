@@ -39,7 +39,7 @@ export default class QuestionAnswerReportPremium extends Component {
       );
       const result = await response.json();
 
-      console.log(result);
+      // console.log(result);
 
       this.setState({
         questionAnswerData: result,
@@ -71,7 +71,7 @@ export default class QuestionAnswerReportPremium extends Component {
                 <td>{data.userFullName}</td>
                 <td>{data.userEmail}</td>
                 <td>{data.questionName}</td>
-            
+
                 <td>
                   {data.questionAnswerText.length >= 2
                     ? data.questionAnswerText[
