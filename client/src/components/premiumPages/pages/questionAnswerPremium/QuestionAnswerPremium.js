@@ -217,7 +217,7 @@ export default class QuestionAnswerPremium extends Component {
 
             {showQuestionsNames ? (
               <section className={style.questions}>
-                <h3>Questions:</h3>
+                <h3 className={style.QuestionsH3}>Questions:</h3>
                 {this.state.questions.map((qA, index) => {
                   const hasAnswer = this.state.questionAnswerData.find(
                     data => data._id === qA._id

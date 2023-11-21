@@ -165,6 +165,14 @@ export default class TestWithHelp extends Component {
       <PageLayout>
         <Header h1Heading='Test With Help' />
         <section>
+          <h3 className={style.h3}>Interactions</h3>
+          <ul className={style.ul}>
+            <li>Enter name to the assembly</li>
+            <li>Select Motherboard</li>
+            <li>Continuo select components by the numbers</li>
+            <li>Select only the green rows</li>
+          </ul>
+
           <form onSubmit={this.handleSubmit.bind(this)} className={style.form}>
             <input
               className={style.input}
@@ -174,345 +182,419 @@ export default class TestWithHelp extends Component {
               required
               onChange={e => this.setState({ testName: e.target.value })}
             />
-
-            {/* motherboard */}
-            <select
-              className={`${style.select} ${
-                isMotherboardSelected ? style.backgroundGreen : ''
-              }`}
-              value={this.state.modelMotherboard}
-              label='MOTHERBOARD'
-              onChange={e => {
-                this.setState({
-                  currentSSD: [],
-                  currentCase: [],
-                  currentGPU: [],
-                  currentCpu: [],
-                  currentCPUCooler: [],
-                  currentMotherboard: [],
-                  currentPSU: [],
-                  currentRAM: [],
-                  current: [],
-                });
-                this.setState({ modelMotherboard: e.target.value }, () => {
-                  for (let option of this.state.assembly) {
-                    if (
-                      this.state.modelMotherboard === option.modelMotherboard
-                    ) {
-                      this.setState({
-                        chosenOption: option,
-                        currentMotherboard: this.state.modelMotherboard,
-                      });
-                      this.state.currentCase.push(option.modelCase);
-                      this.state.currentSSD.push(option.modelSSD);
-                      this.state.currentCpu.push(option.modelCPU);
-                      this.state.currentGPU.push(option.modelGPU);
-                      this.state.currentRAM.push(option.modelRAM);
+            {/* Motherboard */}
+            <section className={style.selectWrapper}>
+              <span
+                className={`${style.number} ${
+                  isMotherboardSelected
+                    ? style.backgroundGreen
+                    : style.backgroundRed
+                }`}
+              >
+                1
+              </span>
+              <select
+                className={`${style.select} ${
+                  isMotherboardSelected ? style.backgroundGreen : ''
+                }`}
+                value={this.state.modelMotherboard}
+                label='MOTHERBOARD'
+                onChange={e => {
+                  this.setState({
+                    currentSSD: [],
+                    currentCase: [],
+                    currentGPU: [],
+                    currentCpu: [],
+                    currentCPUCooler: [],
+                    currentMotherboard: [],
+                    currentPSU: [],
+                    currentRAM: [],
+                    current: [],
+                  });
+                  this.setState({ modelMotherboard: e.target.value }, () => {
+                    for (let option of this.state.assembly) {
+                      if (
+                        this.state.modelMotherboard === option.modelMotherboard
+                      ) {
+                        this.setState({
+                          chosenOption: option,
+                          currentMotherboard: this.state.modelMotherboard,
+                        });
+                        this.state.currentCase.push(option.modelCase);
+                        this.state.currentSSD.push(option.modelSSD);
+                        this.state.currentCpu.push(option.modelCPU);
+                        this.state.currentGPU.push(option.modelGPU);
+                        this.state.currentRAM.push(option.modelRAM);
+                      }
                     }
-                  }
-                });
-              }}
-              required
-            >
-              <option value='' disabled>
-                Select a Motherboard
-              </option>
-              {this.state.motherboardArray.map(itemMotherboard => {
-                return (
-                  <option key={itemMotherboard} value={itemMotherboard}>
-                    {itemMotherboard}
-                  </option>
-                );
-              })}
-            </select>
+                  });
+                }}
+                required
+              >
+                <option value='' disabled>
+                  Select a Motherboard
+                </option>
+                {this.state.motherboardArray.map(itemMotherboard => {
+                  return (
+                    <option key={itemMotherboard} value={itemMotherboard}>
+                      {itemMotherboard}
+                    </option>
+                  );
+                })}
+              </select>
+            </section>
 
             {/* cpu */}
-            <select
-              className={`${style.select} ${
-                isCpuSelected ? style.backgroundGreen : style.backgroundRed
-              }`}
-              value={this.state.modelCPU}
-              label='CPU'
-              onChange={e => {
-                this.setState({ currentCPUCooler: [] });
-                this.setState({ modelCPU: e.target.value }, () => {
-                  for (let option of this.state.assembly) {
-                    if (this.state.modelCPU === option.modelCPU) {
-                      this.setState({
-                        chosenOption: option,
-                      });
+            <section className={style.selectWrapper}>
+              <span
+                className={`${style.number} ${
+                  isCpuSelected ? style.backgroundGreen : style.backgroundRed
+                }`}
+              >
+                2
+              </span>
+              <select
+                className={`${style.select} ${
+                  isCpuSelected ? style.backgroundGreen : style.backgroundRed
+                }`}
+                value={this.state.modelCPU}
+                label='CPU'
+                onChange={e => {
+                  this.setState({ currentCPUCooler: [] });
+                  this.setState({ modelCPU: e.target.value }, () => {
+                    for (let option of this.state.assembly) {
+                      if (this.state.modelCPU === option.modelCPU) {
+                        this.setState({
+                          chosenOption: option,
+                        });
 
-                      this.state.currentCPUCooler.push(option.modelCPUCooler);
+                        this.state.currentCPUCooler.push(option.modelCPUCooler);
+                      }
                     }
-                  }
-                });
-              }}
-              required
-              disabled={!isMotherboardSelected}
-            >
-              <option value='' disabled>
-                Select a CPU
-              </option>
-              {this.state.cpuArray.map(itemCpu => {
-                if (this.state.currentCpu.includes(itemCpu)) {
-                  return (
-                    <option
-                      key={itemCpu}
-                      value={itemCpu}
-                      className={style.nextComp}
-                    >
-                      {itemCpu}
-                    </option>
-                  );
-                } else {
-                  return (
-                    <option key={itemCpu} value={itemCpu}>
-                      {itemCpu}
-                    </option>
-                  );
-                }
-              })}
-            </select>
-
-            {/* cpu cooler */}
-            <select
-              className={`${style.select} ${
-                isCpuCoolerSelected
-                  ? style.backgroundGreen
-                  : style.backgroundRed
-              }`}
-              value={this.state.modelCPUCooler}
-              label='CPU Cooler'
-              onChange={e => {
-                this.setState({ modelCPUCooler: e.target.value }, () => {});
-              }}
-              required
-              disabled={!isCpuSelected}
-            >
-              <option value='' disabled>
-                Select a CPU Cooler
-              </option>
-              {[
-                ...this.state.cpuCoolerFanArray,
-                ...this.state.cpuCoolerLiquidArray,
-              ].map(itemCpuCooler => {
-                if (this.state.currentCPUCooler.includes(itemCpuCooler)) {
-                  return (
-                    <option
-                      key={itemCpuCooler}
-                      value={itemCpuCooler}
-                      className={style.nextComp}
-                    >
-                      {itemCpuCooler}
-                    </option>
-                  );
-                } else {
-                  return (
-                    <option key={itemCpuCooler} value={itemCpuCooler}>
-                      {itemCpuCooler}
-                    </option>
-                  );
-                }
-              })}
-            </select>
-
-            {/* gpu */}
-            <select
-              className={`${style.select} ${
-                isGpuSelected ? style.backgroundGreen : style.backgroundRed
-              }`}
-              value={this.state.modelGPU}
-              label='GPU'
-              onChange={e => {
-                this.setState({ currentPSU: [] });
-                this.setState({ modelGPU: e.target.value }, () => {
-                  for (let option of this.state.assembly) {
-                    if (this.state.modelGPU === option.modelGPU) {
-                      this.setState({
-                        chosenOption: option,
-                      });
-
-                      this.state.currentPSU.push(option.modelPSU);
-                    }
-                  }
-                });
-              }}
-              required
-              disabled={!isMotherboardSelected}
-            >
-              <option value='' disabled>
-                Select a GPU
-              </option>
-              {this.state.gpuArray.map(itemGpu => {
-                if (this.state.currentGPU.includes(itemGpu)) {
-                  return (
-                    <option
-                      key={itemGpu}
-                      value={itemGpu}
-                      className={style.nextComp}
-                    >
-                      {itemGpu}
-                    </option>
-                  );
-                } else {
-                  return (
-                    <option key={itemGpu} value={itemGpu}>
-                      {itemGpu}
-                    </option>
-                  );
-                }
-              })}
-            </select>
-
-            {/* psu */}
-            <select
-              className={`${style.select} ${
-                isPsuSelected ? style.backgroundGreen : style.backgroundRed
-              }`}
-              value={this.state.modelPSU}
-              label='PSU'
-              onChange={e => {
-                this.setState({ modelPSU: e.target.value }, () => {});
-              }}
-              required
-              disabled={!isGpuSelected}
-            >
-              <option value='' disabled>
-                Select a PSU
-              </option>
-              {this.state.psuArray.map(itemPsu => {
-                if (this.state.currentPSU.includes(itemPsu)) {
-                  return (
-                    <option
-                      key={itemPsu}
-                      value={itemPsu}
-                      className={style.nextComp}
-                    >
-                      {itemPsu}
-                    </option>
-                  );
-                } else {
-                  return (
-                    <option key={itemPsu} value={itemPsu}>
-                      {itemPsu}
-                    </option>
-                  );
-                }
-              })}
-            </select>
-
-            {/* ram */}
-            <select
-              className={`${style.select} ${
-                isRamSelected ? style.backgroundGreen : style.backgroundRed
-              }`}
-              value={this.state.modelRAM}
-              label='RAM'
-              onChange={e => {
-                this.setState({ modelRAM: e.target.value }, () => {});
-              }}
-              required
-              disabled={!isMotherboardSelected}
-            >
-              <option value='' disabled>
-                Select a RAM
-              </option>
-              {this.state.ramArray.map(itemRam => {
-                if (this.state.currentRAM.includes(itemRam)) {
-                  return (
-                    <option
-                      key={itemRam}
-                      value={itemRam}
-                      className={style.nextComp}
-                    >
-                      {itemRam}
-                    </option>
-                  );
-                } else {
-                  return (
-                    <option key={itemRam} value={itemRam}>
-                      {itemRam}
-                    </option>
-                  );
-                }
-              })}
-            </select>
-
-            {/* ssd */}
-            <select
-              className={`${style.select} ${
-                isSsdSelected ? style.backgroundGreen : style.backgroundRed
-              }`}
-              value={this.state.modelSSD}
-              label='SSD'
-              onChange={e => {
-                this.setState({ modelSSD: e.target.value }, () => {});
-              }}
-              required
-              disabled={!isMotherboardSelected}
-            >
-              <option value='' disabled>
-                Select a SSD
-              </option>
-              {[...this.state.ssdM2Array, ...this.state.ssdSataArray].map(
-                itemSSD => {
-                  if (this.state.currentSSD.includes(itemSSD)) {
+                  });
+                }}
+                required
+                disabled={!isMotherboardSelected}
+              >
+                <option value='' disabled>
+                  Select a CPU
+                </option>
+                {this.state.cpuArray.map(itemCpu => {
+                  if (this.state.currentCpu.includes(itemCpu)) {
                     return (
                       <option
-                        key={itemSSD}
-                        value={itemSSD}
+                        key={itemCpu}
+                        value={itemCpu}
                         className={style.nextComp}
                       >
-                        {itemSSD}
+                        {itemCpu}
                       </option>
                     );
                   } else {
                     return (
-                      <option key={itemSSD} value={itemSSD}>
-                        {itemSSD}
+                      <option key={itemCpu} value={itemCpu}>
+                        {itemCpu}
                       </option>
                     );
                   }
-                }
-              )}
-            </select>
+                })}
+              </select>
+            </section>
+
+            {/* cpu cooler */}
+            <section className={style.selectWrapper}>
+              <span
+                className={`${style.number} ${
+                  isCpuCoolerSelected
+                    ? style.backgroundGreen
+                    : style.backgroundRed
+                }`}
+              >
+                3
+              </span>
+              <select
+                className={`${style.select} ${
+                  isCpuCoolerSelected
+                    ? style.backgroundGreen
+                    : style.backgroundRed
+                }`}
+                value={this.state.modelCPUCooler}
+                label='CPU Cooler'
+                onChange={e => {
+                  this.setState({ modelCPUCooler: e.target.value }, () => {});
+                }}
+                required
+                disabled={!isCpuSelected}
+              >
+                <option value='' disabled>
+                  Select a CPU Cooler
+                </option>
+                {[
+                  ...this.state.cpuCoolerFanArray,
+                  ...this.state.cpuCoolerLiquidArray,
+                ].map(itemCpuCooler => {
+                  if (this.state.currentCPUCooler.includes(itemCpuCooler)) {
+                    return (
+                      <option
+                        key={itemCpuCooler}
+                        value={itemCpuCooler}
+                        className={style.nextComp}
+                      >
+                        {itemCpuCooler}
+                      </option>
+                    );
+                  } else {
+                    return (
+                      <option key={itemCpuCooler} value={itemCpuCooler}>
+                        {itemCpuCooler}
+                      </option>
+                    );
+                  }
+                })}
+              </select>
+            </section>
+            {/* gpu */}
+            <section className={style.selectWrapper}>
+              <span
+                className={`${style.number} ${
+                  isGpuSelected ? style.backgroundGreen : style.backgroundRed
+                }`}
+              >
+                4
+              </span>
+              <select
+                className={`${style.select} ${
+                  isGpuSelected ? style.backgroundGreen : style.backgroundRed
+                }`}
+                value={this.state.modelGPU}
+                label='GPU'
+                onChange={e => {
+                  this.setState({ currentPSU: [] });
+                  this.setState({ modelGPU: e.target.value }, () => {
+                    for (let option of this.state.assembly) {
+                      if (this.state.modelGPU === option.modelGPU) {
+                        this.setState({
+                          chosenOption: option,
+                        });
+
+                        this.state.currentPSU.push(option.modelPSU);
+                      }
+                    }
+                  });
+                }}
+                required
+                disabled={!isMotherboardSelected}
+              >
+                <option value='' disabled>
+                  Select a GPU
+                </option>
+                {this.state.gpuArray.map(itemGpu => {
+                  if (this.state.currentGPU.includes(itemGpu)) {
+                    return (
+                      <option
+                        key={itemGpu}
+                        value={itemGpu}
+                        className={style.nextComp}
+                      >
+                        {itemGpu}
+                      </option>
+                    );
+                  } else {
+                    return (
+                      <option key={itemGpu} value={itemGpu}>
+                        {itemGpu}
+                      </option>
+                    );
+                  }
+                })}
+              </select>
+            </section>
+
+            {/* psu */}
+            <section className={style.selectWrapper}>
+              <span
+                className={`${style.number} ${
+                  isPsuSelected ? style.backgroundGreen : style.backgroundRed
+                }`}
+              >
+                6
+              </span>
+              <select
+                className={`${style.select} ${
+                  isPsuSelected ? style.backgroundGreen : style.backgroundRed
+                }`}
+                value={this.state.modelPSU}
+                label='PSU'
+                onChange={e => {
+                  this.setState({ modelPSU: e.target.value }, () => {});
+                }}
+                required
+                disabled={!isGpuSelected}
+              >
+                <option value='' disabled>
+                  Select a PSU
+                </option>
+                {this.state.psuArray.map(itemPsu => {
+                  if (this.state.currentPSU.includes(itemPsu)) {
+                    return (
+                      <option
+                        key={itemPsu}
+                        value={itemPsu}
+                        className={style.nextComp}
+                      >
+                        {itemPsu}
+                      </option>
+                    );
+                  } else {
+                    return (
+                      <option key={itemPsu} value={itemPsu}>
+                        {itemPsu}
+                      </option>
+                    );
+                  }
+                })}
+              </select>
+            </section>
+
+            {/* ram */}
+            <section className={style.selectWrapper}>
+              <span
+                className={`${style.number} ${
+                  isRamSelected ? style.backgroundGreen : style.backgroundRed
+                }`}
+              >
+                7
+              </span>
+              <select
+                className={`${style.select} ${
+                  isRamSelected ? style.backgroundGreen : style.backgroundRed
+                }`}
+                value={this.state.modelRAM}
+                label='RAM'
+                onChange={e => {
+                  this.setState({ modelRAM: e.target.value }, () => {});
+                }}
+                required
+                disabled={!isMotherboardSelected}
+              >
+                <option value='' disabled>
+                  Select a RAM
+                </option>
+                {this.state.ramArray.map(itemRam => {
+                  if (this.state.currentRAM.includes(itemRam)) {
+                    return (
+                      <option
+                        key={itemRam}
+                        value={itemRam}
+                        className={style.nextComp}
+                      >
+                        {itemRam}
+                      </option>
+                    );
+                  } else {
+                    return (
+                      <option key={itemRam} value={itemRam}>
+                        {itemRam}
+                      </option>
+                    );
+                  }
+                })}
+              </select>
+            </section>
+
+            {/* ssd */}
+            <section className={style.selectWrapper}>
+              <span
+                className={`${style.number} ${
+                  isSsdSelected ? style.backgroundGreen : style.backgroundRed
+                }`}
+              >
+                8
+              </span>
+              <select
+                className={`${style.select} ${
+                  isSsdSelected ? style.backgroundGreen : style.backgroundRed
+                }`}
+                value={this.state.modelSSD}
+                label='SSD'
+                onChange={e => {
+                  this.setState({ modelSSD: e.target.value }, () => {});
+                }}
+                required
+                disabled={!isMotherboardSelected}
+              >
+                <option value='' disabled>
+                  Select a SSD
+                </option>
+                {[...this.state.ssdM2Array, ...this.state.ssdSataArray].map(
+                  itemSSD => {
+                    if (this.state.currentSSD.includes(itemSSD)) {
+                      return (
+                        <option
+                          key={itemSSD}
+                          value={itemSSD}
+                          className={style.nextComp}
+                        >
+                          {itemSSD}
+                        </option>
+                      );
+                    } else {
+                      return (
+                        <option key={itemSSD} value={itemSSD}>
+                          {itemSSD}
+                        </option>
+                      );
+                    }
+                  }
+                )}
+              </select>
+            </section>
 
             {/* case */}
-            <select
-              className={`${style.select} ${
-                isCaseSelected ? style.backgroundGreen : style.backgroundRed
-              }`}
-              value={this.state.modelCase}
-              label='CASE'
-              onChange={e => {
-                this.setState({ modelCase: e.target.value }, () => {});
-              }}
-              required
-              disabled={!isMotherboardSelected}
-            >
-              <option value='' disabled>
-                Select a Case
-              </option>
-              {this.state.caseArray.map(itemCase => {
-                if (this.state.currentCase.includes(itemCase)) {
-                  return (
-                    <option
-                      key={itemCase}
-                      value={itemCase}
-                      className={style.nextComp}
-                    >
-                      {itemCase}
-                    </option>
-                  );
-                } else {
-                  return (
-                    <option key={itemCase} value={itemCase}>
-                      {itemCase}
-                    </option>
-                  );
-                }
-              })}
-            </select>
+            <section className={style.selectWrapper}>
+              <span
+                className={`${style.number} ${
+                  isCaseSelected ? style.backgroundGreen : style.backgroundRed
+                }`}
+              >
+                9
+              </span>
+              <select
+                className={`${style.select} ${
+                  isCaseSelected ? style.backgroundGreen : style.backgroundRed
+                }`}
+                value={this.state.modelCase}
+                label='CASE'
+                onChange={e => {
+                  this.setState({ modelCase: e.target.value }, () => {});
+                }}
+                required
+                disabled={!isMotherboardSelected}
+              >
+                <option value='' disabled>
+                  Select a Case
+                </option>
+                {this.state.caseArray.map(itemCase => {
+                  if (this.state.currentCase.includes(itemCase)) {
+                    return (
+                      <option
+                        key={itemCase}
+                        value={itemCase}
+                        className={style.nextComp}
+                      >
+                        {itemCase}
+                      </option>
+                    );
+                  } else {
+                    return (
+                      <option key={itemCase} value={itemCase}>
+                        {itemCase}
+                      </option>
+                    );
+                  }
+                })}
+              </select>
+            </section>
             <Button type='submit' text='save test' />
             <p className={style.showResult}>{this.state.showResult}</p>
           </form>

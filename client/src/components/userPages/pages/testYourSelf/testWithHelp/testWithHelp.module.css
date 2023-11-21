@@ -49,3 +49,23 @@
 .backgroundRed {
   background-color: red;
 }
+
+.selectWrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* Adjust the gap as needed */
+}
+
+.number {
+  border-radius: 50px;
+  border: solid black 0.5rem;
+  width: 5rem;
+  text-align: center;
+}
+.ul{
+  margin-left: 5rem;
+}
+
+.h3{
+  margin-left: 2rem;
+}

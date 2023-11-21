@@ -1,7 +1,7 @@
 import React from 'react';
 import PageLayout from '../../layouts/pageLayout/PageLayout';
 import Header from '../../../commonComponents/header/Header';
-import style from './about.module.css'
+import style from './about.module.css';
 
 /**
  * Description - This function display the about page
@@ -28,6 +28,22 @@ function About() {
           population and provide the knowledge required to understand the
           hardware and self-build the computer.
         </p>
+        <h3 className={style.h3}>Interactions</h3>
+        <ul className={style.ul}>
+          <li>
+            Learn the hardware - In "First Steps" you can study the components
+            of the computer
+          </li>
+          <li>
+            Learn how to assembly - In "Assembly" you can study how to create
+            working assembly
+          </li>
+          <li>
+            Test it - In "Test Your Self' you can create assembly and test if it
+            work{' '}
+          </li>
+          <li>For any questions you can connect our "Question / Answer"</li>
+        </ul>
       </article>
     </PageLayout>
   );
