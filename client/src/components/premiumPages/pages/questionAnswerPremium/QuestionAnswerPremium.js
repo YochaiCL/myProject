@@ -266,13 +266,13 @@ export default class QuestionAnswerPremium extends Component {
                     if (oneMessage.userType !== 'Premium') {
                       return (
                         <section className={style.user} key={index}>
-                          <p>User: {oneMessage.questionText}</p>
+                          <p><span className={style.spanUser}>User:</span> {oneMessage.questionText}</p>
                         </section>
                       );
                     } else {
                       return (
                         <section className={style.premium} key={index}>
-                          <p>Premium: {oneMessage.questionText}</p>
+                          <p><span className={style.spanPremium}>Premium:</span> {oneMessage.questionText}</p>
                         </section>
                       );
                     }

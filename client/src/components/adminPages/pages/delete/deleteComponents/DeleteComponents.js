@@ -169,7 +169,7 @@ export default class DeleteComponents extends Component {
             );
           })}
 
-          <Option optionText='Select SSD Sata' />
+          <Option optionText='Select SSD' />
 
           {[...this.state.ssdSataArray, ...this.state.ssdM2Array].map(item => {
             return (

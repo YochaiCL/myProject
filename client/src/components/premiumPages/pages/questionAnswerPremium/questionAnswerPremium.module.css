@@ -6,7 +6,7 @@
   border: 5px solid black;
   border-radius: 10px;
   padding: 2rem;
-  max-width: 50%;
+  max-width: 80%;
 }
 
 .external {
@@ -15,7 +15,6 @@
   margin-right: auto;
   gap: 5rem;
   display: flex;
-  
 }
 
 .showAllData {
@@ -24,8 +23,8 @@
   background-color: white;
   opacity: 0.7;
   padding: 1rem;
-  width: fit-content;
-  font-size: 1.5rem;
+  width: 60%;
+  font-size: 2rem;
 }
 
 .productButton {
@@ -123,16 +122,22 @@
 
 .user {
   direction: 'ltr';
-  color:blue;
+  color: blue;
 }
 
 .premium {
   direction: 'ltr';
-  color:green;
+  color: green;
 }
 
-.QuestionsH3{
-   color: rgb(32, 86, 178);
+.QuestionsH3 {
+  color: rgb(32, 86, 178);
 }
 
+.spanUser {
+  color: rgb(192, 20, 255);
+}
 
+.spanPremium{
+  color:rgb(0, 155, 239);
+}

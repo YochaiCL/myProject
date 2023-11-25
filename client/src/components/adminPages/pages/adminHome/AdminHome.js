@@ -263,7 +263,11 @@ export default class AdminHome extends Component {
 
             <DiagnosticInformationLayout
               h2='Most Learned Component '
-              text={this.state.mostLearnedComp}
+              text={
+                this.state.mostLearnedComp
+                  ? this.state.mostLearnedComp
+                  : 'No Data'
+              }
               to='/learnedDataReport'
               name='More Info'
             />

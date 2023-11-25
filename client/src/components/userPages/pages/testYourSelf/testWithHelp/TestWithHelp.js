@@ -166,12 +166,14 @@ export default class TestWithHelp extends Component {
         <Header h1Heading='Test With Help' />
         <section>
           <h3 className={style.h3}>Interactions</h3>
-          <ul className={style.ul}>
-            <li>Enter name to the assembly</li>
-            <li>Select Motherboard</li>
-            <li>Continuo select components by the numbers</li>
-            <li>Select only the green rows</li>
-          </ul>
+          <ol className={style.ul} start='1'>
+            <li>Enter the name of to the assembly</li>
+            <li>First select Motherboard</li>
+            <li>
+              Continuo select components by the numbers - Select only the green
+              rows
+            </li>
+          </ol>
 
           <form onSubmit={this.handleSubmit.bind(this)} className={style.form}>
             <input
